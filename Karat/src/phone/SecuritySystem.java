@@ -83,6 +83,7 @@ public class SecuritySystem {
 			
 			if (map.get(name) < 0) {
 				noEnter.add(name);
+				map.put(name, 0);
 			}
 			
 			if (map.get(name) > 1) {
@@ -121,7 +122,7 @@ public class SecuritySystem {
 				result.put(key, list);
 			}
 		}
-		//System.out.println(map);
+		System.out.println(map);
 		return result;
 	}
 	
@@ -151,13 +152,16 @@ public class SecuritySystem {
 	
 	public static void main(String[] args) {
 		System.out.println("*********** 【第一问】输出两个list，第一个是离开没有用badge的员工，第二个是进入没有用badge的员工 ***********");
-		List<List<String>> test1 = new ArrayList<>(Arrays.asList(Arrays.asList("Martha", "exit"), Arrays.asList("Paul", "enter"),
+		List<List<String>> test11 = new ArrayList<>(Arrays.asList(Arrays.asList("Martha", "exit"), Arrays.asList("Paul", "enter"),
 																 Arrays.asList("Martha", "enter"), Arrays.asList("Martha", "exit"),
 																 Arrays.asList("Jennifer", "enter"), Arrays.asList("Paul", "enter"),
 																 Arrays.asList("Curtis", "enter"), Arrays.asList("Paul", "exit"),
 																 Arrays.asList("Martha", "enter"), Arrays.asList("Martha", "exit"),
 																 Arrays.asList("Jennifer", "exit")));
-		System.out.println(misMatched(test1));
+		List<List<String>> test12 = new ArrayList<>(Arrays.asList(Arrays.asList("Paul", "exit"), Arrays.asList("Paul", "enter")));
+
+		System.out.println(misMatched(test11));
+		System.out.println(misMatched(test12));
 		System.out.println();
 		
 		System.out.println("*********** 【第二问】输出一小时内进入3次及以上的员工和他们的进入时间 ***********");

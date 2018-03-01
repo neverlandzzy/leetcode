@@ -92,25 +92,33 @@ public class MultiTree {
 		Set<Integer> ancestorA = new HashSet<>();
 		Queue<Integer> queue = new LinkedList<>();
 		queue.offer(A);
+		ancestorA.add(A);
 		
 		while (!queue.isEmpty()) {
 			int node = queue.poll();
 			for (int parent: parents.get(node)) {
-				ancestorA.add(parent);
-				queue.offer(parent);
+				if (!ancestorA.contains(parent)) {
+					ancestorA.add(parent);
+					queue.offer(parent);
+				}
 			}
 		}
 		
 		// 在parents上做bfs找B的祖先，遇到与A相同的则返回true，否则返回false
 		queue.offer(B);
+		Set<Integer> visited = new HashSet<>();
+		visited.add(B);
 		
 		while (!queue.isEmpty()) {
 			int node = queue.poll();
 			if (ancestorA.contains(node)) {
 				return true;
 			}
-			for (int parent: parents.get(node)) {
-				queue.offer(parent);
+			for (int parent: parents.get(node)) {			
+				if (!visited.contains(parent)) {
+					queue.offer(parent);
+					visited.add(parent);
+				} 
 			}
 		}
 		
@@ -137,6 +145,8 @@ public class MultiTree {
 		Queue<Integer> queue = new LinkedList<>();
 		queue.offer(A);
 		int result = A;
+		Set<Integer> visited = new HashSet<>();
+		visited.add(A);
 		
 		while (!queue.isEmpty()) {
 			int size = queue.size();
@@ -145,7 +155,10 @@ public class MultiTree {
 				result = node;
 				
 				for (int parent: parents.get(node)) {
-					queue.offer(parent);
+					if (!visited.contains(parent)) {
+						queue.offer(parent);
+						visited.add(parent);
+					}
 				}
 			}
 		}
@@ -164,6 +177,7 @@ public class MultiTree {
 		System.out.println("*********** 【Follow up 1】判断两个指定的点有没有公共祖先 ***********");
 		int[][] test21 = {{1, 3}, {2, 3}, {3, 6}, {5, 6}, {5, 7}, {4, 5}, {4, 8}, {8, 9}};
 		int[][] test22 = {{1,4}, {1,5}, {2,5}, {3,6}, {6,7}};
+		int[][] test23 = {{1, 3}, {2, 3}, {3, 6}, {5, 6}, {5, 7}, {4, 5}, {4, 8}, {8, 9}, {6, 10}, {7, 10}};
 		System.out.println(hasSameAncestor(test21, 3, 8));
 		System.out.println(hasSameAncestor(test21, 5, 8));
 		System.out.println(hasSameAncestor(test21, 6, 8));
@@ -174,17 +188,22 @@ public class MultiTree {
 		System.out.println(hasSameAncestor(test22, 5, 7));
 		System.out.println(hasSameAncestor(test22, 7, 7));
 		System.out.println();
-		
+		System.out.println(hasSameAncestor(test23, 9, 10));
+		System.out.println();
 		System.out.println("*********** 【Follow up 2】求一个点的最远祖先 ***********");
 		int[][] test31 = {{1, 3}, {2, 3}, {3, 6}, {5, 6}, {5, 7}, {4, 5}, {4, 8}, {8, 9}};
 		int[][] test32 = {{1,4}, {1,5}, {2,5}, {3,6}, {6,7}};
+		int[][] test33 = {{1, 3}, {2, 3}, {3, 6}, {5, 6}, {5, 7}, {4, 5}, {4, 8}, {8, 9}, {6, 10}, {7, 10}, {3, 10}};
 		
 		System.out.println(furthestAncestor(test31, 6));
 		System.out.println(furthestAncestor(test31, 9));
 		System.out.println(furthestAncestor(test31, 1));
 		System.out.println(furthestAncestor(test31, 5));
+		System.out.println(furthestAncestor(test31, 3));
 		System.out.println();
 		System.out.println(furthestAncestor(test32, 5));
 		System.out.println(furthestAncestor(test32, 7));
+		System.out.println();
+		System.out.println(furthestAncestor(test33, 10));
 	}
 }

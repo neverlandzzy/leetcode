@@ -41,7 +41,7 @@ public class Rectangle {
 	 * 【Follow up 2】返回listoflist， 每一个list是矩阵中相连的元素为0的点的坐标，类似LC200 number of island
 	 */
 	
-	// 基本题
+	// 基本题 O(m * n)
 	public static int[] findRectangle(int[][] grid) {
 		int[] result = new int[4];
 		if (grid == null || grid.length == 0 || grid[0] == null || grid[0].length == 0) {
@@ -64,24 +64,24 @@ public class Rectangle {
 			}
 		}
 		
-		/*
+		
 		// 返回[左上角x, 左上角y， 长， 宽]
 		result[0] = top;
 		result[1] = left;
 		result[2] = right - left + 1;
 		result[3] = bottom - top + 1;
-		*/
 		
+		/*
 		// 返回[左上角x, 左上角y， 右下角x， 右下角y]
 		result[0] = top;
 		result[1] = left;
 		result[2] = bottom;
 		result[3] = right;
-		
+		*/
 		return result;
 	}
 	
-	// Follow up 1:
+	// Follow up 1: O(m * n)
 	public static List<List<Integer>> findRectangle2(int[][] grid) {
 		List<List<Integer>> result = new ArrayList<>();
 		
@@ -142,7 +142,7 @@ public class Rectangle {
 		return list;
 	}
 	
-	// Follow up 2:
+	// Follow up 2: O(m*n)
 	public static List<List<int[]>> findRectangle3(int[][] grid) {
 		List<List<int[]>> result = new ArrayList<>();
 		
@@ -199,23 +199,28 @@ public class Rectangle {
 		int[][] test11 = {{1, 1, 1, 1, 1, 1}, {1, 0, 0, 0, 1, 1}, {1, 0, 0, 0, 1, 1}, {1, 1, 1, 1, 1, 1}, {1, 1, 1, 1, 1, 1,}};
 		int[][] test12 = {{1, 1, 1, 1, 1, 1}, {1, 1, 1, 0, 1, 1}, {1, 1, 1, 0, 1, 1}, {1, 1, 1, 1, 1, 1}, {1, 1, 1, 1, 1, 1,}};
 		int[][] test13 = {{1, 1, 1, 1, 1, 1}, {1, 1, 1, 1, 1, 1}, {1, 0, 0, 0, 1, 1}, {1, 0, 0, 0, 1, 1}, {1, 1, 1, 1, 1, 1,}};
+		int[][] test14 = {{1, 1, 1, 1, 1, 1}, {1, 1, 1, 1, 1, 1}, {1, 1, 1, 0, 1, 1}, {1, 1, 1, 1, 1, 1}, {1, 1, 1, 1, 1, 1,}};
 		
 		int[] result11 = findRectangle(test11);
 		int[] result12 = findRectangle(test12);
 		int[] result13 = findRectangle(test13);
+		int[] result14 = findRectangle(test14);
+
 		printArray(result11);
 		printArray(result12);
 		printArray(result13);
+		printArray(result14);
 		
 		System.out.println("*********** 【Follow up 1】找出多个不相邻矩形 ***********");
 		int[][] test21 = {{1, 1, 1, 1, 1, 1}, {0, 0, 1, 0, 1, 1}, {0, 0, 1, 0, 1, 0}, {1, 1, 1, 0, 1, 0}, {1, 0, 0, 1, 1, 1,}};
 		int[][] test22 = {{1, 1, 1, 1, 1, 1}, {0, 0, 1, 0, 1, 1}, {0, 0, 1, 0, 1, 0}, {1, 1, 1, 0, 1, 0}, {0, 1, 1, 1, 1, 1,}};
 		int[][] test23 = {{1, 1, 1, 1, 1, 1}, {1, 0, 0, 0, 1, 1}, {1, 0, 0, 0, 1, 1}, {1, 1, 1, 1, 1, 1}, {1, 1, 1, 1, 1, 1,}};
+		int[][] test24 = {{1, 1, 1, 1, 1, 1}, {1, 1, 1, 1, 1, 1}, {1, 1, 1, 1, 1, 1}, {1, 1, 1, 1, 1, 1}, {1, 1, 1, 1, 1, 1,}};
 		
 		System.out.println(findRectangle2(test21));
 		System.out.println(findRectangle2(test22));
 		System.out.println(findRectangle2(test23));
-		
+		System.out.println(findRectangle2(test24));
 		System.out.println("*********** 【Follow up 2】找出相邻岛屿(grid[i][j] = 0) ***********");
 		
 		int[][] test31 = {{1, 1, 1, 1, 1, 1}, {0, 0, 1, 0, 1, 1}, {0, 0, 1, 0, 1, 0}, {1, 1, 1, 0, 1, 0}, {1, 0, 0, 1, 1, 1}};

@@ -53,14 +53,14 @@ public class Solution {
     		rightMin[i] = Math.min(rightMin[i + 1], arr[i]);
     	}
     	
-    	int count = 0;
+    	int count = 1;
     	for (int i = 0; i < n - 1; i++) {
     		if (leftMax[i] <= rightMin[i + 1]) {
     			count++;
     		}
     	}
     	
-    	return count + 1;
+    	return count;
     }
     
     public static void main(String[] args) {

@@ -22,6 +22,7 @@ public class MeetingRooms {
 	
 	// 【基本题】 当新插入的time.start < 已有meeting.end 并且time.end > meeting.start时，会有冲突。 LC252中meetings已经按start排好序， 
 	//          所以已经保证intervals[i + 1].end > intervals[i].start 只需if (intervals[i + 1].start < intervals[i].end)，则可判定有重复
+	//  O(n)
 	public static boolean canAttendMeetings(List<int[]> meetings, int[] time) {
 		for (int i = 0; i < meetings.size(); i++) {
 			int[] meeting = meetings.get(i);
@@ -36,6 +37,7 @@ public class MeetingRooms {
 	}
 	
 	// 【Follow up 1】类似merge interval
+	// O(nlogn + n)
 	public static List<int[]> freeTime(List<int[]> meetings) {
 		List<int[]> result = new ArrayList<>();
 		if (meetings == null || meetings.size() == 0) {
@@ -56,16 +58,22 @@ public class MeetingRooms {
 			}
 		}
 		
-		result.add(new int[]{0, meetings.get(0)[0]});
-		
 		for (int i = 0; i < meetings.size() - 1; i++) {
 			int[] free = {meetings.get(i)[1], meetings.get(i + 1)[0]};
 			result.add(free);
 		}
 		
-		result.add(new int[]{meetings.get(meetings.size() - 1)[1], 2400});
+	    if (meetings.get(0)[0] > 0) {
+	        result.add(0, new int[] {0, meetings.get(0)[0]});
+	    }
+	      
+	    if (meetings.get(meetings.size() - 1)[1] < 2400) {
+	    	result.add(new int[] {meetings.get(meetings.size() - 1)[1], 2400});
+	    }
+	      
 		return result;
 	}
+	
 	/*
 	private static int convert(int test) {
 		if (test % 100 >= 60) {
@@ -74,9 +82,9 @@ public class MeetingRooms {
 		
 		return test;
 	}
-	*/
 	
-	// 【Follow up 2】 找最大overlap
+	*/
+	// 【Follow up 2】 找最大overlap  O(nlogn)
 	public static int overlap(List<int[]> meetings) {
         if (meetings == null || meetings.size() == 0) {
     		return 0;
@@ -157,10 +165,13 @@ public class MeetingRooms {
 		System.out.println();
 		System.out.println("*********** 【Follow up 1题】输出空闲时段 ***********");
 		List<int[]> meetings21 = new ArrayList<>(Arrays.asList(new int[]{1300, 1500}, new int[]{930, 1200}, new int[]{830, 945}));
+		List<int[]> meetings22 = new ArrayList<>(Arrays.asList(new int[]{1300, 1500}, new int[]{930, 1200}, new int[]{830, 945}, new int[]{0, 330}));
 		//print(meetings21);
 		List<int[]> result21 = freeTime(meetings21);
+		List<int[]> result22 = freeTime(meetings22);
 		//print(meetings21);
 		print(result21);
+		print(result22);
 		System.out.println();
 		System.out.println("*********** 【Follow up 2题】最大overlap ***********");
 		List<int[]> meetings31 = new ArrayList<>(Arrays.asList(new int[]{1300, 1500}, new int[]{930, 1200}, new int[]{830, 945}));
