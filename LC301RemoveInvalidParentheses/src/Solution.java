@@ -91,7 +91,7 @@ public class Solution {
 				found = true;
 			}
 			
-			// 要求删掉的是minimal number of invalid parentheses，当找到一个valid的s后，不再对s进行继续的拆分，只要将当期queue中的字符检查一遍就可，
+			// 要求删掉的是minimal number of invalid parentheses，当找到一个valid的s后，不再对s进行继续的拆分，只要将当前queue中的字符检查一遍就可，
 			// 因为继续拆分将不再是minimal的步数。
 			if (found) {
 				continue;

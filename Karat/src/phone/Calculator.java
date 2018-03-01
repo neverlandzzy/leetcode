@@ -13,7 +13,12 @@ public class Calculator {
 	 * 
 	 */
 	
+	// O(n)
 	public static int calculator1(String s) {
+		if (s == null || s.length() == 0) {
+			return 0;
+		}
+		
 		int result = 0;
 		
 		int sign = 1;
@@ -38,7 +43,7 @@ public class Calculator {
 		return result;
 	}
 	
-	//【Follow up 1】
+	//【Follow up 1】O(n)
 	public static int calculator2(String s) {
 		int sign = 1;
 		int result = 0;
@@ -66,7 +71,7 @@ public class Calculator {
 		return result;
 	}
 	
-	//【Follow up 2】
+	//【Follow up 2】O(n)
 	// http://www.1point3acres.com/bbs/thread-305094-1-1.html
 	public static String calculator3(String s, Map<String, Integer> map) {
 		int sign = 1;
@@ -155,12 +160,14 @@ public class Calculator {
 		String test33 = "e - 8 - (temperature - pressure)";
 		String test34 = "e - (8 + pressure) - temperature ";
 		String test35 = "-( 1+ ( 4  + 5+2)- 3) + ( 6+8)";
+		String test36 = "e - d - (temperature - pressure)";
 		
 		Map<String, Integer> map1 = new HashMap<>();
 		Map<String, Integer> map2 = new HashMap<>();
 		Map<String, Integer> map3 = new HashMap<>();
 		Map<String, Integer> map4 = new HashMap<>();
 		Map<String, Integer> map5 = new HashMap<>();
+		Map<String, Integer> map6 = new HashMap<>();
 		
 		map1.put("a", 1);
 		map1.put("b", 2);
@@ -183,5 +190,6 @@ public class Calculator {
 		System.out.println(calculator3(test33, map3));
 		System.out.println(calculator3(test34, map4));
 		System.out.println(calculator3(test35, map5));
+		System.out.println(calculator3(test36, map6));
 	}
 }

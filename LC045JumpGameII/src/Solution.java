@@ -15,6 +15,9 @@ public class Solution {
 	 * 
 	 */
 	
+	// 用max 记录在每一点上能跳到的最远的位置，并将next更新为max。当max == i时，说明没法到达终点。当next == i时，说明已经到了之前点能到达的最远距离，
+	// 因此要从这个点再跳一次，即jump + 1
+
     public static int jump(int[] nums) {
     	int next = 0;
     	int max = 0;
@@ -22,7 +25,7 @@ public class Solution {
     	
     	for (int i = 0; i < nums.length && next < nums.length-1; i++) {
     		
-    		max = Math.max(max, i+nums[i]);
+    		max = Math.max(max, i + nums[i]);
 
     		if (next == i) {
     			jump++;
@@ -34,7 +37,7 @@ public class Solution {
     			next = max;
     			
     		}
-    		System.out.println("i= " +i + " max = " + max + " next = " + next);
+    		//System.out.println("i= " +i + " max = " + max + " next = " + next);
     	}
     	
     	return jump;
@@ -49,10 +52,10 @@ public class Solution {
     	int[] test6 = {1};
     	
 		System.out.println(jump(test1));
-		//System.out.println(jump(test2));
-		//System.out.println(jump(test3));
-		//System.out.println(jump(test4));
-		//System.out.println(jump(test5));
-    	//System.out.println(jump(test6));
+		System.out.println(jump(test2));
+		System.out.println(jump(test3));
+		System.out.println(jump(test4));
+		System.out.println(jump(test5));
+    	System.out.println(jump(test6));
 	}
 }

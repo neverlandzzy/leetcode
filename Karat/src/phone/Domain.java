@@ -113,13 +113,78 @@ public class Domain {
 			return result;
 		}
 
-		for (int i = index; i <= max; i++) {
+		for (int i = index; i < index + max; i++) {
 			result.add(input.get(0).get(i));
 		}
 		
 		return result;
 	}
 	
+	
+	public static List<String> commonHistory1D(List<String> input1, List<String> input2) {
+		List<String> result = new ArrayList<>();
+		int m = input1.size();
+		int n = input2.size();
+		
+		if (m < n) {
+			return commonHistory1D(input2, input1);
+		}
+		
+		int max = Integer.MIN_VALUE;
+		int index = -1;
+		
+		int[] dp = new int[n];
+		
+		if (input1.get(m - 1).equals(input2.get(n - 1))) {
+			dp[n - 1] = 1;
+			index = n - 1;
+			max = 1;
+		}
+		
+		for (int i = n - 2; i >= 0; i--) {
+			if (input1.get(m - 1).equals(input2.get(i))) {
+				dp[i] = 1;
+				index = i;
+				max = 1;
+			}
+		}
+		
+		for (int i = m - 2; i >= 0; i--) {
+			int pre = dp[n - 1];
+			if (input1.get(i).equals(input2.get(n - 1))) {
+				dp[n - 1] = 1;
+				if (dp[n - 1] > max) {
+					max = dp[n - 1];
+					index = n - 1;
+				}
+			}
+			
+			for (int j = n - 2; j >= 0; j--) {
+				int cur = dp[j];
+				if (input1.get(i).equals(input2.get(j))) {
+					dp[j] = pre + 1;
+				} else {
+					dp[j] = 0;
+				}
+				
+				pre = cur;
+				if (dp[j] > max) {
+					max = dp[j];
+					index = j;
+				}
+			}
+		}
+		
+		if (index == -1) {
+			return result;
+		}
+
+		for (int i = index; i < index + max; i++) {
+			result.add(input2.get(i));
+		}
+		
+		return result;
+	}
 	public static void main(String[] args) {
 		System.out.println("*********** 【第一题】输出domain及其所有sub domain 被click的总次数 ***********");
 		List<List<String>> test11 = new ArrayList<>(Arrays.asList(Arrays.asList("google.com", "60"), 
@@ -130,7 +195,26 @@ public class Domain {
 		System.out.println("*********** 【第二题】输出两个user之间longest continuous common history ***********");
 		List<List<String>> test21 = new ArrayList<>(Arrays.asList(Arrays.asList("3234.html", "xys.html", "7hsaa.html"), 
 				                       						      Arrays.asList("3234.html", "sdhsfjdsh.html", "xys.html", "7hsaa.html")));
+		List<List<String>> test22 = new ArrayList<>(Arrays.asList(Arrays.asList("/nine.html", "/four.html", "/six.html", "/seven.html", "/one.html"), 
+				      Arrays.asList("/nine.html", "/two.html", "/three.html", "/four.html", "/six.html", "/seven.html")));
+		List<List<String>> test23 = new ArrayList<>(Arrays.asList(Arrays.asList("/one.html", "/two.html", "/three.html", "/four.html", "/six.html"), 
+			      Arrays.asList("/nine.html", "/two.html", "/three.html", "/four.html", "/six.html", "/seven.html")));
+		List<List<String>> test24 = new ArrayList<>(Arrays.asList(Arrays.asList("/nine.html", "/four.html", "/six.html", "/seven.html", "/one.html"), 
+			      Arrays.asList("/three.html", "/eight.html")));
+		List<List<String>> test25 = new ArrayList<>(Arrays.asList(Arrays.asList("/one.html", "/two.html", "/three.html", "/four.html", "/six.html" ), 
+			      Arrays.asList("/three.html", "/eight.html")));
 		
 		System.out.println(commonHistory(test21));
+		System.out.println(commonHistory(test22));
+		System.out.println(commonHistory(test23));
+		System.out.println(commonHistory(test24));
+		System.out.println(commonHistory(test25));
+		System.out.println(" ===== 1D ===== ");
+		System.out.println(commonHistory1D(test21.get(0), test21.get(1)));
+		System.out.println(commonHistory1D(test22.get(0), test22.get(1)));
+		System.out.println(commonHistory1D(test23.get(0), test23.get(1)));
+		System.out.println(commonHistory1D(test24.get(0), test24.get(1)));
+		System.out.println(commonHistory1D(test25.get(0), test25.get(1)));
+
 	}
 }
