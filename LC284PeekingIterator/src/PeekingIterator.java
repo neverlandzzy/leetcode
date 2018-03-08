@@ -50,7 +50,7 @@ public class PeekingIterator implements Iterator<Integer> {
 
 	@Override
 	public boolean hasNext() {
-	    return peekingIterator.hasNext();
+		return next != null;
 	}
 
 	@Override

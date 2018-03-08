@@ -1,9 +1,6 @@
-import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Collections;
 import java.util.Comparator;
-import java.util.HashMap;
-import java.util.List;
+import java.util.TreeSet;
 
 
 public class Test {
@@ -89,7 +86,7 @@ public class Test {
 		dp[0][1] = 8;
 		System.out.println(Arrays.deepToString(dp));
 		System.out.println(Arrays.deepToString(newDp));
-		*/
+		
 		String s = "google.com";
 		
 		String[] a = s.split("\\.");
@@ -106,6 +103,20 @@ public class Test {
 		System.out.println(convert(test2));
 		System.out.println(convert(test3));
 		System.out.println(convert(test4));
+		*/
+		
+		TreeSet<Integer> treeset = new TreeSet<>();
+		treeset.add(4);
+		treeset.add(2);
+		treeset.add(6);
+		treeset.add(10);
+		
+		System.out.println(treeset);
+		System.out.println(treeset.last());
+		System.out.println(treeset);
+		System.out.println(treeset.last());
+		System.out.println(treeset.pollLast());
+		System.out.println(treeset);
 	}
 	
 	private static int convert(int test) {
