@@ -1,3 +1,4 @@
+import java.util.Collections;
 import java.util.Comparator;
 import java.util.PriorityQueue;
 
@@ -17,19 +18,13 @@ public class MedianFinder {
 	 */
 	
 	// https://leetcode.com/discuss/64811/easy-to-understand-double-heap-solution-in-java
-	static class ReversedOrder implements Comparator<Integer> {
-		 
-		public int compare(Integer o1, Integer o2) {
-			return o2 - o1;
-		}
-	}
 	
     PriorityQueue<Integer> minHeap;
     PriorityQueue<Integer> maxHeap;
 
     public MedianFinder() {
         minHeap = new PriorityQueue<Integer>();
-        maxHeap = new PriorityQueue<Integer>(1, new ReversedOrder()); 
+        maxHeap = new PriorityQueue<Integer>(Collections.reverseOrder()); 
         
         /* another way to re-define Comparator 
         maxHeap = new PriorityQueue<>(1, new Comparator<Integer>() {
