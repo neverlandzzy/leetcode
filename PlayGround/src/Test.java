@@ -117,6 +117,9 @@ public class Test {
 		System.out.println(treeset.last());
 		System.out.println(treeset.pollLast());
 		System.out.println(treeset);
+		
+		String test11 = "abc";
+		System.out.println(test11.substring(0, 10));
 	}
 	
 	private static int convert(int test) {
