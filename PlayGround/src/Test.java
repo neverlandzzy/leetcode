@@ -1,5 +1,6 @@
 import java.util.Arrays;
 import java.util.Comparator;
+import java.util.PriorityQueue;
 import java.util.TreeSet;
 
 
@@ -103,7 +104,7 @@ public class Test {
 		System.out.println(convert(test2));
 		System.out.println(convert(test3));
 		System.out.println(convert(test4));
-		*/
+
 		
 		TreeSet<Integer> treeset = new TreeSet<>();
 		treeset.add(4);
@@ -117,10 +118,20 @@ public class Test {
 		System.out.println(treeset.last());
 		System.out.println(treeset.pollLast());
 		System.out.println(treeset);
+		*/
+
 		
-		String test11 = "abc";
-		System.out.println(test11.substring(0, 10));
+		String test122 = "a&b";
+		String[] result122 = test122.split("\\&");
+		System.out.println(result122.length);
+		for (String t: result122) {
+			System.out.print(t + ", ");
+		}
+
 	}
+	
+	
+	
 	
 	private static int convert(int test) {
 		if (test % 100 >= 60) {

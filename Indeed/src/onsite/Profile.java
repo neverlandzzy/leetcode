@@ -35,6 +35,7 @@ public class Profile {
 	public static class ProfileSystem {
 		
 		Map<String, TreeMap<String, TreeMap<Integer, String>>> map;  // map<profileId, treemap<fieldname, treemap<version, fieldvalue>>>
+		int nextVersion = 1;
 		
 		public ProfileSystem() {
 			map = new HashMap<>();
@@ -48,14 +49,14 @@ public class Profile {
 			// 若fieldKey 不在treemap里，则新建一个entry，否则找treemap.get(fieldKey)的最大version(lastKey)，插入一个新的entry(lastKey + 1)
 			if (!map.get(profileID).containsKey(fieldKey)) {
 				map.get(profileID).put(fieldKey, new TreeMap<>());
-				map.get(profileID).get(fieldKey).put(1, fieldValue);
+				map.get(profileID).get(fieldKey).put(nextVersion, fieldValue);
 			} else {
-				Integer nextVersion = map.get(profileID).get(fieldKey).lastKey() + 1;
+				nextVersion = map.get(profileID).get(fieldKey).lastKey() + 1;
 				String newValue = map.get(profileID).get(fieldKey).lastEntry().getValue() + ", " + fieldValue;
 				map.get(profileID).get(fieldKey).put(nextVersion, newValue);
 			}
 			
-			System.out.println(map);
+			//System.out.println(map);
 		}
 		
 		public String get(String profileID, int version) {
@@ -66,6 +67,9 @@ public class Profile {
 			
 			for (Map.Entry<String, TreeMap<Integer, String>> entry: fileds.entrySet()) {
 				String key = entry.getKey();
+				if (entry.getValue().floorKey(version) == null) {
+				    continue;
+                }
 				String value = entry.getValue().get(entry.getValue().floorKey(version));
 				sb.append("\"").append(key).append("\"").append(": ").append("\"").append(value).append("\"").append(", ");
 			}
@@ -92,5 +96,6 @@ public class Profile {
 		System.out.println(ps.get("ABC", "skills", 1));
 		System.out.println(ps.get("ABC", "skills", 2));
 		System.out.println(ps.get("ABC", "education", 1));
+		System.out.println(ps.get("ABC", "education", 2));
 	}
 }

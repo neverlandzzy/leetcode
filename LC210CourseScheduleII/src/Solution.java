@@ -73,7 +73,7 @@ class Digraph {
 class Digraph {
 	private int V; 
 	private int E;
-	private List<ArrayList<Integer>> adj;
+	private List<List<Integer>> adj;
 	private int[] indegree;
 	private Queue<Integer> queue;
 	
@@ -81,10 +81,11 @@ class Digraph {
 		this.V = n;
 		this.E = edges.length;
 		indegree = new int[V];
-		adj = new ArrayList<ArrayList<Integer>>();
+		adj = new ArrayList<>();
+		queue = new LinkedList<>();
 		
 		for (int i = 0; i < V; i++) {
-			ArrayList<Integer> list = new ArrayList<Integer>();
+			ArrayList<Integer> list = new ArrayList<>();
 			adj.add(list);
 		}
 		
@@ -98,7 +99,6 @@ class Digraph {
 	}
 	
 	public int[] topologicalOrders() {
-		queue = new LinkedList<Integer>();
 		int[] topologicalOrder = new int[V];
 		
 		for (int i = 0; i < V; i++) {

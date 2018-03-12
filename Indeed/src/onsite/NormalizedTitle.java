@@ -132,19 +132,49 @@ public class NormalizedTitle {
 		return result;
 	}
 
+	
+    private static String getHighestTitle3(String rawTitle, String[] cleanTitle) {
+        rawTitle = rawTitle.toLowerCase();
+        String[] source = rawTitle.split(" ");
+        int maxPoint = 0;
+        String res = "";
+        for (String title : cleanTitle) {
+            title = title.toLowerCase();
+            String[] target = title.split(" ");
+            int point = Math.max(getPoint(source, target), getPoint(target, source));
+            if (point > maxPoint) {
+                maxPoint = point;
+                res = title;
+            }
+        }
+        return res;
+    }
+
+    private static int getPoint(String[] source, String[] target) {
+        int sourceIndex = 0, targetIndex = 0;
+        while (sourceIndex < source.length && targetIndex < target.length) {
+            if (source[sourceIndex].equals(target[targetIndex])) {
+                sourceIndex++;
+            }
+            targetIndex++;
+        }
+        return sourceIndex + 1;
+    }
 	public static void main(String[] args) {
 		String rawTitle11 = "senior software engineer";
 		String[] cleanTitle11 = {"software engineer", "mechanical engineer", "engineer senior software"};
 		
-		System.out.println(getHighestTitle1(rawTitle11, cleanTitle11));
+		//System.out.println(getHighestTitle1(rawTitle11, cleanTitle11));
 		
 		String rawTitle12 = "a a a b";
 		String[] cleanTitle12 = {"a a b", "a a", "a a c"};
 		System.out.println(getHighestTitle2(rawTitle11, cleanTitle11));
 		System.out.println(getHighestTitle2(rawTitle12, cleanTitle12));
+		//System.out.println(getHighestTitle3(rawTitle12, cleanTitle12));
 		
 		String rawTitle13 = "a b c b e";
 		String[] cleanTitle13 = {"a c b", "a b c e", "a a c"};
 		System.out.println(getHighestTitle2(rawTitle13, cleanTitle13));
+		//System.out.println(getHighestTitle3(rawTitle13, cleanTitle13));
 	}
 }
