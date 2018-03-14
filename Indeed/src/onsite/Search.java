@@ -84,7 +84,7 @@ public class Search {
 			}
 		}
 		
-		//System.out.println(map);
+		System.out.println(map);
 	}
 	
 	public static List<Integer> query(String s) {
