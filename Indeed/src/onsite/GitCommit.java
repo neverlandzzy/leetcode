@@ -174,6 +174,6 @@ public class GitCommit {
         g23.parents.add(g25);
         g24.parents.add(g25);
 
-        System.out.println(findLCA(g22, g21));
+        System.out.println(findLCA(g23, g24));
 	}
 }
