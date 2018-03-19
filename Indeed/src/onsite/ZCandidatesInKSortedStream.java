@@ -7,78 +7,12 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.PriorityQueue;
 
-public class CandidatesInKSortedStream {
-	/*
-	 * 【题目】 有n个排好序的int stream，只能用iterator access。 iterator有 peek()， next()， hasNext()三个方法。要找出在至少K个stream中出现过的int， 
-	 *        做成list输出。 要求是合并的结果中只包含出现在K个stream以上的元素，同一个stream中重复的次数不算。
-	 *        例如： streams:
-	 *        1) 0, 0, 1, 1, 2, 3, 3, 4, 5, 6, 7, 10...
-	 *		  2) 2, 3, 4, 5, 5, 6, 7, 10 ...
-	 *        3) 0, 1, 2, 3, 4, 4, 4, 4, 11....
-	 *        4) 5, 6, 8, 9, 10 ...
-	 *		  if K = 3, return: [2, 3, 4, 5, 6, 10,.... ]
-	 *        Interface Iterator{
-	 *        	int peek(){};   //返回steam的第一个element
-	 *        	int next(){};   //返回并删除stream的第一个element
- 	 *        	bool hasNext(){};  //返回是否还有element
- 	 *        }
-	 *	
-	 */
-	
-	// Time:  O(m*logn) m: number of elements, n: number of streams
-	// Space: O(n): number of streams
-	public static List<Integer> findConsensus(List<PeekingIterator> streams, int K){
-		List<Integer> result = new ArrayList<>();
-		if (streams == null || streams.size() == 0) {
-			return result;
-		}
-		
-		PriorityQueue<PeekingIterator> heap = new PriorityQueue<>(new Comparator<PeekingIterator>() {
-			public int compare(PeekingIterator o1, PeekingIterator o2) {
-				return o1.peek() - o2.peek();
-			}
-		});
-		
-		for (PeekingIterator s: streams) {
-			if (s.hasNext()) {
-				heap.offer(s);
-			}
-		}
-		
-		while (!heap.isEmpty()) {
-			PeekingIterator s = heap.poll();
-			
-			if (!s.hasNext()) {
-				continue;
-			}
-			
-			int val = s.next();
-			int count = 1;
-			
-			while (s.hasNext() && s.peek() == val) {
-				s.next();
-			}
-			if (s.hasNext()) {
-				heap.offer(s);
-			}
-			
-			while (!heap.isEmpty() && heap.peek().hasNext() && heap.peek().peek() == val) {
-				count++;
-				PeekingIterator next = heap.poll();
-				while (next.hasNext() && next.peek() == val) {
-					next.next();
-				}	
-				if (next.hasNext()) {
-					heap.offer(next);
-				}
-			}
+import onsite.CandidatesInKSortedStream.PeekingIterator;
 
-			if (count >= K) {
-				result.add(val);
-			}
-		}
-		
-		return result;
+public class ZCandidatesInKSortedStream {
+
+	public static List<Integer> findConsensus(List<PeekingIterator> streams, int K){
+
 	}
 	
 	public static void main(String[] args) {
@@ -87,7 +21,7 @@ public class CandidatesInKSortedStream {
 		List<Integer> list3 = new ArrayList<>(Arrays.asList(0, 1, 2, 3, 4, 4, 4, 4, 11));
 		List<Integer> list4 = new ArrayList<>(Arrays.asList(5, 6, 8, 9, 10));
 		List<Integer> list5 = new ArrayList<>(Arrays.asList());
-		List<Integer> list6 = new ArrayList<>(Arrays.asList(1, 1, 1, 1, 1, 1, 1));
+		List<Integer> list6 = new ArrayList<>(Arrays.asList(1));
 		
 		Iterator<Integer> iterator1 = list1.iterator();
 		Iterator<Integer> iterator2 = list2.iterator();

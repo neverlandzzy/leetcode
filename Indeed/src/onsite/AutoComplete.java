@@ -19,7 +19,7 @@ public class AutoComplete {
 	
 	// 【解法1】
 	
-	public static class TrieNode {
+	public class TrieNode {
 		TrieNode[] children;
 		String word;
 		List<String> prefix;

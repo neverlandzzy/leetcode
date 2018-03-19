@@ -89,8 +89,8 @@ public class GitCommit {
 						queue.offer(parent);
 					}
 				}
-				level++;
 			}
+			level++;
 		}
 
 		// 再对node2 做bfs
@@ -119,9 +119,8 @@ public class GitCommit {
 						visited.add(parent);
 					}
 				}
-				
-				level++;
 			}
+			level++;
 		}
 		
 		return result;
@@ -175,5 +174,6 @@ public class GitCommit {
         g24.parents.add(g25);
 
         System.out.println(findLCA(g23, g24));
+        System.out.println(findLCA(g21, g22));
 	}
 }

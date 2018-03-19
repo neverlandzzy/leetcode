@@ -132,7 +132,8 @@ public class NormalizedTitle {
 		return result;
 	}
 
-	
+	// 下面的方法对于"dc" "aa"是不对的。
+	/*
     private static String getHighestTitle3(String rawTitle, String[] cleanTitle) {
         rawTitle = rawTitle.toLowerCase();
         String[] source = rawTitle.split(" ");
@@ -160,6 +161,7 @@ public class NormalizedTitle {
         }
         return sourceIndex + 1;
     }
+    */
 	public static void main(String[] args) {
 		String rawTitle11 = "senior software engineer";
 		String[] cleanTitle11 = {"software engineer", "mechanical engineer", "engineer senior software"};
@@ -176,5 +178,11 @@ public class NormalizedTitle {
 		String[] cleanTitle13 = {"a c b", "a b c e", "a a c"};
 		System.out.println(getHighestTitle2(rawTitle13, cleanTitle13));
 		//System.out.println(getHighestTitle3(rawTitle13, cleanTitle13));
+		
+		
+		String rawTitle14 = "a b c";
+		String[] cleanTitle14 = {"d c", "a a", "b b"};
+		System.out.println(getHighestTitle2(rawTitle14, cleanTitle14));
+		//System.out.println(getHighestTitle3(rawTitle14, cleanTitle14));
 	}
 }

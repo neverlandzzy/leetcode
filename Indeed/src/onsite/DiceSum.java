@@ -25,7 +25,7 @@ public class DiceSum {
 	}
 	
 	private static void helper1(int dice, int target, int[] count) {
-		if (target < 0) {
+		if (dice < 0 || target < dice || target > 6 * dice) {
 			return;
 		}
 		
@@ -82,7 +82,7 @@ public class DiceSum {
 	}
 	
 
-	// Solution 2: DFS + mem 
+	// Solution 3: DP
 	public static float sumPossibility3(int dice, int target) {
 		if (dice <= 0 || target < dice || target > 6 * dice) {
 			return 0;

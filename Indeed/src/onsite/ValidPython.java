@@ -53,9 +53,7 @@ public class ValidPython {
 			if (i == 0) {
 				if (indentation > 0) {
 					return i;
-				} else {
-					stack.push(indentation);
-				}
+				} 
 			}
 			
 			// rule 2: 若上一行结尾是':'，则当前行的缩进要大于上一行，否则返回line#
