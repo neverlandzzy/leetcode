@@ -64,6 +64,11 @@ public class Solution {
 		}
 	
 		swap(nums, left, high);
+		for (int n: nums) {
+			System.out.print(n + ", ");
+		}
+		
+		System.out.println();
 		
 		// count the nums that are <= pivot from low
 		int count = left - low + 1;

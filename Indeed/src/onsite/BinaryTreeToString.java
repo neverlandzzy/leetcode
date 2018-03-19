@@ -32,7 +32,7 @@ public class BinaryTreeToString {
     }
     
     // 方法2：若无重复，可用preorder + inorder压缩 LC105
-    private static List<List<Integer>> binaryTreeToString2(TreeNode root) {
+    public static List<List<Integer>> binaryTreeToString2(TreeNode root) {
     	List<Integer> preorder = new ArrayList<>();
     	List<Integer> inorder = new ArrayList<>();
     	preorderHelper(root, preorder);

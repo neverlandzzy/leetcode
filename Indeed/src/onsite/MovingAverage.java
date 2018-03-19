@@ -86,7 +86,7 @@ public class MovingAverage {
 			 int n = list.size();
 			 
 			 if (n % 2 == 0) {
-				 return 0.5 * (findKthLargest(list, n / 2 - 1) + findKthLargest(list, n / 2));
+				 return 0.5 * (findKthLargest(list, n / 2 + 1) + findKthLargest(list, n / 2));
 			 }
 			 
 			 return (double) findKthLargest(list, n / 2);
@@ -94,12 +94,12 @@ public class MovingAverage {
 		 
 		 public int findKthLargest(List<Event> list, int k) {
 			int n = list.size();
-			int i = quickSelect(list, 0, n - 1, n - k + 1);
+			int i = quickSelect(list, 0, n - 1, k);
 			
 			return list.get(i).val;
 		 }
 			
-		 // quick select 模板：找nums中第k小
+		 // quick select 模板：找nums中第k小, LC215
 		 private int quickSelect(List<Event> list, int low, int high, int k){
 			 int left = low;
 			 int right = high;

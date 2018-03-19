@@ -33,6 +33,7 @@ public class ShortestWordDistance {
         return result;
     }
     
+    // LC244
     public static class WordDistance {
     	Map<String, List<Integer>> map;
     	
@@ -74,6 +75,36 @@ public class ShortestWordDistance {
         }
     }
     
+    // LC245
+    public static int shortestWordDistance(String[] words, String word1, String word2) {
+        Integer index1 = null;
+        Integer index2 = null;
+        int result = Integer.MAX_VALUE;
+        
+        for (int i = 0; i < words.length; i++) {
+        	if (!word1.equals(word2)) {
+	        	if (words[i].equals(word1)) {
+	        		index1 = i;
+	        	}
+	        	
+	        	if (words[i].equals(word2)) {
+	        		index2 = i;
+	        	}
+        	} else {
+        		if (words[i].equals(word1)) {
+        			index2 = index1;
+        			index1 = i;
+        		}
+        	}
+        	
+        	if (index1 != null && index2 != null) {
+        		result = Math.min(result, Math.abs(index1 - index2));
+        	}
+        }
+        
+        return result;
+    }
+    
     public static void main(String[] args) {
     	
     	System.out.println("====== LC 243 ======");
@@ -81,12 +112,20 @@ public class ShortestWordDistance {
 		
 		System.out.println(shortestDistance(test1, "coding", "practice"));
 		System.out.println(shortestDistance(test1, "makes", "coding"));
+		System.out.println();
 		
 		System.out.println("====== LC 244 ======");
 		WordDistance wd = new WordDistance(test1);
 		
 		System.out.println(wd.shortest("coding", "practice"));
 		System.out.println(wd.shortest("makes", "coding"));
+		System.out.println();
+		
+    	System.out.println("====== LC 245 ======");
+		
+		System.out.println(shortestWordDistance(test1, "makes", "makes"));
+		System.out.println(shortestWordDistance(test1, "makes", "coding"));
+		System.out.println();
 	}
     
     

@@ -1,9 +1,11 @@
 package onsite;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.PriorityQueue;
 
 public class NaryTree {
 	/*
@@ -19,7 +21,7 @@ public class NaryTree {
 	 *  找从root到叶节点cost之和最小的路径，返回该leaf node。（dfs）
 	 *  
 	 * 【follow-up】如果不是N-ary tree的结构，而是任意的单向图，问代码还是否work（yes）
-	 *  有没有优化的地方？（我用hashmap存下每个节点到叶节点的distance，这样再次访问到该叶节点就不必dfs下去）。时间复杂度？（优化后是O（V+E））
+	 *  有没有优化的地方？Dijkstra O(E + VlogV)
 	 */
 	
      static class Node {
@@ -28,14 +30,21 @@ public class NaryTree {
           public Node() {
         	  this.edges = new ArrayList<>(); 
           }
+          
+          @Override
+          public String toString() {
+        	  return edges.toString();
+          }
 	 } 
     
 	 static class Edge {
 		 Node node;
+		 Node from;
 	     int cost; //大于等于0
 	     
-	     public Edge(Node n, int cost) {
+	     public Edge(Node n, Node f, int cost) {
 	         this.node = n;
+	         this.from = f;
 	         this.cost = cost;
 	     }
 	     
@@ -103,8 +112,56 @@ public class NaryTree {
 		 }
 	 }
 	 
-	 //【Follow up】DAG
-	 // Solution 1: 改良上面的DFS, 用map记录访问过的点
+	 //【Follow up】DAG O(VlogV + E)
+	 public static int minCostPathIV(Node root) {
+		 
+		 Map<Node, Integer> map = new HashMap<>();
+		 if (root == null) {
+			 return 0;
+		 }
+		 
+		 PriorityQueue<Edge> heap = new PriorityQueue<>(new Comparator<Edge>() {
+			 public int compare(Edge e1, Edge e2) {
+				 return e1.cost - e2.cost;
+			 }
+		 }); 
+		 
+		 map.put(root, 0);
+		 for (Edge edge: root.edges) {
+			 heap.offer(edge);
+		 }
+		
+		 while (!heap.isEmpty()) {
+			 Edge edge = heap.poll();
+			 
+			 Node neighbor = edge.node;
+
+			 if (map.containsKey(neighbor)) {
+				 continue;
+			 }
+			 map.put(neighbor, edge.cost);
+
+			 for (Edge next: neighbor.edges) {
+				 Edge updatedNext = new Edge(next.node, next.from, next.cost + map.get(next.from));
+				 heap.offer(updatedNext);
+			 }
+		 }
+		 
+
+		 int min = Integer.MAX_VALUE;
+		 
+		 for (Node node: map.keySet()) {
+			 if (node.edges.size() == 0) {
+				 min = Math.min(min, map.get(node));
+			 }
+		 }
+		 
+		 // 如果要返回最短的路径，则可以在Map里存<Node, Pair>, Pair = cost + edge 这样最后可以通过pair找到leaf的root
+		 return min;
+	 }
+	
+	 // Solution 1: 改良上面的DFS, 用map记录访问过的点 -- 有问题，并没有优化
+	 
 	 public static List<Edge> minCostPathIII(Node root) {
 		 List<Edge> result = new ArrayList<>();
 		 List<Edge> list = new ArrayList<>();
@@ -164,13 +221,13 @@ public class NaryTree {
 		Node node8 = new Node();
 	
 		
-		Edge edge1 = new Edge(node2, 2);
-		Edge edge2 = new Edge(node3, 1);
-		Edge edge3 = new Edge(node4, 3);
-		Edge edge4 = new Edge(node5, 4);
-		Edge edge5 = new Edge(node6, 5);
-		Edge edge6 = new Edge(node7, 8);
-		Edge edge7 = new Edge(node8, 7);
+		Edge edge1 = new Edge(node2, node1, 2);
+		Edge edge2 = new Edge(node3, node1, 1);
+		Edge edge3 = new Edge(node4, node1, 3);
+		Edge edge4 = new Edge(node5, node2, 4);
+		Edge edge5 = new Edge(node6, node2, 5);
+		Edge edge6 = new Edge(node7, node3, 8);
+		Edge edge7 = new Edge(node8, node4, 7);
 		
 		node1.edges.add(edge1);
 		node1.edges.add(edge2);
@@ -180,16 +237,41 @@ public class NaryTree {
 		node3.edges.add(edge6);
 		node4.edges.add(edge7);
 		
-		System.out.println(minCostPathI(node1));
-		System.out.println(minCostPathII(node1));
+		//System.out.println(minCostPathI(node1));
+		//System.out.println(minCostPathII(node1));
 		
-		Edge edge8 = new Edge(node6, 8);
-		Edge edge9 = new Edge(node7, 6);
+		Edge edge8 = new Edge(node6, node5, 8);
+		Edge edge9 = new Edge(node7, node6, 6);
 
 		node5.edges.add(edge8);
 		node6.edges.add(edge9);
 
 		
 		System.out.println(minCostPathIII(node1));
+		System.out.println(minCostPathIV(node1));
+		
+		Node node11 = new Node();
+		Node node12 = new Node();
+		Node node13 = new Node();
+		Node node14 = new Node();
+		Node node15 = new Node();
+		Node node16 = new Node();
+		
+		Edge edge11 = new Edge(node12, node11, 2);
+		Edge edge12 = new Edge(node13, node11, 10);
+		Edge edge13 = new Edge(node14, node12, 3);
+		Edge edge14 = new Edge(node15, node14, 3);
+		Edge edge15 = new Edge(node16, node15, 4);
+		Edge edge16 = new Edge(node16, node13, 1);
+		
+		node11.edges.add(edge11);
+		node11.edges.add(edge12);
+		node12.edges.add(edge13);
+		node13.edges.add(edge16);
+		node14.edges.add(edge14);
+		node15.edges.add(edge15);
+		
+		System.out.println(minCostPathIII(node11));
+		System.out.println(minCostPathIV(node11));
 	 }
 }
