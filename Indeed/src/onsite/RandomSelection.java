@@ -7,7 +7,7 @@ import java.util.Random;
 
 public class RandomSelection {
 	/*
-	 * 【题目】给你一个List 里面有ads，然后写一个get（） function，来随机get一个list里面的ad，不能重复，而且get 完了后 return null。
+	 * 【题目】给你一个List 里面有ads，然后写一个get() function，来随机get一个list里面的ad，不能重复，而且get 完了后 return null。
 	 * 【Follow up】 如果每个元素都带一个概率权重，也就是，不是等概率而是有不同的概率的选择，
 	 * 
 	 * 【思路】我开始就说random 一个 number，然后get 后， 就把get的ad 删掉。但是说这种时间复杂度比较高，要优化。 我就把我get到的这个ad swap到我的arraylist最后，就可以了

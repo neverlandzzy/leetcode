@@ -127,6 +127,7 @@ public class Test {
 		for (String t: result122) {
 			System.out.print(t + ", ");
 		}
+		
 	
 	}
 	

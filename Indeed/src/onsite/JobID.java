@@ -1,8 +1,6 @@
 package onsite;
 
 import java.util.BitSet;
-import java.util.HashMap;
-import java.util.Map;
 
 public class JobID {
 	/*
@@ -20,7 +18,7 @@ public class JobID {
 	 *  如果job id 超多，如何用16MB的memory记录expired 的id。
 	 *  64bit的操作系统里面，16GB的内存如何存下4 Billion个jobid。 
 	 *  
-	 * 【思路】 每个jobid 是一个long，占64bit， 4 Billion id = 10^9个id 占64 * 10^9 bit == 8GB
+	 * 【思路】 每个jobid 是一个long，占64bit， 4 Billion id = 4 * 10^9个id 占4 * 64 * 10^9 bit == 32GB
 	 *        1个GB是10^9 byte = 8 * 10^9个bit 
 	 *        用BitSet --> 只需要4billion bit就够了 --> 4 * 10^9 bit = 0.5GB
 	 */
@@ -46,7 +44,71 @@ public class JobID {
 	}
 	*/
 	
-	// 【Follow up】
+	//【Follow up】Solution 1：merge interval
+	// http://www.1point3acres.com/bbs/thread-223228-1-1.html
+	/*
+	static class Interval {
+		long start;
+		long end;
+		
+		public Interval(long s, long e) {
+			start = s;
+			end = e;
+		}
+	}
+	
+	TreeSet<Interval> treeSet;
+	
+	public JobID() {
+		treeSet = new TreeSet<>(new Comparator<Interval>() {
+			public int compare(Interval i1, Interval i2) {
+				return (int)(i1.start - i2.start);
+			}
+		});
+	}
+	
+	public void expire(long jobId) {
+		Interval interval = new Interval(jobId, jobId);
+		
+		if (treeSet.size() == 0) {
+			treeSet.add(interval);
+		}
+		
+		Interval less = treeSet.floor(interval);
+		if (less != null && less.end >= jobId) {
+			return;
+		}
+		
+		if (less != null && less.end + 1 == jobId) {
+			interval.start = less.start;
+			treeSet.remove(less);
+		}
+		
+		Interval higher = treeSet.ceiling(interval);
+		
+		if (higher != null && higher.start - 1 == jobId) {
+			interval.end = higher.end;
+			treeSet.remove(higher);
+		}
+		
+		treeSet.add(interval);
+		
+	}
+	
+	public boolean isExpired(long jobId) {
+		Interval interval = new Interval(jobId, jobId);
+		
+		Interval less = treeSet.floor(interval);
+		
+		if (less != null && less.start <= jobId && less.end >= jobId) {
+			return true;
+		}
+		
+		return false;
+	}
+	*/
+	// 【Follow up】Solution 2:
+	
 	BitSet bs;
 	
 	public JobID() {
@@ -60,6 +122,8 @@ public class JobID {
 	public boolean isExpired(long jobId){
 		return bs.get((int)jobId);
 	}
+	
+
 	
     public static void main(String[] args) {
     	/*
@@ -87,6 +151,7 @@ public class JobID {
     	System.out.println(jb.isExpired(2));
     	System.out.println(jb.isExpired(0));
     	
+    	/*
     	System.out.println(jb.bs.size());
     	System.out.println(jb.bs.cardinality());
     	
@@ -97,6 +162,7 @@ public class JobID {
     		System.out.println(index);
     		index++;
     	}
+    	*/
     	
 	}
 }

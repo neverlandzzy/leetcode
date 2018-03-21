@@ -238,7 +238,7 @@ public class NaryTree {
 		node4.edges.add(edge7);
 		
 		//System.out.println(minCostPathI(node1));
-		//System.out.println(minCostPathII(node1));
+		System.out.println(minCostPathII(node1));
 		
 		Edge edge8 = new Edge(node6, node5, 8);
 		Edge edge9 = new Edge(node7, node6, 6);

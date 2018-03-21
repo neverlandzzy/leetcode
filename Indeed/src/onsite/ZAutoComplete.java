@@ -54,24 +54,7 @@ public class ZAutoComplete {
 		}
 	}
 	*/
-	
-	static class TrieNode {
-		TrieNode[] children;
-		String word;
 		
-		public TrieNode() {
-			children = new TrieNode[26];
-			word = null;
-		}
-	}
-	
-	static class Trie {
-
-	}
-	
-	public static List<String> search3(String prefix, String[] dicts) {
-
-	}
 	
 	public static void main(String[] args) {
 		String[] dicts = {"apple", "application", "app", "act", "boy", "bad", "body", "back"};
@@ -84,7 +67,7 @@ public class ZAutoComplete {
 		System.out.println(ac.search("b"));
 		System.out.println(ac.search("bo"));
 		
-		
+		/*
 		System.out.println("========================");
 		System.out.println(search3("a", dicts));
 		System.out.println(search3("ap", dicts));
@@ -92,6 +75,6 @@ public class ZAutoComplete {
 		System.out.println(search3("ab", dicts));
 		System.out.println(search3("b", dicts));
 		System.out.println(search3("bo", dicts));
-		
+		*/
 	}
 }

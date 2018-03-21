@@ -27,6 +27,8 @@ public class AlbumRandomPlay {
 	 *       随机是先生存0~n-1的list，random选择一个数，然后交换至队尾，然后再random一个范围-1的数，以此类推，time complexity:O(n)
 	 */
 	
+	// Time: O(m * klogk -- m个album，每次插入平均k个track + n (输出n首track))
+	// Space: O(n) n首track
 	public static List<int[]> randomPlay(List<int[]> input) {
 		List<int[]> result = new ArrayList<>();
 	
