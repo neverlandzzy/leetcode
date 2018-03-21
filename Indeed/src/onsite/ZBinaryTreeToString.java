@@ -6,8 +6,8 @@ import java.util.List;
 import java.util.Queue;
 
 public class ZBinaryTreeToString {
-
-		
+	
+	
 	public static void main(String[] args) {
 		
 		TreeNode node1 = new TreeNode(10);
@@ -27,9 +27,11 @@ public class ZBinaryTreeToString {
 		System.out.println(binaryTreeToString1(root));
 		System.out.println();
 		
+		
 		System.out.println("Solution 2: preorder + inorder -- 无重复");
 		System.out.println(binaryTreeToString2(root));
 		System.out.println();
+		
 		
 		System.out.println("Solution 3: array -- desen");
 		int[] result1 = binaryTreeToString3(root);
@@ -42,5 +44,6 @@ public class ZBinaryTreeToString {
 		System.out.println("Solution 4: array -- sparse");
 		System.out.println(binaryTreeToString4(root));
 		System.out.println();
+		
 	}
 }

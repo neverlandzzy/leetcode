@@ -83,6 +83,7 @@ public class DiceSum {
 	
 
 	// Solution 3: DP
+	// O(target * dice)
 	public static float sumPossibility3(int dice, int target) {
 		if (dice <= 0 || target < dice || target > 6 * dice) {
 			return 0;

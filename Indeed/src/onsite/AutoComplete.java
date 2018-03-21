@@ -124,6 +124,7 @@ public class AutoComplete {
 	*/
 	
 	// 解法3 binary search
+	// // O(n*logn to sort the dicts)
 	public static List<String> search3(String prefix, String[] dicts) {
 		List<String> result = new ArrayList<>();
 		

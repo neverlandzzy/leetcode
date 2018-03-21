@@ -80,6 +80,69 @@ public class BinaryTreePaths {
 		return result;
 	}
 	
+	public static List<List<Integer>> binaryTreePaths2(TreeNode root) {
+		List<List<Integer>> result = new ArrayList<>();
+		List<Integer> list = new ArrayList<>();
+		helper2(root, result, list);
+		
+		return result;
+	}
+	
+	private static void helper2(TreeNode root, List<List<Integer>> result, List<Integer> list) {
+		if (root == null) {
+			return;
+		}
+		
+		if (root.left == null && root.right == null) {
+			list.add(root.val);
+			result.add(new ArrayList<>(list));
+			list.remove(list.size() - 1);
+			return;
+		}
+		
+		list.add(root.val);
+		helper2(root.left, result, list);
+		helper2(root.right, result, list);
+		
+		list.remove(list.size() - 1);
+	}
+	
+	
+	public static List<List<Integer>> binaryTreePaths3(TreeNode root) {
+		List<List<Integer>> result = new ArrayList<>();
+		Queue<TreeNode> queue = new LinkedList<>();
+		Queue<List<Integer>> path = new LinkedList<>();
+		List<Integer> list = new ArrayList<>();
+		
+		queue.offer(root);
+		path.offer(list);
+
+		while (!queue.isEmpty()) {
+			TreeNode node = queue.poll();
+			List<Integer> pathList = path.poll();
+			
+			if (node.left == null && node.right == null) {
+				pathList.add(node.val);
+				result.add(pathList);
+				continue;
+			}
+			
+			pathList.add(node.val);
+			
+			if (node.left != null) {
+				queue.offer(node.left);
+				path.offer(new ArrayList<>(pathList));
+			}
+			
+			if (node.right != null) {
+				queue.offer(node.right);
+				path.offer(new ArrayList<>(pathList));
+			}
+		}
+		
+		return result;
+	}
+	
 	public static void main(String[] args) {
  		TreeNode node1 = new TreeNode(1);
  		TreeNode node2 = new TreeNode(2);
@@ -109,5 +172,7 @@ public class BinaryTreePaths {
  		node3.left  = node7;
  		
  		System.out.println(binaryTreePaths(node1));
+ 		System.out.println(binaryTreePaths2(node1));
+ 		System.out.println(binaryTreePaths3(node1));
  	}
 }
