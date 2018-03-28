@@ -127,6 +127,8 @@ public class UserQuery {
 			System.out.println(maximal);
 		}
 		*/
+		
+		/*
 		System.out.println(search("A", "python"));
 		System.out.println(search("B", "java"));
 		System.out.println(search("A", "java"));
@@ -134,9 +136,55 @@ public class UserQuery {
 		System.out.println(search("C", "python"));
 		System.out.println(search("C", "java"));
 		System.out.println(search("D", "java"));
+		*/
+		
+		// 测试数据2
+		/*
+		 * output:
+		 *  0
+		 *  0
+		 *  0
+		 *  1 restaurant sales
+		 *  1 restaurant retail
+		 *  0
+		 *  1 retail sales
+		 *  0
+		 *  2 sales
+		 */
+		/*
+		System.out.println(search("A", "retail"));
+		System.out.println(search("A", "sales"));
+		System.out.println(search("A", "restaurant"));
+		System.out.println(search("B", "retail"));
+		System.out.println(search("B", "sales"));
+		System.out.println(search("B", "part_time"));
+		System.out.println(search("C", "part_time"));
+		System.out.println(search("C", "cashier"));
+		System.out.println(search("C", "retail"));
+		*/
+		
+		// 测试数据3
+		/*
+		 * output:
+		 * 0
+		 * 0
+		 * 0
+		 * 0
+		 * 0
+		 * 1 java
+		 * 1 java software_engineer
+		 */
+		
+		System.out.println(search("A", "java"));
+		System.out.println(search("B", "python"));
+		System.out.println(search("B", "java"));
+		System.out.println(search("A", "software_engineer"));
+		System.out.println(search("C", "truck_driver"));
+		System.out.println(search("B", "software_engineer"));
+		System.out.println(search("A", "python"));
 		
 		System.out.println("~~~~~~~~~~~~~~~~~~~~");
-		
+		/*
 		System.out.println(search2("A", "python"));
 		System.out.println(search2("B", "java"));
 		System.out.println(search2("A", "java"));
@@ -144,6 +192,7 @@ public class UserQuery {
 		System.out.println(search2("C", "python"));
 		System.out.println(search2("C", "java"));
 		System.out.println(search2("D", "java"));
+		*/
 	}
 	
 	

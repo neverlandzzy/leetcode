@@ -9,23 +9,29 @@ public class Snippet {
 	
 	public static String getSnippet(String s, String key1, String key2) {
 		String[] words = s.split(" ");
-		int pre  = 0;
-		int post = 0;
+		Integer index1 = null;
+		Integer index2 = null;
 		
 		for (int i = 0; i < words.length; i++) {
 			if (words[i].replace(",", "").equals(key1)) {
-				pre = Math.max(0, i - 3);
+				index1 = i;
 			}
 			
 			if (words[i].replace(",", "").equals(key2)) {
-				post = Math.min(words.length - 1, i + 3);
+				index2 = i;
+			}
+			
+			if (index1 != null && index2 != null) {
 				break;
 			}
 		}
 		
 		StringBuilder sb = new StringBuilder();
 		
-		for (int i = pre; i <= post; i++) {
+		int pre = Math.min(index1, index2);
+		int post = Math.max(index1, index2);
+		
+		for (int i = Math.max(0, pre - 3); i <= Math.min(post + 3, words.length - 1); i++) {
 			sb.append(words[i]).append(" ");
 		}
 		
@@ -35,5 +41,6 @@ public class Snippet {
 	public static void main(String[] args) {
 		String test1 = "we all love indeed, and everyone use python and nobody like java, but we would hire java developer"; 
 		System.out.println(getSnippet(test1, "python", "java"));
+		System.out.println(getSnippet(test1, "java", "python"));
 	}
 }

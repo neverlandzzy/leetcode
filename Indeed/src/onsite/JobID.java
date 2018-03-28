@@ -72,6 +72,7 @@ public class JobID {
 		
 		if (treeSet.size() == 0) {
 			treeSet.add(interval);
+			return;
 		}
 		
 		Interval less = treeSet.floor(interval);

@@ -33,36 +33,7 @@ public class Search {
 	 * query(a | b) 输出(2,3,1,4)
 	 * 因为query(a&b)(a|b)的频率计算都是单独算a和b出现次数然后求和的。
 	 */
-	/*  这个方法 query(a)会快，但没法处理其它两种search
-	static Map<String, TreeMap<Integer, List<Integer>>> map; // Map<word, TreeMap<frequency, List<lineNum>>>
-	
-	public Search(String[] doc) {
-		map = new HashMap<>();
-		
-		// 从第一行开始加入，保证了对于一样的频路，小的行号优先
-		for (int i = 1; i <= doc.length; i++) {
-			String line = doc[i - 1];
-			String[] words = line.split(" ");
-			Map<String, Integer> countMap = new HashMap<>();
-			
-			for (String w: words) {
-				if (!map.containsKey(w)) {
-					map.put(w, new TreeMap<>(Collections.reverseOrder()));
-				}				
-				countMap.put(w, countMap.getOrDefault(w, 0) + 1);
-			}
-			
-			for (String key: countMap.keySet()) {
-				if (!map.get(key).containsKey(countMap.get(key))) {
-					map.get(key).put(countMap.get(key), new ArrayList<>());
-				}
-				map.get(key).get(countMap.get(key)).add(i);
-			}
-		}
-		
-		System.out.println(map);
-	}
-	*/
+
 	static Map<String, Map<Integer, Integer>> map; // Map<word, Map<LineNumber, count>>
 	
 	public Search(String[] doc) {
@@ -166,4 +137,36 @@ public class Search {
 		System.out.println(search.query("a&b"));
 		System.out.println(search.query("a|b"));
 	}
+	
+	
+	/*  这个方法 query(a)会快，但没法处理其它两种search
+	static Map<String, TreeMap<Integer, List<Integer>>> map; // Map<word, TreeMap<frequency, List<lineNum>>>
+	
+	public Search(String[] doc) {
+		map = new HashMap<>();
+		
+		// 从第一行开始加入，保证了对于一样的频路，小的行号优先
+		for (int i = 1; i <= doc.length; i++) {
+			String line = doc[i - 1];
+			String[] words = line.split(" ");
+			Map<String, Integer> countMap = new HashMap<>();
+			
+			for (String w: words) {
+				if (!map.containsKey(w)) {
+					map.put(w, new TreeMap<>(Collections.reverseOrder()));
+				}				
+				countMap.put(w, countMap.getOrDefault(w, 0) + 1);
+			}
+			
+			for (String key: countMap.keySet()) {
+				if (!map.get(key).containsKey(countMap.get(key))) {
+					map.get(key).put(countMap.get(key), new ArrayList<>());
+				}
+				map.get(key).get(countMap.get(key)).add(i);
+			}
+		}
+		
+		System.out.println(map);
+	}
+	*/
 }

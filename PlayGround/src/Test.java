@@ -12,6 +12,16 @@ public class Test {
 		return a;
 	}
 	
+	public static void test() {
+		TreeNode result = new TreeNode(4);
+		
+		helper(result);
+		System.out.println(result);
+	}
+	public static void helper(TreeNode result) {
+		result = new TreeNode(2);
+	}
+	
 	public static void main(String[] args) {
 		String[] test = {"def", "abc", "acb", "efet", "efe"};
 
@@ -118,16 +128,18 @@ public class Test {
 		System.out.println(treeset.last());
 		System.out.println(treeset.pollLast());
 		System.out.println(treeset);
-		*/
+
 
 		
-		String test122 = "a&b";
-		String[] result122 = test122.split("\\&");
-		System.out.println(result122.length);
-		for (String t: result122) {
-			System.out.print(t + ", ");
-		}
+		int a = 0;
+		int b = 1;
+		int c = 1;
 		
+		System.out.println(a ^ b);
+		System.out.println(c ^ b);
+		*/
+		
+		test();
 	
 	}
 	

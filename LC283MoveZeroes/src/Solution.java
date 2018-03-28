@@ -12,6 +12,34 @@ public class Solution {
 	 * Minimize the total number of operations.
 	 */
 	
+	public static void moveZeroes(int[] nums) {
+        if (nums == null || nums.length == 0) {
+            return;
+        }
+        
+        int pre = 0;
+        int i = 0;
+        
+        while (i < nums.length) {
+            if (nums[i] != 0) {
+                if (i != pre) {
+                    swap(nums, i, pre);
+                }
+                pre++;
+                
+            } 
+            i++;
+        }
+    }
+    
+    private static void swap(int[] nums, int i, int j) {
+        int tmp = nums[i];
+        nums[i] = nums[j];
+        nums[j] = tmp;
+    
+	}
+	
+	/*
 	// 和LC27一样
     public static void moveZeroes(int[] nums) {
         int size = nums.length;
@@ -34,7 +62,7 @@ public class Solution {
         	j++;
         }
     }
-    
+    */
     public static void main(String[] args) {
 		int[] test = {1,2,3,0,6,0,8,0};
 		
