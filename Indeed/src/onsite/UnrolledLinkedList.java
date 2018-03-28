@@ -67,7 +67,7 @@ public class UnrolledLinkedList {
 			
 			Node cur = head;
 			
-			while (cur != null && index > 0) {
+			while (cur != null && index >= 0) {
 				if (index >= cur.len) {
 					index -= cur.len;
 				} else {

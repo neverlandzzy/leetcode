@@ -187,7 +187,7 @@ public class Solution {
     	wordDict2.add("aaaa");
     	//wordDict2.add("bbbb");
     	
-		//System.out.println(wordBreak(s, wordDict));
-    	System.out.println(wordBreak(s2, wordDict2));
+    	System.out.println(wordBreak(s, wordDict));
+    	//System.out.println(wordBreak(s2, wordDict2));
 	}
 }

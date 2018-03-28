@@ -12,15 +12,18 @@ public class Solution {
 	 * using only constant extra space complexity?
 	 */
 	
+	// https://www.lijinma.com/blog/2014/05/29/amazing-xor/
+	// 交换律： a ^ b = b ^ a
+	// 结合律： a ^ (b ^ c) = (a ^ b) ^ c
+	
 	public static  int missingNumber(int[] nums) {
-		int xor = 0;
-		int i = 0;
+		int result = nums.length;
 		
-		for (; i < nums.length; i++) {
-			xor = xor ^ i ^ nums[i];
+		for (int i = 0; i < nums.length; i++) {
+			result ^= i ^ nums[i];
 		}
 		
-		return xor ^ i;
+		return result;
 	}
 	
 	public static void main(String[] args) {
