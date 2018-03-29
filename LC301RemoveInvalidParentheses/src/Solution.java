@@ -85,9 +85,9 @@ public class Solution {
 		
 		while (!queue.isEmpty()) {
 			
-			s = queue.poll();
-			if (isValid(s)) {
-				result.add(s);
+			String cur = queue.poll();
+			if (isValid(cur)) {
+				result.add(cur);
 				found = true;
 			}
 			
@@ -97,12 +97,12 @@ public class Solution {
 				continue;
 			}
 			
-			for (int i = 0; i < s.length(); i++) {
-				if (s.charAt(i) != '(' && s.charAt(i) != ')') {
+			for (int i = 0; i < cur.length(); i++) {
+				if (cur.charAt(i) != '(' && cur.charAt(i) != ')') {
 					continue;
 				}
 				
-				String t = s.substring(0, i) + s.substring(i + 1);
+				String t = cur.substring(0, i) + cur.substring(i + 1);
 				
 				if (!visited.contains(t)) {
 					queue.offer(t);
