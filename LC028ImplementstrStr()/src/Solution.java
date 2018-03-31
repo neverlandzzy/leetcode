@@ -9,6 +9,39 @@ public class Solution {
 	 */
 	
     public static int strStr(String haystack, String needle) {
+    	   
+        if (haystack == null || haystack.length() < needle.length()) {
+            return -1;
+        }
+        int n = haystack.length();
+        int pre = -1;
+        int i = 0; 
+        int j = 0;
+        
+        while (i < n) {
+            if (j == needle.length()) {
+                return pre + 1;
+            }
+            
+            if (haystack.charAt(i) == needle.charAt(j)) {
+                i++;
+                j++;
+            } else {
+                j = 0;
+                pre++;
+                i = pre + 1;
+            }
+        }
+        
+        if (j == needle.length()) {
+            return pre + 1;
+        } 
+        
+        return -1;
+    }
+    
+    /*
+    public static int strStr(String haystack, String needle) {
     	
         if (haystack.length() == 0 && needle.length() == 0) {
         	return 0;
@@ -42,6 +75,7 @@ public class Solution {
         return -1;
         
     }
+    */
     /*
     public static int strStr2(String haystack, String needle) {
 	
