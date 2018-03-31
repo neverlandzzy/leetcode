@@ -79,6 +79,8 @@ public class AutocompleteSystem {
 	// 则每次都要update heap，会很慢
 	// 用256位的数组实现会TLE，改用127位会pass，用HashMap最快 --> 用数组每次申请空间会消耗较大的时间 https://www.jiuzhang.com/qa/6999/
 	
+	// Solution 1: 优点：不用dfs遍历trie，节约Time Complexi。 缺点：每个TrieNode存prefix的map，非常消耗空间
+	/*
 	private class Pair {
 		String s;
 		int count;
@@ -117,12 +119,12 @@ public class AutocompleteSystem {
     	TrieNode node = root;
     	for (int i = 0; i < s.length(); i++) {
     		char c = s.charAt(i);
-    		/*
-    		if (node.children[c] == null) {
-    			node.children[c] = new TrieNode();
-    		}
-    		node = node.children[c];
-    		*/
+    		
+    		//if (node.children[c] == null) {
+    		//	node.children[c] = new TrieNode();
+    		//}
+    		//node = node.children[c];
+
     		TrieNode next = node.children.get(c);
     		if (next == null) {
     			next = new TrieNode();
@@ -146,12 +148,11 @@ public class AutocompleteSystem {
         TrieNode node = root;
         for (int i = 0; i < prefix.length(); i++) {
         	char p = prefix.charAt(i);
-        	/*
-        	if (node.children[p] == null) {
-        		return result;
-        	}
-        	node = node.children[p];
-        	*/
+        	
+        	//if (node.children[p] == null) {
+        	//	return result;
+        	//}
+        	//node = node.children[p];
         	
     		TrieNode next = node.children.get(p);
     		if (next == null) {
@@ -181,4 +182,104 @@ public class AutocompleteSystem {
         
         return result;
     }
+    */
+	
+	// Solution 2: 常规Trie，只在有单词的地方存map，需要dfs遍历整个trie
+	class TrieNode {
+		Map<Character, TrieNode> children;
+		int count;
+		String word;
+		
+		public TrieNode() {
+			children = new HashMap<>();
+			count = 0;
+			word = null;
+		}
+	}
+	
+	class Pair {
+		String s; 
+		int count;
+		
+		public Pair(String s, int count) {
+			this.s = s;
+			this.count = count;
+		}
+	}
+	
+	TrieNode root;
+	String prefix;
+	
+	public AutocompleteSystem(String[] sentences, int[] times) {
+		root = new TrieNode();
+		prefix = "";
+		
+		for (int i = 0; i < sentences.length; i++) {
+			add(sentences[i], times[i]);
+		}
+	}
+	
+	private void add(String s, int count) {
+		TrieNode node = root;
+		for (int i = 0; i < s.length(); i++) {
+			char c = s.charAt(i);
+			if (!node.children.containsKey(c)) {
+				node.children.put(c, new TrieNode());
+			}
+			node = node.children.get(c);
+		}
+		node.count += count;
+		node.word = s;
+	}
+	
+	public List<String> input(char c) {
+		List<String> result = new ArrayList<>();
+		if (c == '#') {
+			add(prefix, 1);
+			prefix = "";
+			return result;
+		}
+		
+		prefix += c;
+		
+        PriorityQueue<Pair> heap = new PriorityQueue<>(new Comparator<Pair>(){
+        	public int compare(Pair o1, Pair o2) {
+        		if (o1.count == o2.count) {
+        			return o1.s.compareTo(o2.s);
+        		}
+        		return o2.count - o1.count;
+        	}
+        });
+        
+        TrieNode node = root;
+        for (int i = 0; i < prefix.length(); i++) {
+        	char p = prefix.charAt(i);
+        	
+    		TrieNode next = node.children.get(p);
+    		if (next == null) {
+    			return result;
+    		}
+    		node = next;
+        }
+        
+        helper(heap, node);
+        
+        for (int i = 0; i < 3; i++) {
+        	if (!heap.isEmpty()) {
+        		result.add(heap.poll().s);
+        	}
+        }
+        
+        return result;
+	}
+	
+	private void helper(PriorityQueue<Pair> heap, TrieNode node) {
+		if (node.word != null) {
+			heap.offer(new Pair(node.word, node.count));
+		}
+		
+		for (char key: node.children.keySet()) {
+			helper(heap, node.children.get(key));
+		}
+	}
 }

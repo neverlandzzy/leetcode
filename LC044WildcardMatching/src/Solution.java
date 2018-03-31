@@ -22,50 +22,34 @@ public class Solution {
 	 * 
 	 */
 	
+	// s = "abcfdefg"
+	// p = "ab*fg"
+	
 	// Solution 1: Time: O(m * n), Space: O(m * n)
 	/*
     public static boolean isMatch(String s, String p) {
-        int sLength = s.length();
-        int pLength = p.length();
+        int m = s.length();
+        int n = p.length();
         
-        int count = 0;
-        for (int i = 0; i < pLength; i++) {
-            if (p.charAt(i) == '*') count++;
-        }
-        if (count==0 && sLength != pLength) return false;
-        else if (pLength - count > sLength) return false;
-        
-        boolean isMatch[][] = new boolean[sLength+1][pLength+1];
-        
-    	isMatch[0][0] = true;
-    	
-    	// if p is empty, return false;
-    	
-    	for (int i = 1; i <= sLength; i++) {
-    		isMatch[i][0] = false;
-    	}
-    	
-    	// if s is empty
-    	for (int j = 1; j <= pLength; j++) {
-    		isMatch[0][j] = isMatch[0][j-1] && (p.charAt(j-1)== '*');
-    		
-    	}
+        boolean[][] dp = new boolean[m + 1][n + 1];
+        dp[0][0] = true;
 
-    	for (int i = 1; i <= sLength; i++) {
-    		for (int j = 1; j <= pLength; j++) {
-    			if (p.charAt(j-1) != '*') {  				
-    				isMatch[i][j] = isMatch[i-1][j-1] && (s.charAt(i-1) == p.charAt(j-1) || p.charAt(j-1) == '?');    			
-    			} else {
-    				for (int k = 0; k <= i; k++) {
-    					if (isMatch[k][j-1] == true) {
-    						isMatch[i][j] = true;
-    						break;
-    					}
-    				}
-    			}
-    		}
-    	}
-        return isMatch[sLength][pLength];
+        
+        for (int i = 1; i <= n; i++) {
+            dp[0][i] = dp[0][i - 1] && p.charAt(i - 1) == '*';
+        }
+        
+        for (int i = 1; i <= m; i++) {
+            for (int j = 1; j <= n; j++) {
+                if (p.charAt(j - 1) != '*') {
+                    dp[i][j] = dp[i - 1][j - 1] && (p.charAt(j - 1) == '?' || s.charAt(i - 1) == p.charAt(j - 1));
+                } else {
+                    dp[i][j] = dp[i - 1][j] || dp[i][j - 1];
+                }
+            }
+        }
+        
+        return dp[m][n];
         
     }
     */
