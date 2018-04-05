@@ -130,6 +130,9 @@ public class Solution {
 		
 		String[] word6 = {"Give","me","my","Romeo;","and,","when","he","shall","die,"};
 		System.out.println(fullJustify(word6, 25));
+		
+		String[] word7 = {"Listen","to","many,","speak","to","a","few."};
+		System.out.println(fullJustify(word7, 6));		
 	}
     
 }

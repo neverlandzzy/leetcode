@@ -20,6 +20,24 @@ public class Solution {
 	 */
 	
     public static List<Interval> insert(List<Interval> intervals, Interval newInterval) {
+        for (int i = 0; i < intervals.size(); i++) {
+            if (newInterval.start <= intervals.get(i).end && newInterval.end >= intervals.get(i).start) {
+                newInterval.start = Math.min(newInterval.start, intervals.get(i).start);
+                newInterval.end = Math.max(newInterval.end, intervals.get(i).end);
+                intervals.remove(i);
+                i--;
+            } else if (newInterval.end < intervals.get(i).start) {
+                intervals.add(i, newInterval);
+    			return intervals;
+            }
+        }
+        
+        intervals.add(newInterval);
+    	return intervals;
+    }
+    
+    /*
+    public static List<Interval> insert(List<Interval> intervals, Interval newInterval) {
        
     	for (int i = 0; i < intervals.size();) {
     		if (newInterval.end < intervals.get(i).start) {
@@ -36,7 +54,7 @@ public class Solution {
     	intervals.add(newInterval);
     	return intervals;
     }
-    
+    */
     public static void main(String[] args) {
     	
 		Interval interval1 = new Interval(1,2);

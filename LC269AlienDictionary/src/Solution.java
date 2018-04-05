@@ -53,7 +53,7 @@ public class Solution {
 	// FB 面经，两种方法都要掌握
 	// Solution 1: BFS
 	// https://discuss.leetcode.com/topic/28308/java-ac-solution-using-bfs
-	/*
+	
     public static String alienOrder(String[] words) {
     	 
         Map<Character, Set<Character>> map = new HashMap<>();
@@ -97,7 +97,6 @@ public class Solution {
         		}
         	}
         }
-        
         // Topological sorting with BFS
         Queue<Character> queue = new LinkedList<>();
         
@@ -127,20 +126,21 @@ public class Solution {
         
         return result;
     }
-    */
+    
 	
     // Solution 2: DFS
 	// https://discuss.leetcode.com/topic/33565/3ms-clean-java-solution-dfs/8
     
+	/*
 	public static String alienOrder(String[] words) {
 		boolean[][] adj = new boolean[26][26];
 		int[] visited = new int[26];
-		/*
-		 * visited[i] = -1. Not even exist.
-		 * visited[i] = 0. Exist. Non-visited.
-		 * visited[i] = 1. Visiting.
-		 * visited[i] = 2. Visited.
-		 */
+		
+		 //visited[i] = -1. Not even exist.
+		 //visited[i] = 0. Exist. Non-visited.
+		 //visited[i] = 1. Visiting.
+		 //visited[i] = 2. Visited.
+		 
 		buildGraph(words, adj, visited);
 		
 		StringBuilder sb = new StringBuilder();
@@ -205,14 +205,21 @@ public class Solution {
 		sb.append((char)(i + 'a'));
 		return true;
 	}
-	
+	*/
+
     public static void main(String[] args) {
 		String[] test1 = {"wrt", "wrf", "er", "ett", "rftt"};
 		String[] test2 = {"z", "x"};
 		String[] test3 = {"z", "x", "z"};
+		String[] test4 = {"z", "z"};
+		String[] test5 = {"ac","ab","b"};
+		String[] test6 = {"za","zb","ca","cb"};
 		
 		System.out.println(alienOrder(test1));
 		System.out.println(alienOrder(test2));
 		System.out.println(alienOrder(test3));
+		System.out.println(alienOrder(test4));
+		System.out.println(alienOrder(test5));
+		System.out.println(alienOrder(test6));
 	}
 }
