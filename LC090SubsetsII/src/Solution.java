@@ -25,6 +25,8 @@ public class Solution {
 	 * ]
 	 */
 	
+	/*
+	// Solution 1: Recursion
     public static List<List<Integer>> subsetsWithDup(int[] nums) {
     	List<List<Integer>> result = new ArrayList<List<Integer>>();
     	List<Integer> list = new ArrayList<Integer>();
@@ -50,10 +52,36 @@ public class Solution {
     		list.remove(list.size()-1);
     	}
     }
+    */
+	
+	// Solution 2: Iteration
+    public static List<List<Integer>> subsetsWithDup2(int[] nums) {
+        Arrays.sort(nums);
+        List<List<Integer>> result = new ArrayList<>();
+        result.add(new ArrayList<Integer>());
+        
+        int start = 0;
+        
+        for (int i = 0; i < nums.length; i++) {
+            int size = result.size();
+            if (i == 0 || nums[i - 1] != nums[i]) {
+                start = 0;
+            }
+            
+            for (int k = start; k < size; k++) {
+                List<Integer> list = new ArrayList<>(result.get(k));
+                list.add(nums[i]);
+                result.add(list);
+            }
+            start = size;
+        }
+        
+        return result;
+    }
     
     public static void main(String[] args) {
 		int[] test = {1,2,2};
 		
-		System.out.println(subsetsWithDup(test));
+		System.out.println(subsetsWithDup2(test));
 	}
 }

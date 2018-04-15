@@ -120,74 +120,52 @@ public class Solution {
     */
     
     // Solution 3: Union-Find
-    static class UnionFind{
-        Map<Integer, Integer> father; 
+    static class UnionFind {
+        Map<Integer, Integer> parents;
         
-        UnionFind(int n) {
-        	father = new HashMap<Integer, Integer>();
-            for(int i = 0 ; i < n; i++) {
-                father.put(i, i); 
+        public UnionFind(int n) {
+            parents = new HashMap<>();
+            for (int i = 0; i < n; i++) {
+                parents.put(i, i);
             }
         }
         
-        // compressed path
-        int find(int x) {
-            
-            if (father.get(x) == x) {
-                return x;
+        public int find(int x) {
+            int pX = parents.get(x);
+            if (pX != x) {
+                pX = find(pX);
+                parents.put(x, pX);
             }
             
-            int parent = find(father.get(x));
-            father.put(x, parent);
-            return parent;
-             
-            // another compress way
-            
-            /*
-            int parent =  father.get(x);
-            
-            while(parent != father.get(parent)) {
-                parent = father.get(parent);
-            }
-            
-            int tmp = -1;
-            int fa = father.get(x);
-            
-            while(fa != father.get(fa)) {
-                tmp = father.get(fa);
-                father.put(fa, parent) ;
-                fa = tmp;
-            }
-            
-            return parent;
-            */
+            return pX;
         }
         
-        void union(int x, int y){
-            int faX = find(x);
-            int faY = find(y);
-            if(faX != faY) {
-                father.put(faX, faY);
+        public void union(int x, int y) {
+            int pX = find(x);
+            int pY = find(y);
+            
+            if (pX != pY) {
+                parents.put(pX, pY);
             }
         }
     }
     
-	public static boolean validTree(int n, int[][] edges) {
-        if (n - 1 != edges.length) {
+    public static boolean validTree(int n, int[][] edges) {
+        if (edges.length != n - 1) {
             return false;
         }
         
-		UnionFind unionFind = new UnionFind(n);
-		
-		for (int i = 0; i < edges.length; i++) {
-			if (unionFind.find(edges[i][0]) == unionFind.find(edges[i][1])) {
-				return false;
-			}
-			unionFind.union(edges[i][0], edges[i][1]);
-		}
-		
-		return true;
-	}
+        UnionFind uf = new UnionFind(n);
+        
+        for (int i = 0; i < edges.length; i++) {
+            if (uf.find(edges[i][0]) == uf.find(edges[i][1])) {
+                return false;
+            }
+            uf.union(edges[i][0], edges[i][1]);
+        }
+        
+        return true;
+    }
 	
     public static void main(String[] args) {
     	int[][] edges1 = {{0, 1}, {0, 2}, {0, 3}, {1, 4}};
