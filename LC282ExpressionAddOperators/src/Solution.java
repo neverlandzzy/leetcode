@@ -17,6 +17,10 @@ public class Solution {
 	 */
 	
 	// https://leetcode.com/discuss/58614/java-standard-backtrace-ac-solutoin-short-and-clear
+	// 时间复杂度
+	// T(n) = 3 * T(n-1) + 3 * T(n-2) + 3 * T(n-3) + ... + 3 *T(1);
+	// T(n-1) = 3 * T(n-2) + 3 * T(n-3) + ... 3 * T(1);
+	// Thus T(n) = 4T(n-1);
 	
     public static  List<String> addOperators(String num, int target) {
         List<String> result = new ArrayList<>();
@@ -43,7 +47,7 @@ public class Solution {
             }
             
             long cur = Long.parseLong(num.substring(pos, i + 1));
-            
+            //System.out.println("pos = " + pos + " i = " + i + " cur = " + cur + " sb = " + sb.toString());
             if (pos == 0) {
                 dfs(result, num, target, i + 1, sb.append(cur), cur, cur);
                 sb.setLength(len);
@@ -61,7 +65,7 @@ public class Solution {
     }
     
     public static void main(String[] args) {
-		String test = "105";
+		String test = "123";
 		System.out.println(addOperators(test, 5));
 	}
 }

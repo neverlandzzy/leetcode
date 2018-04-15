@@ -41,7 +41,7 @@ public class Solution {
     
     public static void subsetsHelper(int[] nums, List<List<Integer>> result, List<Integer> list, int pos) {
     	result.add(new ArrayList<Integer>(list));
-    	//System.out.println(list);
+    	//System.out.println("pos = " + pos + " " + list);
     	for (int i = pos; i < nums.length; i++) {
     		list.add(nums[i]);
     		subsetsHelper(nums, result, list, i+1);
@@ -70,6 +70,6 @@ public class Solution {
     public static void main(String[] args) {
 		int[] test = {1,2,3};
 		
-		System.out.println(subsets2(test));
+		System.out.println(subsets(test));
 	}
 }

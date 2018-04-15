@@ -41,7 +41,8 @@ public class WordFilter {
     
     public int f(String prefix, String suffix) {
     	return (map.containsKey(prefix + "#" + suffix))? map.get(prefix + "#" + suffix) : -1;
-    }*/
+    }
+    */
 	
 	
 	// Solution 2: Trie
@@ -62,6 +63,29 @@ public class WordFilter {
 	
 	TrieNode root;
 	
+    public WordFilter(String[] words) {
+        root = new TrieNode();
+        
+        for (int i = 0; i < words.length; i++) {
+            String w = words[i];
+            
+            
+            for (int j = w.length(); j >= 0; j--) {
+                TrieNode node = root;
+                String s = w.substring(j) + "{" + w;
+                
+                for (int k = 0; k < s.length(); k++) {
+                    char c = s.charAt(k);
+                    if (node.children[c - 'a'] == null) {
+                        node.children[c - 'a'] = new TrieNode();
+                    }
+                    node = node.children[c - 'a'];
+                    node.weight = i;
+                }
+            }
+        }
+    }
+    /*
 	public WordFilter(String[] words) {
 		root = new TrieNode();
 		
@@ -82,7 +106,7 @@ public class WordFilter {
 			}
 		}
 	}
-	
+	*/
 	public int f(String prefix, String suffix) {
 		TrieNode node = root;
 		

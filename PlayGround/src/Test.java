@@ -1,7 +1,6 @@
 import java.util.Arrays;
 import java.util.Comparator;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.Stack;
 
 
 public class Test {
@@ -139,7 +138,15 @@ public class Test {
 		System.out.println(c ^ b);
 		*/
 		
-		test();
+		Stack<Integer> stack = new Stack<>();
+		stack.push(1);
+		stack.push(2);
+		stack.push(3);
+		stack.push(4);
+		
+		for (int i: stack) {
+			System.out.println(i);
+		}
 	
 	}
 	

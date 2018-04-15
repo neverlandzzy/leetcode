@@ -9,10 +9,7 @@ public class Solution {
 	 */
 	
 	
-	/*
-	 * https://leetcode.com/discuss/31595/detailed-explanation-generalization-bitwise-operation-numbers
-	 * 
-	 */
+	 // https://leetcode.com/discuss/31595/detailed-explanation-generalization-bitwise-operation-numbers
 	
     public static int singleNumber(int[] nums) {
         int x2 = 0;
