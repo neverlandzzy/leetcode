@@ -41,21 +41,20 @@ public class Solution {
 				
 				//a continuous subarray of size at least 2 
 				if (i - map.get(sum) > 1) {
-					//System.out.println(map);
+					System.out.println(map);
 					return true;
 				}
 			} else {
 				map.put(sum, i);
 			}
 		}
-		
 		//System.out.println(map);
 		return false;
 	}
 	
 	public static void main(String[] args) {
-		//int[] test = {23, 2, 4, 6, 7};
-		int[] test = {0, 1, 0};
-		System.out.println(checkSubarraySum(test, 0));
+		int[] test = {23, 2, 4, 6, 7};
+		//int[] test = {0, 1, 0};
+		System.out.println(checkSubarraySum(test, 6));
 	}
 }

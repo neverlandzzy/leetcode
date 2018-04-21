@@ -92,7 +92,7 @@ public class Solution {
         	}
         }
         
-        Map<Integer,Set<String>> userMap = new HashMap<>();
+        Map<Integer, Set<String>> userMap = new HashMap<>();
         
         for (int i = 0; i < n; i++) {
         	int parentI = uf.find(i);

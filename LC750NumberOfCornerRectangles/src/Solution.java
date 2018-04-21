@@ -33,8 +33,31 @@ public class Solution {
 	 * The number of 1s in the grid will be at most 6000.
 	 */
 	
+	// https://leetcode.com/problems/number-of-corner-rectangles/discuss/110196/short-JAVA-AC-solution-(O(m2-*-n))-with-explanation.
+	// Time: O(m ^ 2 * n)
+	// 固定两行(或两列)，计算这两行中同列都为1的pair的个数，则可组成的矩形个数为C(2, n)
+	public static  int countCornerRectangles(int[][] grid) {
+		int m = grid.length;
+		int n = grid[0].length;
+		int result = 0;
+		
+		for (int i = 0; i < m - 1; i++) {
+			for (int j = i + 1; j < m; j++) {
+				int counter = 0;
+				for (int k = 0; k < n; k++) {
+					if (grid[i][k] == 1 && grid[j][k] == 1) {
+						counter++;
+					}
+				}
+				result += counter * (counter - 1) / 2;
+			}
+		}
+		
+		return result;
+	}
 	
-	// B-F 
+	// My Brute Force Solution 
+	/*
     public static  int countCornerRectangles(int[][] grid) {
         int m = grid.length;
         int n = grid[0].length;
@@ -60,7 +83,7 @@ public class Solution {
         
         return counter;
     }
-    
+    */
     public static void main(String[] args) {
 		int[][] test1 = {{1, 0, 0, 1, 0}, {0, 0, 1, 0, 1}, {0, 0, 0, 1, 0}, {1, 0, 1, 0, 1}};
 		int[][] test2 = {{1, 1, 1}, {1, 1, 1}, {1, 1, 1}};

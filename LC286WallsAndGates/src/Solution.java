@@ -1,3 +1,6 @@
+import java.util.LinkedList;
+import java.util.Queue;
+
 
 public class Solution {
 	/*
@@ -24,7 +27,47 @@ public class Solution {
 	 */
 	
     public static void wallsAndGates(int[][] rooms) {
+        if (rooms == null || rooms.length == 0 || rooms[0] == null || rooms[0].length == 0) {
+            return;
+        }
         
+        for (int i = 0; i < rooms.length; i++) {
+            for (int j = 0; j < rooms[0].length; j++) {
+                if (rooms[i][j] == 0) {
+                    bfs(rooms, i, j);
+                }
+            }
+        }
+    }
+    
+    private static void bfs(int[][] rooms, int x, int y) {
+        int[][] directions = {{1, 0}, {0, 1}, {-1, 0}, {0, -1}};
+        Queue<int[]> queue = new LinkedList<>();
+        queue.offer(new int[]{x, y});
+        
+        int distance = 1;
+        
+        while (!queue.isEmpty()) {
+            int size = queue.size();
+            for (int i = 0; i < size; i++) {
+                int[] point = queue.poll();
+                
+                for (int[] dir: directions) {
+                    int nextX = point[0] + dir[0];
+                    int nextY = point[1] + dir[1];
+                    
+                    if (nextX < 0 || nextX >= rooms.length || nextY < 0 || nextY >= rooms[0].length) {
+                        continue;
+                    }
+                    
+                    if (rooms[nextX][nextY] == Integer.MAX_VALUE || distance < rooms[nextX][nextY]) {
+                        rooms[nextX][nextY] = distance;
+                        queue.offer(new int[]{nextX, nextY});
+                    }
+                }
+            }
+            distance++;
+        }
     }
     
     public static void main(String[] args) {
