@@ -14,7 +14,7 @@ public class Solution {
     		return false;
     	}
     	
-    	HashSet<Integer> set = new HashSet<Integer>();
+    	HashSet<Integer> set = new HashSet<>();
         
         for (int i: nums) {
         	if (!set.add(i)) {

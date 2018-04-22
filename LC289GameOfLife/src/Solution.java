@@ -28,6 +28,59 @@ public class Solution {
         int m = board.length;
         int n = board[0].length;
         
+        // 1 -> 0 : -1
+        // 0 -> 1 : 2
+        for (int i = 0; i < m; i++) {
+            for (int j = 0; j < n; j++) {
+                int count = liveNeighbors(board, i, j);
+                if (board[i][j] == 1) {
+                    if (count != 2 && count != 3) {
+                        board[i][j] = -1;
+                    }
+                } else {
+                    if (count == 3) {
+                        board[i][j] = 2;
+                    }
+                }
+            }
+        }
+        
+        for (int i = 0; i < m; i++) {
+            for (int j = 0; j < n; j++) {
+                if (board[i][j] == -1) {
+                    board[i][j] = 0;
+                }
+                
+                if (board[i][j] == 2) {
+                    board[i][j] = 1;
+                }
+            }
+        }
+    }
+    
+    private static int liveNeighbors(int[][] board, int i, int j) {
+        int[][] direction = {{0, 1}, {0, -1}, {1, 0}, {-1, 0}, {1, 1}, {1, -1}, {-1, 1}, {-1, -1}};
+        int counter = 0;
+        
+        for (int[] dir: direction) {
+            int nextI = i + dir[0];
+            int nextJ = j + dir[1];
+            
+            if (nextI >= 0 && nextI < board.length && nextJ >= 0 && nextJ < board[0].length) {
+                if (board[nextI][nextJ] == 1 || board[nextI][nextJ] == -1) {
+                    counter++;
+                }
+            }
+        }
+        
+        return counter;
+    }
+    
+	/*
+    public static void gameOfLife(int[][] board) {
+        int m = board.length;
+        int n = board[0].length;
+        
         for (int i = 0; i < m; i++) {
         	for(int j = 0; j < n; j++) {
         		int lives = lives(board, m, n, i, j);
@@ -48,7 +101,7 @@ public class Solution {
         	}
         }
     }
-    
+
     private static int lives(int[][] board, int m, int n, int i, int j) {
     	int result = 0;
     	
@@ -61,7 +114,7 @@ public class Solution {
     	result = result - (board[i][j] & 1);
     	return result;
     }
-    
+	*/
     public static void main(String[] args) {
 		int[][] board = {{1, 0, 1, 0, 1}, {0, 1, 1, 1, 0}, {0, 1, 0, 1, 0}, {0, 1, 0, 1, 1}, {1, 0, 1, 1, 0}};
 		gameOfLife(board);

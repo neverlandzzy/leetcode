@@ -15,82 +15,64 @@ public class Solution {
 	 * 1,1,5 → 1,5,1
 	 * 
 	 */
-	
-	
-    public static void nextPermutation(int[] nums) {
-        int cur = nums.length-1;
-        
-        while((cur > 0) && (nums[cur-1] >= nums[cur])) {
-        		cur--;
-        }
 
-       reverse(nums, cur, nums.length-1);
-       
-       if (cur > 0) {
-    	   int next = cur;
-    	   cur--;
-    	   
-    	   while (nums[cur] >= nums[next]) {
-    		   next++;
-    	   }
-    	   
-    	   int tmp = nums[cur];
-    	   nums[cur] = nums[next];
-    	   nums[next] = tmp;
-       }
+    public static void nextPermutation(int[] nums) {
+        int pos = nums.length - 1;
+        
+        while (pos > 0 && nums[pos - 1] >= nums[pos]) {
+            pos--;
+        }
+        
+        reverse(nums, pos, nums.length - 1);
+        
+        if (pos > 0) {
+            int next = pos;
+            pos--;
+            
+            while (next < nums.length && nums[next] <= nums[pos]) {
+                next++;
+            }
+            
+            int tmp = nums[pos];
+            nums[pos] = nums[next];
+            nums[next] = tmp;
+        }
     }
     
-    public static void reverse(int[] nums, int start, int end) {
-    	
-    	while (start < end) {
-    		int tmp;
-    		tmp = nums[start];
-    		nums[start] = nums[end];
-    		nums[end] = tmp;
-    		start++;
-    		end--;
-    	}
+    private static void reverse(int[] nums, int start, int end) {
+        while (start < end) {
+            int tmp = nums[start];
+            nums[start] = nums[end];
+            nums[end] = tmp;
+            start++;
+            end--;
+        }
     }
     
     public static void main(String[] args) {
+    	
 		int[] test1 = {5,1,1};
-		
-		for(int i = 0; i < test1.length; i++)
-			System.out.print(test1[i]);
-		
-		System.out.println();
-		
+		print(test1);
 		nextPermutation(test1);
-		for(int i = 0; i < test1.length; i++)
-			System.out.print(test1[i]);
-		
-		System.out.println();
-		System.out.println();
+		print(test1);
 		
 		int[] test2 = {6, 8, 7, 4, 3, 2};
-		
-		for(int i = 0; i < test2.length; i++)
-			System.out.print(test2[i]);
-		
-		System.out.println();
-		
+		print(test2);
 		nextPermutation(test2);
-		for(int i = 0; i < test2.length; i++)
-			System.out.print(test2[i]);
-		
-		System.out.println();
-		System.out.println();
+		print(test2);
 		
 		int[] test3 = {1, 1};
-		
-		for(int i = 0; i < test3.length; i++)
-			System.out.print(test3[i]);
-		
-		System.out.println();
-		
+		print(test3);
 		nextPermutation(test3);
-		for(int i = 0; i < test3.length; i++)
-			System.out.print(test3[i]);
+		print(test3);
+		
 		
 	}
+    
+    private static void print(int[] array) {
+		for(int i = 0; i < array.length; i++) {
+			System.out.print(array[i] + ", ");
+		}
+		System.out.println();
+    }
 }
