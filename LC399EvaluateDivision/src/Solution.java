@@ -51,7 +51,9 @@ public class Solution {
         }
         
         double[] result = new double[queries.length];
-        
+    	
+    	//System.out.println(pairMap);
+    	//System.out.println(valueMap);
         for (int i = 0; i < queries.length; i++) {
         	String[] query = queries[i];
         	
@@ -66,10 +68,8 @@ public class Solution {
     }
     
     private static double helper(String start, String end, HashSet<String> set, HashMap<String, List<String>> pairMap, 
-    		HashMap<String, List<Double>> valueMap, double value) {
-    	
-    	System.out.println(pairMap);
-    	System.out.println(valueMap);
+    	HashMap<String, List<Double>> valueMap, double value) {
+
     	if (set.contains(start)) {
     		return 0.0;
     	}
@@ -89,19 +89,19 @@ public class Solution {
     		result = helper(pairMap.get(start).get(i), end, set, pairMap, valueMap, value * valueMap.get(start).get(i));
     		//System.out.println("result = " + result + " start = " +  start + " size = " + pairMap.get(start).size() + " i = " + i);
     		if (result != 0) {
-    			//break;
+    			break;
     		}
     	}
     	
-    	set.remove(start);
+    	//set.remove(start);
     	return result;
     }
     
     public static void main(String[] args) {
-    	String[][] equations = {{"a", "b"}, {"b", "c"}};
-    	double[] values = {2.0, 3.0};
+    	String[][] equations = {{"a", "b"}, {"b", "c"}, {"a", "c"}};
+    	double[] values = {2.0, 3.0, 6.0};
     	//String[][] queries = {{"a", "c"}, {"b", "a"}, {"a", "e"}, {"a", "a"}, {"x", "x"}};
-    	String[][] queries = {{"b", "a"}};
+    	String[][] queries = {{"b", "a"}, {"a", "c"}};
     	double[] result = calcEquation(equations, values, queries);
     	
     	for(double d: result) {
