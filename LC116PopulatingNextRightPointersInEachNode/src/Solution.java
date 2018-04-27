@@ -76,6 +76,22 @@ public class Solution {
     	}
     }
     
+    // Solution 2: recursion
+    /*
+    public static void connect(TreeLinkNode root) {
+        if (root == null || root.left == null && root.right == null) {
+            return;
+        }
+        
+        root.left.next = root.right;
+        if (root.next != null) {
+            root.right.next = root.next.left;
+        }
+        
+        connect(root.left);
+        connect(root.right);
+    }
+    */
     public static void main(String[] args) {
     	TreeLinkNode node1 = new TreeLinkNode(1);
     	TreeLinkNode node2 = new TreeLinkNode(2);

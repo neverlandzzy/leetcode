@@ -1,4 +1,4 @@
-package l2_ThreadSynchronization;
+package l02_ThreadSynchronization;
 
 import java.util.Scanner;
 

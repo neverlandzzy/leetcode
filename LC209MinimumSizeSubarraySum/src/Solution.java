@@ -9,6 +9,32 @@ public class Solution {
 	 */
 	
     public static int minSubArrayLen(int s, int[] nums) {
+        if (nums == null || nums.length == 0) {
+            return 0;
+        }
+        
+        int i = 0;
+        int j = 0;
+        int min = Integer.MAX_VALUE;
+        int sum = 0;
+        
+        while (j < nums.length) {
+            sum += nums[j];
+            
+            while (i <= j && sum >= s) {
+                min = Math.min(min, j - i + 1);
+                sum -= nums[i];
+                i++;
+            }           
+            
+            j++;
+        }
+        
+        return min == Integer.MAX_VALUE ? 0 : min;
+    }
+	
+    /*
+    public static int minSubArrayLen(int s, int[] nums) {
         
     	int prev = 0, sum = 0, len = Integer.MAX_VALUE;
     	
@@ -23,6 +49,7 @@ public class Solution {
     	
     	return len == Integer.MAX_VALUE ? 0: len;
     }
+    */
     
     public static void main(String[] args) {
 		int[] test = {2,3,1,2,4,3};

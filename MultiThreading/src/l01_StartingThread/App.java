@@ -1,4 +1,4 @@
-package l1_StartingThread;
+package l01_StartingThread;
 
 // 2 ways starting thread:
 
