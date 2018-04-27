@@ -37,6 +37,8 @@ public class Solution {
 	// https://discuss.leetcode.com/topic/52290/java-follow-up-using-recursion-and-memorization
 	
 
+	// Solution 1: Recursion: DFS + mem
+	/*
     public static int combinationSum4(int[] nums, int target) {
     	HashMap<Integer, Integer> map = new HashMap<>();
     	
@@ -64,6 +66,27 @@ public class Solution {
         
         map.put(target, result);
         return result;
+    }
+    */
+	
+	// Solution 2: Iteration, DP
+    public static int combinationSum4(int[] nums, int target) {
+    	if (nums == null || nums.length == 0) {
+    		return 0;
+    	}
+    	
+    	int[] dp = new int[target + 1];
+    	dp[0] = 1;
+    	
+    	for (int i = 0; i <= target; i++) {
+    		for (int j = 0; j < nums.length; j++) {
+    			if (i >= nums[j]) {
+    				dp[i] += dp[i - nums[j]];
+    			}
+    		}
+    	}
+    	
+    	return dp[target];
     }
     
     // brute-force
