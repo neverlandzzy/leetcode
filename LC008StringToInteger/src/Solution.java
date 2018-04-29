@@ -29,47 +29,73 @@ public class Solution {
 	 * of the range of representable values, INT_MAX (2147483647) or INT_MIN (-2147483648) is returned.
 	 */
 	
-    public static int myAtoi(String str) {
-        int i = 0;
-        int sign = 1;
-        long result = 0;
-        
-        if (str.length() == 0) {
-        	return 0;
+    public static int myAtoi2(String str) {
+        if (str == null || str.length() == 0) {
+            return 0;
         }
         
-        while (str.charAt(i) == ' ' && i < str.length()) {
-        	i++;
+        StringBuilder sb = new StringBuilder();
+        int n = str.length();
+        int i = 0;
+        int sign = 1;
+        int LIMIT = 10;
+        boolean firstDigit = true;
+        
+        while (i < n && str.charAt(i) == ' ') {
+            i++;
+        }
+
+        if (i >= n || (str.charAt(i) != '+' && str.charAt(i) != '-' && (str.charAt(i) < '0' || str.charAt(i) > '9'))) {
+            return 0;
         }
         
         if (str.charAt(i) == '+' || str.charAt(i) == '-') {
-        	sign = str.charAt(i) == '+' ? 1 : -1;
-        	i++;
+            sign = str.charAt(i) == '-' ? -1 : 1;
+            i++;
         }
         
-        while (i < str.length() && str.charAt(i) >= '0' && str.charAt(i) <= '9') {
-        	result = 10*result + ((int)str.charAt(i)-'0');
-        	
-            if (result*sign > Integer.MAX_VALUE) {
-            	result = Integer.MAX_VALUE;
-            	break;
-            } else if (result*sign < Integer.MIN_VALUE) {
-            	result = Integer.MIN_VALUE;
-            	break;
+        if (i >= n || (str.charAt(i) < '0' && str.charAt(i) > '9')) {
+            return 0;
+        }
+        
+        while (i < n && str.charAt(i) >= '0' && str.charAt(i) <= '9') {
+        	if (i < n && firstDigit && str.charAt(i) == '0') {
+        		i++;
+        		continue;
+        	} 
+            sb.append(str.charAt(i));
+            i++;
+            firstDigit = false;
+            if (sb.length() > LIMIT) {
+                return sign == 1 ? Integer.MAX_VALUE : Integer.MIN_VALUE;
             }
-            
-        	i++;
-        			
         }
         
-        return (int)result*sign;
+        if (sb.length() == 0) {
+        	return 0;
+        }
+        long result = sign * Long.parseLong(sb.toString());
+        
+        if (result < Integer.MIN_VALUE) {
+            return Integer.MIN_VALUE;
+        } else if (result > Integer.MAX_VALUE) {
+            return Integer.MAX_VALUE;
+        } else {
+            return (int)result;
+        }       
     }
-    
+	   
     public static void main(String[] args) {
     	String test1 = "123abc";
     	String test2 = "1";
+    	String test3 = "words and 987";
+    	String test4 = "+-2";
+    	String test5 = "  0000000000012345678";
     	
-    	System.out.println(myAtoi(test1));
-    	System.out.println(myAtoi(test2));
+    	System.out.println(myAtoi2(test1));
+    	System.out.println(myAtoi2(test2));
+    	System.out.println(myAtoi2(test3));
+    	System.out.println(myAtoi2(test4));
+    	System.out.println(myAtoi2(test5));
     }
 }
