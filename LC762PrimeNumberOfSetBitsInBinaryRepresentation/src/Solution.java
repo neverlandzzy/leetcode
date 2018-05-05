@@ -49,6 +49,7 @@ public class Solution {
         	
         	// 可以用built-in method 替换
         	int counter = 0;
+        	// 不能直接用i计算，否则i的值会改变，从而影响其作为循环控制变量的作用(i++)
         	int n = i;
         	while (n > 0) {
         		if ((n & 1) == 1) {
@@ -72,6 +73,7 @@ public class Solution {
         
         return result;
     }
+
     
     public static void main(String[] args) {
 		System.out.println(countPrimeSetBits(6, 10));

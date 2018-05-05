@@ -9,31 +9,29 @@ public class Solution {
 	 */
 	
     public static void rotate(int[] nums, int k) {
+        if (nums == null || nums.length == 0) {
+            return;
+        }
         
-    	int n = nums.length;
-    	if (k > n) {
-    		k = k % n;
-    	}
-    	
-    	reverse(nums, 0, n-1);
-        
-    	reverse(nums, k ,n-1);
-        reverse(nums, 0, k-1);
-        
+        int n = nums.length;
+
+        if (k > n) {
+            k = k % n;
+        }
+        reverse(nums, 0, n - 1);
+        reverse(nums, 0, k - 1);
+        reverse(nums, k, n - 1);       
     }
     
-    
-    public static void reverse(int[] nums, int start, int end) {
-    	int i = start;
-    	int j = end;
-    	
-    	while (i < j) {
-    		int tmp = nums[i];
-    		nums[i] = nums[j];
-    		nums[j] = tmp;
-    		i++;
-    		j--;
-    	}
+    private static void reverse(int[] nums, int i, int j) {
+        while (i < j) {
+            int tmp = nums[j];
+            nums[j] = nums[i];
+            nums[i] = tmp;
+            
+            i++;
+            j--;
+        }
     }
     
 	public static void main(String[] args) {

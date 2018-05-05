@@ -16,7 +16,7 @@ public class Solution {
 		node1.left = node2;
 		node1.right = node3;
 		node2.left = node4;
-		//node2.right = node5;
+		node2.right = node5;
 		node3.right = node6;
 		
 		TreeNode root = node1;
@@ -30,5 +30,7 @@ public class Solution {
 		nodes.addAll(Arrays.asList(test.split(",")));
 		
 		System.out.println(nodes);
+		
+		System.out.println(codec.deserialize(test));
 	}
 }

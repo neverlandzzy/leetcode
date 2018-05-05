@@ -39,6 +39,36 @@ public class Solution {
     	}
     }
     
+    // Follow-up: p or q may not be in the tree
+    private static TreeNode lca;
+    
+    public static TreeNode lowestCommonAncestor2(TreeNode root, TreeNode p, TreeNode q) {
+    	lca = null;
+    	helper(root, p, q);
+    	
+    	return lca;
+    }
+    
+    private static boolean helper(TreeNode root, TreeNode p, TreeNode q) {
+    	if (root == null) {
+    		return false;
+    	}
+    	
+    	boolean left = helper(root.left, p, q);
+    	boolean right = helper(root.right, p, q);
+    	// any of the three situations (left contains a target node, right contains a target node, or this node is a target node) will return true.
+    	boolean result = left || right || root == p || root == q;
+    	
+    	// 1. If the left and right are both true. This is the easiest situation to think about: 
+    	//    there is one node present on each side and the current root is what we are looking for.
+    	// 2. If the left tree or the right tree contains a target node, and the current root contains another: 
+    	//    this is for tree like (1,#,2) and you want to find the LCA for node 1 and 2, the LCA would be 1 according to the question.
+    	if ((left && right) || ((left || right) && (root == p || root == q))) {
+    		lca = root;
+    	}
+    	
+    	return result;
+    }
     
     public static void main(String[] args) {
  		TreeNode node1 = new TreeNode(1);
@@ -69,5 +99,11 @@ public class Solution {
  		node3.left  = node7;
  		
  		System.out.println(lowestCommonAncestor(node1, node4, node6).val);
+ 		
+ 		// Follow up: if the any of the nodes is not in the tree, return null.
+ 		TreeNode node8 = new TreeNode(8);
+ 		System.out.println(lowestCommonAncestor2(node1, node4, node6).val);
+ 		System.out.println(lowestCommonAncestor2(node1, node4, node8));
+ 		
     }
 }
