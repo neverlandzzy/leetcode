@@ -7,6 +7,9 @@ public class Solution {
 	 * Can you solve it without using extra space?
 	 */
 	
+	// 证明：
+	// Proof by contradiction(反证法)
+	// If there is no cycle, the fast pointer should reach null before the slow pointer. Therefore, if they meet each other, there is cycle. 
     public static boolean hasCycle(ListNode head) {
         ListNode slow = head;
         ListNode fast = head;
