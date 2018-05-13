@@ -79,6 +79,7 @@ public class Solution {
     */
 	
 	// remove instance variables
+	/*
     public static int[] findFrequentTreeSum(TreeNode root) {
         HashMap<Integer, Integer> map = new HashMap<>();
         int[] max = new int[1];
@@ -119,6 +120,57 @@ public class Solution {
         } else if (map.get(sum) == max[0]) {
             maxCounter[0]++;
         }
+        
+        return sum;
+    }
+    */
+    
+    public static int[] findFrequentTreeSum(TreeNode root) {
+        Map<Integer, Integer> map = new HashMap<>();
+        
+        helper(root, map);
+        
+        int max = 0;
+        int count = 0;
+        
+        for (int key: map.keySet()) {
+            if (map.get(key) > max) {
+                max = map.get(key);
+                count = 1;
+            } else if (map.get(key) == max) {
+                count++;
+            } 
+        }
+
+        int[] result = new int[count];
+        int i = 0;
+        
+        for (int key: map.keySet()) {
+            if (map.get(key) == max) {
+                result[i++] = key;
+            }
+        }
+        
+        return result;
+    }
+    
+    private static int helper(TreeNode root, Map<Integer, Integer> map) {
+        if (root == null) {
+            return 0;
+        }
+        
+        int sum = root.val;
+        
+        if (root.left == null && root.right == null) {
+            map.put(sum, map.getOrDefault(sum, 0) + 1);
+            return sum;
+        }
+        
+        int left = helper(root.left, map);
+        int right = helper(root.right, map);
+        
+        sum += left + right;
+        map.put(sum, map.getOrDefault(sum, 0) + 1);
         
         return sum;
     }

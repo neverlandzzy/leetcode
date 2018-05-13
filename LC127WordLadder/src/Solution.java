@@ -72,10 +72,7 @@ public class Solution {
         for (int i = 0; i < word.length(); i++) {
             char[] charArray = word.toCharArray();
             for (char c = 'a'; c <= 'z'; c++) {
-                if (charArray[i] == c) {
-                    continue;
-                }
-                
+
                 charArray[i] = c;
                 String s = String.valueOf(charArray);
                 if (set.contains(s)) {

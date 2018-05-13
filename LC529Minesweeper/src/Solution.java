@@ -114,58 +114,59 @@ public class Solution {
 	
 	// Solution 2: BFS
 	public static char[][] updateBoard(char[][] board, int[] click) {
-		Queue<int[]> queue = new LinkedList<int[]>();
-    	int m = board.length;
-    	int n = board[0].length;
-    	queue.offer(click);
+        if (board[click[0]][click[1]] == 'M') {
+            board[click[0]][click[1]] = 'X';
+            return board;
+        }
+        
+        int m = board.length;
+        int n = board[0].length;
+        
+        Queue<int[]> queue = new LinkedList<>();
+        
+        queue.offer(click);
+        int[][] direction = {{1, 0}, {0, 1}, {-1, 0}, {0, -1}, {1, 1} ,{1, -1}, {-1, 1}, {-1, -1}};
+        
+        while (!queue.isEmpty()) {
+            int[] point = queue.poll();
+            int i = point[0];
+            int j = point[1];
+            int count = 0;
+            
+            for (int[] dir: direction) {
+                int nextI = i + dir[0];
+                int nextJ = j + dir[1];
+                
+                if (nextI < 0 || nextJ < 0 || nextI >= m || nextJ >= n) {
+                    continue;
+                }
+                
+                if (board[nextI][nextJ] == 'M') {
+                    count++;
+                } 
+            }
+            
+            if (count > 0) {
+                board[i][j] = (char)(count + '0');
+            } else {
+                board[i][j] = 'B';
+                for (int[] dir: direction) {
+                    int nextI = i + dir[0];
+                    int nextJ = j + dir[1];
 
-    	int[][] dir = {{0, 1}, {1, 0}, {0, -1}, {-1, 0}, {1, -1}, {-1, 1}, {1, 1}, {-1, -1}}; 
-    	
-    	while (!queue.isEmpty()) {
-    		int[] block = queue.poll();
-    		int row = block[0];
-    		int col = block[1];
-    		
-    		if (board[row][col] == 'M') {
-    			board[row][col] = 'X';
-    		} else {
-    			int counter = 0;
-    			for (int i = 0; i < dir.length; i++) {
-    				int r = row;
-    				int c = col;
-    				
-    				r += dir[i][0];
-    				c += dir[i][1];
-    				
-        			if (r >= 0 && r < m && c >= 0 && c < n) {
-        				if (board[r][c] == 'M' || board[r][c] == 'X') {
-        					counter++;
-        				}
-        			}
-    			}
-    			
-    			if (counter > 0) {
-    				board[row][col] = (char)(counter + '0');
-    			} else {
-    				board[row][col] = 'B';
-    				for (int i = 0; i < dir.length; i++) {
-        				int r = row;
-        				int c = col;
-        				
-        				r += dir[i][0];
-        				c += dir[i][1];
-        				
-            			if (r >= 0 && r < m && c >= 0 && c < n) {
-            				if (board[r][c] == 'E') {
-            					queue.offer(new int[] {r, c});
-            					board[r][c] = 'B'; // 避免重复添加
-            				}
-            			}
-    				}
-    			}
-    		}
-    	}
-		return board;
+                    if (nextI < 0 || nextJ < 0 || nextI >= m || nextJ >= n) {
+                        continue;
+                    }
+
+                    if (board[nextI][nextJ] == 'E') {
+                        queue.offer(new int[] {nextI, nextJ});
+                        board[nextI][nextJ] = 'B';
+                    } 
+                }
+            }
+        }
+        
+        return board;
 	}
     
     public static void main(String[] args) {

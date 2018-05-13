@@ -50,6 +50,7 @@ public class Solution {
 	
     // Solution 2: Greedy Time: O(nlogn) -- sorting
 	// 按ending 排序后，一个个加就行
+	// 不能按starting 排序： 反例[[-6,9],[1,6],[8,10],[-1,4],[-6,-2],[-9,8],[-5,3],[0,3]]
 	public static int findLongestChain(int[][] pairs) {
         Arrays.sort(pairs, new Comparator<int[]>() {
         	public int compare(int[] p1, int[] p2) {

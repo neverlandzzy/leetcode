@@ -1,5 +1,9 @@
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Comparator;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 import java.util.Stack;
 
 
@@ -138,16 +142,12 @@ public class Test {
 		System.out.println(c ^ b);
 		*/
 		
-		Stack<Integer> stack = new Stack<>();
-		stack.push(1);
-		stack.push(2);
-		stack.push(3);
-		stack.push(4);
+
 		
-		for (int i: stack) {
-			System.out.println(i);
-		}
-	
+		int a = 8;
+		char c = (char)(a + '0');
+		System.out.println(c);
+		
 	}
 	
 	

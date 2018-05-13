@@ -24,37 +24,40 @@ public class Solution {
             return result;
         }
         
+        int n = nums.length;
         Arrays.sort(nums);
         
-        for (int i = 0; i < nums.length - 2; i++) {
-            if ((i > 0) && nums[i] == nums[i-1]) {
+        for (int i = 0; i < n - 2; i++) {
+            if (i > 0 && nums[i - 1] == nums[i]) {
                 continue;
             }
-            int num = -nums[i];
+            int target = -nums[i];
             
-            for (int low = i + 1, high = nums.length - 1; low < high; ) {
-                if (nums[low] + nums[high] < num) {
-                    low++;
-                } else if (nums[low] + nums[high] > num) {
-                    high--;
-                } else{ 
-                    
-                    result.add(Arrays.asList(nums[i], nums[low], nums[high]));
+            int low = i + 1;
+            int high = n - 1;
+            
+            while (low < high) {
+                if (nums[low] + nums[high] == target) {
+                    result.add(Arrays.asList(nums[low], nums[high], nums[i]));
                     
                     while (low < high && nums[low] == nums[low + 1]) {
                         low++;
                     }
+                    
                     while (low < high && nums[high] == nums[high - 1]) {
                         high--;
                     }
                     low++;
                     high--;
+                } else if (nums[low] + nums[high] < target) {
+                    low++;
+                } else {
+                    high--;
                 }
             }
         }
         
-        return result;
-        
+        return result;        
     }
     
     public static void main(String[] args) {

@@ -18,7 +18,35 @@ public class Solution {
 	 * 
 	 * string convert(string text, int nRows);
 	 * convert("PAYPALISHIRING", 3) should return "PAHNAPLSIIGYIR".
-	 */
+	 */	
+    public static String convert(String s, int numRows) {
+        int n = s.length();
+        int i = 0;
+        StringBuilder[] convertedStrings = new StringBuilder[numRows];
+        
+        for (int k = 0; k < numRows; k++) {
+            convertedStrings[k] = new StringBuilder();
+        }
+        
+        while (i < n) {
+            for (int k = 0; k < numRows && i < n; k++) {
+                convertedStrings[k].append(s.charAt(i));
+                i++;
+            }
+            
+            for (int k = numRows - 2; k >= 1 && i < n; k--) {
+                convertedStrings[k].append(s.charAt(i));
+                i++;
+            }
+        }
+        
+        for (int j = 1; j < numRows; j++) {
+            convertedStrings[0].append(convertedStrings[j]);
+        }
+        
+        return convertedStrings[0].toString();
+    }
+    
 	
 	public static void main(String[] args) {
 		String test = "ABCD";
@@ -26,33 +54,4 @@ public class Solution {
 		String convertedStr = convert(test, 3);
 		System.out.println(convertedStr);
 	}
-	
-	
-    public static String convert(String s, int nRows) {
-    	
-    	int len = s.length();
-    	int i = 0;
-    	StringBuilder[] convertedString = new StringBuilder[nRows];
-    	
-    	for(int k = 0; k < nRows; k++) {
-    		convertedString[k] = new StringBuilder();
-    	}
-    	
-    	while(i < len) {
-    		for (int k = 0; k < nRows && i < len; k++) {
-    			convertedString[k].append(s.charAt(i));
-    			i++;
-    		}
-    		for (int k = nRows-2; k >= 1 && i < len; k--) {
-    			convertedString[k].append(s.charAt(i));
-    			i++;
-    		}
-    	}
-    	
-    	for (int j = 1; j < nRows; j++) {
-    		convertedString[0].append(convertedString[j]);
-    	}
-    	
-    	return convertedString[0].toString();
-    }
 }
