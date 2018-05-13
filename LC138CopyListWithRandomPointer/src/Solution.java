@@ -1,4 +1,5 @@
 import java.util.HashMap;
+import java.util.Map;
 
 
 public class Solution {
@@ -11,6 +12,48 @@ public class Solution {
 	
 	
 	// Solution 1: HashMap
+	// straightforward
+    public static RandomListNode copyRandomList(RandomListNode head) {
+        if (head == null) {
+            return null;
+        }
+        
+        Map<RandomListNode, RandomListNode> map = new HashMap<>();
+        
+        RandomListNode newHead = new RandomListNode(head.label);        
+        map.put(head, newHead);
+        
+        RandomListNode node = head;
+        
+        while (node != null) {
+            RandomListNode next = node.next;
+            RandomListNode random = node.random;
+            RandomListNode newNode = map.get(node);
+            
+            if (next != null) {
+                if (!map.containsKey(next)) {
+                    RandomListNode newNext = new RandomListNode(next.label);
+                    map.put(next, newNext);
+                }
+                newNode.next = map.get(next);
+            }
+            
+            if (random != null) {
+                if (!map.containsKey(random)) {
+                    RandomListNode newRandom = new RandomListNode(random.label);
+                    map.put(random, newRandom);
+                }
+                newNode.random = map.get(random);
+            }
+            
+            node = node.next;
+        }
+        
+        return newHead;
+    }
+    
+    // another way
+    /*
 	public static RandomListNode copyRandomList(RandomListNode head) {
         HashMap<RandomListNode, RandomListNode> map = new HashMap<>();
         RandomListNode dummy = new RandomListNode(0);
@@ -44,7 +87,7 @@ public class Solution {
         
         return dummy.next;
 	}
-	
+	*/
 	// Solution 2: no hashmap
 	/*
     public static RandomListNode copyRandomList(RandomListNode head) {

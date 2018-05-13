@@ -38,7 +38,33 @@ public class Solution {
        return result;
     }
     
-    
+    // Another way
+    /*
+    public static int lengthOfLongestSubstring(String s) {
+        if (s == null || s.length() == 0) {
+            return 0;
+        }
+        
+        int n = s.length();
+        int[] map = new int[256];
+        int result = 0;
+        int j = 0;
+        int i = 0;
+        
+        while (j < n) {
+            if (map[s.charAt(j)] == 0) {
+                map[s.charAt(j)]++;
+                result = Math.max(result, j - i + 1);
+                j++;
+            } else {
+                map[s.charAt(i)] = 0;
+                i++;
+            }
+        } 
+        
+        return result;
+    }
+    */
    /*
 	public static int lengthOfLongestSubstring(String s) {
 	

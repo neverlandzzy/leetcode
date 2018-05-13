@@ -19,6 +19,8 @@ public class Solution {
 	 * Output: True 
 	 * Explanation: It's the substring "abc" four times. (And the substring "abcabc" twice.)
 	 */
+	
+	/*
     public static boolean repeatedSubstringPattern(String s) {
         int n = s.length();
         
@@ -42,7 +44,18 @@ public class Solution {
         
         return false;
     }
-    
+    */
+	
+	// https://leetcode.com/problems/repeated-substring-pattern/discuss/94344/Simple-Java-solution-2-lines
+	public static boolean repeatedSubstringPattern(String s) {
+		String str = s + s;
+		if (str.substring(1, str.length() - 1).contains(s)) {
+			return true;
+		}
+		
+		return false;
+	}
+	
     public static void main(String[] args) {
 		String s1 = "abab";
 		String s2 = "aba";

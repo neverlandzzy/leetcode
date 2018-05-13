@@ -37,7 +37,7 @@ public class Solution {
 	 */
 	
 	// Solution 1: DFS O(m * n)
-	
+	/*
     public static int numDistinctIslands(int[][] grid) {
         if (grid == null || grid.length == 0 || grid[0] == null || grid[0].length == 0) {
         	return 0;
@@ -80,7 +80,7 @@ public class Solution {
 		sb.append("b");
     }
    
-    /*
+    */
     // Solution 2: BFS O(m * n)
     public static int numDistinctIslands(int[][] grid) {
         if (grid == null || grid.length == 0 || grid[0] == null || grid[0].length == 0) {
@@ -130,7 +130,7 @@ public class Solution {
     		sb.append("b");
     	}
     }
-    */
+    
     public static void main(String[] args) {
 		int[][] test1 = {{1, 1, 0, 0, 0}, {1, 1, 0, 0, 0}, {0, 0, 0, 1, 1}, {0, 0, 0, 1, 1}};
 		int[][] test2 = {{1, 1, 0, 1, 1}, {1, 0, 0, 0, 0}, {0, 0, 0, 0, 1}, {1, 1, 0, 1, 1}};
