@@ -32,35 +32,31 @@ public class Solution {
 	 * 	3. Follow up: Try to solve it in O(n log k) time and O(n) extra space.
 	 */
     public static List<String> topKFrequent(String[] words, int k) {
-        List<String> result = new ArrayList<>();
         Map<String, Integer> map = new HashMap<>();
-        
         for (String w: words) {
-        	map.put(w, map.getOrDefault(w, 0) + 1);
+            map.put(w, map.getOrDefault(w, 0) + 1);
         }
         
         PriorityQueue<String> heap = new PriorityQueue<>(new Comparator<String>() {
-        	public int compare(String s1, String s2) {
-        		if (map.get(s1) != map.get(s2)) {
-        			return map.get(s1) - map.get(s2);
-        		}
-        		
-        		return s2.compareTo(s1);
-        	}
+            public int compare(String s1, String s2) {
+                if (map.get(s1) == map.get(s2)) {
+                    return s1.compareTo(s2);
+                }
+                
+                return map.get(s2) - map.get(s1);
+            }
         });
         
         for (String key: map.keySet()) {
-        	heap.offer(key);
-        	if (heap.size() > k) {
-        		heap.poll();
-        	}
+            heap.offer(key);
         }
         
-        while (!heap.isEmpty()) {
-        	result.add(heap.poll());
+        List<String> result = new ArrayList<>();
+        
+        for (int i = 0; i < k; i++) {
+            result.add(heap.poll());
         }
         
-        Collections.reverse(result);
         return result;
     }
     

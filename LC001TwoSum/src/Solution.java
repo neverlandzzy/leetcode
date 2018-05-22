@@ -16,6 +16,7 @@ public class Solution {
 	 * Output: index1=1, index2=2
 	 */
 	
+	// Time: O(n), Space: O(n)
     public static int[] twoSum(int[] nums, int target) {
     	
         int[] result = new int[2];

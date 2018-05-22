@@ -25,6 +25,9 @@ public class Solution {
 	 * Note: The merging process must start from the root nodes of both trees.
 	 */
 	
+	// Time: O(m) m : the minimum number of nodes from the two given trees
+	// Space: Average: O(h) = O(log m), worst case: O(m)
+	
     public TreeNode mergeTrees(TreeNode t1, TreeNode t2) {
         if (t1 == null && t2 == null) {
         	return null;
