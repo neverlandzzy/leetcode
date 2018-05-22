@@ -43,17 +43,27 @@ public class Solution {
         
         int max = f;
         
+        // 两种方法
+        /*
         for (int i = 0; i < n - 1; i++) {
         	f -= sum;
         	f += n * A[i];
         	max = Math.max(max, f);
+        }
+        */
+        
+        for (int i = n - 1; i >= 0; i--) {
+            f = f + sum - n * A[i];
+            max = Math.max(f, max);
         }
         
         return max;
     }
     
     public static void main(String[] args) {
-		int[] A = {4, 3, 2, 6};
-		System.out.println(maxRotateFunction(A));
+		int[] A1 = {4, 3, 2, 6};
+		int[] A2 = {100};
+		System.out.println(maxRotateFunction(A1));
+		System.out.println(maxRotateFunction(A2));
 	}
 }

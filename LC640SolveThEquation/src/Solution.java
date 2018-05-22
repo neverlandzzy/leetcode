@@ -1,4 +1,3 @@
-
 public class Solution {
 	
 	/*
@@ -47,10 +46,10 @@ public class Solution {
         		num = 0;
         	} else if (c == 'x') {
         		// for corner case: 0x = 0;
-        		if (i > 0 && equation.charAt(i - 1) == '0' && num == 0) {
-        			index = 0;
-        			continue;
-        		}
+                if (i > 0 && equation.charAt(i - 1) == '0') {
+                    index += 0;
+                    continue;
+                }
         		index += num == 0 ? sign : sign * num; 
         		num = 0;
         	} else if (c >= '0' && c <= '9') {

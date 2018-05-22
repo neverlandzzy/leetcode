@@ -1,3 +1,5 @@
+import java.util.Arrays;
+
 
 public class Solution {
 	/*
@@ -13,22 +15,51 @@ public class Solution {
 	 * Note: You may assume the string contain only lowercase letters.
 	 */
 	
+	// Solution 1: O(n): O(2n), 2 pass
+	/*
     public static int firstUniqChar(String s) {
-        int[] array = new int[26];
+        int[] map = new int[26];
         
         for (int i = 0; i < s.length(); i++) {
-        	array[s.charAt(i) - 'a']++;
+        	map[s.charAt(i) - 'a']++;
         }
         
         for (int i = 0; i < s.length(); i++) {
-        	if (array[s.charAt(i) - 'a'] == 1) {
+        	if (map[s.charAt(i) - 'a'] == 1) {
         		return i;
         	}
         }
         
         return -1;
     }
-    
+    */
+	
+	// Solution 2: O(n): 1 pass
+	public static int firstUniqChar(String s) {
+		int[] map = new int[26];
+		
+		Arrays.fill(map, -1);
+		
+		for (int i = 0; i < s.length(); i++) {
+			char c = s.charAt(i);
+			if (map[c - 'a'] == -1) {
+				map[c - 'a'] = i;
+			} else {
+				map[c - 'a'] = -2;
+			}
+		}
+		
+		int index = s.length();
+		
+		for (int i = 0; i < map.length; i++) {
+			if (map[i] >= 0) {
+				index = Math.min(index, map[i]);
+			}
+		}
+		
+		return index == s.length() ? -1 : index;
+	}
+	
     public static void main(String[] args) {
 		String test1 = "leetcode";
 		String test2 = "loveleetcode";

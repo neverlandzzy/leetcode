@@ -63,67 +63,60 @@ public class Solution {
 	 */
 	
 
-    public static int findClosestLeaf(TreeNode root, int k) {
-    	Map<TreeNode, List<TreeNode>> map = new HashMap<>();
-    	dfs(map, root, null);
-    	//System.out.println(map);
-    	Queue<TreeNode> queue = new LinkedList<>();
-    	Set<TreeNode> set = new HashSet<>();
-    	
-    	for (TreeNode node: map.keySet()) {
-    		if (node.val == k) {
-    			queue.offer(node);
-    			set.add(node);
-    		}
-    	}
-    	
-    	while (!queue.isEmpty()) {
-    		TreeNode node = queue.poll();
-    		
-    		if (node != null) {
-	    		if (map.get(node).size() <= 1) {
-	    			return node.val;
-	    		}
-	    		
-	    		for (TreeNode neighbor: map.get(node)) {
-	    			if (!set.contains(neighbor)) {
-	    				set.add(neighbor);
-	    				queue.offer(neighbor);
-	    			}
-	    		}
-    		}    		
-    	}
-    	
-    	return -1;
+   public static int findClosestLeaf(TreeNode root, int k) {
+        Map<TreeNode, List<TreeNode>> map = new HashMap<>();
+        dfs(map, root, null);
+        Queue<TreeNode> queue = new LinkedList<>();
+        Set<TreeNode> set = new HashSet<>();
+        
+        for (TreeNode node: map.keySet()) {
+            if (node.val == k) {
+                queue.offer(node);
+                set.add(node);
+                break;
+            }
+        }
+                
+        while (!queue.isEmpty()) {
+            TreeNode node = queue.poll();
+            if (map.get(node).size() <= 1) {
+                return node.val;
+            }
+
+            for (TreeNode neighbor: map.get(node)) {
+                if (neighbor != null && !set.contains(neighbor)) {
+                    queue.offer(neighbor);
+                    set.add(neighbor);
+                }
+            }           
+        }
+        
+        return -1;
     }
     
-    private static void dfs(Map<TreeNode, List<TreeNode>> map, TreeNode node, TreeNode parent) {
-    	if (node == null) {
-    		return;
-    	}
-    	
-    	if (!map.containsKey(node)) {
-    		map.put(node, new ArrayList<>());
-    	}
- 
-    	if (parent != null && !map.containsKey(parent)) {
-    		map.put(parent, new ArrayList<>());
-    	}
-    	
-    	map.get(node).add(parent);
-    	
-    	if (parent != null) {
-    		
-    		map.get(parent).add(node);
-    	}
-    	
-    	if (node.left != null) {
-    		dfs(map, node.left, node);
-    	}
-    	
-    	if (node.right != null) {
-    		dfs(map, node.right, node);
-    	}
+    
+    private static void dfs(Map<TreeNode, List<TreeNode>> map, TreeNode root, TreeNode pre) {
+        if (root == null) {
+            return;
+        }
+        
+        if (pre != null) {
+            if (!map.containsKey(pre)) {
+                map.put(pre, new ArrayList<>());
+            }
+            map.get(pre).add(root);
+        }
+        
+        map.put(root, new ArrayList<>());
+        map.get(root).add(pre);
+        
+        if (root.left != null) {
+            dfs(map, root.left, root);
+        }
+        
+        if (root.right != null) {
+            dfs(map, root.right, root);
+        }
     }
 
     

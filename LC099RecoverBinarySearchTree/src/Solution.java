@@ -9,6 +9,43 @@ public class Solution {
 	 * Could you devise a constant space solution?
 	 */
 	
+	// Solution 1: O(n) space:
+	/*
+    TreeNode first = null;
+    TreeNode second = null;
+    TreeNode pre = null;
+    
+    public void recoverTree(TreeNode root) {
+        helper(root);
+        
+        int tmp = first.val;
+        first.val = second.val;
+        second.val = tmp;
+    }
+    
+    private void helper(TreeNode root) {
+        if (root == null) {
+            return;
+        }
+        
+        helper(root.left);
+        if (pre != null && pre.val >= root.val) {
+            if (first == null) {
+                first = pre;
+            } 
+            
+            // 此处不能有else
+            if (first != null) {
+                second = root;
+            }
+        }
+        
+        pre = root;
+        
+        helper(root.right);
+    }
+    */
+	
     public static void recoverTree(TreeNode root) {
         
     	if (root == null) {
@@ -24,7 +61,7 @@ public class Solution {
     	 * The second time we meet pre.val > root.val ensure us the second node is the root node, since we are now looking 
     	 * for a node to replace with out first node, which is found before.
     	 * 
-    	 * When they are consecutive, which means the case pre.val > cur.val will appear only once. We need to take case this 
+    	 * When they are consecutive, which means the case pre.val > cur.val will appear only once. We need to take care this 
     	 * case without destroy the previous analysis. So the first node will still be pre, and the second will be just set to root. 
     	 * Once we meet this case again, the first node will not be affected.
     	 */

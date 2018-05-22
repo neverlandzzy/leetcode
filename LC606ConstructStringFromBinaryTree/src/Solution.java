@@ -34,6 +34,7 @@ public class Solution {
 	 * except we can't omit the first parenthesis pair to break the one-to-one mapping relationship between the input and the output.
 	 */
 	
+	// Time: O(n)  Space: O(n)
     public static String tree2str(TreeNode t) {
         StringBuilder sb = new StringBuilder();
         helper(t, sb);

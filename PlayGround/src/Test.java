@@ -1,10 +1,7 @@
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Comparator;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
-import java.util.Stack;
+import java.util.LinkedList;
+import java.util.Queue;
 
 
 public class Test {
@@ -143,11 +140,11 @@ public class Test {
 		*/
 		
 
+		String s = "    abc";
+		System.out.println(s);
+		s = s.trim();
 		
-		int a = 8;
-		char c = (char)(a + '0');
-		System.out.println(c);
-		
+		System.out.println(s);
 	}
 	
 	
