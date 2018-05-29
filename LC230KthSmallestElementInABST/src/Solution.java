@@ -78,6 +78,7 @@ public class Solution {
      * 否则，node = node.left
      * 
      * http://algs4.cs.princeton.edu/32bst/BST.java.html
+     * https://leetcode.com/problems/kth-smallest-element-in-a-bst/discuss/63659/What-if-you-could-modify-the-BST-node's-structure
      * 
      * 上述算法时间复杂度为O(BST的高度)
      */

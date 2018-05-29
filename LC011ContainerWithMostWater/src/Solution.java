@@ -10,27 +10,22 @@ public class Solution {
 	 */
 	
     public static int maxArea(int[] height) {
-        int n = height.length;
-
         int i = 0;
-        int j = n - 1;
+        int j = height.length - 1;
         
-        int result = 0;
+        int max = 0;
         
         while (i < j) {
-            int left = height[i];
-            int right = height[j];
-            
-            if (left < right) {
-                result = Math.max(result, left * (j - i));
+            if (height[i] < height[j]) {
+                max = Math.max(max, (j - i) * height[i]);
                 i++;
             } else {
-                result = Math.max(result, right * (j - i));
+                max = Math.max(max, (j - i) * height[j]);
                 j--;
             }
         }
         
-        return result;
+        return max;
     }
     
     /*

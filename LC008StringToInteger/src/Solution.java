@@ -91,11 +91,13 @@ public class Solution {
     	String test3 = "words and 987";
     	String test4 = "+-2";
     	String test5 = "  0000000000012345678";
+    	String test6 = "   +0 123";
     	
     	System.out.println(myAtoi2(test1));
     	System.out.println(myAtoi2(test2));
     	System.out.println(myAtoi2(test3));
     	System.out.println(myAtoi2(test4));
     	System.out.println(myAtoi2(test5));
+    	System.out.println(myAtoi2(test6));
     }
 }

@@ -1,4 +1,5 @@
 import java.util.HashMap;
+import java.util.Map;
 
 
 public class Solution {
@@ -31,12 +32,12 @@ public class Solution {
 	
 	// https://discuss.leetcode.com/topic/64526/17-ms-o-n-java-prefix-sum-method
     public static int pathSum(TreeNode root, int sum) {
-    	HashMap<Integer, Integer> preSum = new HashMap<Integer, Integer>();
+    	Map<Integer, Integer> preSum = new HashMap<>();
     	preSum.put(0, 1); // 对于从顶点root开始的path，起始的和为0
     	return helper(root, 0, sum, preSum);
     }
     
-    private static int helper(TreeNode root, int curSum, int target, HashMap<Integer, Integer> preSum) {
+    private static int helper(TreeNode root, int curSum, int target, Map<Integer, Integer> preSum) {
     	//System.out.println(preSum);
     	//System.out.println(curSum);
     	if (root == null) {
@@ -56,11 +57,7 @@ public class Solution {
     		res = preSum.get(curSum - target);
     	}
     	
-    	if (preSum.containsKey(curSum)) {
-    		preSum.put(curSum, preSum.get(curSum) + 1);
-    	} else {
-    		preSum.put(curSum, 1);
-    	}
+    	preSum.put(curSum, preSum.getOrDefault(curSum, 0) + 1);
     	
     	res += helper(root.left, curSum, target, preSum) + helper(root.right, curSum, target, preSum);
     	preSum.put(curSum, preSum.get(curSum) - 1);

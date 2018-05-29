@@ -65,5 +65,32 @@ public class Solution {
         return pos;
         
     }
+    
+    // Solution 3:
+    /*
+    public static int removeDuplicates(int[] nums) {
+        int i = 0;
+        int j = 0;
+        
+        if (nums == null || nums.length == 0) {
+            return 0;
+        }
+        
+        int n = nums.length;
+        
+        while (j < n) {
+            nums[i] = nums[j];
+            j++;
+            
+            while (j < n && nums[j] == nums[i]) {
+                j++;
+            }  
+            
+            i++;
+        }
+        
+        return i;
+    }
+    */
 
 }

@@ -9,11 +9,11 @@ public class Solution {
 	 */
 	
 	
-	 // https://leetcode.com/discuss/31595/detailed-explanation-generalization-bitwise-operation-numbers
+	 // https://leetcode.com/problems/single-number-ii/discuss/43295/Detailed-explanation-and-generalization-of-the-bitwise-operation-method-for-single-numbers
 	
     public static int singleNumber(int[] nums) {
-        int x2 = 0;
         int x1 = 0;
+        int x2 = 0;
         
         for (int i: nums) {
         	x2 ^= x1 & i;

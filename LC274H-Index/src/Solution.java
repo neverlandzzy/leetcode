@@ -18,6 +18,9 @@ public class Solution {
 	 * Note: If there are several possible values for h, the maximum one is taken as the h-index.
 	 */
 	
+	
+	// Soltion 1: Sort, Time: O(nlogn), Space: O(1)
+	/*
     public static int hIndex(int[] citations) {
         Arrays.sort(citations);
         int n = citations.length;
@@ -29,6 +32,34 @@ public class Solution {
         }
         
         return 0;
+    }
+    */
+	
+	// Soltion 2: Bucket Sort, Time: O(n), Space: O(n)
+	// e.g. 3, 0, 6, 1, 5
+	// bucket: index: 0, 1, 2, 3, 4, 5
+	//         val:   1, 0, 0, 1, 1, 2
+    public static int hIndex(int[] citations) {
+    	int n = citations.length;
+    	int[] bucket = new int[n + 1];
+    	
+    	for (int c: citations) {
+    		if  (c >= n) {
+    			bucket[n]++;
+    		} else {
+    			bucket[c]++;
+    		}
+    	}
+    	
+    	int sum = 0;
+    	for (int i = n; i >= 0; i--) {
+    		sum += bucket[i];
+    		if (sum >= i) {
+    			return i;
+    		}
+    	}
+    	
+    	return 0;
     }
     
     public static void main(String[] args) {

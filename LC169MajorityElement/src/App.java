@@ -30,7 +30,7 @@ public class App {
     	
     	for(int i = 1; i < num.length; i++) {
     		
-    		if(count == 0) {
+    		if (count == 0) {
     			major = num[i];
     			count++;
     		} else if (major == num[i]) {
