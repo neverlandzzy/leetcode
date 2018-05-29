@@ -87,52 +87,46 @@ public class Solution {
 	
 	// Solution 2: Follow up -- reversing the lists is not allowed.
 	public static ListNode addTwoNumbers(ListNode l1, ListNode l2) {
-		Stack<Integer> stack1 = new Stack<>();
-		Stack<Integer> stack2 = new Stack<>();
-		
-		while (l1 != null) {
-			stack1.push(l1.val);
-			l1 = l1.next;
-		}
-		
-		while (l2 != null) {
-			stack2.push(l2.val);
-			l2 = l2.next;
-		}
-		
-		int sum = 0;
-		int carry = 0;
-		ListNode head = new ListNode(0);
-		ListNode tail = null;
-		
-		while (!stack1.isEmpty() || !stack2.isEmpty()) {
-			if (!stack1.isEmpty()) {
-				sum += stack1.pop();
-			}
-			
-			if (!stack2.isEmpty()) {
-				sum += stack2.pop();
-			}
-			
-			sum += carry;
-			carry = sum / 10;
-			sum = sum % 10;
-			
-			ListNode node = new ListNode(sum);
-			head.next = node;
-			node.next = tail;
-			tail = node;
-			sum = 0;
-		}
-		
-        if (carry != 0) {
-        	ListNode node = new ListNode(1);
-			head.next = node;
-			node.next = tail;
-			tail = node;
+        Stack<Integer> stack1 = new Stack<>();
+        Stack<Integer> stack2 = new Stack<>();
+        
+        while (l1 != null) {
+            stack1.push(l1.val);
+            l1 = l1.next;
         }
- 
-        return head.next;
+        
+        while (l2 != null) {
+            stack2.push(l2.val);
+            l2 = l2.next;
+        }
+        
+        ListNode dummy = new ListNode(0);
+        ListNode cur = null;
+        
+        int carry = 0;
+        int sum = 0;
+        
+        while (!stack1.isEmpty() || !stack2.isEmpty()) {
+            int a = stack1.isEmpty() ? 0 : stack1.pop();
+            int b = stack2.isEmpty() ? 0 : stack2.pop();
+            
+            sum = carry + a + b;
+            carry = sum / 10;
+            
+            ListNode node = new ListNode(sum % 10);
+            dummy.next = node;
+            node.next = cur;
+            cur = node;
+        }
+        
+        if (carry != 0) {
+            ListNode node = new ListNode(carry);
+            dummy.next = node;
+            node.next = cur;
+            cur = node;
+        }
+        
+        return dummy.next;
 	}
 	
 	public static void main(String[] args) {

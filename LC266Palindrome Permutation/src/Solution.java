@@ -61,25 +61,25 @@ public class Solution {
     	// Solution 3:
     	/*
         public boolean canPermutePalindrome(String s) {
-            int[] map = new int[256];
-            int counter = 0;
-            
-            for (int i = 0; i < s.length(); i++) {
-                char c = s.charAt(i);
-                if (map[c] != 0) {
-                    map[c]--;
-                } else {
-                    map[c]++;
-                }
-            }
-            
-            for (int i = 0; i < 256; i++) {
-                if (map[i] != 0) {
-                    counter++;
-                }
-            }
-            
-            return counter <= 1;
+	        int[] map = new int[256];
+	        
+	        for (int i = 0; i < s.length(); i++) {
+	            map[s.charAt(i)]++;
+	        }
+	        
+	        boolean odd = false;
+	        
+	        for (int i = 0; i < map.length; i++) {
+	            if (map[i] % 2 != 0) {
+	                if (odd) {
+	                    return false;
+	                } else {
+	                    odd = true;
+	                }
+	            }
+	        }
+	        
+	        return true;
         }
         */
     }

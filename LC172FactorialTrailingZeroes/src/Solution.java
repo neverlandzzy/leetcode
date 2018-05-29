@@ -6,6 +6,7 @@ public class Solution {
 	 * Note: Your solution should be in logarithmic time complexity.
 	 */
 	
+	// https://leetcode.com/problems/factorial-trailing-zeroes/discuss/52367/My-explanation-of-the-Log(n)-solution
     public static int trailingZeroes(int n) {
         int counter = 0;
         
@@ -19,5 +20,6 @@ public class Solution {
     
     public static void main(String[] args) {
 		System.out.println(trailingZeroes(5));
+		System.out.println(trailingZeroes(25));
 	}
 }

@@ -114,7 +114,7 @@ public class Solution {
     private static void helper(List<String> result, List<Character> list, boolean[] visited, StringBuilder sb, String mid) {
     	if (sb.length() == list.size()) {
     		result.add(sb.toString() + mid + sb.reverse().toString());
-    		sb.reverse();
+    		//sb.reverse();
     		return;
     	}
     	
@@ -134,7 +134,7 @@ public class Solution {
     }
     
     public static void main(String[] args) {
-    	String test1 = "aabb";
+    	String test1 = "aaaa";
     	String test2 = "aba";
     	
     	System.out.println(generatePalindromes(test1));

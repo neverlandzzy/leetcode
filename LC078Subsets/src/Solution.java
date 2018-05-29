@@ -29,6 +29,8 @@ public class Solution {
 	 */
 	
 	// Solution 1: Recursion
+	// Time: O(2^n * k) == 执行(2^n)次，每次要把list copy到result里，花费k，k为list重元素的个数。
+	// http://www.1point3acres.com/bbs/thread-117602-1-1.html
     public static List<List<Integer>> subsets(int[] nums) {
         //Arrays.sort(nums);
         List<Integer> list = new ArrayList<Integer>();

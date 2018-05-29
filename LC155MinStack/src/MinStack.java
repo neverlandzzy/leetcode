@@ -11,27 +11,35 @@ public class MinStack {
 	 * getMin() -- Retrieve the minimum element in the stack.
 	 */
 		
-	private Stack<Integer> stack = new Stack<>();
-	private Stack<Integer> minStack = new Stack<>();
-
+    Stack<Integer> stack;
+    Stack<Integer> minStack;
+    
+    
+    public MinStack() {
+        stack = new Stack<>();
+        minStack = new Stack<>();
+    }
+    
     public void push(int x) {
+        int min;
+        if (minStack.isEmpty()) {
+            min = x;
+        } else {
+            min = Math.min(x, minStack.peek());
+        }
         stack.push(x);
-        
-        if (minStack.isEmpty() || minStack.peek() >= x) {
-        	minStack.push(x);
-        }
+        minStack.push(min);
     }
-
+    
     public void pop() {
-        if (stack.pop().equals(minStack.peek())) {
-        	minStack.pop();
-        }
+        stack.pop();
+        minStack.pop();
     }
-
+    
     public int top() {
         return stack.peek();
     }
-
+    
     public int getMin() {
         return minStack.peek();
     }
