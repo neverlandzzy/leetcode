@@ -29,6 +29,53 @@ public class Solution {
 	 * of the range of representable values, INT_MAX (2147483647) or INT_MIN (-2147483648) is returned.
 	 */
 	
+	// https://leetcode.com/problems/string-to-integer-atoi/discuss/4643/Java-Solution-with-4-steps-explanations
+	// 分别处理四种情况：
+    public static int myAtoi(String str) {
+    	
+    	// 1.输入为空
+        if (str == null || str.length() == 0) {
+            return 0;
+        }
+        
+        
+        long result = 0;
+        int sign = 1;
+        
+        int i = 0;
+        int n = str.length();
+        
+        // 2.去掉起始的空白字符
+        while (i < n && str.charAt(i) == ' ') {
+            i++;
+        }
+        
+        // 3.处理符号
+        if (i < n && (str.charAt(i) == '+' || str.charAt(i) == '-')) {
+            sign = str.charAt(i) == '+' ? 1 : -1;
+            i++;
+        }
+        
+        // 4.计算数字
+        while (i < n) {
+            if (str.charAt(i) < '0' || str.charAt(i) > '9') {
+                break;
+            }
+            int digit = str.charAt(i) - '0';
+            
+            result = result * 10 + digit;
+            
+            if (result > Integer.MAX_VALUE) {
+                return sign == 1 ? Integer.MAX_VALUE : Integer.MIN_VALUE;
+            }           
+           
+            i++;
+        }
+        
+        return (int)result * sign;
+    }
+    
+    /*
     public static int myAtoi2(String str) {
         if (str == null || str.length() == 0) {
             return 0;
@@ -84,7 +131,9 @@ public class Solution {
             return (int)result;
         }       
     }
+    */
 	   
+    
     public static void main(String[] args) {
     	String test1 = "123abc";
     	String test2 = "1";
@@ -92,12 +141,16 @@ public class Solution {
     	String test4 = "+-2";
     	String test5 = "  0000000000012345678";
     	String test6 = "   +0 123";
+    	String test7 = "2147483648";
     	
-    	System.out.println(myAtoi2(test1));
-    	System.out.println(myAtoi2(test2));
-    	System.out.println(myAtoi2(test3));
-    	System.out.println(myAtoi2(test4));
-    	System.out.println(myAtoi2(test5));
-    	System.out.println(myAtoi2(test6));
+    	/*
+    	System.out.println(myAtoi(test1));
+    	System.out.println(myAtoi(test2));
+    	System.out.println(myAtoi(test3));
+    	System.out.println(myAtoi(test4));
+    	System.out.println(myAtoi(test5));
+    	System.out.println(myAtoi(test6));
+    	*/
+    	System.out.println(myAtoi(test7));
     }
 }

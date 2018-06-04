@@ -52,35 +52,35 @@ public class Solution {
 	
 	// 用hashmap比array慢，但更通用
 	static class UnionFindWithHashMap{
-		Map<Integer, Integer> father;
+		Map<Integer, Integer> parent;
 		
 		UnionFindWithHashMap(int[][] grid) {
 			int m = grid.length;
 			int n = grid[0].length;
-			father = new HashMap<>();
+			parent = new HashMap<>();
 			
 			for (int i = 0; i < m; i++) {
 				for (int j = 0; j < n; j++) {
-					father.put(i * n + j, i * n + j);
+					parent.put(i * n + j, i * n + j);
 				}
 			}
 		}
 		
 		int find(int x) {
-            if (father.get(x) == x) {
+            if (parent.get(x) == x) {
                 return x;
             }
             
-            int parent = find(father.get(x));
-            father.put(x, parent);
-            return parent;
+            int pX = find(parent.get(x));
+            parent.put(x, pX);
+            return pX;
 		}
 		
         void union(int x, int y){
             int faX = find(x);
             int faY = find(y);
             if(faX != faY) {
-                father.put(faX, faY);
+            	parent.put(faX, faY);
             }
         }
 	}

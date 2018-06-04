@@ -80,8 +80,8 @@ public class Solution {
     // Solution 2: Using HashMap to record non-zero entries only
 	// Time: worst case 一样， 即不是sparse matrix O(m1 * n1 * n2)
     public static int[][] multiply(int[][] A, int[][] B) {
-    	Map<Integer, HashMap<Integer, Integer>> tableA = new HashMap<>(); // map<i, map<j, A[i][j]>>
-    	Map<Integer, HashMap<Integer, Integer>> tableB = new HashMap<>(); // map<i, map<j, B[i][j]>>
+    	Map<Integer, Map<Integer, Integer>> tableA = new HashMap<>(); // map<i, map<j, A[i][j]>>
+    	Map<Integer, Map<Integer, Integer>> tableB = new HashMap<>(); // map<i, map<j, B[i][j]>>
         int m1 = A.length;
         int n1 = A[0].length; // A[0].length == B.length
         int n2 = B[0].length;

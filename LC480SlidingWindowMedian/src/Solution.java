@@ -1,5 +1,5 @@
 import java.util.Collections;
-import java.util.TreeMap;
+import java.util.PriorityQueue;
 
 
 public class Solution {
@@ -41,6 +41,75 @@ public class Solution {
 	//      [wrong]   result[index++] = (double)(maxHeap.firstKey() + minHeap.firstKey()) / 2; 
 	//   3. 循环结束后，还要再输出一次
 	
+    public static double[] medianSlidingWindow(int[] nums, int k) {
+        PriorityQueue<Integer> maxHeap = new PriorityQueue<>(Collections.reverseOrder());
+        PriorityQueue<Integer> minHeap = new PriorityQueue<>();
+        
+        int n = nums.length - k + 1;
+        if (n < 0) {
+            return new double[0];
+        }
+        
+        double[] result = new double[n];
+        
+        for (int i = 0; i <= nums.length; i++) {
+            if (i >= k) {
+                result[i - k] = getMedian(maxHeap, minHeap);
+                remove(nums[i - k], maxHeap, minHeap);
+            } 
+            
+            if (i < nums.length) {
+                add(nums[i], maxHeap, minHeap);
+            }
+        }
+        
+        return result;
+    }
+    
+    private static void add(int num, PriorityQueue<Integer> maxHeap, PriorityQueue<Integer> minHeap) {
+        if (num < getMedian(maxHeap, minHeap)) {
+            maxHeap.add(num);
+        } else {
+            minHeap.add(num);
+        }
+        
+        if (maxHeap.size() > minHeap.size()) {
+            minHeap.offer(maxHeap.poll());
+        }
+        
+        if (minHeap.size() - maxHeap.size() > 1) {
+            maxHeap.offer(minHeap.poll());
+        }
+    }
+    
+    private static void remove(int num, PriorityQueue<Integer> maxHeap, PriorityQueue<Integer> minHeap) {
+        if (num < getMedian(maxHeap, minHeap)) {
+            maxHeap.remove(num);
+        } else {
+            minHeap.remove(num);
+        }
+        
+        if (maxHeap.size() > minHeap.size()) {
+            minHeap.offer(maxHeap.poll());
+        }
+        
+        if (minHeap.size() - maxHeap.size() > 1) {
+            maxHeap.offer(minHeap.poll());
+        }
+    }
+    
+    private static double getMedian(PriorityQueue<Integer> maxHeap, PriorityQueue<Integer> minHeap) {
+        if (maxHeap.isEmpty() && minHeap.isEmpty()) {
+            return 0;
+        }
+        
+        if (maxHeap.size() == minHeap.size()) {
+            return ((double)maxHeap.peek() + (double)minHeap.peek()) / 2;
+        } else {
+            return (double)minHeap.peek();
+        }
+    }	
+	/*
     public static double[] medianSlidingWindow(int[] nums, int k) {
     	TreeMap<Integer, Integer> maxHeap = new TreeMap<>(Collections.reverseOrder());
     	TreeMap<Integer, Integer> minHeap = new TreeMap<>();
@@ -99,16 +168,6 @@ public class Solution {
     			minHeapSize--;
     			maxHeapSize++;
     		}
-    		
-    		/*
-    		System.out.println("i = " + i);
-    		System.out.println("max: " + maxHeap);
-    		System.out.println("maxSize: " + maxHeapSize);
-    		System.out.println("min: " + minHeap);
-    		System.out.println("minSize: " + minHeapSize);
-    		if (i >= k) {System.out.println("result: " + result[i - k]);}
-    		System.out.println();
-    		*/
     	}
     	output(result, index++, maxHeap, minHeap, maxHeapSize, minHeapSize);
     	return result;
@@ -131,7 +190,7 @@ public class Solution {
 			result[index] = ((double)maxHeap.firstKey() + (double)minHeap.firstKey()) / 2;
 		}
     }
-    
+    */
     public static void main(String[] args) {
 		int[] test = {1,3,-1,-3,5,3,6,7};
 		double[] result = medianSlidingWindow(test, 4);

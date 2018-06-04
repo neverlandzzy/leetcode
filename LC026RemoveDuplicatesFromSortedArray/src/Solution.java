@@ -92,5 +92,34 @@ public class Solution {
         return i;
     }
     */
+    
+    // Solution 4:
+    /*
+    public static int removeDuplicates(int[] nums) {
+        if (nums == null || nums.length == 0) {
+            return 0;
+        }   
+        
+        int n = nums.length;
+        int index = 0;
+        int i = 0;
+        
+        while (i < n) {
+            if (nums[i] != nums[index]) {
+                index++;
+                swap(nums, i, index);
+            } 
+            i++;
+        }
+        
+        return index + 1;
+    }
+    
+    private static void swap(int[] nums, int i, int j) {
+        int tmp = nums[i];
+        nums[i] = nums[j];
+        nums[j] = tmp;
+    }
+    */
 
 }

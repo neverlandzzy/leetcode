@@ -1,6 +1,7 @@
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.PriorityQueue;
 
 
@@ -29,7 +30,7 @@ public class Solution {
 	 */
 	
     public static List<String> findItinerary(String[][] tickets) {
-        HashMap<String, PriorityQueue<String>> hashmap = new HashMap<>();
+        Map<String, PriorityQueue<String>> hashmap = new HashMap<>();
         List<String> result = new ArrayList<>();
         
         for (String[] ticket: tickets) {
@@ -45,7 +46,7 @@ public class Solution {
         return result;
     }
     
-    private static void helper(HashMap<String, PriorityQueue<String>> hashmap, List<String> result, String departure) {
+    private static void helper(Map<String, PriorityQueue<String>> hashmap, List<String> result, String departure) {
     	PriorityQueue<String> queue = hashmap.get(departure);
 
     	while (queue != null && !queue.isEmpty()) {
@@ -56,22 +57,11 @@ public class Solution {
     }
     
     public static void main(String[] args) {
-		String[][] test = {{"MUC", "LHR"}, {"JFK", "MUC"}, {"SFO", "SJC"}, {"LHR", "SFO"}};
-		
-		System.out.println(findItinerary(test));
-		
-		
-		/* test PriorityQueue
-		PriorityQueue<String> testPQ = new PriorityQueue<>();
-		
-		testPQ.add("zzy");
-		testPQ.add("abd");
-		testPQ.add("ori");
-		
-		while (!testPQ.isEmpty()) {
-			String s = testPQ.poll();
-			System.out.println(s);
-		}
-		*/
+		String[][] test1 = {{"MUC", "LHR"}, {"JFK", "MUC"}, {"SFO", "SJC"}, {"LHR", "SFO"}};
+		String[][] test2 = {{"JFK", "SFO"}, {"JFK", "ATL"}, {"SFO", "ATL"}, {"ATL", "JFK"}, {"ATL", "SFO"}};
+	
+		System.out.println(findItinerary(test1));
+		System.out.println(findItinerary(test2));
+
 	}
 }

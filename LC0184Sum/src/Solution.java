@@ -10,7 +10,7 @@ public class Solution {
 	 * the sum of target.
 	 * 
 	 * Note:
-	 * Elements in a quadruplet (a,b,c,d) must be in non-descending order. (ie, a ² b ² c ² d)
+	 * Elements in a quadruplet (a,b,c,d) must be in non-descending order. (ie, a ï¿½ b ï¿½ c ï¿½ d)
 	 * The solution set must not contain duplicate quadruplets.
 	 * 
 	 * 
@@ -20,7 +20,64 @@ public class Solution {
 	 * 	(-2, -1, 1, 2)
 	 * 	(-2,  0, 0, 2)
 	 */
-	  
+	
+	// Reuse code from 3Sum
+    public static List<List<Integer>> fourSum(int[] nums, int target) {
+        List<List<Integer>> result = new ArrayList<>();
+        if (nums == null || nums.length == 0) {
+            return result;
+        }
+        
+        Arrays.sort(nums);
+        
+        int n = nums.length;
+        
+        for (int i = 0; i < n; i++) {
+            if (i > 0 && nums[i] == nums[i - 1]) {
+                continue;
+            }
+            
+            for (int j = i + 1; j < n; j++) {
+                if (j > i + 1 && nums[j] == nums[j - 1]) {
+                    continue;
+                }
+                
+                int a = nums[i];
+                int b = nums[j];
+                
+                int left = j + 1;
+                int right = n - 1;
+                int k = target - a - b;
+                
+                while (left < right) {
+                    if (nums[left] + nums[right] == k) {
+                        List<Integer> list = new ArrayList<>(Arrays.asList(nums[i], nums[j], nums[left], nums[right]));
+                        result.add(list);
+                        
+                        left++;
+                        right--;
+                        
+                        while (left < right && nums[left] == nums[left - 1]) {
+                            left++;
+                        }
+                        
+                        while (left < right && nums[right] == nums[right + 1]) {
+                            right--;
+                        }
+                    } else if (nums[left] + nums[right] < k) {
+                        left++;
+                    } else {
+                        right--;
+                    }
+                }   
+            }
+        }
+        
+        return result;
+    }
+    
+    // Another solution, same idea and complexity
+    /*
 	public static List<List<Integer>> fourSum(int[] nums, int target) {
 		
 		List<List<Integer>> result = new ArrayList<List<Integer>>();
@@ -61,7 +118,7 @@ public class Solution {
 		
 		return result;
 	}
-	
+	*/
     public static void main(String[] args) {
     	int[] test = {-1, 0, 1, 0, -2, 2,2};
     	int[] test2 = {-3, -2, -1, 0, 0, 1, 2, 3};
