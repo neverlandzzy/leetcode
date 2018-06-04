@@ -41,14 +41,13 @@ public class Solution {
 	// Space: O(n) n: number of nodes in s
 	/*
     public static boolean isSubtree(TreeNode s, TreeNode t) {
-    	if (s == null) {
-    		return false;
-    	}
-    	
-    	if (isSameTree(s, t)) {
+   		if (isSameTree(s, t)) {
     		return true;
     	}
     	
+    	if (s == null) {
+    		return false;
+    	}
     	return isSubtree(s.left, t) || isSubtree(s.right, t);
     }
     

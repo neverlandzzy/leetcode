@@ -7,8 +7,52 @@ public class Solution {
 	 * Could you do it in O(n) time and O(1) space?
 	 */
 	
-	
-	
+    public static boolean isPalindrome(ListNode head) {
+        if (head == null) {
+            return true;
+        }
+        
+        ListNode slow = head;
+        ListNode fast = head;
+        
+        while (fast.next != null && fast.next.next != null) {
+            slow = slow.next;
+            fast = fast.next.next;
+        }
+        
+        ListNode node2 = reverse(slow.next);
+        ListNode node1 = head;
+        slow.next = null;
+        
+        while (node1 != null && node2 != null) {
+            if (node1.val != node2.val) {
+                return false;
+            }
+            
+            node1 = node1.next;
+            node2 = node2.next;
+        }
+        
+        return true;
+        
+    }
+    
+    private static ListNode reverse(ListNode head) {
+        ListNode pre = null;
+        ListNode cur = head;
+        
+        while (cur != null) {
+            ListNode tmp = cur.next;
+            cur.next = pre; 
+            pre = cur;
+            cur = tmp;
+        }
+        
+        return pre;
+    }
+    
+	// Another way:
+    /*
     public static boolean isPalindrome(ListNode head) {
         if (head == null) {
             return true;
@@ -54,6 +98,7 @@ public class Solution {
         
         return true;
     }
+    */
 	/*
     public static boolean isPalindrome(ListNode head) {
     	

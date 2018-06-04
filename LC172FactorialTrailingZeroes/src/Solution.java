@@ -8,14 +8,14 @@ public class Solution {
 	
 	// https://leetcode.com/problems/factorial-trailing-zeroes/discuss/52367/My-explanation-of-the-Log(n)-solution
     public static int trailingZeroes(int n) {
-        int counter = 0;
+        int result = 0;
         
         while (n > 0) {
-        	n = n / 5;
-        	counter += n;
+            result += n / 5;
+            n /= 5;
         }
         
-        return counter;
+        return result;
     }
     
     public static void main(String[] args) {

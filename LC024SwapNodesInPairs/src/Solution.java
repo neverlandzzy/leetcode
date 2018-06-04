@@ -11,6 +11,22 @@ public class Solution {
 	 * 
 	 */
 	
+	// Solution 1: recursion
+	/*
+    public static ListNode swapPairs(ListNode head) {
+        if (head == null || head.next == null) {
+            return head;
+        }
+        
+        ListNode next = head.next;
+        head.next = swapPairs(next.next);
+        next.next = head;
+        
+        return next;
+    }
+    */
+	
+	// Solution 2: iteration
     public static ListNode swapPairs(ListNode head) {
     	
     	ListNode dummy = new ListNode(0);

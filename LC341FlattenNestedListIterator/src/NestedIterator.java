@@ -45,7 +45,7 @@ public class NestedIterator implements Iterator<Integer> {
         		return true;
         	}
         	
-        	flattenList(stack.pop().getList);
+        	flattenList(stack.pop().getList());
         }
         
         return false;

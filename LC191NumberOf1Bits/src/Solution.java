@@ -8,6 +8,7 @@ public class Solution {
 	 * so the function should return 3.
 	 */
 	
+	
     public static int hammingWeight(int n) {
     	
     	int counter = 0;
@@ -24,9 +25,14 @@ public class Solution {
     }
     
     public static void main(String[] args) {
-		int test = 11;
+		int test1 = 11;
 		
-		System.out.println(Integer.toBinaryString(test));
-		System.out.println(hammingWeight(test));
+		long test2 = 2147483648L;
+		
+		System.out.println(Integer.toBinaryString(test1));
+		System.out.println(hammingWeight((int)test1));
+		
+		System.out.println(Long.toBinaryString(test2));
+		System.out.println(hammingWeight((int)test2));
 	}
 }
