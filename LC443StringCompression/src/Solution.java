@@ -86,6 +86,54 @@ public class Solution {
         return index;
     }
 	
+	// another solution, more straightforward
+	/*
+    public static int compress(char[] chars) {
+        int index = 0;
+        int i = 0;
+        int j = 1;
+        
+        int n = chars.length;
+        
+        while (j < n) {
+            if (chars[j] == chars[i]) {
+                j++;
+            } else {
+                if (j - i == 1) {
+                    chars[index] = chars[i];
+                    index++;
+                } else {
+                    
+                    chars[index] = chars[i];
+                    index++;
+                    String s = String.valueOf(j - i);
+                    
+                    for (int k = 0; k < s.length(); k++) {
+                        chars[index] = s.charAt(k);
+                        index++;
+                    }
+                }
+                i = j;
+                j++;
+            }
+        }
+        
+        if (j - i == 1) {
+            chars[index] = chars[i];
+            return index + 1;
+        } else {
+            chars[index] = chars[i];
+            index++;
+            String s = String.valueOf(j - i);
+            for (int k = 0; k < s.length(); k++) {
+                chars[index] = s.charAt(k);
+                index++;
+            }
+        }
+        return index;
+    }
+    */
+	
 	public static void main(String[] args) {
 		char[] test1 = {'a', 'a', 'b', 'b', 'c', 'c', 'c'};
 		char[] test2 = {'a'};

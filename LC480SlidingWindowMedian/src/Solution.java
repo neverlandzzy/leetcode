@@ -67,7 +67,7 @@ public class Solution {
     }
     
     private static void add(int num, PriorityQueue<Integer> maxHeap, PriorityQueue<Integer> minHeap) {
-        if (num < getMedian(maxHeap, minHeap)) {
+        if (!minHeap.isEmpty() && num < minHeap.peek()) {
             maxHeap.add(num);
         } else {
             minHeap.add(num);
@@ -83,7 +83,7 @@ public class Solution {
     }
     
     private static void remove(int num, PriorityQueue<Integer> maxHeap, PriorityQueue<Integer> minHeap) {
-        if (num < getMedian(maxHeap, minHeap)) {
+        if (!minHeap.isEmpty() && num < minHeap.peek()) {
             maxHeap.remove(num);
         } else {
             minHeap.remove(num);
@@ -193,7 +193,7 @@ public class Solution {
     */
     public static void main(String[] args) {
 		int[] test = {1,3,-1,-3,5,3,6,7};
-		double[] result = medianSlidingWindow(test, 4);
+		double[] result = medianSlidingWindow(test, 3);
 		
 		for (double r: result) {
 			System.out.print(r + ", ");
