@@ -69,19 +69,20 @@ public class Solution {
     }
     
     public static void main(String[] args) {
-		System.out.println(isNumber("0"));
-		System.out.println(isNumber(" 0.1"));
-		System.out.println(isNumber("abc"));
-		System.out.println(isNumber("1 a"));
-		System.out.println(isNumber("2e10"));
-		System.out.println(isNumber("e"));
-		System.out.println(isNumber(" "));
-		System.out.println(isNumber("-"));
-		System.out.println(isNumber("1 "));
-		System.out.println(isNumber(".1 "));
-		System.out.println(isNumber("e9"));
-		System.out.println(isNumber("1 4"));
-		System.out.println(isNumber("0e"));
-		System.out.println(isNumber("6+1"));
+		System.out.println("0: " + isNumber("0"));
+		System.out.println(" 0.1: " + isNumber(" 0.1"));
+		System.out.println("abc: " + isNumber("abc"));
+		System.out.println("1 a: " + isNumber("1 a"));
+		System.out.println("2e10: " + isNumber("2e10"));
+		System.out.println("e: " + isNumber("e"));
+		System.out.println(" : " + isNumber(" "));
+		System.out.println("-: " + isNumber("-"));
+		System.out.println("1 : " + isNumber("1 "));
+		System.out.println(".1: " + isNumber(".1 "));
+		System.out.println("e9: " + isNumber("e9"));
+		System.out.println("1 4: " + isNumber("1 4"));
+		System.out.println("0e: " + isNumber("0e"));
+		System.out.println("6+1: " + isNumber("6+1"));
+		System.out.println("	0e0: " + isNumber("0e0"));
 	}
 }

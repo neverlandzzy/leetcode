@@ -1,5 +1,4 @@
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 
@@ -22,47 +21,35 @@ public class Solution {
 	 * [2, 2, 3]
 	 * 
 	 */
-	//private static List<List<Integer>> list = new ArrayList<List<Integer>>();
-	//private static List<Integer> res = new ArrayList<Integer>();
-	
     public static List<List<Integer>> combinationSum(int[] candidates, int target) {
-    	List<List<Integer>> list = new ArrayList<List<Integer>>();
-    	List<Integer> res = new ArrayList<Integer>();
-    	
-    	Arrays.sort(candidates);
-    	
-    	add(0, target, candidates, res, list);
-    	
-    	return list;
+        List<List<Integer>> result = new ArrayList<>();
+        
+        if (candidates == null || candidates.length == 0) {
+            return result;
+        }
+        
+        List<Integer> list = new ArrayList<>();
+        helper(result, list, candidates, target, 0);
+        
+        return result;
     }
     
-    public static void add(int start, int target, int[] candidates, List<Integer> res, List<List<Integer>> list) {
-    	//System.out.println(res);
-    	if (target == 0) {
-    		//if (!list.contains(res)) {
-
-    			list.add(new ArrayList<Integer>(res));
-    		//}
-    	}
-    	
-    	if (target < 0) {
-    		return;
-    	} else {
-
-    		for (int i = start; i < candidates.length; i++) {
-    			if(i > start && candidates[i] == candidates[i-1]) {
-    				continue;
-    			}
-				res.add(candidates[i]);
-				add(i, target-candidates[i], candidates, res, list);
-				res.remove(res.size()-1);
-    			
-    		}
-    	}
-
-    	
+    private static void helper(List<List<Integer>> result, List<Integer> list, int[] candidates, int target, int pos) {
+        if (target < 0) {
+            return;
+        }
+        
+        if (target == 0) {
+            result.add(new ArrayList<>(list));
+            return;
+        }
+        
+        for (int i = pos; i < candidates.length; i++) {
+            list.add(candidates[i]);
+            helper(result, list, candidates, target - candidates[i], i);
+            list.remove(list.size() - 1);
+        }
     }
-    
     public static void main(String[] args) {
     	
     	//int[] test = {1,2,5,10};

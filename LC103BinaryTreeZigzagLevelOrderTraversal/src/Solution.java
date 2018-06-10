@@ -69,7 +69,42 @@ public class Solution {
         */
     	
     	// Solution 2: Level-Order + flag
-    	
+        List<List<Integer>> result = new ArrayList<>();
+        if (root == null) {
+            return result;
+        }
+        
+        Queue<TreeNode> queue = new LinkedList<>();
+        queue.offer(root);
+        boolean reverse = false;
+        
+        while (!queue.isEmpty()) {
+            int size = queue.size();
+            List<Integer> list = new ArrayList<>();
+            
+            for (int i = 0; i < size; i++) {
+                TreeNode node = queue.poll();
+                list.add(node.val);
+                
+                if (node.left != null) {
+                    queue.offer(node.left);
+                }
+                
+                if (node.right != null) {
+                    queue.offer(node.right);
+                }
+            }
+            
+            if (reverse) {
+                Collections.reverse(list);
+            }
+            result.add(list);
+            reverse = !reverse;
+        }
+        
+        return result;
+        
+        /* 每次在list开头插入元素的效率低，不如上面的方法快
         List<List<Integer>> result = new ArrayList<List<Integer>>();
         Queue<TreeNode> queue = new LinkedList<TreeNode>();
         
@@ -105,6 +140,7 @@ public class Solution {
         }
         
         return result;
+        */
     }
     
     public static void main(String[] args) {

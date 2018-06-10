@@ -2,8 +2,8 @@
 public class RemoveContinuousSameChars {
 	
 	public static String removeSameChars(String s) {
-		for (int i = 0, j = 0; j < s.length(); j++) {
-			if (s.charAt(i) == s.charAt(j)) {
+		for (int i = 0, j = 0; j <= s.length(); j++) {
+			if (j < s.length() && s.charAt(i) == s.charAt(j)) {
 				continue;
 			}
 			
@@ -19,7 +19,10 @@ public class RemoveContinuousSameChars {
 	
 	public static void main(String[] args) {
 		String s1 = "AABBBBCCDDDDLS";
-		
+		String s2 = "AABBBB";
+		String s3 = "CCC";
 		System.out.println(removeSameChars(s1));
+		System.out.println(removeSameChars(s2));
+		System.out.println(removeSameChars(s3));
 	}
 }

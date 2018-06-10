@@ -64,40 +64,50 @@ public class Solution {
     	/*
     	 * Solution 2 O(logN)
     	 */
-    	int lo = 0, hi = nums.length-1;
-    	
-    	while (lo < hi) {
-    		int mid = (lo + hi)/2;
-    		
-    		if (nums[mid] < target) {
-    			lo = mid + 1;
-    		} else {
-    			hi = mid;
-    		}
-    	}
-		
-		if (nums[lo] != target) {
-			return new int[] {-1,-1};
-		}
-		
-		int start = lo;
-		
-		hi = nums.length - 1;
-		while(lo < hi) {
-			int mid = (lo + hi)/2;
-    		
-			if (nums[mid] > target) {
-				hi = mid;
-    		} else {
-    			lo = mid + 1;
-    		}
-		}
-		int end = hi;
-		if (nums[hi] != target) {
-			end--;
-		}
-		
-		return new int[] {start, end};
+        if (nums == null || nums.length == 0) {
+            return new int[] {-1, -1};
+        }
+        
+        
+        int start = 0; 
+        int end = nums.length - 1;
+        int left = -1;
+        int right = -1;
+        
+        while (start + 1 < end) {
+            int mid = start + (end - start) / 2;
+            if (nums[mid] < target) {
+                start = mid;
+            } else {
+                end = mid;
+            }
+        }
+        
+        if (nums[start] == target) {
+            left = start;
+        } else if (nums[end] == target) {
+            left = end;
+        }        
+        
+        start = 0;
+        end = nums.length - 1;
+        
+        while (start + 1 < end) {
+            int mid = start + (end - start) / 2;
+            if (nums[mid] > target) {
+                end = mid;
+            } else {
+                start = mid;
+            }
+        }
+        
+        if (nums[end] == target) {
+            right = end;
+        } else if (nums[start] == target) {
+            right = start;
+        }
+        
+        return new int[]{left, right};
 		
     }
     

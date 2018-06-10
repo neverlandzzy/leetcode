@@ -46,34 +46,37 @@ public class Solution {
     // Solution 2: Non-Recursion
     
     public static boolean isSymmetric(TreeNode root) {
-    	
-    	if (root == null) {
-    		return true;
-    	}
-    	
-    	Stack<TreeNode> stack = new Stack<TreeNode>();
-    	stack.push(root.right);
-    	stack.push(root.left);
-    	
-    	while(!stack.isEmpty()) {
-    		TreeNode left = stack.pop();
-    		TreeNode right = stack.pop();
-    		
-    		if (left == null && right == null) {
-    			continue;
-    		} else if (left == null || right == null || left.val != right.val) {
-    			return false;
-    		}
-    		
-    		stack.push(right.right);
-    		stack.push(left.left);
-    		stack.push(right.left);
-    		stack.push(left.right);
-    		
-    		
-    	}
-    	
-    	return true;
+        if (root == null) {
+            return true;
+        }
+        
+        Stack<TreeNode> stack = new Stack<>();
+        stack.push(root.right);
+        stack.push(root.left);
+        
+        while (!stack.isEmpty()) {
+            TreeNode left = stack.pop();
+            TreeNode right = stack.pop();
+            
+            if (left == null && right == null) {
+                continue;
+            }
+            
+            if (left == null || right == null) {
+                return false;
+            }
+            
+            if (left.val != right.val) {
+                return false;
+            }
+            
+            stack.push(left.left);
+            stack.push(right.right);
+            stack.push(left.right);
+            stack.push(right.left);
+        }
+        
+        return true;
     	
     }
 

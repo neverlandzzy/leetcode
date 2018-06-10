@@ -16,6 +16,8 @@ public class Solution {
 	 * 
 	 */
 	
+	// Solution 1: recursion
+	/*
     public static List<List<Integer>> permuteUnique(int[] nums) {
         List<List<Integer>> result = new ArrayList<List<Integer>>();
         List<Integer> list = new ArrayList<Integer>();
@@ -46,9 +48,35 @@ public class Solution {
             }
         }
     }
-    
+    */
+    // Solution 2: iteration	
+	public static List<List<Integer>> permuteUnique(int[] nums) {
+    	List<List<Integer>> result = new ArrayList<>();
+    	result.add(new ArrayList<Integer>());
+    	
+    	for (int i = 0; i < nums.length; i++) {
+    		int size = result.size();
+    		for (int j = 0; j < size; j++) {
+    			for (int k = result.get(j).size() - 1; k >= 0; k--) {
+    				List<Integer> list = new ArrayList<>(result.get(j));
+    				if (nums[i] != result.get(j).get(k)) {
+    					list.add(k, nums[i]);
+    					result.add(list);
+    				} else {
+    					break;
+    				}
+    			}
+    			//System.out.println("before: " + result);
+    			result.get(j).add(nums[i]);
+    			//System.out.println("after: " + result);
+    		}
+    	}
+    	
+    	return result;
+	}
+	
     public static void main(String[] args) {
-		int[] test1 = {1,1,2};
+		int[] test1 = {1,2, 1};
 		
 		
 		System.out.println(permuteUnique(test1));
