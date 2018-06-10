@@ -35,7 +35,29 @@ public class Solution {
         
     }
     */
-	
+    public static int findPeakElement(int[] nums) {
+        int n = nums.length;
+        int start = 0;
+        int end = n - 1;
+        
+        
+        while (start < end) {
+            int mid = start + (end - start) / 2;
+            
+            if ((mid == 0 || nums[mid] > nums[mid - 1]) && (mid == n - 1 || nums[mid] > nums[mid + 1])) {
+                return mid;
+            }
+            
+            if (mid == 0 || nums[mid] > nums[mid - 1]) {
+                start = mid + 1;
+            } else {
+                end = mid;
+            }
+        }
+        
+        return start;
+    }
+    /*
     public static int findPeakElement(int[] nums) {
         int start = 0;
         int end = nums.length - 1;
@@ -53,7 +75,7 @@ public class Solution {
         
         return nums[start] < nums[end] ? end : start;
     }
-    
+    */
     public static void main(String[] args) {
 		int[] test1 = {1,2,3,1};
 		int[] test2 = {1,2,3,4};

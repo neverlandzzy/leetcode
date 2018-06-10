@@ -19,25 +19,26 @@ public class Solution {
 	// 因此要从这个点再跳一次，即jump + 1
 
     public static int jump(int[] nums) {
-    	int next = 0;
+        int next = 0;
     	int max = 0;
     	int jump = 0;
-    	
-    	for (int i = 0; i < nums.length && next < nums.length-1; i++) {
-    		
-    		max = Math.max(max, i + nums[i]);
-
-    		if (next == i) {
-    			jump++;
-    			
-    			if (max == i) {
-    				return 0;
-    			}
-    			
-    			next = max;
-    			
-    		}
-    		//System.out.println("i= " +i + " max = " + max + " next = " + next);
+    	int n = nums.length;
+        
+    	for (int i = 0; i < n; i++) {
+    		if (next >= n - 1) {
+                return jump;
+            }
+            
+            if (max < i) {
+                return 0;
+            }
+            
+            max = Math.max(max, i + nums[i]);
+            
+            if (next == i) {                           
+                jump++;
+                next = max;
+            }
     	}
     	
     	return jump;
