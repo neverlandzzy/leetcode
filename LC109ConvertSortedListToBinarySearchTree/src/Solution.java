@@ -5,7 +5,37 @@ public class Solution {
 	 */
 	
 	
-	
+    public TreeNode sortedListToBST(ListNode head) {
+        if (head == null) {
+            return null;
+        }
+        
+        return helper(head, null);
+    }
+    
+    
+    private TreeNode helper(ListNode head, ListNode tail) {
+        if (head == tail) {
+            return null;
+        }
+        
+        ListNode slow = head;
+        ListNode fast = head;
+        
+        while (fast != tail && fast.next != tail) {
+            slow = slow.next;
+            fast = fast.next.next;
+        }
+        
+        TreeNode root = new TreeNode(slow.val);
+        
+        root.left = helper(head, slow);
+        root.right = helper(slow.next, tail);
+        
+        return root;
+    }
+    
+    /*
     private ListNode current;
     
     public TreeNode sortedListToBST(ListNode head) {
@@ -41,38 +71,6 @@ public class Solution {
         
         return root;
         
-    }
-    /*
-    public TreeNode sortedListToBST(ListNode head) {
-        if (head == null) {
-        	return null;
-        }
-        
-        int size = 0;
-        ListNode node = head;
-        
-        while (node != null) {
-        	node = node.next;
-        	size++;
-        }
-        
-        return helper(head, 0, size - 1);
-    }
-    
-    private TreeNode helper(ListNode head, int start, int end) {
-    	if (start > end) {
-    		return null;
-    	}
-    	
-    	int mid = start + (end - start) / 2;
-    	TreeNode left = helper(head, start, mid - 1);
-    	TreeNode root = new TreeNode(head.val);
-    	head = head.next;
-    	TreeNode right = helper(head, mid + 1, end);
-    	
-    	root.left = left;
-    	root.right = right;
-    	return root;
     }
     */
 }

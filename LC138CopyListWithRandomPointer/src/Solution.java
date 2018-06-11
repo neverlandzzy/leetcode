@@ -19,37 +19,30 @@ public class Solution {
         }
         
         Map<RandomListNode, RandomListNode> map = new HashMap<>();
-        
-        RandomListNode newHead = new RandomListNode(head.label);        
+        RandomListNode newHead = new RandomListNode(head.label);
         map.put(head, newHead);
         
         RandomListNode node = head;
         
         while (node != null) {
-            RandomListNode next = node.next;
-            RandomListNode random = node.random;
-            RandomListNode newNode = map.get(node);
-            
-            if (next != null) {
-                if (!map.containsKey(next)) {
-                    RandomListNode newNext = new RandomListNode(next.label);
-                    map.put(next, newNext);
+            if (node.random != null) {
+                if (!map.containsKey(node.random)) {
+                    map.put(node.random, new RandomListNode(node.random.label));
                 }
-                newNode.next = map.get(next);
+                
+                map.get(node).random = map.get(node.random);
             }
             
-            if (random != null) {
-                if (!map.containsKey(random)) {
-                    RandomListNode newRandom = new RandomListNode(random.label);
-                    map.put(random, newRandom);
+            if (node.next != null) {
+                if (!map.containsKey(node.next)) {
+                    map.put(node.next, new RandomListNode(node.next.label));
                 }
-                newNode.random = map.get(random);
+                map.get(node).next = map.get(node.next);
             }
-            
             node = node.next;
         }
         
-        return newHead;
+        return map.get(head);
     }
     
     // another way
