@@ -1,8 +1,7 @@
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
+import java.util.Map;
 
 
 public class Solution {
@@ -28,6 +27,55 @@ public class Solution {
 	 * Output: [-34, -14, -10, -10, 10]
 	 */
 
+    public static List<Integer> diffWaysToCompute(String input) {
+        Map<String, List<Integer>> map = new HashMap<>();
+        
+        return helper(input, map);
+    }
+    
+    private static List<Integer> helper(String input, Map<String, List<Integer>> map) {
+        if (map.containsKey(input)) {
+            return map.get(input);
+        }
+        
+        List<Integer> result = new ArrayList<>();
+        
+        for (int i = 0; i < input.length(); i++) {
+            char c = input.charAt(i);
+            if (c == '+' || c == '-' || c == '*') {
+                List<Integer> left = helper(input.substring(0, i), map);
+                List<Integer> right = helper(input.substring(i + 1), map);
+                
+                int val = 0;
+                
+                for (int l: left) {
+                    for (int r: right) {
+                        switch (c) {
+                            case '+': 
+                                val = l + r;
+                                break;
+                            case '-':
+                                val = l - r;
+                                break;
+                            case '*':
+                                val = l * r;
+                        }
+                        result.add(val);
+                    }
+                }
+            }
+        }
+        
+        if (result.size() == 0) {
+            result.add(Integer.parseInt(input));
+        }
+        
+        map.put(input, result);
+        return result;
+    }
+	
+	
+	/*
 	static Set<Character> operators = new HashSet<Character>();
 	static {operators.add('+'); operators.add('-'); operators.add('*');}
 	static HashMap<String, List<Integer>> cache = new HashMap<String, List<Integer>>();
@@ -73,7 +121,7 @@ public class Solution {
     	return result;
     	
     }
-    
+    */
     public static void main(String[] args) {
 		String test = "2*3-4*5";
 		

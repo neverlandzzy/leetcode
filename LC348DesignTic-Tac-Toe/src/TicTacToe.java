@@ -53,8 +53,18 @@ public class TicTacToe {
 	 */
 	
     /** Initialize your data structure here. */
+	private int[] rows;
+	private int[] cols;
+	private int diag;
+	private int antiDiag;
+	private int n;
+	
     public TicTacToe(int n) {
-        
+        this.rows = new int[n];
+        this.cols = new int[n];
+        this.diag = 0;
+        this.antiDiag = 0;
+        this.n = n;
     }
     
     /** Player {player} makes a move at ({row}, {col}).
@@ -66,6 +76,26 @@ public class TicTacToe {
                 1: Player 1 wins.
                 2: Player 2 wins. */
     public int move(int row, int col, int player) {
+        int move = player == 1 ? 1 : -1;
         
+        rows[row] += move;
+        cols[col] += move;
+        
+        if (row == col) {
+        	diag += move;
+        }
+        
+        if (row == n - col - 1) {
+        	antiDiag += move;
+        }
+
+        if (Math.abs(rows[row]) == n 
+         || Math.abs(cols[col]) == n
+         || Math.abs(diag) == n
+         || Math.abs(antiDiag) == n) {
+        	return player;
+        }
+        
+        return 0;
     }
 }

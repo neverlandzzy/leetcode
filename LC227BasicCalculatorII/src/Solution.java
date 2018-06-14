@@ -16,6 +16,52 @@ public class Solution {
 	 * " 3/2 " = 1
 	 * " 3+5 / 2 " = 5
 	 */
+	
+	// Solution 1: Time O(n), Space O(1)
+	public static int calculate(String s) {
+		int number = 0;
+		int result = 0;
+		int pre = 0;
+		char sign = '+';
+		
+		for (int i = 0; i < s.length(); i++) {
+			char c = s.charAt(i);
+			
+			if (c >= '0' && c <= '9') {
+				number = number * 10 + c - '0';
+			}
+			
+			if (!Character.isDigit(c) && c != ' ' || i == s.length() - 1) {
+				if (sign == '+') {
+					result += pre;
+					pre = number;
+				}
+				
+				if (sign == '-') {
+					result += pre;
+					pre = -number;
+				}
+				
+				if (sign == '*') {
+					pre = pre * number;
+				}
+				
+				if (sign == '/') {
+					pre = pre / number;
+				}
+				
+				sign = c;
+				number = 0;
+			}
+		}
+		
+		result += pre;
+		return result;
+	}
+	
+	
+	// Solution 2: Time O(n), Space O(n)
+	/*
     public static int calculate(String s) {
     	
     	int number = 0;
@@ -57,7 +103,7 @@ public class Solution {
         
         return result;
     }
-    
+    */
     public static void main(String[] args) {
 		System.out.println(calculate("3+2*2"));
 		System.out.println(calculate(" 3/2 "));
