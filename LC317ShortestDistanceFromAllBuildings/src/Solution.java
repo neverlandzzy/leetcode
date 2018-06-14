@@ -31,6 +31,63 @@ public class Solution {
 	//      优化：每次BFS只遍历之前building全部能够到达的点：第一次只遍历grid[i][j] == 0的点，之后将其置为-1, 第二次只遍历grid[i][j] == -1的点，之后将其置为-2 ... 
 	//      以此类推。用flag来记录每次应该遍历的点(0 -> -1 -> -2 -> ...)     
 	
+	
+	// 思路一样，只是避免了创建新的class
+	public static int shortestDistance(int[][] grid) {
+        if (grid == null || grid.length == 0 || grid[0] == null || grid[0].length == 0) {
+        	return 0;
+        }
+        
+        int[][] direction = {{1, 0}, {-1, 0}, {0, 1}, {0, -1}};
+        int m = grid.length;
+        int n = grid[0].length;
+        
+        int result = 0;
+        int flag = 0;
+        int[][] count = new int[m][n];
+        
+        for (int i = 0; i < m; i++) {
+            for (int j = 0; j < n; j++) {
+                if (grid[i][j] != 1) {
+                    continue;
+                }
+                
+                result = Integer.MAX_VALUE;
+                Queue<int[]> queue = new LinkedList<>();
+                queue.offer(new int[]{i, j});
+                int level = 0;
+                
+                while (!queue.isEmpty()) {
+                    int size = queue.size();
+                    level++;
+                    
+                    for (int k = 0; k < size; k++) {
+                        int[] point = queue.poll();
+                        for (int[] dir: direction) {
+                            int nextI = point[0] + dir[0];
+                            int nextJ = point[1] + dir[1];
+                            
+                            if (nextI < 0 || nextI >= m || nextJ < 0 || nextJ >= n || grid[nextI][nextJ] != flag) {
+                                continue;
+                            } 
+                            
+                            count[nextI][nextJ] += level;
+                            grid[nextI][nextJ]--;
+                            result = Math.min(result, count[nextI][nextJ]);
+                            queue.offer(new int[]{nextI, nextJ});
+                        }
+                    }
+                }
+                
+                flag--;
+            }
+        }
+        
+        return result == Integer.MAX_VALUE ? -1 : result;
+	}
+	
+	
+	/*
 	static class Point {
 		private int x;
 		private int y;
@@ -83,23 +140,14 @@ public class Solution {
         				queue.offer(new Point(x, y, point.distance + 1));
         			}
         		}
-        		
-        		/*
-        		for (int[] l: count) {
-        			for(int h: l) {
-        				System.out.print(h + ", ");
-        			}
-        			System.out.println();
-        		}
-        		System.out.println("~~~");
-        		*/
+        	
         		flag--;
         	}
         }
         
         return result == Integer.MAX_VALUE ? -1 : result;
     }
-    
+    */
     
     public static void main(String[] args) {
 		int[][] test = {{1, 0, 2, 0, 1}, {0, 0, 0, 0, 0}, {0, 0, 1, 0, 0}};

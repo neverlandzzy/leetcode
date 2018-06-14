@@ -1,6 +1,7 @@
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 
 public class Solution {
@@ -25,7 +26,7 @@ public class Solution {
 	 */
 	
     public static int[] intersect(int[] nums1, int[] nums2) {
-        HashMap<Integer, Integer> map = new HashMap<>();
+        Map<Integer, Integer> map = new HashMap<>();
         List<Integer> list = new ArrayList<>();
         
         for (int n: nums1) {

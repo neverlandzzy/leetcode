@@ -13,24 +13,25 @@ public class Solution {
             return 0;
         }
         
+        int n = nums.length;
         int i = 0;
         int j = 0;
-        int min = Integer.MAX_VALUE;
+        int result = n + 1;
         int sum = 0;
         
-        while (j < nums.length) {
+        while (j < n) {
             sum += nums[j];
             
-            while (i <= j && sum >= s) {
-                min = Math.min(min, j - i + 1);
+            while (sum >= s) {
+                result = Math.min(result, j - i + 1);
                 sum -= nums[i];
                 i++;
-            }           
-            
+            }
+
             j++;
         }
         
-        return min == Integer.MAX_VALUE ? 0 : min;
+        return result == n + 1 ? 0 : result;
     }
 	
     /*
