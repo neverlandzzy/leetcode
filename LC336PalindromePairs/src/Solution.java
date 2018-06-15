@@ -19,8 +19,9 @@ public class Solution {
 	 *  The palindromes are ["dcbaabcd", "abcddcba", "slls", "llssssll"]
 	 */
 	
-	// https://discuss.leetcode.com/topic/39585/o-n-k-2-java-solution-with-trie-structure-n-total-number-of-words-k-average-length-of-each-word/2
-	
+	// https://leetcode.com/problems/palindrome-pairs/discuss/79195/onk2-java-solution-with-trie-structure
+	// http://www.allenlipeng47.com/blog/index.php/2016/03/15/palindrome-pairs/
+	// Both building and searching the Trie structure take O(n*k^2)
 	public static class TrieNode {
 		TrieNode[] children;
 		// index: the index of the word in words array
@@ -117,8 +118,10 @@ public class Solution {
     public static void main(String[] args) {
 		String[] test1 = {"bat", "tab", "cat"};
 		String[] test2 = {"abcd", "dcba", "lls", "s", "sssll"};
+		String[] test3 = {"a", "aaa"};
 		
 		System.out.println(palindromePairs(test1));
 		System.out.println(palindromePairs(test2));
+		System.out.println(palindromePairs(test3));
 	}
 }
