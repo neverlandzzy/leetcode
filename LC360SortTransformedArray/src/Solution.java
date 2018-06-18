@@ -18,8 +18,29 @@ public class Solution {
 	 * Result: [-23, -5, 1, 7]
 	 */
 	
+	// https://leetcode.com/problems/sort-transformed-array/discuss/83322/Java-O(n)-incredibly-short-yet-easy-to-understand-AC-solution
+	// 只有两种情况： a > 0时中间最小，a < 0时中间最大，从两端向中间遍历即可，类似于merge sorted array
     public static int[] sortTransformedArray(int[] nums, int a, int b, int c) {
+        int n = nums.length;
+        int[] result = new int[n];
         
+        int index = a > 0 ? n - 1 : 0;
+        int i = 0;
+        int j = n - 1;
+        
+        while (i <= j) {
+        	if (a > 0) {
+        		result[index--] = calc(a, b, c, nums[i]) > calc(a, b, c, nums[j]) ? calc(a, b, c, nums[i++]) : calc(a, b, c, nums[j--]);
+        	} else {
+        		result[index++] = calc(a, b, c, nums[i]) > calc(a, b, c, nums[j]) ? calc(a, b, c, nums[j--]) : calc(a, b, c, nums[i++]);
+        	}
+        }
+        
+        return result;
+    }
+    
+    private static int calc(int a, int b, int c, int x) {
+    	return a * x * x + b * x + c;
     }
     
     public static void main(String[] args) {

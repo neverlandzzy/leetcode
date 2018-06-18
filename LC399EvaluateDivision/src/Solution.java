@@ -2,6 +2,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Map;
 
 
 public class Solution {
@@ -28,8 +29,8 @@ public class Solution {
 	// https://discuss.leetcode.com/topic/59146/java-ac-solution-using-graph
 	
     public static double[] calcEquation(String[][] equations, double[] values, String[][] queries) {
-        HashMap<String, List<String>> pairMap = new HashMap<>();
-        HashMap<String, List<Double>> valueMap = new HashMap<>();
+        Map<String, List<String>> pairMap = new HashMap<>();
+        Map<String, List<Double>> valueMap = new HashMap<>();
         
         for (int i = 0; i < equations.length; i++) {
         	String[] equation = equations[i];
@@ -67,8 +68,8 @@ public class Solution {
         return result;
     }
     
-    private static double helper(String start, String end, HashSet<String> set, HashMap<String, List<String>> pairMap, 
-    	HashMap<String, List<Double>> valueMap, double value) {
+    private static double helper(String start, String end, HashSet<String> set, Map<String, List<String>> pairMap, 
+    	Map<String, List<Double>> valueMap, double value) {
 
     	if (set.contains(start)) {
     		return 0.0;

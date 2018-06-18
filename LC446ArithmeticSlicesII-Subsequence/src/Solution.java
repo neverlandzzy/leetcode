@@ -50,13 +50,13 @@ public class Solution {
 	// http://www.cnblogs.com/grandyang/p/6057934.html
 	
     public static int numberOfArithmeticSlices(int[] A) {
-        List<HashMap<Integer, Integer>> mapList = new ArrayList<>();
+        List<Map<Integer, Integer>> mapList = new ArrayList<>();
         //每个map中存的是等差数列的差值和其长度之间的映射
         
         int result = 0;
         
         for (int i = 0; i < A.length; i++) {
-        	HashMap<Integer, Integer> map = new HashMap<>();
+        	Map<Integer, Integer> map = new HashMap<>();
         	mapList.add(map);
         	
         	for (int j = 0; j < i; j++) {
@@ -70,20 +70,21 @@ public class Solution {
             	int c1 = 0; 
             	int c2 = 0;
             	
+            	// 当数组中有重复元素时
             	if (mapList.get(i).containsKey(d)) {
             		c1 = mapList.get(i).get(d);
             	}
             	if (mapList.get(j).containsKey(d)) {
             		c2 = mapList.get(j).get(d);
             	}
-            	System.out.println("i = " + i + " j = " + j + " d = " + d + " c1 = " + c1 + " c2 = " + c2);
+            	//System.out.println("i = " + i + " j = " + j + " d = " + d + " c1 = " + c1 + " c2 = " + c2);
             	// 若c2有值，则说明已经可以构成等差数列
             	result += c2;
             	mapList.get(i).put(d, c1 + c2 + 1);
         	}
 
         }
-        System.out.println(mapList);
+        //System.out.println(mapList);
         
         return result;
     }
@@ -91,7 +92,8 @@ public class Solution {
     
     public static void main(String[] args) {
 		int[] test = {2, 4, 6, 8, 10};
-		//int[] test2 = {1, 2, 2, 3, 4};
+		int[] test2 = {1, 2, 2, 3, 4};
 		System.out.println(numberOfArithmeticSlices(test));
+		System.out.println(numberOfArithmeticSlices(test2));
 	}
 }

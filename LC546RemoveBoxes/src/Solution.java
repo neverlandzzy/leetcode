@@ -43,6 +43,7 @@ public class Solution {
 	// Similar to LC664
 	
 	// Solution 1: DFS + mem : top - down
+	// Time: O(n^4) Space: O(n^3)
 	
 	public static int removeBoxes(int[] boxes) {
 	    int n = boxes.length;
@@ -96,7 +97,7 @@ public class Solution {
         for (int len = 1; len < n; len++) {
         	for (int i = 0; i + len < n; i++) {
         		int j = i + len;
-        		for (int k = 0; k < j; k++) {
+        		for (int k = 0; k <= i; k++) {
         			int result = (k + 1) * (k + 1) + dp[i + 1][j][0];
         			
         			for (int m = i + 1; m <= j; m++) {

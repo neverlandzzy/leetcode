@@ -22,7 +22,7 @@ public class Solution {
 		int number = 0;
 		int result = 0;
 		int pre = 0;
-		char sign = '+';
+		char operator = '+';
 		
 		for (int i = 0; i < s.length(); i++) {
 			char c = s.charAt(i);
@@ -32,25 +32,25 @@ public class Solution {
 			}
 			
 			if (!Character.isDigit(c) && c != ' ' || i == s.length() - 1) {
-				if (sign == '+') {
+				if (operator == '+') {
 					result += pre;
 					pre = number;
 				}
 				
-				if (sign == '-') {
+				if (operator == '-') {
 					result += pre;
 					pre = -number;
 				}
 				
-				if (sign == '*') {
+				if (operator == '*') {
 					pre = pre * number;
 				}
 				
-				if (sign == '/') {
+				if (operator == '/') {
 					pre = pre / number;
 				}
 				
-				sign = c;
+				operator = c;
 				number = 0;
 			}
 		}
@@ -66,7 +66,7 @@ public class Solution {
     	
     	int number = 0;
     	int result = 0;
-    	char sign = '+';
+    	char operator = '+';
     	
     	Stack<Integer> stack = new Stack<Integer>();
     	
@@ -78,27 +78,27 @@ public class Solution {
         	} 
         	
         	if (!Character.isDigit(c) && c != ' ' || i == s.length() - 1){
-        		if (sign == '+') {
+        		if (operator == '+') {
         			stack.push(number);
         		}
-        		if (sign == '-') {
+        		if (operator == '-') {
         			stack.push(-number);
         		}
-        		if (sign == '*') {
+        		if (operator == '*') {
         			stack.push(stack.pop() * number);
         		}
-        		if (sign == '/') {
+        		if (operator == '/') {
         			stack.push(stack.pop() / number);
         		}
         		
-        		sign = c;
+        		operator = c;
         		number = 0;
         	}
         		
         }
         
-        for (int i : stack) {
-        	result += i;
+        while (!stack.isEmpty()) {
+            result += stack.pop();
         }
         
         return result;

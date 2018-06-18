@@ -37,6 +37,62 @@ public class Solution {
 	
 	// Time: O(m * n), Space: O(m * n)
 
+	// A more straightforward way, same idea
+	
+	public static String minWindow(String S, String T) {
+    	int m = S.length();
+    	int n = T.length();
+    	
+    	int[][] dp = new int[m][n];
+    	
+    	// S, T both have 1 char, if !match, fill -1 means we can't find a substring for S(0) & T(0)
+    	if (S.charAt(0) == T.charAt(0)) {
+    		dp[0][0] = 0;
+    	} else {
+    		dp[0][0] = -1;
+    	}
+    	
+    	for (int i = 1; i < m; i++) {
+    		if (S.charAt(i) == T.charAt(0)) {
+    			// largest starting index matches only first char in T
+    			dp[i][0] = i;
+    		} else {   				
+    			dp[i][0] = dp[i - 1][0];
+    		}
+    	}
+    	
+    	// if j > i, M[i][j] is always -1, cause we can't find a substring of a shorter string matches a longer string
+    	for (int i = 1; i < n; i++) {
+    		dp[0][i] = -1;
+    	}
+    	
+    	for (int i = 1; i < m; i++) {
+    		for (int j = 1; j < n; j++) {
+    			if (S.charAt(i) == T.charAt(j)) {
+    				dp[i][j] = dp[i - 1][j - 1];
+    			} else {
+    				dp[i][j] = dp[i - 1][j];
+    			}
+    		}
+    	}
+    	
+    	int start = 0;
+    	int len = m + 1;
+    	
+    	for (int i = 0; i < m; i++) {
+    		if (dp[i][n - 1] != -1) {
+    			if (i - dp[i][n - 1] + 1 < len) {
+    				len = i - dp[i][n - 1] + 1;
+    				start = dp[i][n - 1];
+    			}
+    		}
+    	}
+    	
+    	return len == m + 1 ? "" : S.substring(start, start + len);
+	}
+	
+	// hard to explain why initialize with dp[i][0] = i + 1; and why start = dp[i][n] - 1;
+	/*
     public static String minWindow(String S, String T) {
     	int m = S.length();
     	int n = T.length();
@@ -60,9 +116,10 @@ public class Solution {
     	int start = 0;
     	int len = m + 1;
     	
+
     	for (int i = 0; i <= m; i++) {
     		if (dp[i][n] != 0) {
-    			if (i - dp[i][n] + 1< len) {
+    			if (i - dp[i][n] + 1 < len) {
     				len = i - dp[i][n] + 1;
     				start = dp[i][n] - 1;
     			}
@@ -71,11 +128,12 @@ public class Solution {
 
     	return len == m + 1 ? "" : S.substring(start, start + len); 
     }
- 
+ 	*/
     
     public static void main(String[] args) {
-    	
+    	/*
     	System.out.println(minWindow("abbcdebdde", "bde"));
+
 
     	System.out.println(minWindow("jmeqksfrsdcmsiwvaovztaqenprpvnbstl", "k"));
     	
@@ -85,7 +143,9 @@ public class Solution {
     	System.out.println(minWindow("cnhczmccqouqadqtmjjzl", "mm"));
     	
     	System.out.println(minWindow("hpsrhgogezyfrwfrejytjkzvgpjnqil", "ggj"));
+    	*/
     	
-
+    	System.out.println(minWindow("fgrqsqsnodwmxzkzxwqegkndaa", "fnok"));
+    	
 	}
 }

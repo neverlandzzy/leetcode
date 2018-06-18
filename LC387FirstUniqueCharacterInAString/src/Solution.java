@@ -60,6 +60,28 @@ public class Solution {
 		return index == s.length() ? -1 : index;
 	}
 	
+	// Solution 3: O(n): 2 pass
+	/*
+    public static int firstUniqChar(String s) {
+        int[] map = new int[26];
+        int i = 0;
+        int j = 0;
+        int n = s.length();
+        
+        while (j < n) {
+            map[s.charAt(j) - 'a']++;
+            
+            while (i <= j && map[s.charAt(i) - 'a'] > 1) {
+                i++;
+            }
+                       
+            j++;
+        }
+        
+        return i == n ? -1 : i;
+    }
+	*/
+	
     public static void main(String[] args) {
 		String test1 = "leetcode";
 		String test2 = "loveleetcode";
