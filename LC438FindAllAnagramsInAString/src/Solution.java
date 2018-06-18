@@ -38,6 +38,47 @@ public class Solution {
 	
     public static List<Integer> findAnagrams(String s, String p) {
         List<Integer> result = new ArrayList<>();
+        
+        int[] map = new int[26];
+        for (int i = 0; i < p.length(); i++) {
+            map[p.charAt(i) - 'a']++;
+        }
+        
+        int counter = p.length();
+        
+        int i = 0;
+        int j = 0;
+        int n = s.length();
+        
+        while (j < n) {
+            if (map[s.charAt(j) - 'a'] > 0) {
+                counter--;
+            }
+            
+            map[s.charAt(j) - 'a']--;
+
+            
+            if (counter == 0) {
+                result.add(i);
+            }           
+            
+            if (j - i == p.length() - 1) {
+                map[s.charAt(i) - 'a']++;
+                if (map[s.charAt(i) - 'a'] > 0) {
+                    counter++;
+                }
+                i++;
+            }
+            
+            j++;
+        }
+        
+        return result;
+    }
+    
+    /*
+    public static List<Integer> findAnagrams(String s, String p) {
+        List<Integer> result = new ArrayList<>();
         int[] map = new int[256];
         
         for (int i = 0; i < p.length(); i++) {
@@ -70,7 +111,7 @@ public class Solution {
         
         return result;
     }
-    
+    */
     public static void main(String[] args) {
 		String s1 = "cbaebabacd";
 		String p1 = "abc";

@@ -121,7 +121,7 @@ public class Solution {
         			y -= dir[i][1];
         			d--;
         		}
-
+        		
         		queue.offer(new Point(x, y, d, s + dirString[i]));
         		
         	}

@@ -29,9 +29,9 @@ public class Solution {
 	 * pushed and popped at most once.
 	 */
     public static List<Integer> closestKValues(TreeNode root, double target, int k) {
-        List<Integer> result = new ArrayList<Integer>();
-        Stack<TreeNode> successor = new Stack<TreeNode>();
-        Stack<TreeNode> predecessor = new Stack<TreeNode>();
+        List<Integer> result = new ArrayList<>();
+        Stack<TreeNode> successor = new Stack<>();
+        Stack<TreeNode> predecessor = new Stack<>();
         
         initializeSuccessorStack(root, target, successor);
         initializePredecessorStack(root, target, predecessor);
