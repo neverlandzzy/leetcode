@@ -9,22 +9,20 @@ public class Solution {
 	 */
 	
     public static ListNode removeElements(ListNode head, int val) {
-    	
         ListNode dummy = new ListNode(0);
         dummy.next = head;
-        head = dummy;
-        
-        ListNode pre = head;
-        ListNode cur = head.next;
+        ListNode pre = dummy;
+        ListNode cur = head;
         
         while (cur != null) {
             if (cur.val == val) {
-    			cur = cur.next;
-    			pre.next = cur;
+                pre.next = cur.next;
             } else {
-                pre = cur;
-                cur = cur.next;
+                pre = pre.next;
             }
+            
+            cur = cur.next;
+            
         }
         
         return dummy.next;

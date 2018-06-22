@@ -42,6 +42,7 @@ public class Solution {
     
     	}
 
+
     	if (i < length && s.charAt(i) == 'e' && isValid) {
     		i++;
     		isValid = false;
@@ -84,5 +85,6 @@ public class Solution {
 		System.out.println("0e: " + isNumber("0e"));
 		System.out.println("6+1: " + isNumber("6+1"));
 		System.out.println("	0e0: " + isNumber("0e0"));
+		System.out.println("1.:  " + isNumber("1."));
 	}
 }

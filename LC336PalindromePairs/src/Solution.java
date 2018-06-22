@@ -54,7 +54,7 @@ public class Solution {
         }
         
         for (int i = 0; i < words.length; i++) {
-        	search(root, result, words, i);
+        	search(root, result, words[i], i);
         }
         
         return result;
@@ -70,6 +70,7 @@ public class Solution {
     			cur.children[c - 'a'] = new TrieNode();
     		}
     		if (isPalindrome(word, 0, i)) {
+
     			cur.list.add(index);
     		}
     		cur = cur.children[c - 'a'];
@@ -79,13 +80,16 @@ public class Solution {
     	cur.list.add(index);
     }
     
+    /*
     private static void search(TrieNode root, List<List<Integer>> result, String[] words, int i) {
     	for (int j = 0; j < words[i].length(); j++) {
     		// 对于当前检查的单词words[i]，若从j 到结尾的substring是palindrome，则当前单词和当前节点代表的单词可以组成一个答案。
     		// 因为当前节点是倒序插入的单词，说明对于words[j]从0到j-1的子串，Trie上有刚好和其字符顺序相反的单词，拼起来可以构成palindrome
     		// 拼的时候注意顺序，应该是当前检查的单词在前，当前node代表的单词在后
+    		// e.g [sll, s]
     		if (root.index >= 0 && i != root.index && isPalindrome(words[i], j, words[i].length() - 1)) {
     			result.add(Arrays.asList(i, root.index));
+    			//System.out.println("i = " + i + " index = " + root.index);
     		}
     		
     		root = root.children[words[i].charAt(j) - 'a'];
@@ -95,12 +99,39 @@ public class Solution {
     	}
     	
     	for (int j: root.list) {
+    		// e.g. [lls, s]
     		if (i == j) {
     			continue;
     		}
-    		
+    		//System.out.println("i = " + i + " j = " + j + " root.index = " +  root.index + " root.list: " + root.list);
     		result.add(Arrays.asList(i, j));
     	}
+    }
+    */
+    private static void search(TrieNode root, List<List<Integer>> result, String word, int index) {
+        TrieNode node = root;
+		// 对于当前检查的单词words[i]，若从j 到结尾的substring是palindrome，则当前单词和当前节点代表的单词可以组成一个答案。
+		// 因为当前节点是倒序插入的单词，说明对于words[j]从0到j-1的子串，Trie上有刚好和其字符顺序相反的单词，拼起来可以构成palindrome
+		// 拼的时候注意顺序，应该是当前检查的单词在前，当前node代表的单词在后
+		// e.g [sll, s]
+        for (int i = 0; i < word.length(); i++) {
+            char c = word.charAt(i);
+            if (node.index >= 0 && index != node.index && isPalindrome(word, i, word.length() - 1)) {
+                result.add(Arrays.asList(index, node.index));
+            }
+            
+            node = node.children[c - 'a'];
+            if (node == null) {
+                return;
+            }
+        }
+
+        for (int i: node.list) {
+        	// e.g. [lls, s]
+            if (index != i) {
+                result.add(Arrays.asList(index, i));
+            }
+        }
     }
     
     private static boolean isPalindrome(String word, int i, int j) {
@@ -118,10 +149,11 @@ public class Solution {
     public static void main(String[] args) {
 		String[] test1 = {"bat", "tab", "cat"};
 		String[] test2 = {"abcd", "dcba", "lls", "s", "sssll"};
-		String[] test3 = {"a", "aaa"};
-		
+		String[] test3 = {"a", "aaa", "aa"};
+		String[] test4 = {"lls", "s",};
 		System.out.println(palindromePairs(test1));
 		System.out.println(palindromePairs(test2));
 		System.out.println(palindromePairs(test3));
+		System.out.println(palindromePairs(test4));
 	}
 }
