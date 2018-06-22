@@ -55,6 +55,33 @@ public class Solution {
 	 * Note: Answer will in the range of 32-bit signed integer.
 	 */
 	
+	// Another way, same idea but more straightforward
+	
+    public static int widthOfBinaryTree(TreeNode root) {
+        List<Integer> leftNodes = new ArrayList<>();
+        int[] result = new int[1];
+        
+        helper(root, leftNodes, 1, 0, result);
+        
+        return result[0];
+    }
+    
+    private static void helper(TreeNode root, List<Integer> list, int id, int level, int[] result) {
+        if (root == null) {
+            return;
+        }
+        
+        if (level == list.size()) {
+            list.add(id);
+        }
+        
+        result[0] = Math.max(result[0], id - list.get(level) + 1);
+        
+        helper(root.left, list, id * 2, level + 1, result);
+        helper(root.right, list, id * 2 + 1, level + 1, result);
+    }
+    
+    /*
     public static int widthOfBinaryTree(TreeNode root) {
         List<Integer> leftNodes = new ArrayList<>(); // left most nodes at each level;
         return dfs(root, 1, 0, leftNodes);
@@ -70,7 +97,7 @@ public class Solution {
         // 这里递归到下一层的left 和 right顺序不能变，否则加入的就不是leftmost点
         return Math.max(id + 1 - leftNodes.get(d), Math.max(dfs(n.left, id * 2, d + 1, leftNodes), dfs(n.right, id * 2 + 1, d + 1, leftNodes)));
     }
-    
+    */
     public static void main(String[] args) {
  		TreeNode node1 = new TreeNode(1);
  		TreeNode node2 = new TreeNode(3);

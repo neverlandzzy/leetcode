@@ -19,21 +19,22 @@ public class Solution {
 	
     public static int coinChange(int[] coins, int amount) {
 
-        int[] d = new int[amount + 1];
-        d[0] = 0;
+        int[] dp = new int[amount + 1];
         
         for (int i = 1; i <= amount; i++) {
             int min = Integer.MAX_VALUE;
             for (int j = 0; j < coins.length; j++) {
                 int diff = i - coins[j];
-                if ((diff > 0 && d[diff] > 0) || diff == 0) {
-                    min = Math.min(min, d[diff] + 1);
+                
+                if (diff >= 0 && dp[diff] != -1) {
+                    min = Math.min(min, dp[diff] + 1);
                 }
             }
-            d[i] = min == Integer.MAX_VALUE ? -1 : min;
+            
+            dp[i] = min == Integer.MAX_VALUE ? -1 : min;
         }
         
-        return d[amount];
+        return dp[amount];
      
     }
     

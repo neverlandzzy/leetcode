@@ -1,3 +1,6 @@
+import java.util.ArrayDeque;
+import java.util.Deque;
+
 
 public class Solution {
 	/*
@@ -20,8 +23,38 @@ public class Solution {
 	 * Note: Do not use the eval built-in library function.
 	 */
 	
+	// https://leetcode.com/problems/basic-calculator-iii/discuss/113592/Development-of-a-generic-solution-for-the-series-of-the-calculator-problems
+	// 2 levels: l1 and l2
+	// operators: +: o1 = 1, -: o1 = -1, *: o2 = 1, /: o2 = -1
+	// level 1: +, -, starts with l1 = 0, o1 = 1;
+	// level 2: *, /, starts with l2 = 1, o2 = 1;
+	// O(n) time, O(n) space
     public static int calculate(String s) {
+        int l1 = 0;
+        int l2 = 1;
+        int o1 = 1;
+        int o2 = 1;
+        int n = s.length();
         
+        Deque<Integer> deque = new ArrayDeque<>();
+        
+        for (int i = 0; i < n; i++) {
+        	char c = s.charAt(i);
+        	
+        	if (Character.isDigit(c)) {
+        		int num = c - '0';
+        		while (i < n - 1 && Character.isDigit(s.charAt(i + 1))) {
+        			i++;
+        			num = num * 10 + s.charAt(i) - '0';
+        		}
+       
+        		l2 = (o2 == 1 ? l2 * num : l2 / num);
+        	} else if (c == '(') {
+        		
+        	}
+        	
+        	
+        }
     }
     
     public static void main(String[] args) {

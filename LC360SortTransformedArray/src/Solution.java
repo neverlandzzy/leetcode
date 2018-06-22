@@ -43,6 +43,49 @@ public class Solution {
     	return a * x * x + b * x + c;
     }
     
+    // 另一种写法，一样的思路
+    /*
+     public int[] sortTransformedArray(int[] nums, int a, int b, int c) {
+        int n = nums.length;
+        int[] result = new int[n];
+        int start = 0;
+        int end = n - 1;
+        
+        if (a > 0) {
+            for (int i = n - 1; i >=  0; i--) {
+                int left = calc(a, b, c, nums[start]);
+                int right = calc(a, b, c, nums[end]);
+                
+                if (left > right) {
+                    result[i] = left;
+                    start++;
+                } else {
+                    result[i] = right;
+                    end--;
+                }
+            }
+        } else {
+            for (int i = 0; i < n; i++) {
+                int left = calc(a, b, c, nums[start]);
+                int right = calc(a, b, c, nums[end]);
+                
+                if (left < right) {
+                    result[i] = left;
+                    start++;
+                } else {
+                    result[i] = right;
+                    end--;
+                }
+            }
+        }
+        
+        return result;
+    }
+    
+    private int calc(int a, int b, int c, int x) {
+        return a * x * x + b * x + c;
+    }
+    */
     public static void main(String[] args) {
 		int[] test1 = {-4, -2, 2, 4};
 		int[] result1 = sortTransformedArray(test1, 1, 3, 5);

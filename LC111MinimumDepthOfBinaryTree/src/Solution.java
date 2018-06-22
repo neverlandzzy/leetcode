@@ -32,6 +32,41 @@ public class Solution {
     */
 	
     // Solution 2: BFS
+	
+    public static int minDepth(TreeNode root) {
+        if (root == null) {
+            return 0;
+        }
+        
+        Queue<TreeNode> queue = new LinkedList<>();
+        queue.offer(root);
+        
+        int level = 1;
+        
+        while (!queue.isEmpty()) {
+            int size = queue.size();
+            for (int i = 0; i < size; i++) {
+                TreeNode node = queue.poll();
+                if (node.left == null && node.right == null) {
+                    return level;
+                }
+                
+                if (node.left != null) {
+                    queue.offer(node.left);
+                }
+                
+                if (node.right != null) {
+                    queue.offer(node.right);
+                }
+            }
+            
+            level++;
+        }
+        
+        return level;
+    }
+    
+	/*
     public static int minDepth(TreeNode root) {
     	Queue<TreeNode> queue = new LinkedList<TreeNode>();
     	
@@ -67,6 +102,7 @@ public class Solution {
     	}
     	return depth;
     }
+    */
     
     public static void main(String[] args) {
  		TreeNode node1 = new TreeNode(1);

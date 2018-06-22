@@ -83,7 +83,7 @@ public class Solution {
     
     public static void main(String[] args) {
     	
-		int[] test = {9, 10, 2, 5, 3, 7, 101, 18};
+		int[] test = {9, 10, 2, 5, 3, 7, 101, 4};
 		System.out.println(lengthOfLIS(test));
 
     	    	
