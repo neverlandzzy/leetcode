@@ -40,6 +40,39 @@ public class Solution {
     	}
     }
     
+    /*
+    //另一种写法，和LC151一致，方便记忆
+    public static void reverseWords(char[] str) {
+        int n = str.length;
+        
+        reverse(str, 0, n - 1);
+        
+        int i = 0;
+        while (i < n) {
+            if (str[i] == ' ') {
+                i++;
+            } else {
+                int j = i;
+                while (j < n - 1 && str[j + 1] != ' ') {
+                    j++;
+                }
+                
+                reverse(str, i, j);
+                i = j + 1;
+            }
+        }
+    }
+    
+    private static void reverse(char[] str, int i, int j) {
+        while (i < j) {
+            char c = str[i];
+            str[i] = str[j];
+            str[j] = c;
+            i++;
+            j--;
+        }
+    }
+    */
     public static void main(String[] args) {
 		String test = "the sky is blue";
 		

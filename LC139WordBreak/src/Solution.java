@@ -14,7 +14,7 @@ public class Solution {
 	 * Return true because "leetcode" can be segmented as "leet code".
 	 */
 	
-	
+	// Time: O(n^2)
     public static boolean wordBreak(String s, List<String> wordDict) {
         int n = s.length();
         

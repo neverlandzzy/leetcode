@@ -140,11 +140,11 @@ public class Test {
 		*/
 		
 
-		String s = "    abc";
-		System.out.println(s);
-		s = s.trim();
+		String s = "/home//foo";
 		
-		System.out.println(s);
+		for (String str: s.split("/")) {
+			System.out.print(str + ", ");
+		}
 	}
 	
 	

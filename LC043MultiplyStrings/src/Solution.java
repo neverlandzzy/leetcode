@@ -19,7 +19,7 @@ public class Solution {
 		StringBuilder sb = new StringBuilder();
 		int n1 = num1.length(); 
 		int n2 = num2.length();
-		int[] d = new int[n1 + n2];
+		int[] d = new int[n1 + n2 - 1];
 		char[] str1 = num1.toCharArray();
 		char[] str2 = num2.toCharArray();
 		
@@ -28,7 +28,7 @@ public class Solution {
 				d[i + j] += (str1[i] - '0') * (str2[j] - '0');
 			}
 		}
-		        
+		
         int carry = 0;
         
         for (int i = d.length - 1; i >= 0; i--) {
@@ -42,9 +42,6 @@ public class Solution {
         	sb.append(carry);
         }
         
-        if (sb.charAt(0) == '0'){
-        	sb.deleteCharAt(0);
-        }
         return sb.reverse().toString();
 	}
 	
@@ -97,7 +94,10 @@ public class Solution {
 		String str1 = "382";
 		String str2 = "67";
 		
-		System.out.println(multiply(str1, str2));
-		//System.out.println(multiplyII(str1, str2));
+		String str3 = "408";
+		String str4 = "5";
+		
+		//System.out.println(multiply(str1, str2));
+		System.out.println(multiply(str3, str4));
 	}
 }

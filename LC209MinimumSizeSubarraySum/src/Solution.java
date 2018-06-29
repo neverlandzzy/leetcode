@@ -50,6 +50,33 @@ public class Solution {
     	
     	return len == Integer.MAX_VALUE ? 0: len;
     }
+    
+    public static int minSubArrayLen(int s, int[] nums) {
+        if (nums == null || nums.length == 0) {
+            return 0;
+        }
+        
+        int n = nums.length;
+        int i = 0;
+        int j = 0;
+        int result = n + 1;
+        int sum = 0;
+        
+        while (j < n) {
+            sum += nums[j];
+            
+            if (sum >= s) {
+                result = Math.min(result, j - i + 1);
+                sum -= nums[i];
+                sum -= nums[j];
+                i++; 
+            } else {
+                j++;
+            }
+        }
+        
+        return result == n + 1 ? 0 : result;
+    }
     */
     
     public static void main(String[] args) {

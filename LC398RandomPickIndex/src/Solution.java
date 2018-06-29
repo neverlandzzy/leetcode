@@ -51,6 +51,7 @@ public class Solution {
     // Solution 2: Reservoir Sampling(蓄水池算法) O(1) init, O(1) memory, but O(N) to pick. Good for data stream and big data set
 	// 类似LC382
 	// https://www.jianshu.com/p/63f6cf19923d
+	// 证明： https://blog.csdn.net/huagong_adu/article/details/7619665
 	
 	int[] nums;
 	

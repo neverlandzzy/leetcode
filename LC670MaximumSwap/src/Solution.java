@@ -1,6 +1,3 @@
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
 
 
 public class Solution {
@@ -23,25 +20,25 @@ public class Solution {
 	
 	// https://leetcode.com/problems/maximum-swap/solution/
 	public static int maximumSwap(int num) {
-		int[] last = new int[10];
-		char[] numArray = String.valueOf(num).toCharArray();
-		
-		for (int i = 0; i < numArray.length; i++) {
-			last[numArray[i] - '0'] = i;
-		}
-		
-		for (int i = 0; i < numArray.length; i++) {
-			for (int j = 9; j > numArray[i] - '0'; j--) {
-				if (last[j] > i) {
-					char tmp = numArray[i];
-					numArray[i] = numArray[last[j]];
-					numArray[last[j]] = tmp;
-					return Integer.parseInt(new String(numArray));
-				} 
-			}
-		}
-		
-		return num;
+        char[] str = String.valueOf(num).toCharArray();
+        int[] last = new int[10];
+            
+        for (int i = 0; i < str.length; i++) {
+            last[str[i] - '0'] = i;
+        }
+        
+        for (int i = 0; i < str.length; i++) {
+            for (int j = 9; j > str[i] - '0'; j--) {
+                if (last[j] > i) {
+                    char c = str[i];
+                    str[i] = str[last[j]];
+                    str[last[j]] = c;
+                    return Integer.parseInt(String.valueOf(str));
+                }
+            }
+        }
+        
+        return num;
 	}
 	
 	// My solution

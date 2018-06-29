@@ -11,6 +11,29 @@ public class Solution {
 	 */
 	
     public static String addBinary(String a, String b) {
+        StringBuilder sb = new StringBuilder();
+        
+        int carry = 0;
+        
+        for (int i = a.length() - 1, j = b.length() - 1; i >= 0 || j >= 0; i--, j--) {
+            int x = i < 0 ? 0 : a.charAt(i) - '0';
+            int y = j < 0 ? 0 : b.charAt(j) - '0';
+            
+            int sum = x + y + carry;
+            carry = sum / 2;
+            sum = sum % 2;
+            
+            sb.append(sum);
+        }
+        
+        if (carry != 0) {
+            sb.append(carry);
+        }
+        
+        return sb.reverse().toString();
+    }
+    /*
+    public static String addBinary(String a, String b) {
     	StringBuilder result = new StringBuilder();
     	int carry = 0;
     	int sum = 0;
@@ -29,7 +52,7 @@ public class Solution {
     	}
     	return result.reverse().toString();
     }
-	
+	*/
     
     // Solution 2: 比较直观，容易想到
     /*

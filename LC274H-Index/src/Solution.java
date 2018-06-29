@@ -39,7 +39,7 @@ public class Solution {
 	// Soltion 2: Bucket Sort, Time: O(n), Space: O(n)
 	// e.g. 3, 0, 6, 1, 5
 	// bucket: index: 0, 1, 2, 3, 4, 5
-	//         val:   1, 0, 0, 1, 1, 2
+	//         val:   1, 1, 0, 1, 0, 2
     public static int hIndex(int[] citations) {
     	int n = citations.length;
     	int[] bucket = new int[n + 1];
@@ -64,9 +64,9 @@ public class Solution {
     }
     
     public static void main(String[] args) {
-		//int[] test = {3,0,6,1,5,7};
+		int[] test = {3,0,6,1,5,7};
 		
-    	int[] test = {0, 1, 0,0 , 0};
+    	//int[] test = {0, 1, 0,0 , 0};
     	//int[] test = {2,4,1,0,5};
 		System.out.println(hIndex(test));
 	}

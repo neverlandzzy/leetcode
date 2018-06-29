@@ -121,5 +121,23 @@ public class Solution {
         nums[j] = tmp;
     }
     */
+    
+    /*
+    public static int removeDuplicates(int[] nums) {
+        int index = 0;
+        int i = 0;
+        int n = nums.length;
+        
+        while (i < n) {
+            if (nums[index] != nums[i]) {
+                index++;
+                nums[index] = nums[i];
+            }
+            i++;
+        }
+        
+        return index + 1;
+    }
+    */
 
 }

@@ -54,22 +54,21 @@ public class Solution {
 	// Solution 2: Iteration T: O(n)  S:O(1)
     /*
     public static void flatten(TreeNode root) {
-    	TreeNode cur = root;
-    	
-    	while(cur != null) {
-    		if (cur.left != null) {
-    			if (cur.right != null) {
-    				TreeNode next = cur.left;
-    				while (next.right != null) {
-    					next = next.right;
-    				}
-    				next.right = cur.right;
-    			}
-				cur.right = cur.left;
-				cur.left = null;
-    		}
-    		cur = cur.right;
-    	}
+        TreeNode node = root;
+        
+        while (node != null) {
+            if (node.left != null) {
+                TreeNode next = node.left;
+                while (next.right != null) {
+                    next = next.right;
+                }
+                
+                next.right = node.right;
+                node.right = node.left;
+                node.left = null;
+            }
+            node = node.right;
+        }
     }
     */
     public static void main(String[] args) {

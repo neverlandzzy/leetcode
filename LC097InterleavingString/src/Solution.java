@@ -45,36 +45,35 @@ public class Solution {
         return d[n1][n2];
         */
         
-        // Solution 2: Time O(n1 * n2) Space O(n)
+        // Solution 2: Time O(n1 * n2) Space O(min(n1, n2))
+        
+        if (s1.length() + s2.length() != s3.length()) {
+            return false;
+        }
         
         int n1 = s1.length();
         int n2 = s2.length();
         
-        if (s3.length() != n1 + n2) {
-            return false;
-        }
-        
-        if (n1 > n2) {
+        if (n2 > n1) {
             return isInterleave(s2, s1, s3);
         }
         
-        boolean[] d = new boolean[n1 + 1];
+        boolean[] dp = new boolean[n2 + 1];
+        dp[0] = true;
         
-        d[0] = true;
-        
-        for (int i = 1; i <= n1; i++) {
-            d[i] = d[i - 1] && s1.charAt(i - 1) == s3.charAt(i - 1);
+        for (int i = 1; i <= n2; i++) {
+            dp[i] = dp[i - 1] && s2.charAt(i - 1) == s3.charAt(i - 1);    
         }
         
-        for (int j = 1; j <= n2; j++) {
-            d[0] = d[0] && s2.charAt(j - 1) == s3.charAt(j - 1);
-            for (int i = 1; i <= n1; i++) {
-                d[i] = d[i - 1] && s1.charAt(i - 1) == s3.charAt(i + j - 1) ||
-                       d[i] && s2.charAt(j - 1) == s3.charAt(i + j - 1);
+        for (int i = 1; i <= n1; i++) {
+            dp[0] = dp[0] & s1.charAt(i - 1) == s3.charAt(i - 1);
+            
+            for (int j = 1; j <= n2; j++) {
+                dp[j] = (dp[j] && s1.charAt(i - 1) == s3.charAt(i + j - 1)) || (dp[j - 1] && s2.charAt(j - 1) == s3.charAt(i + j - 1));
             }
         }
         
-        return d[n1];
+        return dp[n2];
     }
     
     public static void main(String[] args) {

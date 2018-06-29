@@ -25,6 +25,37 @@ public class Solution {
         return successor;
     }
     
+    // Solution 2: iteration
+    /*
+    public static TreeNode inorderSuccessor(TreeNode root, TreeNode p) {
+        TreeNode more = null;
+        
+        Stack<TreeNode> stack = new Stack<>();
+        stack.push(root);
+        TreeNode node = root.left;
+        
+        while (node != null) {
+            stack.push(node);
+            node = node.left;
+        }
+        
+        while (!stack.isEmpty()) {
+            TreeNode cur = stack.pop();
+            if (cur.val > p.val && more == null) {
+                more = cur;
+                break;
+            }            
+            
+            cur = cur.right;
+            while (cur != null) {
+                stack.push(cur);
+                cur = cur.left;
+            }
+        }
+        
+        return more;
+    }
+    */
 	public static void main(String[] args) {
  		TreeNode node1 = new TreeNode(9);
  		TreeNode node2 = new TreeNode(3);
