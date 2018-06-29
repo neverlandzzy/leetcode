@@ -1,4 +1,6 @@
 import java.util.HashMap;
+import java.util.Map;
+import java.util.TreeSet;
 
 
 public class Solution {
@@ -9,22 +11,37 @@ public class Solution {
 	 */
 	
 	// Solution 1: TreeSet O(nlogk)
+	// 注意溢出，LC上solution给的解法在int[] test2 = {2147483647, 2147483647}; 时不对
 	/*
     public static boolean containsNearbyAlmostDuplicate(int[] nums, int k, int t) {
-        TreeSet<Integer> set = new TreeSet<Integer>();
-        
-        for (int i = 0; i < nums.length; i++) {
-        	if ((set.floor(nums[i]) != null && set.floor(nums[i]) >= nums[i] - t) ||(set.ceiling(nums[i])
-        			!= null && set.ceiling(nums[i]) <= nums[i] + t)) {
-        				return true;
-        	} else {
-        		set.add(nums[i]);
-        		if (i >= k) {
-        			set.remove(nums[i - k]);
-        		}        	
-        	}
-        }
-        return false;
+    	if (nums == null || nums.length == 0 || k <= 0 || t < 0) {
+    		return false;
+    	}
+    	
+    	TreeSet<Long> set = new TreeSet<>();
+    	
+    	for (int i = 0; i < nums.length; i++) {
+    		Long floor = set.floor((long)nums[i] + t); // 最大的比nums[i] + t 小的数
+    		Long ceiling = set.ceiling((long)nums[i] - t); // 最小的比nums[i] - t大的数
+    		
+    		if (floor != null && floor >= nums[i]) {
+    			// floor <= nums[i] + t && floor >= nums[i] --> 0 < floor - nums[i] <= t
+    			return true;
+    		}
+    		
+    		if (ceiling != null && ceiling <= nums[i]) {
+    			// ceiling >= nums[i] - t && ceiling <= nums[i] --> -t <= ceiling - nums[i] <= 0
+    			return true;
+    		}
+    		
+    		set.add((long)nums[i]);
+    		
+    		if (i >= k) {
+    			set.remove((long)nums[i - k]);
+    		}
+    	}
+    	
+    	return false;
     }
     */
 	
@@ -39,7 +56,7 @@ public class Solution {
     	if (k < 1 || t < 0) return false;
     	t++;
     	
-    	HashMap<Integer, Integer> map = new HashMap<Integer, Integer>();
+    	Map<Integer, Integer> map = new HashMap<>();
 
     	for (int i = 0; i < nums.length; i++) {
      		
@@ -64,10 +81,10 @@ public class Solution {
 
 
     public static void main(String[] args) {
-		int[] test = {-1, 2147483647};
-		
-		System.out.println(containsNearbyAlmostDuplicate(test, 1, 2147483647));
-		//System.out.println(containsNearbyAlmostDuplicate(test, 5, 1));
+		int[] test1 = {-1, 2147483647};
+		int[] test2 = {2147483647, 2147483647};
+		//System.out.println(containsNearbyAlmostDuplicate(test1, 1, 2147483647));
+		System.out.println(containsNearbyAlmostDuplicate(test2, 3, 3));
 		//System.out.println(containsNearbyAlmostDuplicate(test, 3, 1));
 
 	}

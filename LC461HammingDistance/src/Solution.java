@@ -36,6 +36,29 @@ public class Solution {
         return counter;
     }
     
+    /*
+    public static int hammingDistance(int x, int y) {
+        int counter = 0;
+        
+        for (int i = 0; i < 32; i++) {
+            int bitX = x & 1;
+            int bitY = y & 1;
+            
+            if ((bitX ^ bitY) == 1) {
+                counter++;
+            }
+            
+            x = x >> 1;
+            y = y >> 1;
+            
+            if (x == 0 && y == 0) {
+                break;
+            }
+        }
+        
+        return counter;
+    }
+    */
     public static void main(String[] args) {
     	System.out.println(hammingDistance(1, 4));
     	System.out.println(hammingDistance(5, 6));

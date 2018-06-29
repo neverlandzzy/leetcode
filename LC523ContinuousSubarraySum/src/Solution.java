@@ -1,4 +1,5 @@
 import java.util.HashMap;
+import java.util.Map;
 
 
 public class Solution {
@@ -26,7 +27,7 @@ public class Solution {
         // map的key是当前sum%k
 		// 当遍历数组过程中，发现两个相同的key时，说明有两个不同位置的sum有相同的sum%k，那么这两个sum位置之间的数字之和肯定可以被k整除，因此返回true
 		int sum = 0;
-		HashMap<Integer, Integer> map = new HashMap<>();
+		Map<Integer, Integer> map = new HashMap<>();
 		
 		// for case: nums = [0, 0] k = 0
 		map.put(0, -1);
@@ -41,7 +42,7 @@ public class Solution {
 				
 				//a continuous subarray of size at least 2 
 				if (i - map.get(sum) > 1) {
-					System.out.println(map);
+					//System.out.println(map);
 					return true;
 				}
 			} else {

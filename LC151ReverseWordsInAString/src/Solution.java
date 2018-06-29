@@ -30,6 +30,36 @@ public class Solution {
     	return sb.toString();
     }
     
+    //另一种写法，和LC186一致，方便记忆
+    /*
+    public String reverseWords(String s) {
+        StringBuilder sb = new StringBuilder();
+        
+        int n = s.length();
+        int i = n - 1;
+        
+        while (i >= 0) {
+            if (i >= 0 && s.charAt(i) == ' ') {
+                i--;
+            } else {
+                int j = i;
+                
+                while (j > 0 && s.charAt(j - 1) != ' ') {
+                    j--;
+                }
+                
+                if (sb.length() > 0) {
+                    sb.append(' ');
+                }
+                sb.append(s.substring(j, i + 1));
+                i = j - 1;
+            }
+        }
+        
+        return sb.toString();
+    }
+    */
+    
     // Another solution
     /*
     public String reverseWords(String s) {

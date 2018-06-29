@@ -109,38 +109,38 @@ public class Soluation {
 	}
 	*/
 	
+	
     public static double findMedianSortedArrays(int[] nums1, int[] nums2) {
+        int n1 = nums1.length;
+        int n2 = nums2.length;
         
-        int k = nums1.length + nums2.length;
-        
-        if (k % 2 != 0) {
-            return (double) kthElement(nums1, nums2, k/2 + 1, 0, 0);
+        if ((n1 + n2) % 2 == 0) {
+            return (double)(kthElement(nums1, nums2, 0, 0, (n1 + n2) / 2) + kthElement(nums1, nums2, 0, 0, (n1 + n2) / 2 + 1)) / 2.0;
         } else {
-            return ((double) kthElement(nums1, nums2, k/2, 0, 0) + (double) kthElement(nums1, nums2, k/2 + 1, 0, 0)) / 2.0;
+            return (double)kthElement(nums1, nums2, 0, 0, (n1 + n2) / 2 + 1);
         }
     }
     
-
-    private static int kthElement(int[] nums1, int[] nums2, int k, int nums1Start, int nums2Start) {
-        if (nums1Start >= nums1.length) {
-            return nums2[nums2Start + k - 1];
+    private static int kthElement(int[] nums1, int[] nums2, int i1, int i2, int k) {
+        if (i1 >= nums1.length) {
+            return nums2[i2 + k - 1];
         }
         
-        if (nums2Start >= nums2.length) {
-            return nums1[nums1Start + k - 1];
+        if (i2 >= nums2.length) {
+            return nums1[i1 + k - 1];
         }
         
         if (k == 1) {
-            return Math.min(nums1[nums1Start], nums2[nums2Start]);
+            return nums1[i1] < nums2[i2] ? nums1[i1] : nums2[i2];
         }
         
-        int nums1Mid = nums1Start + k / 2 - 1 < nums1.length ? nums1[nums1Start + k / 2 - 1] : Integer.MAX_VALUE;
-        int nums2Mid = nums2Start + k / 2 - 1 < nums2.length ? nums2[nums2Start + k / 2 - 1] : Integer.MAX_VALUE;
+        int mid1 = i1 + k / 2 - 1 >= nums1.length ? Integer.MAX_VALUE : nums1[i1 + k / 2 - 1];
+        int mid2 = i2 + k / 2 - 1 >= nums2.length ? Integer.MAX_VALUE : nums2[i2 + k / 2 - 1];
         
-        if (nums1Mid < nums2Mid) {
-            return kthElement(nums1, nums2, k - k/2, nums1Start + k / 2, nums2Start);
+        if (mid1 > mid2) {
+            return kthElement(nums1, nums2, i1, i2 + k / 2, k - k / 2);
         } else {
-            return kthElement(nums1, nums2, k - k/2, nums1Start, nums2Start + k / 2);
+            return kthElement(nums1, nums2, i1 + k / 2, i2, k - k / 2);
         }
     }
    

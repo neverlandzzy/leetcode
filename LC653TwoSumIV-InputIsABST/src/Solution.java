@@ -33,7 +33,7 @@ public class Solution {
 	 * Output: False 
 	 */
 	
-	// Solution 1: Inorder + two pointers
+	// Solution 1: Inorder + two pointers - Time:O(n), Space:O(n)
 	/*
     public static boolean findTarget(TreeNode root, int k) {
         List<Integer> list = new ArrayList<>();
@@ -69,7 +69,7 @@ public class Solution {
     }
     */
     
-    // Solution 2: DFS + HashSet
+    // Solution 2: DFS + HashSet - Time:O(n), Space:O(n)
     public static boolean findTarget(TreeNode root, int k) {
     	Set<Integer> set = new HashSet<>();
     	

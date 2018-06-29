@@ -42,6 +42,21 @@ public class App {
 		
 	}
 	
+    public static int titleToNumber(String s) {
+        int factor = 1;
+        int result = 0;
+        
+        for (int i = s.length() - 1; i >= 0; i--) {
+            char c = s.charAt(i);
+            int val = (c - 'A' + 1) * factor;
+            result += val;
+            factor *= 26;
+        }
+        
+        return result;
+    }
+    
+    /*
 	public static int titleToNumber(String s) {
 		
 		int colNumber = 0;
@@ -52,6 +67,6 @@ public class App {
         
         return colNumber;
     }
-	
+	*/
 	
 }

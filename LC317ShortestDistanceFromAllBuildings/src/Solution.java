@@ -52,6 +52,7 @@ public class Solution {
                     continue;
                 }
                 
+                // 因为要求所有的building都能到达。如果有不满足，则result 为Integer.MAX_VALUE;
                 result = Integer.MAX_VALUE;
                 Queue<int[]> queue = new LinkedList<>();
                 queue.offer(new int[]{i, j});
@@ -82,7 +83,6 @@ public class Solution {
                 flag--;
             }
         }
-        
         return result == Integer.MAX_VALUE ? -1 : result;
 	}
 	
@@ -150,8 +150,9 @@ public class Solution {
     */
     
     public static void main(String[] args) {
-		int[][] test = {{1, 0, 2, 0, 1}, {0, 0, 0, 0, 0}, {0, 0, 1, 0, 0}};
-		
-		System.out.println(shortestDistance(test));
+		int[][] test1 = {{1, 0, 2, 0, 1}, {0, 0, 0, 0, 0}, {0, 0, 1, 0, 0}};
+		int[][] test2 = {{0, 2, 1}, {0, 2, 0}, {0, 2, 2}, {1, 0, 0}};
+		//System.out.println(shortestDistance(test1));
+		System.out.println(shortestDistance(test2));
 	}
 }

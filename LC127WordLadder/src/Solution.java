@@ -28,8 +28,9 @@ public class Solution {
 	 * All words have the same length.
 	 * All words contain only lowercase alphabetic characters.
 	 */
-	
-   public static int ladderLength(String beginWord, String endWord, List<String> wordList) {
+
+	// Time: O(26MN) Space: O(26MN): where M is the min steps and N is the word length
+	public static int ladderLength(String beginWord, String endWord, List<String> wordList) {
         if (wordList == null || wordList.size() == 0 || !wordList.contains(endWord)) {
             return 0;
         }
@@ -64,7 +65,7 @@ public class Solution {
         }
         
         return 0;
-    }
+	}
     
     private static List<String> getNextWord(String word, Set<String> set) {
         List<String> result = new ArrayList<>();

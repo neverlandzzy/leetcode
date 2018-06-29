@@ -22,30 +22,32 @@ public class Solution {
 	//Solution 1: HashTable,  space : not O(1)
 	/*
     public static boolean isHappy(int n) {
-
-        HashSet<Integer> set = new HashSet<Integer>();
+        Set<Integer> set = new HashSet<>();
         
-        int sum = 0;
+        int sum = cal(n);
         
         while (sum != 1) {
+            if (set.contains(sum)) {
+                return false;
+            } 
             
-        	sum = 0;
-	        
-            while (n > 0) {
-	        	int lastDigit = n % 10;
-	        	sum += lastDigit * lastDigit;
-	        	n = n / 10;
-	        }
-	        
-            n = sum;
-
-	        if (!set.add(sum)) {
-	        	return false;
-	        }
+            set.add(sum);
+            sum = cal(sum);
         }
         
         return true;
+    }
+    
+    private int cal(int n) {
+        int result = 0;
         
+        while (n > 0) {
+            int lastDigit = n % 10;
+            result += Math.pow(lastDigit, 2);
+            n /= 10;
+        }
+        
+        return result;
     }
     
     */

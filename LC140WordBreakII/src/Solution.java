@@ -1,7 +1,7 @@
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Set;
+import java.util.Map;
 
 
 public class Solution {
@@ -22,13 +22,13 @@ public class Solution {
 	// https://www.youtube.com/watch?v=pYKGRZwbuzs
    public static List<String> wordBreak(String s, List<String> wordDict) {
 
-        HashMap<String,List<String>> map = new HashMap<String,List<String>>(); // 直接DFS会 TLE, 加map 剪枝 --> o(n^2)
+        Map<String,List<String>> map = new HashMap<>(); // 直接DFS会 TLE, 加map 剪枝 --> o(n^2)
         
         return helper(s, wordDict, map);
 
     }
     
-    private static List<String> helper(String s, List<String> wordDict, HashMap<String,List<String>> map) {
+    private static List<String> helper(String s, List<String> wordDict, Map<String,List<String>> map) {
     	if (map.containsKey(s)) {
     		return map.get(s);
     	}

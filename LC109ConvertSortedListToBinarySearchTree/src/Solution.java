@@ -6,10 +6,7 @@ public class Solution {
 	
 	
     public TreeNode sortedListToBST(ListNode head) {
-        if (head == null) {
-            return null;
-        }
-        
+
         return helper(head, null);
     }
     
