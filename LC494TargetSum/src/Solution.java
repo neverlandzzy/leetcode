@@ -45,25 +45,33 @@ public class Solution {
     // Solution 2: DFS + mem  Time: O(l * n) l: the range of sum 
     /*
     public static int findTargetSumWays(int[] nums, int S) {
-    	Integer[][] cache = new Integer[nums.length + 1][2001];
+        Integer[][] cache = new Integer[nums.length][2001];
+        
         return helper(nums, S, 0, 0, cache);
         
     }
 	
     private static int helper(int[] nums, int S, int sum, int pos, Integer[][] cache) {
-    	if (cache[pos][sum + 1000] != null) {
-    		return cache[pos][sum + 1000];
-    	}
-    	
-    	if (pos == nums.length) {
-    		if (S == sum) {
-    			return 1;
-    		}
-    		return 0;
-    	} else {
-    		cache[pos][sum + 1000] = helper(nums, S, sum + nums[pos], pos + 1, cache) + helper(nums, S, sum - nums[pos], pos + 1, cache);
-    		return cache[pos][sum + 1000];
-    	}
+        if (pos == nums.length) {
+            if (S == sum) {
+                return 1;
+            }
+            
+            return 0;
+        }
+        
+        if (cache[pos][sum + 1000] != null) {
+            return cache[pos][sum + 1000];
+        }
+        
+        int result = 0;
+        
+        result += helper(nums, S, sum + nums[pos], pos + 1, cache);
+        result += helper(nums, S, sum - nums[pos], pos + 1, cache);
+        
+        cache[pos][sum + 1000] = result;
+        
+        return result;
     }
     */
 	

@@ -27,8 +27,8 @@ public class Solution {
 	// https://blog.csdn.net/linhuanmars/article/details/20024907
 	// 在原来方法（用long计算）上进行的改进：
 	// 	1. 预处理一些corner case；
-	//  2. 在右移divisor逼近结果时，原方法是判断当dividend >= divisor时，便右移divisor，这样可能导致溢出
-	//     所以本方法是先判断divisor <= (dividend >> 1) 才右移divisor，从而避免溢出
+	//  2. 在右移divisor逼近结果时，原方法是判断当dividend >= divisor时，便左移divisor，这样可能导致溢出
+	//     所以本方法是先判断(dividend >> 1) >= divisor 才左移divisor，从而避免溢出
 	
 	public static int divide(int dividend, int divisor) {
 		// Bit Manipulation: Time ~ O(logNa), Space ~ O(1) 

@@ -11,9 +11,9 @@ public class Worker {
 	private List<Integer> list2 = new ArrayList<>();
 	
 	/*
-	// In this way, Worker as an object has only 1 transient lock, it one thread having transient lock and running
+	// In this way, Worker as an object has only 1 transient lock, if one thread having transient lock and running
 	// stageOne(), even if the other thread wants to run stageTwo(), it still has to wait for the first thread release
-	// the lock. 
+	// the lock. When stageOne() runs, it requires transient lock of Worker, same as stageTwo().
 	
 	public synchronized void stageOne() {
 		try {

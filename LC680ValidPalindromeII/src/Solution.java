@@ -15,6 +15,7 @@ public class Solution {
 	 * The string will only contain lowercase characters a-z. The maximum length of the string is 50000.
 	 */
 	
+	// Time: O(n), Space: O(1)
     public static boolean validPalindrome(String s) {
         if (s == null || s.length() == 0) {
             return true;
@@ -46,9 +47,55 @@ public class Solution {
         return true;
     }
 	
+	
+    /* 
+    // 这个解法是易犯的错误："lcuppucul"会fail
+    public static boolean validPalindrome(String s) {
+        if (s == null || s.length() == 0) {
+            return true;
+        }
+        
+        int n = s.length();
+        int i = 0;
+        int j = n - 1;
+        boolean changed = false;
+        
+        while (i < j) {
+            if (s.charAt(i) != s.charAt(j)) {
+                if (changed) {
+                    return false;
+                }
+                
+                if (i + 1 == j) {
+                    return true;
+                }
+                
+                if (s.charAt(i + 1) == s.charAt(j)) {
+                    i++;
+                    changed = true;
+                } else if (s.charAt(i) == s.charAt(j - 1)) {
+                    j--;
+                    changed = true;
+                } else {
+                    return false;
+                }
+            }
+            
+            i++;
+            j--;
+        }
+        
+        return true;
+    }
+    */
+    
+    
 	public static void main(String[] args) {
 		System.out.println(validPalindrome("aba"));
 		System.out.println(validPalindrome("abca"));
 		System.out.println(validPalindrome("abc"));
+		System.out.println(validPalindrome("lcuppucul"));
+		
+		
 	}
 }
