@@ -13,21 +13,17 @@ public class Solution {
 	 */
 	
 	public static void moveZeroes(int[] nums) {
-        if (nums == null || nums.length == 0) {
-            return;
-        }
+        int n = nums.length;
         
-        int pre = 0;
+        int index = 0;
         int i = 0;
         
-        while (i < nums.length) {
+        while (i < n) {
             if (nums[i] != 0) {
-                if (i != pre) {
-                    swap(nums, i, pre);
-                }
-                pre++;
-                
-            } 
+                swap(nums, i, index);
+                index++;
+            }
+            
             i++;
         }
     }

@@ -15,6 +15,36 @@ public class Solution {
 	 */
 	
     public static String countAndSay(int n) {
+        if (n <= 0) {
+            return "";
+        }
+        
+        String s = "1";
+        
+        for (int i = 2; i <= n; i++) {
+            StringBuilder sb = new StringBuilder();
+            int j = 0;
+            while (j < s.length()) {
+                int counter = 1;
+                while (j < s.length() - 1 && s.charAt(j) == s.charAt(j + 1)) {
+                    counter++;
+                    j++;
+                }
+                
+                sb.append(counter);
+                sb.append(s.charAt(j));
+                j++;
+            }
+            
+            s = sb.toString();
+        }
+        
+        return s;
+    }
+    
+    // another solution
+    /* 
+    public static String countAndSay(int n) {
         StringBuilder str = new StringBuilder("1");
         
         for (int i = 1; i < n; i++) {
@@ -34,7 +64,7 @@ public class Solution {
         
         return str.toString();
     }
-    
+    */
     public static void main(String[] args) {
 		System.out.println(countAndSay(6));
 	}

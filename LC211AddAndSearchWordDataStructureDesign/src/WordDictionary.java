@@ -72,16 +72,16 @@ public class WordDictionary {
         if (word[pos] != '.') {
             return node.children[word[pos] - 'a'] != null && 
                     helper(word, pos + 1, node.children[word[pos] - 'a']);
-        } else {
-            for (int i = 0; i < node.children.length; i++) {
-                if (node.children[i] != null) {
-                    if (helper(word, pos + 1, node.children[i])) {
-                        return true;
-                    }
+        } 
+        
+        for (int i = 0; i < node.children.length; i++) {
+            if (node.children[i] != null) {
+                if (helper(word, pos + 1, node.children[i])) {
+                    return true;
                 }
             }
         }
-        
+               
         return false;
     }
     

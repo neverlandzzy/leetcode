@@ -140,10 +140,18 @@ public class Test {
 		*/
 		
 
-		String s = "/home//foo";
+		String s = "/home//foo/";
+		String[] str = s.split("/");
+		System.out.println(str.length);
 		
-		for (String str: s.split("/")) {
-			System.out.print(str + ", ");
+		for (int i = 0; i < str.length; i++) {
+			if (str[i] == null) {
+				System.out.println(i);
+			} else if (str[i].length() == 0) {
+				System.out.println(" vvvv " + i);
+			} else {
+				System.out.println(str[i] + "   " + i);
+			}
 		}
 	}
 	

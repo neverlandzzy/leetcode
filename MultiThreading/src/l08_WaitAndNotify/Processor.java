@@ -12,7 +12,13 @@ public class Processor {
 		synchronized(this) {
 			System.out.println("Producer thread running");			
 			// waits until being notified. During wait, it will release the transient lock
-			wait();
+			// wait() and notify() have to be locked to same object, in this example, both of 
+			// them are locked to this.
+			
+			// Here, both are locked to this, so wait() and notify() are corresponding to this.
+			// if locked to other object, e.g. lock, then, here we should use lock.wait() and lock.notify()
+			wait(); // -- this.wait()
+			
 			System.out.println("Resumed");
 		}
 	}

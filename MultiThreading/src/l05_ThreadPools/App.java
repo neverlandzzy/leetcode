@@ -49,6 +49,8 @@ public class App {
 		
 		System.out.println("All tasks submitted.");
 		
+		// 等待executor执行完毕，timeout是一天
+		// 另一种方法是l06中的用CountDownLatch. 当CountDownLatch减少到0的时候，main thread便继续执行
 		try {
 			executor.awaitTermination(1, TimeUnit.DAYS);
 		} catch (InterruptedException e) {

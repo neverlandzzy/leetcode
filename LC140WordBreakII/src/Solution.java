@@ -41,6 +41,7 @@ public class Solution {
     	
     	if (wordDict.contains(s)) {
     		result.add(s);
+    		return result;
     	}
     	
     	for (int i = 0; i < s.length(); i++) {

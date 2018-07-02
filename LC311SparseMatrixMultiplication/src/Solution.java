@@ -108,6 +108,10 @@ public class Solution {
         		}
         	}
         }
+
+        
+        //System.out.println(tableA);
+        //System.out.println(tableB);
         
         for (int i: tableA.keySet()) {
         	for (int k: tableA.get(i).keySet()) {
