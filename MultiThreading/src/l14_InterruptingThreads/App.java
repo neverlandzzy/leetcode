@@ -25,6 +25,7 @@ public class App {
 					} catch (InterruptedException e) {
 						// TODO Auto-generated catch block
 						System.out.println("Interrupted!");
+						break;
 					}
 					
 					Math.sin(random.nextDouble());

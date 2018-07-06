@@ -19,6 +19,7 @@ public class Runner {
 			boolean gotSecondLock = false;
 			
 			try {
+				// tryLock(): return true if gets the lock, otherwise return false
 				gotFirstLock = firstLock.tryLock();
 				gotSecondLock = secondLock.tryLock();
 			} finally {
@@ -75,7 +76,7 @@ public class Runner {
 			
 			// Two solutions to avoid deadlock:
 			// 1. always lock the lock in same order;
-			// 2. see - acquireLocks(lock1, lock2);
+			// 2. see - acquireLocks(lock1, lock2); -- 若不能同时获得所有的锁，则释放已经获得的锁
 			
 			acquireLocks(lock2, lock1);
 			
