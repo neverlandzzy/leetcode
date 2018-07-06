@@ -138,21 +138,7 @@ public class Test {
 		System.out.println(a ^ b);
 		System.out.println(c ^ b);
 		*/
-		
 
-		String s = "/home//foo/";
-		String[] str = s.split("/");
-		System.out.println(str.length);
-		
-		for (int i = 0; i < str.length; i++) {
-			if (str[i] == null) {
-				System.out.println(i);
-			} else if (str[i].length() == 0) {
-				System.out.println(" vvvv " + i);
-			} else {
-				System.out.println(str[i] + "   " + i);
-			}
-		}
 	}
 	
 	

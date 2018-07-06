@@ -14,6 +14,7 @@ public class App {
 		ExecutorService executor = Executors.newCachedThreadPool();
 		
 		// Callable() can return value;
+		// Callable<Type>(): Type -- return type, should match return value of call()
 		// if we don't want return value, we can use following line:
 		// Future<?> future = executor.submit(new Callable<Void>() {
 		Future<Integer> future = executor.submit(new Callable<Integer>() {

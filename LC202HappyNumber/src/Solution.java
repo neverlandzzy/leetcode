@@ -19,6 +19,9 @@ public class Solution {
 	 * 1^2 + 0^2 + 0^2 = 1
 	 */
 	
+	// 证明
+	// https://en.wikipedia.org/wiki/Happy_number#Sequence_behavior
+	
 	//Solution 1: HashTable,  space : not O(1)
 	/*
     public static boolean isHappy(int n) {
