@@ -54,69 +54,68 @@ public class DrawCircle {
 		List<int[]> result = new ArrayList<>();
 		
 		for (int x = 0; x <= 0.707 * r; x++) {
-			for (int y = x; y <= r; y++) {
+			for (int y = r; y >= x; y--) {
 				if (x * x + y * y == r * r) {
-					addPoints(x, y, result);				
+					addPoints(x, y, result);
+				}
+			}			
+		}
+		return result;
+	}
+	
+	
+	public static List<int[]> circle2(int r) {
+		List<int[]> result = new ArrayList<>();
+		
+		for (int x = 0; x <= 0.707 * r; x++) {
+			int[] res = new int[2];
+			int min = Integer.MAX_VALUE;
+			for (int y = r; y >= x; y--) {
+				if (Math.abs(x * x + y * y - r * r) < min) {
+					min = Math.abs(x * x + y * y - r * r);
+					res[0] = x;
+					res[1] = y;
 				}
 			}
+			addPoints(res[0], res[1], result);
+		}
+		return result;
+	}
+	
+	public static List<int[]> circle3(int r) {
+		List<int[]> result = new ArrayList<>();
+		int x = 0;
+		int y = r;
+		addPoints(x, y, result);
+		
+		while (y > x) {
+			int error1 = error(x + 1, y, r);
+			int error2 = error(x + 1, y - 1, r);
+			
+			if (error1 < error2) {
+				x += 1;
+			} else {
+				x += 1;
+				y -= 1;
+			}
+			
+			if (x > y) {
+				break;
+			}
+			addPoints(x, y, result);
 		}
 		
 		return result;
 	}
 	
-	
-	public static List<double[]> circle2(int r) {
-		/*
-		List<double[]> result = new ArrayList<>();
-		
-		for (double x = Math.sqrt(r); x <= r; x += 1) {
-			for (int y = 0; y <= x; y++) {
-				
-				if (Math.abs(x * x + y * y - r * r) < 1e10) {
-					result.add(new double[]{x, y});	
-					result.add(new double[]{y, x});
-					result.add(new double[]{-x, y});
-					result.add(new double[]{y, -x});
-					
-					if (y != 0) {
-						result.add(new double[]{-y, -x});
-						result.add(new double[]{x, -y});
-						result.add(new double[]{-x, -y});
-						result.add(new double[]{-y, x});
-					}					
-				}
-			}
-		}
-		
-		return result;
-		*/
-		
-		List<double[]> result = new ArrayList<>();
-		
-		for (double x = 0; x <= 0.707 * r; x += 1) {
-			for (double y = x; y <= r; y++) {				
-				if (Math.abs(x * x + y * y - r * r) < 1e-10) {
-					result.add(new double[]{x, y});	
-					result.add(new double[]{y, x});
-					result.add(new double[]{x, -y});
-					result.add(new double[]{-y, x});
-					
-					if (x != 0) {
-						result.add(new double[]{-y, -x});
-						result.add(new double[]{y, -x});						
-						result.add(new double[]{-x, -y});
-						result.add(new double[]{-x, y});
-						
-					}					
-				}
-			}
-		}
-		
-		return result;
+	private static int error (int x, int y, int r) {
+		int error = x * x + y * y - r * r;
+		return error >= 0 ? error : -error;
+		//return Math.abs(x * x + y * y - r * r);
 	}
 	
 	// 中点法：练习推导证明
-	public static List<int[]> circle3(int r) {
+	public static List<int[]> circle4(int r) {
 		List<int[]> result = new ArrayList<>();
 		int x = 0;
 		int y = r;
@@ -133,6 +132,9 @@ public class DrawCircle {
 				y -= 1;
 			}
 			
+			if (y < x) {
+				break;
+			}
 			addPoints(x, y, result);
 		}
 		
@@ -155,32 +157,27 @@ public class DrawCircle {
 		} else {
 			result.add(new int[]{x, y});
 			result.add(new int[]{x, -y});
-			result.add(new int[]{-y, x});
+			result.add(new int[]{-x, y});
 			result.add(new int[]{-x, -y});
 		}
 	}
 	
 	public static void main(String[] args) {
-		List<int[]> result1 = circle1(5);		
+		List<int[]> result1 = circle1(7);		
 		print(result1);
 		
-		List<double[]> result2 = circle2(5);
-		print2(result2);
+		List<int[]> result2 = circle2(7);
+		print(result2);
 		
-		List<int[]> result3 = circle3(3);
+		List<int[]> result3 = circle3(7);
 		print(result3);
+		
+		List<int[]> result4 = circle4(7);
+		print(result4);
 	}
 	
 	private static void print(List<int[]> list) {
 		for (int[] points: list) {
-			System.out.print("[" + points[0] + ", " + points[1] + "],  ");
-		}
-		
-		System.out.println();
-	}
-	
-	private static void print2(List<double[]> list) {
-		for (double[] points: list) {
 			System.out.print("[" + points[0] + ", " + points[1] + "],  ");
 		}
 		

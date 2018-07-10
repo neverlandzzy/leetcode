@@ -88,15 +88,46 @@ public class BuddySystem {
 		}
 	}
 	
+	// 暴力解：
+	public static void set_bit2(int[][] mem, int offset, int length) {
+		for (int i = offset; i <= offset + length - 1; i++) {
+			int level = mem.length - 1;
+			int k = i;
+			mem[level][k] = 1;
+			while (level > 0) {
+				level--;
+				if (k % 2 == 0) {
+					mem[level][k / 2] = mem[level + 1][k] & mem[level + 1][k + 1];
+				} else {
+					mem[level][k / 2] = mem[level + 1][k] & mem[level + 1][k - 1];
+				}
+				k = k / 2;
+			}
+		}
+	}
+	
+	public static void clear_bit2(int[][] mem, int offset, int length) {		
+		for (int i = offset; i <= offset + length - 1; i++) {
+			int level = mem.length - 1;
+			int k = i;
+			mem[level][k] = 0;
+			while (level > 0) {
+				k = k / 2;
+				level--;
+				mem[level][k] = 0;
+			}
+		}
+	}
+	
 	public static void main(String[] args) {
 		// 2^n > offset + length
 		// c = 2^(r - 1);  c == 2^(4 - 1) = 8 -- > 4层则每层需要8个数
 		int[][] mem = new int[4][8];
 		
 		print(mem);
-		set_bit(mem, 0, 8);
+		set_bit2(mem, 0, 8);
 		print(mem);
-		clear_bit(mem, 3, 4);
+		clear_bit2(mem, 3, 4);
 		print(mem);
 	}
 	

@@ -29,6 +29,12 @@ public class EventFireV1 {
 	 */
 	
 	// V1: 单线程基础版
+	// 线程安全问题：
+	// 1. visibility -- volatile 可以解决
+	// 2. race condition -- volatile 没法解决，因此要加锁
+	//    Thread_A的reg_cb在Thread_B的fire()修改isFired前，判定isFired == false，然后Thread_B执行了while loop(比如queue为空，while loop很快结束)，
+	//    然后Thread_A又执行eventQueue.offer(cb);这个cb将永远没法被执行
+	
     static Queue<CallBack> eventQueue = new LinkedList<>();
     static boolean isFired = false;
     
@@ -42,11 +48,11 @@ public class EventFireV1 {
     
     public static void fire() {
     	System.out.println("fire!");
+    	isFired = true;
         while (!eventQueue.isEmpty()) {
-        	eventQueue.poll().call();
+        	CallBack cb = eventQueue.poll();
+        	cb.call();
         }
-                
-        isFired = true;
     }
     
     public static void main(String[] args) {
