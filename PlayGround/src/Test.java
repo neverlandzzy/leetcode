@@ -139,6 +139,9 @@ public class Test {
 		System.out.println(c ^ b);
 		*/
 
+		Queue<Integer> queue = new LinkedList<>();
+		Integer i = queue.poll();
+		System.out.println(i);
 	}
 	
 	

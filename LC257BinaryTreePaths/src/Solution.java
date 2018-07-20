@@ -23,6 +23,42 @@ public class Solution {
 	// Solution 1: DFS, Recursion
 	/*
     public static List<String> binaryTreePaths(TreeNode root) {
+        List<String> result = new ArrayList<>();
+        StringBuilder sb = new StringBuilder();
+        if (root == null) {
+            return result;
+        }
+        
+        helper(result, root, sb);
+        
+        return result;
+    }
+    
+    private static void helper(List<String> result, TreeNode root, StringBuilder sb) {       
+        sb.append(root.val);
+        
+        if (root.left == null && root.right == null) {
+            result.add(sb.toString());
+            return;
+        }
+        
+        sb.append("->");
+        int len = sb.length();
+
+        if (root.left != null) {
+            helper(result, root.left, sb);
+            sb.setLength(len);
+        }
+        
+        if (root.right != null) {
+            helper(result, root.right, sb);
+            sb.setLength(len);
+        }     
+    }
+    */
+	
+	/*
+    public static List<String> binaryTreePaths(TreeNode root) {
         List<String> result = new ArrayList<String>();
         
         helper(root, "" ,result);

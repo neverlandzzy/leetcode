@@ -2,7 +2,8 @@ package EventFire;
 
 public class App {
 	public static void main(String[] args) throws InterruptedException {
-		EventFireV2 ef2 = new EventFireV2();
+		//EventFireV2 ef2 = new EventFireV2();
+		EventFireV3 ef2 = new EventFireV3();
 		
 		CallBack cb1 = new CallBack("cb1");
 		CallBack cb2 = new CallBack("cb2");
@@ -19,12 +20,14 @@ public class App {
 			public void run() {
 				System.out.println("t1: Id " +  Thread.currentThread().getId());
 				System.out.println("t1_1: " + ef2.eventQueue + " isFired: " + ef2.isFired);
-				ef2.fire();
-				ef2.reg_cb(cb1);
 
+				ef2.reg_cb(cb1);
 				ef2.reg_cb(cb2);
+				
 				ef2.reg_cb(cb3);
 				ef2.reg_cb(cb4);
+				ef2.fire();
+				
 				System.out.println("t1_2: " + ef2.eventQueue + " isFired: " + ef2.isFired);
 			}
 		});

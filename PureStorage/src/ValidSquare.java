@@ -1,5 +1,7 @@
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Map;
 import java.util.Set;
 
 
@@ -34,6 +36,7 @@ public class ValidSquare {
     }
     
     // http://www.1point3acres.com/bbs/thread-313528-1-1.html
+    // http://www.1point3acres.com/bbs/forum.php?mod=viewthread&tid=302719
     // https://blog.csdn.net/winddreams/article/details/41853127
     // Follow up: 给n个点，问可以组成多少个valid square，要求先O(n^4)，再改进到O(n^3)，最后改进到 O(n^2)
     // e.g. input:  {{0, 0}, {0, 1}, {0, 2}, {1, 0}, {1, 1}, {1, 2}}
@@ -108,6 +111,78 @@ public class ValidSquare {
         return new int[][] {p3, p4};
     }
     
+    // O(n ^ 4)
+	public static int validSquareIII(int[][] points) {
+		int result = 0;
+		
+		for (int i = 0; i < points.length; i++) {
+			for (int j = i + 1; j < points.length; j++) {
+				for (int k = j + 1; k < points.length; k++) {
+					for (int l = k + 1; l < points.length; l++) {
+						if (validSquare(points[i], points[j], points[k], points[l])) {
+							result++;
+						}
+					}
+
+				}
+			}
+		}
+		
+		return result;
+	}
+	
+	
+    // O(n ^ 3)
+	public static int validSquareIV(int[][] points) {
+		Map<String, Integer> map = new HashMap<>();
+		int result = 0;
+		for (int i = 0; i < points.length; i++) {
+			map.put(getKey(points[i]), i);
+		}
+			
+		for (int i = 0; i < points.length; i++) {
+			for (int j = i + 1; j < points.length; j++) {
+				for (int k = j + 1; k < points.length; k++) {
+					int[] p1 = points[i];
+					int[] p2 = points[j];
+					int[] p3 = points[k];
+					
+					int[] p4 = null;
+					if (getDist(p1, p2) == getDist(p1, p3)) {
+						p4 = new int[2];
+						p4[0] = p2[0] + p3[0] - p1[0];
+						p4[1] = p2[1] + p3[1] - p1[1];
+					}
+					
+					if (getDist(p1, p2) == getDist(p2, p3)) {
+						p4 = new int[2];
+						p4[0] = p1[0] + p3[0] - p2[0];
+						p4[1] = p1[1] + p3[1] - p2[1];
+					}
+					
+					if (getDist(p1, p3) == getDist(p2, p3)) {
+						p4 = new int[2];
+						p4[0] = p1[0] + p2[0] - p3[0];
+						p4[1] = p1[1] + p2[1] - p3[1];
+					}
+					
+					if (p4 != null && map.containsKey(getKey(p4)) && map.get(getKey(p4)) > k) {
+						
+//						System.out.print("[" + getKey(p1)+ "]" + "  ");
+//						System.out.print("[" + getKey(p2)+ "]" + "  ");
+//						System.out.print("[" + getKey(p3)+ "]" + "  ");
+//						System.out.print("[" + getKey(p4)+ "]" + "  ");
+//						System.out.println();
+						
+						result++;
+					}
+				}
+			}
+		}
+		
+		return result;
+	}	
+    
     public static void main(String[] args) {
     	int[]p1 = {0, 0};
     	int[]p2 = {1, 1};
@@ -118,5 +193,17 @@ public class ValidSquare {
     	
     	int[][] points = {{0, 0}, {0, 1}, {0, 2}, {1, 0}, {1, 1}, {1, 2}};
     	System.out.println(validSquareII(points));
+    	
+    	
+    	int[][] points2 = {{0, 0}, {1, 0}, {2, 0}, {0, 2}, {1, 2}, {2, 2}, {0, 1}, {1, 1}, {2, 1}};
+
+    	System.out.println(validSquareII(points2));
+    	
+    	System.out.println(validSquareIII(points));
+    	System.out.println(validSquareIII(points2));
+    	
+    	System.out.println(validSquareIV(points));
+    	System.out.println(validSquareIV(points2));
+
 	}
 }

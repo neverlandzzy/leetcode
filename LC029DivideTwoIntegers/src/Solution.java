@@ -74,7 +74,7 @@ public class Solution {
 			divisor = divisor << 1;
 			n++;
 		}
-		
+		System.out.println("divisor = " + divisor + " n =  " + n);
 		while (n >= 0) {
 	        if (dividend >= divisor) {  
 	            result += 1 << n;  
@@ -157,8 +157,8 @@ public class Solution {
     	System.out.println(divide(-2147483648, 2));
     	*/
     	
-    	System.out.println(divide(1100540749, -1090366779));
+    	//System.out.println(divide(1100540749, -1090366779));
     	
-
+    	System.out.println(divide(7,3));
     }
 }
