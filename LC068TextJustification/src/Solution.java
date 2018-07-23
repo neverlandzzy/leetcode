@@ -42,8 +42,9 @@ public class Solution {
         }
         
         int length = 0;
-    
-        for (int i = 0; i < words.length;) {
+        int i = 0;
+        
+        while (i < words.length) {
             
             if (length + words[i].length() <= maxWidth) {
                 list.add(words[i]);
@@ -51,13 +52,13 @@ public class Solution {
                 i++;
             } else {
                 // 本行里所有的剩余空间(extraSpace)：L - 已经加入的每个word和word后面space的长度(length), 最后要加回最后一个word后面的space（+1）
-                int extraSpace = maxWidth - length + 1;
+                int space = maxWidth - length + 1;
                 // 本行里有多少个单词间padding的空格（也就是单词数 - 1）
                 int intervals = list.size() - 1;
                 // 本行里将空格均摊到每个interval后，剩下的不能均摊的空格
                 int extra = 0;
                 if (intervals != 0) {
-                    extra = extraSpace % intervals;
+                    extra = space % intervals;
                 }
                 
                 StringBuilder sb = new StringBuilder();
@@ -67,7 +68,7 @@ public class Solution {
                     if (list.size() > 1) {
                         if (s != list.get(list.size() - 1)) {
                             // extraSpace/intervals + 1： 每个单词后面至少要加一个空格， 长度已经计算过
-                            for (int j = 0; j < extraSpace/intervals + 1; j++) {
+                            for (int j = 0; j < space/intervals + 1; j++) {
                                 sb.append(' ');
                             }
                             
@@ -79,7 +80,7 @@ public class Solution {
                         }
                     } else {
                         // corner case: 当一行里只有一个单词的时候，左对齐
-                        for (int j = 0; j < extraSpace; j++) {
+                        for (int j = 0; j < space; j++) {
                             sb.append(' ');
                         }
                     }
@@ -95,13 +96,12 @@ public class Solution {
         
         for (String s: list) {
             lastLine.append(s);
+            length += s.length();
             if (s != list.get(list.size() - 1)) {
                 lastLine.append(' ');
-                length += s.length() + 1;
+                length ++;
             }
         }
-        
-        length += list.get(list.size() - 1).length();
         
         for (int j = 0; j < maxWidth - length; j++) {
             lastLine.append(' ');
@@ -109,7 +109,7 @@ public class Solution {
         
         result.add(lastLine.toString());
         
-        return result;
+        return result; 
     }
     
     public static void main(String[] args) {

@@ -24,6 +24,11 @@ public class Solution {
                 index++;
             }
             
+            // 减少swap次数的优化
+            while (index < i && nums[index] != 0) {
+                index++;
+            }
+            
             i++;
         }
     }

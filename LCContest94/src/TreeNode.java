@@ -7,8 +7,8 @@ public class TreeNode {
 	@Override
 	public String toString() {
 		// TODO Auto-generated method stub
-		return val + "";
-	}	
+		return String.valueOf(val);
+	}	 
 	 
 	 
 }
