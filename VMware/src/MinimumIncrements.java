@@ -27,8 +27,8 @@ public class MinimumIncrements {
 	}
 	
 	public static void main(String[] args) {
-		int[] nums1 = {2, 2, 3, 5, 6};
-		int[] nums2 = {20, 20};
+		int[] nums1 = {1, 2, 2};
+		int[] nums2 = {2, 2, 4, 5};
 		int[] nums3 = {3, 4, 6, 8};
 		System.out.println(minSum(nums1));
 		System.out.println(minSum(nums2));

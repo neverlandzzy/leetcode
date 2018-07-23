@@ -139,9 +139,14 @@ public class Test {
 		System.out.println(c ^ b);
 		*/
 
-		Queue<Integer> queue = new LinkedList<>();
-		Integer i = queue.poll();
-		System.out.println(i);
+		Queue<String> queue = new LinkedList<>();
+		
+		queue.offer("test1");
+		queue.offer("test2");
+		System.out.println(queue.poll());
+		System.out.println(queue.poll());
+		System.out.println(queue.poll());
+
 	}
 	
 	
