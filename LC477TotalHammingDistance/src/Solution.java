@@ -28,16 +28,23 @@ public class Solution {
         }
         
         int result = 0;
-        int range = 31;
-
-        for (int i = 0; i < range; i++) {
-        	int count = 0;
-        	
-        	for (int j = 0; j < nums.length; j++) {
-        		count += (nums[j] >> i) & 1;
-        	}
-        	
-        	result += count * (nums.length - count);
+        int n = nums.length;
+        
+        for (int i = 0; i < 31; i++) {           
+            int zeros = 0;
+            int ones = 0;
+            for (int j = 0; j < n; j++) {
+                int bit = nums[j] & 1;
+                if (bit == 0) {
+                    zeros++;
+                } else {
+                    ones++;
+                }
+                
+                nums[j] = nums[j] >> 1;
+            }
+            
+            result += zeros * ones;
         }
         
         return result;

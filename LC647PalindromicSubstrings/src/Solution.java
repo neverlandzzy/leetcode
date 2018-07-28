@@ -18,6 +18,7 @@ public class Solution {
 	 * The input string length won't exceed 1000.
 	 */
 	
+	/*// Solution 1: O(n^2)
     private static int count = 0;
     
     public static int countSubstrings(String s) {
@@ -37,9 +38,28 @@ public class Solution {
             j++;
         }
     }
+    */
+	
+	// Solution 2: O(n^2)
+    public static int countSubstrings(String s) {
+    	int count = 0;
+    	int n = s.length();
+    	boolean[][] dp = new boolean[n][n];
+    	
+        for (int i = 0; i < n; i++) {
+        	for (int j = 0; j <= i; j++) {
+        		if (s.charAt(i) == s.charAt(j) && (i - j < 2 || dp[j + 1][i - 1])) {
+        			dp[j][i] = true;
+        			count++;
+        		}
+        	}
+        }
+        
+        return count;
+    }
     
     public static void main(String[] args) {
 		System.out.println(countSubstrings("abc"));
-		System.out.println(countSubstrings("aaa"));
+		System.out.println(countSubstrings("aaaa"));
 	}
 }

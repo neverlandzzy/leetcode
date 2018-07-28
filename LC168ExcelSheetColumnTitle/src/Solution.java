@@ -24,6 +24,19 @@ public class Solution {
         return excelTitle.reverse().toString();
     }
     
+    /*
+    public static String convertToTitle(int n) {
+        String result = "";
+        
+        while (n > 0) {
+            n--;
+            result = (char)('A' + n % 26) + result;
+            n /= 26;
+        }
+        
+        return result;
+    }
+    */
     public static void main(String[] args) {
 		System.out.println(convertToTitle(1));
 		System.out.println(convertToTitle(5));

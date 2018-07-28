@@ -8,7 +8,29 @@ public class Solution {
 	 *   
 	 */
 	
+    public static int strStr(String haystack, String needle) {
+        int i = 0;
+        int j = 0;
+        int index = 0;
+        
+        int m = haystack.length();
+        int n = needle.length();
+        
+        while (i < m && j < n) {
+            if (haystack.charAt(i) == needle.charAt(j)) {
+                i++;
+                j++;
+            } else {
+                j = 0;
+                i = index + 1;
+                index++;
+            }
+        }
+        
+        return j == n ? index : -1;
+    }	
 	// a more straightforward way
+    /*
     public static int strStr(String haystack, String needle) {
         int m = haystack.length();
         int n = needle.length();
@@ -38,7 +60,7 @@ public class Solution {
         
         return -1;
     }
-    
+    */
     /*
     public static int strStr(String haystack, String needle) {
     	   

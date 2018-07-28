@@ -37,6 +37,23 @@ public class Solution {
 	
 	// https://leetcode.com/problems/brick-wall/solution/
 	// 用HashMap记录在每一行砖宽的累积和(key)，当某两行有相同累积和时，说明此处有个缝隙，可以不用穿过砖头劈开墙。因此累积和的最大值，即为缝隙最多的地方。
+	
+    public static int leastBricks(List<List<Integer>> wall) {
+        Map<Integer, Integer> map = new HashMap<>();
+        int max = 0;
+        
+        for (List<Integer> list: wall) {
+            int sum = 0;
+            for (int i = 0; i < list.size() - 1; i++) {
+                sum += list.get(i);
+                map.put(sum, map.getOrDefault(sum, 0) + 1);
+                max = Math.max(max, map.get(sum));
+            }
+        }
+        
+        return wall.size() - max;
+    }
+    /*
     public static int leastBricks(List<List<Integer>> wall) {
     	Map<Integer, Integer> map = new HashMap<>();
     	
@@ -56,7 +73,7 @@ public class Solution {
     		
     	return result;
     }
-    
+    */
     public static void main(String[] args) {
 		List<List<Integer>> test1 = new ArrayList<>(Arrays.asList(Arrays.asList(1, 2, 2, 1), Arrays.asList(3, 1, 2), Arrays.asList(1, 3, 2),
 																  Arrays.asList(2, 4), Arrays.asList(3, 1, 2), Arrays.asList(1, 3, 1, 1)));

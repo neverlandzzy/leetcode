@@ -25,14 +25,17 @@ public class Solution {
         
         while (i <= right) {
         	if (nums[i] == 0) {
-        		swap(nums, i++, left++);
-        	
+        		if (i != left) {
+        			swap(nums, i, left);
+        		}
+        		i++;
+        		left++;
         	} else if(nums[i] == 2){
-        		swap(nums, i, right--);
+        		swap(nums, i, right);
+        		right--;
         	} else {
         		i++;
         	}
-        	
         }
     }
     

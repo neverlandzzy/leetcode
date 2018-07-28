@@ -26,6 +26,25 @@ public class Solution {
 	 * 0 <= fee < 50000.
 	 */
 	
+	// Space: O(1) 
+    public static int maxProfit(int[] prices, int fee) {
+        int n = prices.length;
+        
+        int buy = -prices[0];
+        int sell = 0;
+
+        
+        for (int i = 1; i < n; i++) {
+            int tmp = buy;
+            buy = Math.max(buy, sell - prices[i]);
+            sell = Math.max(sell, tmp + prices[i] - fee);
+        }
+            
+        return sell;
+    }
+    
+    // Space: O(n) 
+    /*
     public int maxProfit(int[] prices, int fee) {
         int n = prices.length;
         int[] hold = new int[n]; // hold[i]: on the i-th day, we have stock holding:
@@ -45,7 +64,7 @@ public class Solution {
         
         return sell[n - 1];
     }
-    
+    */
     public static void main(String[] args) {
 		Solution solution = new Solution();
 		int[] test = {1, 3, 2, 8, 4, 9};
