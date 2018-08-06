@@ -64,6 +64,43 @@ public class Solution {
         }
     }
     
+    // 可以不用StringBuilder, 这样每次回溯不用reset length
+    /*
+    public List<String> addOperators(String num, int target) {
+        List<String> result = new ArrayList<>();
+        
+        helper(result, num, "", target, 0, 0, 0);
+        return result;
+    }
+    
+    private void helper(List<String> result, String num, String s, int target, int pos, long eval, long mul) {
+        if (pos == num.length()) {
+            if (eval == target) {
+                result.add(s);
+            }
+            
+            return;
+        }
+        
+        for (int i = pos; i < num.length(); i++) {
+            if (pos != i && num.charAt(pos) == '0') {
+                break;
+            }
+            
+            long cur = Long.parseLong(num.substring(pos, i + 1));
+            if (pos == 0) {
+                helper(result, num, s + cur, target, i + 1, cur, cur);
+                
+            } else {
+                helper(result, num, s + "+" + cur, target, i + 1, eval + cur, cur);
+                
+                helper(result, num, s + "-" + cur, target, i + 1, eval - cur, -cur);
+                
+                helper(result, num, s + "*" +  cur, target, i + 1, eval - mul + mul * cur, mul * cur);
+            }
+        }
+    }
+    */
     public static void main(String[] args) {
 		String test = "123";
 		System.out.println(addOperators(test, 5));

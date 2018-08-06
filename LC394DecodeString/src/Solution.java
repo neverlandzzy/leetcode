@@ -26,8 +26,7 @@ public class Solution {
         Stack<String> stringStack = new Stack<>();
         int index = 0;
         
-        while(index < s.length()) {
-        	
+        while(index < s.length()) {     	
         	if (Character.isDigit(s.charAt(index))) {
 	        	int counter = 0;
 	        	while (Character.isDigit(s.charAt(index))) {

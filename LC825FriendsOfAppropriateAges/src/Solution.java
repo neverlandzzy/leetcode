@@ -63,6 +63,8 @@ public class Solution {
 				}
 				
 				result += countA * countB;
+				
+				// 对于年龄相等的人：e.g.[16, 16]  --> expected result = 2
 				if (i == j) {
 					result -= countA;
 				}

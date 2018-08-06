@@ -75,7 +75,7 @@ public class Solution {
     	robot.clean();
     	set.add(x + "," + y);
     	
-    	for (int i = 0; i < 4; i++) {
+    	for (int i = 0; i < directions.length; i++) {
     		int[] dir = directions[(i + d) % 4];
     		int nextX = x + dir[0];
     		int nextY = y + dir[1];
@@ -84,7 +84,7 @@ public class Solution {
     			dfs(robot, set, nextX, nextY, (i + d) % 4);
     		}
     		
-    		// 顺时针
+    		// 顺时针 -- 与directions的顺序要一致。因为directions里的方向表示机器人将要前进的方向。确定方向后，要将机器人转到该方向上（by default，机器人是向上的）
     		robot.turnRight();
     	}
     	

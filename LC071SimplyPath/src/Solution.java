@@ -1,3 +1,5 @@
+import java.util.ArrayDeque;
+import java.util.Deque;
 import java.util.Stack;
 
 
@@ -20,8 +22,39 @@ public class Solution {
 	 * 	当字符串是空或者遇到"/../"，则需要返回一个"/"。
 	 * 	当遇见"/a//b"，则需要简化为"/a/b"。
 	 */
-	
-	
+    public static String simplifyPath(String path) {
+        Deque<String> deque = new ArrayDeque<>();
+        String[] strs = path.split("\\/");
+        StringBuilder sb = new StringBuilder();
+        
+        for (String s: strs) {
+            if (s == null || s.length() == 0 || s.equals(".")) {
+                
+            } else if (s.equals("..")) {
+                if (!deque.isEmpty()) {
+                   deque.pollLast(); 
+                }
+            } else {
+                deque.offer(s);
+            }
+        }
+        
+        if (deque.isEmpty()) {
+            return "/";
+        }
+        
+        while (!deque.isEmpty()) {
+            sb.append("/");
+            sb.append(deque.poll());
+        }
+        
+        return sb.toString();
+    }	
+
+    /*
+     * stack 的iterator是O(n)复杂度，所以用deque更快
+     * for(String s: dir) {} 
+     * 
     public static String simplifyPath(String path) {
     	String[] split = path.split("/");
     	StringBuilder result = new StringBuilder();
@@ -38,19 +71,18 @@ public class Solution {
     			dir.push(split[i]);
     		}
     	}
-    	
-    	if(dir.isEmpty()) {
-    		result.append('/');
+
+    	if (dir.isEmpty()) {
+    		result.append("/");
     	} else {
-    	
     		for(String s: dir) {
     			result.append("/");
     			result.append(s);
     		}
     	}
     	return result.toString();
-        
     }
+    */
     
     public static void main(String[] args) {
 		System.out.println(simplifyPath("/home/"));

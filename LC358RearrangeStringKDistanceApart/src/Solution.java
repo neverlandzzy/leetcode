@@ -42,7 +42,45 @@ public class Solution {
 	// 3. 每次从maxHeap中取出频率最高的字符的entry，将字符加到输出字符串sb中，更新这个字符的频率（entry.setValue(entry.getValue() - 1);），然后将这个entry加入queue中；
 	// 4. 当queue的size == k时，说明distance已经为k，这时再将entry从queue中取出，若entry的频率不为0，则将其加回maxHeap
 	// 5. not possible的case是maxHeap已经empty但queue中还有entry -- 说明没有足够的distance将queue中的char分隔开，因此返回""
-	
+
+	// 更简洁的写法
+    public static String rearrangeString(String s, int k) {
+        Map<Character, Integer> map = new HashMap<>();
+        for (int i = 0; i < s.length(); i++) {
+            char c = s.charAt(i);
+            map.put(c, map.getOrDefault(c, 0) + 1);
+        }
+        
+        PriorityQueue<Character> heap = new PriorityQueue<>(new Comparator<Character>() {
+            public int compare(Character c1, Character c2) {
+                return map.get(c2) - map.get(c1);
+            }
+        });
+        
+        StringBuilder sb = new StringBuilder();
+        Queue<Character> queue = new LinkedList<>();
+        heap.addAll(map.keySet());
+        
+        while (!heap.isEmpty()) {
+            char c = heap.poll();
+            map.put(c, map.get(c) - 1);
+            queue.offer(c);
+            sb.append(c);
+            
+            if (queue.size() < k) {
+                continue;
+            }
+            
+            char next = queue.poll();
+            if (map.get(next) > 0) {
+        		heap.offer(next);
+        	}
+        }
+        
+        return sb.length() == s.length() ? sb.toString() : "";
+    }
+    
+    /*
     public static String rearrangeString(String s, int k) {
     	if (s == null || s.length() == 0) {
     		return s;
@@ -84,7 +122,7 @@ public class Solution {
         
         return result.length() == s.length() ? result.toString() : "";
     }
-    
+    */
     public static void main(String[] args) {
 		System.out.println(rearrangeString("aabbcc", 3));
 		System.out.println(rearrangeString("aaabc", 3));
