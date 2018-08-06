@@ -1,5 +1,7 @@
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
+import java.util.Queue;
 
 
 public class Solution {
@@ -22,32 +24,73 @@ public class Solution {
 	 * 	2. S will consist only of letters or digits.
 	 */
 	
+	// Solution 1: BFS Time: O(2^N * N)
+	/*
     public static List<String> letterCasePermutation(String S) {
         List<String> result = new ArrayList<>();
         if (S == null || S.length() == 0) {
+            result.add("");
         	return result;
         }
         
-        char[] chars = S.toCharArray();
-        result.add("");
+        Queue<String> queue = new LinkedList<>();
+        queue.offer(S);
         
-        for (int i = 0; i < chars.length; i++) {
-        	char c = chars[i];
-        	int size = result.size();
-        	for (int k = 0; k < size; k++) {
-        		String s = result.get(k);
-	        	if (Character.isLetter(c)) {
-	        		s +=  Character.toLowerCase(c);
-	        		result.add(new String(s + Character.toUpperCase(c)));
-	        	} else {
-	        		s += c;
-	        	}
+        for (int i = 0; i < S.length(); i++) {
+        	if (Character.isLetter(S.charAt(i))) {
+        		int size = queue.size();
+        		for (int j = 0; j < size; j++) {
+        			String cur = queue.poll();
+        			char[] chs = cur.toCharArray();
+        			
+                    chs[i] = Character.toUpperCase(chs[i]);
+                    queue.offer(String.valueOf(chs));
+                    
+                    chs[i] = Character.toLowerCase(chs[i]);
+                    queue.offer(String.valueOf(chs));        			
+        		}
         	}
         }
         
+        while (!queue.isEmpty()) {
+            result.add(queue.poll());
+        }   
+        
         return result;
     }
-    
+    */
+	
+	// Solution 2: DFS Time: O(2^N * N)
+	public static List<String> letterCasePermutation(String S) {
+		List<String> result = new ArrayList<>();
+		if (S == null || S.length() == 0) {
+			result.add(S);
+			return result;
+		}
+		
+		helper(S, result, 0);
+		return result;
+	}
+	
+	private static void helper(String s, List<String> result, int pos) {
+		if (pos == s.length()) {
+			result.add(s);
+			return;
+		}
+		
+		if (Character.isDigit(s.charAt(pos))) {
+			helper(s, result, pos + 1);
+			return;
+		}
+		
+		char[] chs = s.toCharArray();
+		
+		chs[pos] = Character.toLowerCase(chs[pos]);
+		helper(String.valueOf(chs), result, pos + 1);
+		chs[pos] = Character.toUpperCase(chs[pos]);
+		helper(String.valueOf(chs), result, pos + 1);
+	}
+	
     public static void main(String[] args) {
 		System.out.println(letterCasePermutation("a1b2"));
 		System.out.println(letterCasePermutation("3z4"));

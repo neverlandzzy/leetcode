@@ -61,7 +61,7 @@ public class Solution {
     		}
     	}
     	
-    	// if j > i, M[i][j] is always -1, cause we can't find a substring of a shorter string matches a longer string
+    	// if j > i, M[i][j] is always -1, because we can't find a substring of a shorter string matches a longer string
     	for (int i = 1; i < n; i++) {
     		dp[0][i] = -1;
     	}

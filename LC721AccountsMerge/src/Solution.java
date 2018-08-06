@@ -74,9 +74,9 @@ public class Solution {
         
         UnionFind uf = new UnionFind(n);
         // emailMap中记录的是email和用户index的映射。因为用户可能重名，所以不能用名字做key而改用accounts中的index做为key
-        // emailMap.valueSet()中的(o ~ n-1)对应了accounts中的(0 ~ n-1)个用户。遍历邮箱，发现相同邮箱对应不同id时，说明这两个
+        // emailMap.valueSet()中的(0 ~ n-1)对应了accounts中的(0 ~ n-1)个用户。遍历邮箱，发现相同邮箱对应不同id时，说明这两个
         // id是同一个人，于是在union-find中将两个id union起来
-        Map<String,Integer> emailMap = new HashMap<>();
+        Map<String, Integer> emailMap = new HashMap<>();
         
         for (int i = 0; i < n; i++) {
         	List<String> account = accounts.get(i);
@@ -105,18 +105,16 @@ public class Solution {
         	}
         }
         
-        for (Map.Entry<Integer, Set<String>> entry: userMap.entrySet()) {
-        	List<String> list = new ArrayList<>();
-        	
-        	
-        	for (String emails: entry.getValue()) {
-        		list.add(emails);
-        	}
-        	
-        	Collections.sort(list);
-        	
-        	list.add(0, accounts.get(entry.getKey()).get(0));
-        	result.add(list);
+        for (int key: userMap.keySet()) {
+            List<String> list = new ArrayList<>();
+            for (String email: userMap.get(key)) {
+                list.add(email);
+            }
+            
+            Collections.sort(list);
+            
+            list.add(0, accounts.get(key).get(0));
+            result.add(list);
         }
         
         return result;

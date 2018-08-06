@@ -31,6 +31,58 @@ public class Solution {
 	// FB高频题，follow-up及变种很多
 	// https://weirenwang1.gitbooks.io/algorithm/
 	// https://www.bbsmax.com/A/gAJGnoDozZ/
+	
+	// 更简洁的写法：
+    public static int leastInterval(char[] tasks, int n) {
+        Map<Character, Integer> map = new HashMap<>();
+        for (char t: tasks) {
+            map.put(t, map.getOrDefault(t, 0) + 1);
+        }
+        
+        PriorityQueue<Character> heap = new PriorityQueue<>(new Comparator<Character>() {
+            public int compare(Character c1, Character c2) {
+                return map.get(c2) - map.get(c1);
+            }
+        });
+
+        heap.addAll(map.keySet());
+        Queue<Character> queue = new LinkedList<>();
+        
+        int result = tasks.length;
+        int counter = 0;
+        
+        while (!heap.isEmpty()) {
+            char task = heap.poll();
+            map.put(task, map.get(task) - 1);
+            queue.offer(task);
+            
+            if (queue.size() <= n) {
+                if (!heap.isEmpty()) {
+                    continue;
+                } else {
+                    counter = n - queue.size() + 1;
+                }
+            }
+            
+        	// 此处与LC358不同，当queue的size大于n或者maxHeap为空时，要把queue中的元素全部加回到maxHeap中。否则，若像LC358一样，只加回1个元素，
+        	// 则以后每一步都会有queue.size() <= n且maxHeap.isEmpty == true， 也就是每一步都要加idle，这样就错了
+        	// 而LC358也不能像本题这样把queue的元素一次全部加回到maxHeap中。如果这样，对于"aabbcc"的例子，当第一遍生成了"abc"后，maxHeap中有数量相等的'a', 'b', 'c'
+        	// 这样下一次maxHeap.poll()弹出的元素会是三者中随机的任一个，也就会有"acbabc"这种情况发生     
+            
+            while (!queue.isEmpty()) {
+                char t = queue.poll();
+                if (map.get(t) > 0) {
+                    heap.offer(t);
+                }
+            }
+            
+            result += counter;
+        }
+        
+        return result - counter;
+    }
+    
+    /*
     public static int leastInterval(char[] tasks, int n) {
     	if (tasks == null || tasks.length == 0) {
     		return 0;
@@ -82,7 +134,7 @@ public class Solution {
         return result - counter;
         
     }
-    
+    */
     public static void main(String[] args) {
 		char[] test = {'A', 'A', 'A', 'B', 'B', 'B'};
 		
