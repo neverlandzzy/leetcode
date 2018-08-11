@@ -79,7 +79,7 @@ public class AutocompleteSystem {
 	// 则每次都要update heap，会很慢
 	// 用256位的数组实现会TLE，改用127位会pass，用HashMap最快 --> 用数组每次申请空间会消耗较大的时间 https://www.jiuzhang.com/qa/6999/
 	
-	// Solution 1: 优点：不用dfs遍历trie，节约Time Complexi。 缺点：每个TrieNode存prefix的map，非常消耗空间
+	// Solution 1: 优点：不用dfs遍历trie，节约Time Complexity。 缺点：每个TrieNode存prefix的map，非常消耗空间
 	/*
 	private class Pair {
 		String s;
