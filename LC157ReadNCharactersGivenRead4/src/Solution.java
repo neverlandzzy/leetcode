@@ -17,6 +17,26 @@ public class Solution extends Reader4 {
 	 * Note:
 	 * The read function will only be called once for each test case.
 	 */
+	
+    public int read(char[] buf, int n) {
+        int counter = 4;
+        char[] buf4 = new char[4];
+        int pos = 0;
+        
+        while (counter == 4 && pos < n) {
+            counter = read4(buf4);
+            
+            int len = Math.min(counter, n - pos);
+            
+            for (int i = 0; i < len; i++) {
+                buf[pos++] = buf4[i];
+            }
+        }
+        
+        return pos;
+    }
+    
+    /*
     public int read(char[] buf, int n) {
         int size = 4;
         char[] buf4 = new char[4];
@@ -36,6 +56,7 @@ public class Solution extends Reader4 {
         
         return length;
     }
+    */
     /*
     public int read(char[] buf, int n) {
         int size = 4;
