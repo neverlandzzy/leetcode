@@ -1,5 +1,4 @@
-import java.util.ArrayDeque;
-import java.util.Deque;
+import java.util.Stack;
 
 
 public class Solution {
@@ -30,33 +29,75 @@ public class Solution {
 	// level 2: *, /, starts with l2 = 1, o2 = 1;
 	// O(n) time, O(n) space
     public static int calculate(String s) {
-        int l1 = 0;
-        int l2 = 1;
-        int o1 = 1;
-        int o2 = 1;
-        int n = s.length();
-        
-        Deque<Integer> deque = new ArrayDeque<>();
-        
+
+    }
+
+    // Solution 2: Recursion -- based on LC227
+    // Time: O(n^2), Space: O(n)
+    // https://leetcode.com/problems/basic-calculator-iii/discuss/129179/Java-Solution-with-little-adjustment-of-Basic-Calculator-II
+    /*
+    public static int calculate(String s) {
+    	int number = 0;
+    	int result = 0;
+    	char operator = '+';
+    	int n = s.length();
+    	
+    	Stack<Integer> stack = new Stack<Integer>();
+    	
         for (int i = 0; i < n; i++) {
         	char c = s.charAt(i);
         	
-        	if (Character.isDigit(c)) {
-        		int num = c - '0';
-        		while (i < n - 1 && Character.isDigit(s.charAt(i + 1))) {
-        			i++;
-        			num = num * 10 + s.charAt(i) - '0';
-        		}
-       
-        		l2 = (o2 == 1 ? l2 * num : l2 / num);
+        	if (c >= '0' && c <= '9') {
+        		number = number * 10 + (int) (c - '0');
         	} else if (c == '(') {
+        		int j = i + 1;
+        		int count = 1;
         		
+        		while (j < n) {
+        			if (s.charAt(j) == '(') {
+        				count++;
+        			} else if (s.charAt(j) == ')') {
+        				count--;
+        			}
+        			
+        			if (count == 0) {
+        				break;
+        			}
+        			
+        			j++;
+        		}
+        		
+        		number = calculate(s.substring(i + 1, j));
+        		i = j;
         	}
         	
-        	
+        	if (c == '+' || c == '-' || c == '*' || c == '/' || i == n - 1){
+        		if (operator == '+') {
+        			stack.push(number);
+        		}
+        		if (operator == '-') {
+        			stack.push(-number);
+        		}
+        		if (operator == '*') {
+        			stack.push(stack.pop() * number);
+        		}
+        		if (operator == '/') {
+        			stack.push(stack.pop() / number);
+        		}
+        		
+        		operator = c;
+        		number = 0;
+        	}
+        		
         }
+        
+        while (!stack.isEmpty()) {
+            result += stack.pop();
+        }
+        
+        return result;
     }
-    
+    */
     public static void main(String[] args) {
 		System.out.println(calculate("1 + 1"));
 		System.out.println(calculate(" 6-4 / 2 "));

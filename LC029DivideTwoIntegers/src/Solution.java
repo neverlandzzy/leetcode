@@ -45,10 +45,10 @@ public class Solution {
 			return Integer.MAX_VALUE;
 		}
 		
-		boolean negative = true;
+		int neg = -1;
 		
 		if ((dividend > 0 && divisor > 0) || (dividend < 0 && divisor < 0)) {
-			negative = false;
+			neg = 1;
 		}
 		
 		int result = 0;
@@ -84,7 +84,7 @@ public class Solution {
 	        n--; 
 		}
 		
-		return negative ? -result : result;
+		return neg * result; 
 	}
 
 

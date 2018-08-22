@@ -56,7 +56,54 @@ public class Solution {
 	 *    border of the maze are all walls.
 	 * 4. The maze contains at least 2 empty spaces, and both the width and height of the maze won't exceed 100.
 	 */
-	
+
+	// BFS 不用Point
+	/*
+    public int shortestDistance(int[][] maze, int[] start, int[] destination) {
+        int m = maze.length;
+        int n = maze[0].length;
+        
+        Queue<int[]> queue = new LinkedList<>();
+        queue.offer(start);
+        int[][] distance = new int[m][n];
+        for (int i = 0; i < m; i ++) {
+        	Arrays.fill(distance[i], Integer.MAX_VALUE);
+        }
+        
+        int[][] dir = {{1, 0}, {0, 1}, {-1, 0}, {0, -1}};
+        
+        while (!queue.isEmpty()) {
+            int[] cur = queue.poll();
+            
+            for (int i = 0; i < dir.length; i++) {
+                int x = cur[0];
+                int y = cur[1];
+                int d = distance[x][y] == Integer.MAX_VALUE ? 0 : distance[x][y];
+                
+                while (x >= 0 && x < m && y >= 0 && y < n && maze[x][y] == 0) {
+                    x += dir[i][0];
+                    y += dir[i][1];
+                    d++;
+                }
+                
+                x -= dir[i][0];
+                y -= dir[i][1];
+                d--;
+                
+                if (d >= distance[x][y]) {
+                    continue;
+                }
+                
+                if (d < distance[x][y]) {
+                    distance[x][y] = d;
+                    queue.offer(new int[] {x, y});
+                }
+            }
+        }
+        
+        return distance[destination[0]][destination[1]] == Integer.MAX_VALUE ? -1 : distance[destination[0]][destination[1]];
+    }
+    */
 	private static class Point {
 		int x, y, d;
 		private Point(int x, int y, int d) {
