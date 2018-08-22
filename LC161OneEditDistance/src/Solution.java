@@ -5,6 +5,41 @@ public class Solution {
 	 */
 	
     public static boolean isOneEditDistance(String s, String t) {
+        if (s.length() < t.length()) {
+            return isOneEditDistance(t, s);
+        }
+        
+        if (s.length() > t.length() + 1) {
+            return false;
+        }
+        
+        int i = 0;
+        int n = t.length();
+        
+        while (i < n && s.charAt(i) == t.charAt(i)) {
+            i++;
+        }
+        
+        if (i == n) {
+            return s.length() != t.length();
+        }
+        
+        if (s.length() == t.length()) {
+            i++;
+            while (i < n && s.charAt(i) == t.charAt(i)) {
+                i++;
+            }
+        } else {
+            while (i < n && s.charAt(i + 1) == t.charAt(i)) {
+                i++;
+            }
+        }
+        
+        return i == n;
+    }
+    
+    /*
+    public static boolean isOneEditDistance(String s, String t) {
         int sLength = s.length();
         int tLength = t.length();
         
@@ -43,6 +78,7 @@ public class Solution {
         return i == sLength;
         
     }
+    */
     
     public static void main(String[] args) {
 		String s = "test";

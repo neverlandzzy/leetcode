@@ -46,10 +46,9 @@ public class Solution {
                 List<Integer> left = helper(input.substring(0, i), map);
                 List<Integer> right = helper(input.substring(i + 1), map);
                 
-                int val = 0;
-                
                 for (int l: left) {
                     for (int r: right) {
+                    	int val = 0;
                         switch (c) {
                             case '+': 
                                 val = l + r;

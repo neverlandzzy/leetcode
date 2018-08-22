@@ -41,7 +41,7 @@ public class Solution {
         			return true;
         		}
         	} else {
-        		while (i <= j && s2.charAt(i) != s2.charAt(j)) {
+        		while (i < j && s2.charAt(i) != s2.charAt(j)) {
         			map[s2.charAt(i) - 'a']++;
         			i++;
         			counter++;
