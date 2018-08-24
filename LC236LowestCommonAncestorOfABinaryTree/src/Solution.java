@@ -65,6 +65,10 @@ public class Solution {
     	//    this is for tree like (1,#,2) and you want to find the LCA for node 1 and 2, the LCA would be 1 according to the question.
     	if ((left && right) || ((left || right) && (root == p || root == q))) {
     		lca = root;
+    	}   	
+    	
+    	if (p == root && q == root) {
+    	    lca = root;
     	}
     	
     	return result;

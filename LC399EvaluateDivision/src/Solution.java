@@ -59,10 +59,6 @@ public class Solution {
         	String[] query = queries[i];
         	
         	result[i] = helper(query[0], query[1], new HashSet<String>(), pairMap, valueMap, 1.0);
-        	
-        	if (result[i] == 0.0) {
-        		result[i] = -1.0;
-        	}
         }
         
         return result;
@@ -72,11 +68,11 @@ public class Solution {
     	Map<String, List<Double>> valueMap, double value) {
 
     	if (set.contains(start)) {
-    		return 0.0;
+    		return -1;
     	}
     	
     	if (!pairMap.containsKey(start)) {
-    		return 0.0;
+    		return -1;
     	}
     	
     	if (start.equals(end)) {
@@ -84,12 +80,12 @@ public class Solution {
     	}
     	
     	set.add(start);
-    	double result = 0.0;
+    	double result = -1;
     	
     	for (int i = 0; i < pairMap.get(start).size(); i++) {
     		result = helper(pairMap.get(start).get(i), end, set, pairMap, valueMap, value * valueMap.get(start).get(i));
     		//System.out.println("result = " + result + " start = " +  start + " size = " + pairMap.get(start).size() + " i = " + i);
-    		if (result != 0) {
+    		if (result != -1) {
     			break;
     		}
     	}
