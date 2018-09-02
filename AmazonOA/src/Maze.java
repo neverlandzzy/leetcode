@@ -1,5 +1,7 @@
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.LinkedList;
+import java.util.List;
 import java.util.Queue;
 
 
@@ -9,10 +11,58 @@ public class Maze {
 	 * 但是求离到原点的最近距离。 这个类似于maze traversal. 给出List<List<Integer>> 的input来代表整个地图, 每个cell的值可能是 0， 1， 9。 
 	 * 0表示障碍， 1表示路可走，9表示目的地。 BFS 可以搞定， 但要记得在加adjacent cell 的时候要做boundary check 避免index of overflow.
 	 * 
-	 * 注意Corner case： 起始点是终点，起点是墙
+	 * 注意Corner case： 1. 起始点是终点; 2. 起点是墙
 	 */
+	
+	public static int shortpath(int rows, int cols, List<List<Integer>> lots){
+		if (rows == 0 || cols == 0 || lots.get(0).get(0) == 0) {
+			return -1;
+		}
+		
+		int[][] grid = new int[rows][cols];
+		
+		for (int i = 0; i < rows; i++) {
+			for (int j = 0; j < cols; j++) {
+				grid[i][j] = lots.get(i).get(j);
+			}
+		}
+		
+		int[][] direction = {{0, 1}, {1, 0}, {0, -1}, {-1, 0}};
+		Queue <int[]> queue = new LinkedList<>();
+		int dist = 0;
+		queue.offer(new int[] {0, 0});
+		
+		while (!queue.isEmpty()) {
+			int size = queue.size();
+			for (int i = 0; i < size; i++) {
+				int[] pos = queue.poll();
+				int x = pos[0];
+				int y = pos[1];
+				
+				if (grid[x][y] == 9) {
+					return dist;
+				}
+				grid[x][y] = -1;
+				//System.out.println("x = " + x + " y = " + y  + " grid[x][y] = " + grid[x][y]);
+				
+				for (int[] dir: direction) {
+					int nextX = x + dir[0];
+					int nextY = y + dir[1];
+					
+					if (nextX >= 0 && nextX < rows && nextY >= 0 && nextY < cols && (grid[nextX][nextY] == 1 || grid[nextX][nextY] == 9)) {
+						queue.offer(new int[] {nextX, nextY});						
+					}
+				}
+			}
+			dist++;
+		}
+		
+		return -1;
+	}
+	
 	// 参考答案
-    public static int shortpath(int[][] maze,int[] start,int[] dest){
+	/*
+    public static int shortpath2(int[][] maze,int[] start,int[] dest){
     	int[][] distance = new int[maze.length][maze[0].length];
     	for (int[] row: distance){
     		Arrays.fill(row, Integer.MAX_VALUE);
@@ -65,16 +115,40 @@ public class Maze {
     		}
     		
     				
+    	}
+    	for (int[] pa: path) {
+    		for (int p: pa) {
+    			System.out.print(p + ",");
     		}
+    		System.out.println();
+    	}
     	return path[dest[0]][dest[1]] == 0?
     			-1 : path[dest[0]][dest[1]];
     			
     }
-    
+    */
     public static void main (String[] args){
+    	/*
     	int[][] maze = {{0,0,1,0,0},{0,0,0,0,0},{0,0,0,1,0},{1,1,0,1,1},{0,0,0,0,0}};
-    	int[] start = {0,4};
-    	int[] end = {4,4};
+    	int[] start = {0,0};
+    	int[] end = {1,1};
     	System.out.println(shortestBFS(maze,start,end));
+    	System.out.println(shortpath2(maze,start,end));
+    	*/
+    	List<List<Integer>> lots1 = new ArrayList<>();
+    	lots1.add(new ArrayList<>(Arrays.asList(1, 1, 0, 1, 1)));
+    	lots1.add(new ArrayList<>(Arrays.asList(1, 9, 1, 1, 1)));
+    	lots1.add(new ArrayList<>(Arrays.asList(1, 1, 1, 0, 1)));
+    	lots1.add(new ArrayList<>(Arrays.asList(0, 0, 1, 0, 0)));
+    	lots1.add(new ArrayList<>(Arrays.asList(1, 1, 1, 1, 1)));
+    	
+    	System.out.println(shortpath(5, 5, lots1));
+    	
+    	List<List<Integer>> lots2 = new ArrayList<>();
+    	lots2.add(new ArrayList<>(Arrays.asList(1, 0, 0)));
+    	lots2.add(new ArrayList<>(Arrays.asList(1, 0, 0)));
+    	lots2.add(new ArrayList<>(Arrays.asList(1, 9, 1)));
+    	
+    	System.out.println(shortpath(3, 3, lots2));
     }
 }
