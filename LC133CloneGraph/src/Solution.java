@@ -39,31 +39,30 @@ public class Solution {
 	/*
     public UndirectedGraphNode cloneGraph(UndirectedGraphNode node) {
         if (node == null) {
-        	return null;
+            return null;
         }
         
-       Queue<UndirectedGraphNode> queue = new LinkedList<>();
-       HashMap<UndirectedGraphNode, UndirectedGraphNode> map = new HashMap<>();
-       
-       UndirectedGraphNode clone = new UndirectedGraphNode(node.label);
-       queue.offer(node);
-       map.put(node, clone);
-       
-       while (!queue.isEmpty()) {
-    	   UndirectedGraphNode cur = queue.poll();
-    	   for (UndirectedGraphNode neighbor: cur.neighbors) {
-    		   if (!map.containsKey(neighbor)) {
-    			   UndirectedGraphNode newNode = new UndirectedGraphNode(neighbor.label);
-    			   map.put(neighbor, newNode);
-    			   map.get(cur).neighbors.add(newNode);
-    			   queue.offer(neighbor);
-    		   } else {
-    			   map.get(cur).neighbors.add(map.get(neighbor));
-    		   }
-    	   }
-       }
-       
-       return clone;
+        Map<UndirectedGraphNode, UndirectedGraphNode> map = new HashMap<>();
+        UndirectedGraphNode newNode = new UndirectedGraphNode(node.label);
+        map.put(node, newNode);
+        
+        Queue<UndirectedGraphNode> queue = new LinkedList<>();
+        queue.offer(node);
+        
+        while (!queue.isEmpty()) {
+            UndirectedGraphNode cur = queue.poll();
+            for (UndirectedGraphNode nei: cur.neighbors) {
+                if (!map.containsKey(nei)) {
+                    queue.offer(nei);
+                    UndirectedGraphNode newNei = new UndirectedGraphNode(nei.label);
+                    map.put(nei, newNei);                    
+                }
+                
+                map.get(cur).neighbors.add(map.get(nei));
+            }
+        }
+        
+        return newNode;
     }
     */
 	
