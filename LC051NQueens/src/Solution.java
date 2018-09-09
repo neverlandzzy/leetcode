@@ -69,7 +69,7 @@ public class Solution {
 
                 StringBuilder sb = new StringBuilder(Integer.toBinaryString(pos).replace('0', '.').replace('1', 'Q'));
                 while (sb.length() < n) {
-                	sb = sb.insert(0, '.');
+                	sb.insert(0, '.');
                 }
                 list.add(sb.toString());
           

@@ -143,14 +143,13 @@ public class Solution {
     	String test6 = "   +0 123";
     	String test7 = "2147483648";
     	
-    	/*
+
     	System.out.println(myAtoi(test1));
     	System.out.println(myAtoi(test2));
     	System.out.println(myAtoi(test3));
     	System.out.println(myAtoi(test4));
     	System.out.println(myAtoi(test5));
     	System.out.println(myAtoi(test6));
-    	*/
     	System.out.println(myAtoi(test7));
     }
 }
