@@ -22,7 +22,73 @@ public class Solution {
 	 * X O X X
 	 */
 	
-	// Solution 1: BFS
+	// 1. Solution 1: BFS
+	/*
+    public void solve(char[][] board) {
+        if (board == null || board.length == 0 || board[0] == null || board[0].length == 0) {
+            return;
+        }
+        
+        int m = board.length;
+        int n = board[0].length;
+        
+        for (int i = 0; i < m; i++) {
+            if (board[i][0] == 'O') {
+                bfs(board, i, 0);
+            }
+            
+            if (board[i][n - 1] == 'O') {
+                bfs(board, i, n - 1);
+            }
+        }
+        
+        for (int i = 0; i < n; i++) {
+            if (board[0][i] == 'O') {
+                bfs(board, 0, i);
+            }
+            
+            if (board[m - 1][i] == 'O') {
+                bfs(board, m - 1, i);
+            }
+        }
+        
+        for (int i = 0; i < m; i++) {
+            for (int j = 0; j < n; j++) {
+                if (board[i][j] == 'O') {
+                    board[i][j] = 'X';
+                }
+                
+                if (board[i][j] == '#') {
+                    board[i][j] = 'O';
+                }
+            }
+        }
+    }
+    
+    private void bfs(char[][] board, int i, int j) {
+        int[][] direction = {{1, 0}, {-1, 0}, {0, 1}, {0, -1}};
+        Queue<int[]> queue = new LinkedList<>();
+        queue.offer(new int[] {i, j});
+        
+        board[i][j] = '#';
+        
+        while (!queue.isEmpty()) {
+            int[] pos = queue.poll();
+            
+            for (int[] dir: direction) {
+                int nextI = pos[0] + dir[0];
+                int nextJ = pos[1] + dir[1];
+                
+                if (nextI >= 0 && nextI < board.length && nextJ >= 0 && nextJ < board[0].length && board[nextI][nextJ] == 'O') {
+                    queue.offer(new int[] {nextI, nextJ});
+                    board[nextI][nextJ] = '#';
+                }
+            }
+        }
+    }
+    */
+	
+	// Another BFS 
 	/*
     public static void solve(char[][] board) {
         int m = board.length; 

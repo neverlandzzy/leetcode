@@ -10,12 +10,12 @@ public class Solution {
 	 */
 	
 	// Solution 1: O(n) space:
-	/*
-    TreeNode first = null;
-    TreeNode second = null;
-    TreeNode pre = null;
+	
+    static TreeNode first = null;
+    static TreeNode second = null;
+    static TreeNode pre = null;
     
-    public void recoverTree(TreeNode root) {
+    public static void recoverTree(TreeNode root) {
         helper(root);
         
         int tmp = first.val;
@@ -23,7 +23,7 @@ public class Solution {
         second.val = tmp;
     }
     
-    private void helper(TreeNode root) {
+    private static void helper(TreeNode root) {
         if (root == null) {
             return;
         }
@@ -35,6 +35,7 @@ public class Solution {
             } 
             
             // 此处不能有else
+            // [3,1,4,null,null,2]
             if (first != null) {
                 second = root;
             }
@@ -44,9 +45,9 @@ public class Solution {
         
         helper(root.right);
     }
-    */
+    
 	
-    public static void recoverTree(TreeNode root) {
+    public static void recoverTree2(TreeNode root) {
         
     	if (root == null) {
     		return;
@@ -120,6 +121,7 @@ public class Solution {
     }
     
     public static void main(String[] args) {
+    	
  		TreeNode node1 = new TreeNode(1);
  		TreeNode node2 = new TreeNode(2);
  		TreeNode node3 = new TreeNode(3);
@@ -147,6 +149,16 @@ public class Solution {
  		node3.right = node4;
  		node7.left  = node2;
  		
- 		recoverTree(node5);
+ 		//recoverTree(node5);
+ 		
+ 		TreeNode node21 = new TreeNode(1);
+ 		TreeNode node22 = new TreeNode(2);
+ 		TreeNode node23 = new TreeNode(3);
+ 		TreeNode node24 = new TreeNode(4); 
+ 		
+ 		node23.left = node21;
+ 		node23.right = node24;
+ 		node24.left = node22;
+ 		recoverTree(node23);
 	}
 }	

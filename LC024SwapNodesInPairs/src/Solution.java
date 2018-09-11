@@ -26,7 +26,32 @@ public class Solution {
     }
     */
 	
-	// Solution 2: iteration
+	// Solution 2: iteration   
+    public static ListNode swapPairs(ListNode head) {
+        if (head == null || head.next == null) {
+            return head;
+        }
+        
+        ListNode dummy = new ListNode(0);
+        dummy.next = head;
+        
+        ListNode pre = dummy;
+        ListNode cur = head;
+        
+        while (cur != null && cur.next != null) {
+            ListNode next = cur.next;
+            cur.next = next.next;
+            next.next = cur;
+            pre.next = next;
+            pre = cur;
+            cur = cur.next;
+        }
+        
+        return dummy.next;
+    }
+    
+    // Another way:
+    /*
     public static ListNode swapPairs(ListNode head) {
     	
         ListNode dummy = new ListNode(0);
@@ -44,7 +69,8 @@ public class Solution {
         }
         
         return dummy.next;
-    }
+    }  
+    */
     
     public static void main(String[] args) {
     	

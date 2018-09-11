@@ -14,29 +14,22 @@ public class Solution {
 	 */
 	
     public int canCompleteCircuit(int[] gas, int[] cost) {
-        int start = 0;
-        
-        int n = gas.length;
         int total = 0;
         int sum = 0;
         
+        int start = 0;
+        int n = gas.length;
+        
         for (int i = 0; i < n; i++) {
-        	total += gas[i] - cost[i];
-        	sum += gas[i] - cost[i];
-        	
-        	if (sum < 0) {
-        		sum = 0;
-        		start = i+1;
-        	}
+            total += gas[i] - cost[i];
+            sum += gas[i] - cost[i];
+            
+            if (sum < 0) {
+                start = i + 1;
+                sum = 0;
+            }
         }
         
-        if (total >= 0) {
-        	return start;
-        } else {
-        	return -1;
-        }
+        return total >= 0 ? start : -1;
     }
-    
-    
-
 }
