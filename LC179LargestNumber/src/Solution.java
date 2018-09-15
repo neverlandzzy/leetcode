@@ -22,6 +22,7 @@ public class Solution {
             strs[i] = String.valueOf(nums[i]);
         }
         
+        // Arrays.sort(arr,comparator); will not work on primitives. 因此要转成String
         Arrays.sort(strs, new Comparator<String>(){
            public int compare(String s1, String s2) {
                String str1 = s1 + s2;

@@ -140,18 +140,10 @@ public class Test {
 		System.out.println(c ^ b);
 		*/
 		
-		List<Integer> list = new ArrayList<>(Arrays.asList(1, 2, 3, 4, 5, 6, 7));
-		Collections.sort(list, new Comparator<Integer>() {
-
-			@Override
-			public int compare(Integer o1, Integer o2) {
-				// TODO Auto-generated method stub
-				return 0;
-			}
-			
-		});
+		String test1 = "1";
+		String[] str = test1.split("\\.");
 		
-		System.out.println(list);
+		System.out.println(str[0]);
 
 	}
 	

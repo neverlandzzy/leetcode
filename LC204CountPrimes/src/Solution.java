@@ -1,4 +1,3 @@
-import java.util.Arrays;
 
 
 public class Solution {
@@ -20,6 +19,7 @@ public class Solution {
     	boolean[] notPrime = new boolean[n];
     	
     	for (int i = 2; i <= Math.sqrt(n); i++) {
+    		// 不加这个判断一样成立，加上可以优化
     		if (!notPrime[i]) {
     			for (int j = i * i; j < n; j += i) {
     				notPrime[j] = true;
