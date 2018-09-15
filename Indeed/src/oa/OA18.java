@@ -334,7 +334,7 @@ public class OA18 {
         	int[][] dots = new int[numDots][3];
         	
         	for (int j = 0; j < numDots; j++) {
-        		for (int k = 0; k < 2; k++) {
+        		for (int k = 0; k < 3; k++) {
         			dots[j][k] = in.nextInt();
         		}
         	}

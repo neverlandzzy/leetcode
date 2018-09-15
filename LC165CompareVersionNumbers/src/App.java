@@ -14,6 +14,33 @@ public class App {
 	 * Here is an example of version numbers ordering:
 	 * 0.1 < 1.1 < 1.2 < 13.37
 	 */
+	
+    public static int compareVersion(String version1, String version2) {
+        String[] str1 = version1.split("\\.");
+        String[] str2 = version2.split("\\.");
+        
+        int n1 = str1.length;
+        int n2 = str2.length;
+        int i = 0;
+        int j = 0;
+        
+        while (i < n1 || j < n2) {
+            int a1 = i >= n1 ? 0 : Integer.parseInt(str1[i]);
+            int a2 = j >= n2 ? 0 : Integer.parseInt(str2[j]);
+            
+            if (a1 > a2) {
+                return 1;
+            } else if (a1 < a2) {
+                return -1;
+            }
+            
+            i++;
+            j++;
+        }
+        
+        return 0;
+    }
+    
 	public static void main(String[] args) {
 		String test1 = "01";
 		String test2 = "1.1";
@@ -24,95 +51,4 @@ public class App {
 		System.out.println(compareVersion(test2,test3));
 		System.out.println(compareVersion(test2,test4));
 	}
-	
-	
-
-	public static int compareVersion(String version1, String version2) {
-		int count1 = 0;
-		int count2 = 0;
-		
-		String[] v1 = version1.split("\\.");
-		String[] v2 = version2.split("\\.");
-
-
-		
-		int k = 0;
-		while(v1[0].charAt(k) == '0' && (k < v1[0].length()-1)) {
-			k++;
-		}
-		
-		if (v1[0].length()-k == 0) {
-			k = 0;
-		}
-		char[] v1L = new char[v1[0].length()-k];
-		
-
-		for (int j = 0; j < v1[0].length()-k;j++) {
-			v1L[j] = v1[0].charAt(k);
-		}
-	
-		k = 0;
-		while((v2[0].charAt(k) == '0') && (k < v2[0].length()-1)) {
-			k++;
-		}
-		if (v2[0].length()-k == 0) {
-			k = 0;
-		}
-		char[] v2L = new char[v2[0].length()-k];
-		
-		for (int j = 0; j < v2[0].length()-k;j++) {
-			v2L[j] = v2[0].charAt(k);
-		}
-
-		char[] v1R;
-		char[] v2R;
-		char[] zero = {'0'};
-		
-		if(v1.length == 2) {
-			v1R = v1[1].toCharArray();
-		} else {
-			v1R = zero;
-		}
-
-		if(v2.length ==2) {
-			v2R = v2[1].toCharArray();
-		} else {
-			v2R = zero;
-		}
-		
-			
-		if (v1L.length > v2L.length) {
-			return 1;
-		} else if (v1L.length < v2L.length) {
-			return -1;
-		} else {
-			for (int i = 0; i < v1L.length; i++) {
-				count1 = count1*10 + (int)v1L[i]; 
-				count2 = count2*10 + (int)v2L[i];
-			}
-		}
-		
-		if (count1 > count2) {
-			return 1;
-		} else if (count1 < count2) {
-			return -1;
-		} else {
-			for (int i = 0; i < Math.min(v1R.length, v2R.length); i++) {
-				if((int)v1R[i] > (int)v2R[i]) {
-					return 1;
-				} else if((int)v1R[i] < (int)v2R[i]) {
-					return -1;
-				}
-			}
-			
-			if (v1R.length > v2R.length) {
-				return 1;
-			} else {
-				return 0;
-			}
-		}
-
-
-	}
-
 }
