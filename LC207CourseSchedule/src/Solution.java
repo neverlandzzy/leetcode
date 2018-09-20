@@ -66,7 +66,6 @@ class Graph {
     private int V;
     private int E;
     private int[] indegree;
-    private Queue<Integer> queue;
     private ArrayList<List<Integer>> neighbors;
     
     public Graph(int V, int[][] edges) {
@@ -88,7 +87,7 @@ class Graph {
     }
     
     public boolean hasTopologicalOrder() {
-        queue = new LinkedList<>();
+        Queue<Integer> queue = new LinkedList<>();
         
         for (int i = 0; i < V; i++) {
             if (indegree[i] == 0) {
