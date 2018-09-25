@@ -1,6 +1,3 @@
-import java.util.Arrays;
-
-
 public class Solution {
 	/*
 	 * Given an array nums, we call (i, j) an important reverse pair if i < j and nums[i] > 2*nums[j].
@@ -22,6 +19,7 @@ public class Solution {
 	 * All the numbers in the input array are in the range of 32-bit integer.
 	 */
 	
+	// 315, 327, 493
 	static int count = 0;
 	
     public static int reversePairs(int[] nums) {
