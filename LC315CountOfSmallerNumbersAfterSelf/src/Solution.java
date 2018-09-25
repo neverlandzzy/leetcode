@@ -19,23 +19,25 @@ public class Solution {
 	 * Return the array [2, 1, 1, 0].
 	 */
 	
+	// 315, 327, 493
+	// https://leetcode.com/problems/count-of-smaller-numbers-after-self/discuss/76583/11ms-JAVA-solution-using-merge-sort-with-explanation
 	
-	// https://leetcode.com/discuss/74110/11ms-java-solution-using-merge-sort-with-explanation
-	
-	private static int[] count;
+	//private static int[] count;
 	
     public static List<Integer> countSmaller(int[] nums) {
     	List<Integer> result = new ArrayList<Integer>();
     	
-    	count = new int[nums.length];
-    	int[] index = new int[nums.length];
+    	int n = nums.length;
     	
-    	for (int i = 0; i < nums.length; i++) {
+    	int[] count = new int[n];
+    	int[] index = new int[n];
+    	
+    	for (int i = 0; i < n; i++) {
     		index[i] = i;
     	}
     	
-        mergesort(nums, index, 0, nums.length - 1);
-        for(int i = 0; i < count.length; i++){
+        mergesort(nums, index, count, 0, n - 1);
+        for(int i = 0; i < n; i++){
         	result.add(count[i]);
         }
     	/*
@@ -53,19 +55,19 @@ public class Solution {
     	
     }
     
-    private static void mergesort(int[] nums, int[] index, int start, int end) {
+    private static void mergesort(int[] nums, int[] index, int[] count, int start, int end) {
     	
     	if (start < end) {
     		int mid = (start + end) / 2;
     	
-    		mergesort(nums, index, start, mid);
-    		mergesort(nums, index, mid+1, end);
+    		mergesort(nums, index, count, start, mid);
+    		mergesort(nums, index, count, mid+1, end);
     		
-    		merge(nums, index, start, mid, end);
+    		merge(nums, index, count, start, mid, end);
     	}
     }
     
-    private static void merge(int[] nums, int[] index, int start, int mid, int end) {
+    private static void merge(int[] nums, int[] index, int[] count, int start, int mid, int end) {
     	int[] tmp = new int[end - start + 1];
 		
 		int i = start; 

@@ -14,6 +14,7 @@ public class Solution {
 	 * The three ranges are : [0, 0], [2, 2], [0, 2] and their respective sums are: -2, -1, 2.
 	 */
 	
+	// 315, 327, 493
 	static int count;
 
     public static int countRangeSum(int[] nums, int lower, int upper) {
