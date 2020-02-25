@@ -5,7 +5,7 @@ import java.util.Map;
 
 
 public class Solution {
-	/*
+	/**
 	 * A full binary tree is a binary tree where each node has exactly 0 or 2 children.
 	 * 
 	 * Return a list of all possible full binary trees with N nodes.  Each element of the answer is the root node of one possible tree.

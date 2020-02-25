@@ -4,7 +4,7 @@ import java.util.Stack;
 
 
 public class FreqStack {
-	/*
+	/**
 	 * Implement FreqStack, a class which simulates the operation of a stack-like data structure.
 	 * 
 	 * FreqStack has two functions:
