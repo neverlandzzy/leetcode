@@ -5,6 +5,8 @@
 .DS_Store
 .metadata
 .recommenders
+*.iml
+.idea/
 
 # https://github.com/github/gitignore/blob/master/Java.gitignore
 # Log file
