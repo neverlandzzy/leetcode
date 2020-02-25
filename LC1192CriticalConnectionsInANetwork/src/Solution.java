@@ -30,7 +30,7 @@ public class Solution {
      */
 
     public List<List<Integer>> criticalConnections(int n, List<List<Integer>> connections) {
-
+        return null;
     }
 
     public static void main(String[] args) {
