@@ -1,6 +1,6 @@
 
 public class Solution {
-	/*
+	/**
 	 * A peak element is an element that is greater than its neighbors.
 	 * 
 	 * Given an input array where num[i] ≠ num[i+1], find a peak element and return its index.
@@ -13,7 +13,32 @@ public class Solution {
 	 * For example, in array [1, 2, 3, 1], 3 is a peak element and your function 
 	 * should return the index number 2.
 	 */
-	
+
+	public static int findPeakElement(int[] nums) {
+		if (nums == null || nums.length <= 1) {
+			return 0;
+		}
+
+		int start = 0;
+		int end = nums.length - 1;
+
+		while (start + 1 < end) {
+			int mid = start + (end - start) / 2;
+
+			if (nums[mid + 1] > nums[mid]) {
+				start = mid;
+			} else {
+				end = mid;
+			}
+		}
+
+		if (nums[start] > nums[end]) {
+			return start;
+		} else {
+			return end;
+		}
+	}
+
 	/*
     public static int findPeakElement(int[] nums) {
     	int lo = 0;
@@ -35,6 +60,7 @@ public class Solution {
         
     }
     */
+	/*
     public static int findPeakElement(int[] nums) {
         int n = nums.length;
         int start = 0;
@@ -57,6 +83,7 @@ public class Solution {
         
         return start;
     }
+    */
     /*
     public static int findPeakElement(int[] nums) {
         int start = 0;

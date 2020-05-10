@@ -34,8 +34,41 @@ public class Solution {
      * -100 <= grid[i][j] <= 100
      */
 
+    // https://leetcode.com/problems/count-negative-numbers-in-a-sorted-matrix/discuss/512165/Java-binary-search-beats-100-explained
+    // Time: O(m * logn), Space: O(1)
     public static int countNegatives(int[][] grid) {
+        int m = grid.length;
+        int n = grid[0].length;
+        int result = 0;
 
+        for (int i = 0; i < m; i++) {
+            if (grid[i][0] < 0) {
+                result += n;
+                continue;
+            }
+
+            if (grid[i][n - 1] >= 0) {
+                continue;
+            }
+
+            int start = 0;
+            int end = n - 1;
+
+            while (start + 1 < end) {
+                int mid = start + (end - start) / 2;
+                if (grid[i][mid] < 0) {
+                    end = mid;
+                } else {
+                    start = mid;
+                }
+            }
+
+            result += grid[i][end] < 0 ? (n - end) : (n - end - 1);
+            // with optimization at line #50-52, line #66 can be:
+            // result += (n - end);
+        }
+
+        return result;
     }
 
     public static void main(String[] args) {
@@ -43,10 +76,12 @@ public class Solution {
         int[][] test2 = {{3, 2}, {1, 0}};
         int[][] test3 = {{1, -1}, {-1, -1}};
         int[][] test4 = {{-1}};
+        int[][] test5 = {{3, 0, 0}, {2, 0, 0}};
 
         System.out.println(countNegatives(test1));
         System.out.println(countNegatives(test2));
         System.out.println(countNegatives(test3));
         System.out.println(countNegatives(test4));
+        System.out.println(countNegatives(test5));
     }
 }
