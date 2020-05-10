@@ -1,6 +1,6 @@
 
 public class Solution {
-	/*
+	/**
 	 * Follow up for "Search in Rotated Sorted Array":
 	 * 
 	 * What if duplicates are allowed?

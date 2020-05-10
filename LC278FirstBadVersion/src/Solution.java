@@ -1,6 +1,6 @@
 
 public class Solution extends VersionControl {
-	/*
+	/**
 	 * You are a product manager and currently leading a team to develop a new product. 
 	 * Unfortunately, the latest version of your product fails the quality check. 
 	 * Since each version is developed based on the previous version, all the versions after a 
@@ -13,8 +13,24 @@ public class Solution extends VersionControl {
 	 * Implement a function to find the first bad version. You should minimize the number of calls 
 	 * to the API.
 	 */
-	
 
+    public int firstBadVersion(int n) {
+        int left = 1;
+        int right = n;
+
+        while (left < right) {
+            int mid = left + (right - left) / 2;
+            if (isBadVersion(mid)) {
+                right = mid;
+            } else {
+                left = mid + 1;
+            }
+        }
+
+        return left;
+    }
+
+    /*
     public int firstBadVersion(int n) {
         int start = 1;
         int end = n;
@@ -35,5 +51,6 @@ public class Solution extends VersionControl {
             return end;
         }
     }
+    */
 }
 

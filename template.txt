@@ -1,0 +1,10 @@
+[Binary Search]
+33, 81, 162, 278
+
+[2D matrix and 1D array conversion]
+74, 240
+For a m*n matrix:
+	2D -> 1D:
+		(i, j) -> i * n + j
+	1D -> 2D:
+		i -> (i / n, i % n);
