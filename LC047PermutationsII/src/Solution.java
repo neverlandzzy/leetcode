@@ -6,7 +6,7 @@ import java.util.Set;
 
 
 public class Solution {
-	/*
+	/**
 	 * Given a collection of numbers that might contain duplicates, return all possible 
 	 * unique permutations.
 	 * 
@@ -52,7 +52,7 @@ public class Solution {
     // Solution 2: iteration	
 	public static List<List<Integer>> permuteUnique(int[] nums) {
     	List<List<Integer>> result = new ArrayList<>();
-    	result.add(new ArrayList<Integer>());
+    	result.add(new ArrayList<>());
     	
     	for (int i = 0; i < nums.length; i++) {
     		int size = result.size();

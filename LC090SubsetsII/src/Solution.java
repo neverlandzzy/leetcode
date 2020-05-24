@@ -5,7 +5,7 @@ import java.util.List;
 
 
 public class Solution {
-	/*
+	/**
 	 * Given a collection of integers that might contain duplicates, nums, return all possible subsets.
 	 * 
 	 * Note:
@@ -58,7 +58,7 @@ public class Solution {
     public static List<List<Integer>> subsetsWithDup2(int[] nums) {
         Arrays.sort(nums);
         List<List<Integer>> result = new ArrayList<>();
-        result.add(new ArrayList<Integer>());
+        result.add(new ArrayList<>());
         
         int start = 0;
         

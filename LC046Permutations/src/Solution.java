@@ -3,7 +3,7 @@ import java.util.List;
 
 
 public class Solution {
-	/*
+	/**
 	 * Given a collection of numbers, return all possible permutations.
 	 * 
 	 * For example,
@@ -64,7 +64,7 @@ public class Solution {
 
     public static List<List<Integer>> permute(int[] nums) {
     	List<List<Integer>> result = new ArrayList<>();
-    	result.add(new ArrayList<Integer>());
+    	result.add(new ArrayList<>());
     	
     	for (int i = 0; i < nums.length; i++) {
     		int size = result.size();
@@ -73,10 +73,11 @@ public class Solution {
     				List<Integer> list = new ArrayList<>(result.get(j));
     				list.add(k, nums[i]);
     				result.add(list);
+					//System.out.println("i = " + i + " j = " + j + " k = " + k + " list = " + list);
     			}
-    			//System.out.println("before: " + result);
+				//System.out.println("before: " + "i = " + i + " j = " + j + " result = " + result);
     			result.get(j).add(nums[i]);
-    			//System.out.println("after: " + result);
+				//System.out.println("after: " + "i = " + i + " j = " + j + " result = " + result);
     		}
     	}
     	
@@ -85,8 +86,7 @@ public class Solution {
 
     public static void main(String[] args) {
 		int[] test1 = {1,2,3};
-		
-		
+
 		System.out.println(permute(test1));
 		//System.out.println(permute(test2));
 		
