@@ -5,7 +5,7 @@ import java.util.Queue;
 
 
 public class Solution {
-	/*
+	/**
 	 * Given a string S, we can transform every letter individually to be lowercase or uppercase to create another string.  
 	 * Return a list of all possible strings we could create.
 	 * 
@@ -90,6 +90,41 @@ public class Solution {
 		chs[pos] = Character.toUpperCase(chs[pos]);
 		helper(String.valueOf(chs), result, pos + 1);
 	}
+
+	// Solution 3: similar to solution 2
+	/*
+	public static List<String> letterCasePermutation(String S) {
+		List<String> result = new ArrayList<>();
+		helper(result, S, 0, new StringBuilder());
+
+		return result;
+	}
+
+	private static void helper(List<String> result, String S, int pos, StringBuilder sb) {
+		if (sb.length() == S.length()) {
+			result.add(sb.toString());
+			return;
+		}
+
+		for (int i = pos; i < S.length(); i++) {
+			char c = S.charAt(i);
+
+			if (Character.isLetter(c)) {
+				sb.append(Character.toLowerCase(c));
+				helper(result, S, i + 1, sb);
+				sb.deleteCharAt(sb.length() - 1);
+
+				sb.append(Character.toUpperCase(c));
+				helper(result, S, i + 1, sb);
+				sb.deleteCharAt(sb.length() - 1);
+			} else {
+				sb.append(c);
+				helper(result, S, i + 1, sb);
+				sb.deleteCharAt(sb.length() - 1);
+			}
+		}
+	}
+	*/
 	
     public static void main(String[] args) {
 		System.out.println(letterCasePermutation("a1b2"));
