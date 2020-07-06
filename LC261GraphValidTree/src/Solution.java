@@ -4,7 +4,7 @@ import java.util.Map;
 
 public class Solution {
 	
-	/*
+	/**
 	 * Given n nodes labeled from 0 to n - 1 and a list of undirected edges (each edge is a pair of nodes), write a 
 	 * function to check whether these edges make up a valid tree.
 	 * 
@@ -17,8 +17,6 @@ public class Solution {
 	 * Note: you can assume that no duplicate edges will appear in edges. Since all edges are undirected, [0, 1] is the 
 	 * same as [1, 0] and thus will not appear together in edges.
 	 */
-	
-	// http://qkxue.net/info/67583/Leetcode-Graph
 
 	// Solution 1: DFS
 	/*

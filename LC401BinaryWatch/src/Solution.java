@@ -3,7 +3,7 @@ import java.util.List;
 
 
 public class Solution {
-	/*
+	/**
 	 * A binary watch has 4 LEDs on the top which represent the hours (0-11), and the 
 	 * 6 LEDs on the bottom represent the minutes (0-59).
 	 * 
@@ -30,7 +30,6 @@ public class Solution {
 	// Solution 1: Iteration
 	/*
     public static List<String> readBinaryWatch(int num) {
-    	
     	
     	List<String> result = new ArrayList<String>();
     	

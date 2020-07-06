@@ -187,19 +187,23 @@ public class Solution {
     }
     
     private static void dfs(char[][] grid, int i, int j) {
-    	if (grid[i][j] == '0') return;
-    	if (grid[i][j] == '1') {
-    		
-    		int m = grid.length;
-    		int n = grid[0].length;
-    		
-    		grid[i][j] = '#';
-    		
-    		if (i - 1 >= 0) dfs(grid, i - 1, j);
-    		if (i + 1 < m)  dfs(grid, i + 1, j);
-    		if (j - 1 >= 0) dfs(grid, i, j - 1);
-    		if (j + 1 < n)  dfs(grid, i, j + 1);
-    	}
+        int m = grid.length;
+        int n = grid[0].length;
+
+        if (i < 0 || i >= m || j < 0 || j >= n || grid[i][j] != '1') {
+            return;
+        }
+
+        if (grid[i][j] != '1') {
+            return;
+        }
+
+        grid[i][j] = '*';
+
+        dfs(grid, i + 1, j);
+        dfs(grid, i - 1, j);
+        dfs(grid, i, j + 1);
+        dfs(grid, i, j - 1);
     }
     */
 	
