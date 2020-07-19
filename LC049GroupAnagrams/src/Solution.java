@@ -6,7 +6,7 @@ import java.util.Map;
 
 
 public class Solution {
-	/*
+	/**
 	 * Given an array of strings, group anagrams together.
 	 * 
 	 * For example, given: ["eat", "tea", "tan", "ate", "nat", "bat"], 
@@ -23,20 +23,19 @@ public class Solution {
 	
 	public static List<List<String>> groupAnagrams(String[] strs) {
     	
-        HashMap<String, List<String>> map= new HashMap<String, List<String>>();
+        HashMap<String, List<String>> map= new HashMap<>();
     	
     	for (String s: strs) {
     		char[] charArray = s.toCharArray();
     		Arrays.sort(charArray);
     		String key = String.valueOf(charArray);
     		if (!map.containsKey(key)) {
-    			map.put(key, new ArrayList<String>());
+    			map.put(key, new ArrayList<>());
     		}    		
     		map.get(key).add(s);
-    		
     	}
     	
-    	return new ArrayList<List<String>>(map.values());    
+    	return new ArrayList<>(map.values());
     }
     
 	

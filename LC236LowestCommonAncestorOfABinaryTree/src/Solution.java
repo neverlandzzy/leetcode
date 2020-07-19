@@ -1,6 +1,6 @@
 
 public class Solution {
-	/*
+	/**
 	 * Given a binary tree, find the lowest common ancestor (LCA) of two given nodes in the tree.
 	 * 
 	 * According to the definition of LCA on Wikipedia: “The lowest common ancestor 

@@ -7,7 +7,7 @@ import java.util.List;
 import java.util.Queue;
 
 public class Rectangle {
-	/*
+	/**
 	 * 【基本题】给一个矩阵，矩阵中有且只有一个由0组成的长方体，其他全是1.
 	 *         找出这个长方体的左上角左边，长方体的长和高。
 	 *  input:

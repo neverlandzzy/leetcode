@@ -123,34 +123,30 @@ public class Solution {
     	return counter;
     }
     
-    private static void visited(char[][] grid, int i, int j, Queue<int[]> queue) {
-    	int m = grid.length;
-    	int n = grid[0].length;
-    	
-    	if (i < 0 || i > m - 1 || j < 0 || j > n - 1 || grid[i][j] != '1') {
-    		return;
-    	}
-    	
-    	grid[i][j] = '#';
-    	queue.offer(new int[] {i, j});
-    }
-    
     private static void bfs(char[][] grid, int i, int j) {
-    	Queue<int[]> queue = new LinkedList<>();
-    	
-    	visited(grid, i, j, queue);
-    	
-    	while(!queue.isEmpty()) {
-    		int[] node = queue.poll();
-    		
-    		int x = node[0];
-    		int y = node[1];
-    		visited(grid, x + 1, y, queue);
-    		visited(grid, x - 1, y, queue);
-    		visited(grid, x, y + 1, queue);
-    		visited(grid, x, y - 1, queue);
-    	}
+        int[][] direction = {{0, 1}, {1, 0}, {0, -1}, {-1, 0}};
+        int m = grid.length;
+        int n = grid[0].length;
 
+        Queue<int[]> queue = new LinkedList<>();
+        queue.offer(new int[]{i, j});
+        grid[i][j] = '*';
+
+        while (!queue.isEmpty()) {
+            int[] cell = queue.poll();
+            int x = cell[0];
+            int y = cell[1];
+
+            for (int[] dir: direction) {
+                int nextX = x + dir[0];
+                int nextY = y + dir[1];
+
+                if (nextX >= 0 && nextX < m && nextY >= 0 && nextY < n && grid[nextX][nextY] == '1') {
+                    queue.offer(new int[]{nextX, nextY});
+                    grid[nextX][nextY] = '*';
+                }
+            }
+        }
     }
 	*/
 	

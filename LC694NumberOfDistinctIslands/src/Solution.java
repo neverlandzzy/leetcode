@@ -5,7 +5,7 @@ import java.util.Set;
 
 
 public class Solution {
-	/*
+	/**
 	 * Given a non-empty 2D array grid of 0's and 1's, an island is a group of 1's (representing land) connected 4-directionally 
 	 * (horizontal or vertical.) You may assume all four edges of the grid are surrounded by water.
 	 * 
@@ -101,8 +101,8 @@ public class Solution {
         			set.add(sb.toString());
         		}
         	}
-        }   
-        
+        }
+
         //System.out.println(set);
         return set.size();
     }

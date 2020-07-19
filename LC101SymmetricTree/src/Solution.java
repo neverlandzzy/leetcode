@@ -2,7 +2,7 @@ import java.util.Stack;
 
 
 public class Solution {
-	/*
+	/**
 	 * Given a binary tree, check whether it is a mirror of itself (ie, symmetric around its center).
 	 * 
 	 * For example, this binary tree is symmetric:

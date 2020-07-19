@@ -2,7 +2,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class LRUCache {
-	/*
+	/**
 	 * Design and implement a data structure for Least Recently Used (LRU) cache. 
 	 * It should support the following operations: get and set.
 	 * 
@@ -78,6 +78,5 @@ public class LRUCache {
     	tail.prev.next = node;
     	tail.prev = node;
     	node.next = tail;
-    	
     }
 }

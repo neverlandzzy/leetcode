@@ -1,9 +1,8 @@
 
 public class Solution {
-	/*
+	/**
 	 * Reverse a singly linked list.
 	 */
-	
 	
 	// Solution 1: Iteration
 	/*

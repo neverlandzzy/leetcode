@@ -5,7 +5,7 @@ import java.util.TreeMap;
 
 
 public class Solution {
-	/*
+	/**
 	 * Given an array of meeting time intervals consisting of start and end times [[s1,e1],[s2,e2],...] (si < ei), find the minimum number of 
 	 * conference rooms required.
 	 * 
@@ -47,9 +47,30 @@ public class Solution {
         return result;
     }
     */
+	public static int minMeetingRooms(int[][] intervals) {
+		if (intervals == null || intervals.length == 0) {
+			return 0;
+		}
+
+		Arrays.sort(intervals, Comparator.comparingInt((int[] i) -> i[0]));
+
+		PriorityQueue<int[]> queue = new PriorityQueue<>(Comparator.comparingInt((int[] i) -> i[1]));
+		queue.offer(intervals[0]);
+		int result = 1;
+
+		for (int i = 1; i < intervals.length; i++) {
+			while (!queue.isEmpty() && queue.peek()[1] <= intervals[i][0]) {
+				queue.poll();
+			}
+			queue.offer(intervals[i]);
+			result = Math.max(result, queue.size());
+		}
+
+		return result;
+	}
 	
     // Solution 2: O(n * log n)  -- 类似LC731 732
-    public static int minMeetingRooms(Interval[] intervals) {
+    public static int minMeetingRooms_oldVersion(Interval[] intervals) {
     	TreeMap<Integer, Integer> map = new TreeMap<>();
     	
     	for (Interval interval: intervals) {
@@ -61,7 +82,6 @@ public class Solution {
     	int overlap = 0;
     	
     	for (int value: map.values()) {
-    		
     		overlap += value;
     		result = Math.max(result, overlap);
     	}
@@ -70,12 +90,18 @@ public class Solution {
     }
     
     public static void main(String[] args) {
-		Interval i1 = new Interval(0, 30);
-		Interval i2 = new Interval(5, 10);
-		Interval i3 = new Interval(15, 20);
-		
-		Interval[] test = {i1, i2, i3};
-		
-		System.out.println(minMeetingRooms(test));
+//		Interval i1 = new Interval(0, 30);
+//		Interval i2 = new Interval(5, 10);
+//		Interval i3 = new Interval(15, 20);
+//
+//		Interval[] test = {i1, i2, i3};
+//
+//		System.out.println(minMeetingRooms_oldVersion(test));
+
+		int[][] intervals1 = {{0, 30}, {5, 10}, {15, 20}};
+		int[][] intervals2 = {{7, 10}, {2, 4}};
+
+		System.out.println(minMeetingRooms(intervals1));
+		System.out.println(minMeetingRooms(intervals2));
 	}
 }

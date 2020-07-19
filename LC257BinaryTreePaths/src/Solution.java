@@ -4,7 +4,7 @@ import java.util.Stack;
 
 
 public class Solution {
-	/*
+	/**
 	 * Given a binary tree, return all root-to-leaf paths.
 	 * 
 	 * For example, given the following binary tree:

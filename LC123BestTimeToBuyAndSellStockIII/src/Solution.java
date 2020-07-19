@@ -1,6 +1,6 @@
 
 public class Solution {
-	/*
+	/**
 	 * Say you have an array for which the ith element is the price of a given stock on day i.
 	 * 
 	 * Design an algorithm to find the maximum profit. You may complete at most two transactions.
@@ -32,14 +32,14 @@ public class Solution {
         	second[i] = Math.max(second[i+1], max - prices[i]);
         }
         
-        for(int k: first) {
-        	System.out.print(k + ", ");
-        }
-        System.out.println();
-        for(int k: second) {
-        	System.out.print(k + ", ");
-        }
-        System.out.println();
+//        for(int k: first) {
+//        	System.out.print(k + ", ");
+//        }
+//        System.out.println();
+//        for(int k: second) {
+//        	System.out.print(k + ", ");
+//        }
+//        System.out.println();
         int profit = 0;
         for (int i = 0; i < n; i++) {
         	profit = Math.max(profit, first[i] + second[i]);

@@ -3,7 +3,7 @@ import java.util.List;
 
 
 public class Solution {
-	/*
+	/**
 	 * Given n, generate all structurally unique BST's (binary search trees) that store values 1...n.
 	 * 
 	 * For example,
@@ -18,7 +18,7 @@ public class Solution {
 	
     public static List<TreeNode> generateTrees(int n) {
         if (n == 0) {
-            return new ArrayList<TreeNode>();
+            return new ArrayList<>();
         }
         
     	return generate(1, n);
@@ -26,7 +26,7 @@ public class Solution {
     
     
     private static List<TreeNode> generate(int start, int end) {
-    	List<TreeNode> result = new ArrayList<TreeNode>();
+    	List<TreeNode> result = new ArrayList<>();
     	
     	if (start > end) {
     	    result.add(null);    		
