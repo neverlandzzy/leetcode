@@ -55,7 +55,6 @@ class Digraph {
 		
 		onStack[v] = false;
 	}
-	
 }
 
 */
@@ -75,7 +74,7 @@ class Graph {
         neighbors = new ArrayList<>();
         
         for (int i = 0; i < V; i++) {
-            neighbors.add(new ArrayList<Integer>());
+            neighbors.add(new ArrayList<>());
         }
         
         for (int i = 0; i < E; i++) {
@@ -113,7 +112,7 @@ class Graph {
 }
 
 public class Solution {
-	/*
+	/**
 	 * There are a total of n courses you have to take, labeled from 0 to n - 1.
 	 * 
 	 * Some courses may have prerequisites, for example to take course 0 you have to 

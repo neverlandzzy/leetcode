@@ -1,6 +1,6 @@
 
 public class Solution {
-	/*
+	/**
 	 * Write an efficient algorithm that searches for a value in an m x n matrix. This matrix has 
 	 * the following properties:
 	 * 
@@ -32,7 +32,7 @@ public class Solution {
     	int col = n - 1;
     	int row = 0;
     	
-    	while (row <= m - 1 && col >= 0) {
+    	while (row < m && col >= 0) {
     		if (matrix[row][col] == target) {
     			return true;
     		} else if (matrix[row][col] < target) {

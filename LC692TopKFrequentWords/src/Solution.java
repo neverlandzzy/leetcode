@@ -8,7 +8,7 @@ import java.util.PriorityQueue;
 
 
 public class Solution {
-	/*
+	/**
 	 * Given a non-empty list of words, return the k most frequent elements.
 	 * 
 	 * Your answer should be sorted by frequency from highest to lowest. If two words have the same frequency, then the word with the 
@@ -37,15 +37,12 @@ public class Solution {
             map.put(w, map.getOrDefault(w, 0) + 1);
         }
         
-        PriorityQueue<String> heap = new PriorityQueue<>(new Comparator<String>() {
-            public int compare(String s1, String s2) {
-                if (map.get(s1) == map.get(s2)) {
-                    return s1.compareTo(s2);
-                }
-                
-                return map.get(s2) - map.get(s1);
-            }
-        });
+        PriorityQueue<String> heap = new PriorityQueue<>((s1, s2) -> {
+			if (map.get(s1).equals(map.get(s2))) {
+				return s1.compareTo(s2);
+			}
+			return map.get(s2) - map.get(s1);
+		});
         
         for (String key: map.keySet()) {
             heap.offer(key);

@@ -2,7 +2,7 @@ import java.util.PriorityQueue;
 
 
 public class Solution {
-	/*
+	/**
 	 * Find the kth largest element in an unsorted array. Note that 
 	 * it is the kth largest element in the sorted order, not the kth distinct element.
 	 * 
@@ -64,11 +64,11 @@ public class Solution {
 		}
 	
 		swap(nums, left, high);
-		for (int n: nums) {
-			System.out.print(n + ", ");
-		}
-		
-		System.out.println();
+//		for (int n: nums) {
+//			System.out.print(n + ", ");
+//		}
+//
+//		System.out.println();
 		
 		// count the nums that are <= pivot from low
 		int count = left - low + 1;

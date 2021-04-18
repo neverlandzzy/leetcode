@@ -51,7 +51,6 @@ class Digraph {
 		}
 	}
 	
-	
 	private void dfs(int v) {
 		marked[v] = true;
 		onStack[v] = true;
@@ -64,7 +63,6 @@ class Digraph {
 		postorder.push(v);
 		onStack[v] = false;
 	}
-	
 }
 */
 
@@ -124,12 +122,10 @@ class Digraph {
 		if (counter < V) return new int[0];
 		else return topologicalOrder;
 	}
-	
-	
 }
 
 public class Solution {
-	/*
+	/**
 	 * There are a total of n courses you have to take, labeled from 0 to n - 1.
 	 * 
 	 * Some courses may have prerequisites, for example to take course 0 you have to 

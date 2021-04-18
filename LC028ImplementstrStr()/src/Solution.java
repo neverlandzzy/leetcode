@@ -1,6 +1,6 @@
 
 public class Solution {
-	/*
+	/**
 	 *   Implement strStr().
 	 *   
 	 *   Returns the index of the first occurrence of needle in haystack, or -1 if needle 
@@ -22,8 +22,8 @@ public class Solution {
                 j++;
             } else {
                 j = 0;
-                i = index + 1;
                 index++;
+                i = index;
             }
         }
         
