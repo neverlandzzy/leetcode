@@ -35,6 +35,27 @@ public class Solution {
      */
 
     // Solution 1: O(n)
+
+    /**
+     *     team  队伍号码
+     *     level 层数
+     *     n     队伍数
+     *
+     *     e.g. n = 8 (2^3), level = 3 + 1层, team = 1, 2, ..., 8
+     *
+     *                      1
+     *                 /           \
+     *       ((1,8), (4,5))       ((2,7), (3,6))
+     *        /          \         /        \
+     *      (1,8)      (4,5)     (2,7)    (3,6)
+     *     /     \     /   \     /   \    /   \
+     *     1     8    4    5    2    7   3    6
+     *
+     *    特点：
+     *    1. 当 sum = 2^level > n 时，e.g. level = 4时，返回team，其它情况返回pair(也就是上一级递归的返回值)
+     *    2. 每个pair的和是当前sum
+     *    3. 初始状态level = 1, sum = 2^1 = 2, team = 1
+     */
     public static String findContestMatch(int n) {
         // https://leetcode.com/problems/output-contest-matches/discuss/228021/4-line-Java-Most-clean-recursion-with-comments
         return helper(n, 1, 2);
@@ -44,8 +65,7 @@ public class Solution {
         if (n < sum) {
             return (String.valueOf(team));
         }
-
-        return "(" + helper(n, team, sum << 1) + "," + helper(n, sum - team + 1, sum << 1) + ")";
+        return "(" + helper(n, team, sum << 1) + "," + helper(n,  sum - team + 1, sum << 1) + ")";
     }
 
     public static void main(String[] args) {
