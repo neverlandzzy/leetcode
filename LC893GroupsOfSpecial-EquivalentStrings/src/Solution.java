@@ -6,7 +6,7 @@ import java.util.Set;
 
 
 public class Solution {
-	/*
+	/**
 	 * You are given an array A of strings.
 	 * 
 	 * Two strings S and T are special-equivalent if after any number of moves, S == T.
@@ -75,15 +75,10 @@ public class Solution {
     	
     	Collections.sort(even);
     	Collections.sort(odd);
-    	
-    	for (char c: even) {
-    		sb.append(c);
-    	}
-    	
-    	for (char c: odd) {
-    		sb.append(c);
-    	}
-    	
+
+    	even.forEach(sb::append);
+    	odd.forEach(sb::append);
+
     	return sb.toString();
     }
     
