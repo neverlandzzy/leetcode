@@ -1,6 +1,6 @@
 
 public class Soluation {
-	/*
+	/**
 	 * There are two sorted arrays nums1 and nums2 of size m and n respectively. 
 	 * Find the median of the two sorted arrays. 
 	 * 
@@ -131,7 +131,7 @@ public class Soluation {
         }
         
         if (k == 1) {
-            return nums1[i1] < nums2[i2] ? nums1[i1] : nums2[i2];
+            return Math.min(nums1[i1], nums2[i2]);
         }
         
         int mid1 = i1 + k / 2 - 1 >= nums1.length ? Integer.MAX_VALUE : nums1[i1 + k / 2 - 1];
