@@ -1,5 +1,5 @@
 public class Solution {
-	/*
+	/**
 	 * Given an array nums, we call (i, j) an important reverse pair if i < j and nums[i] > 2*nums[j].
 	 * 
 	 * You need to return the number of important reverse pairs in the given array.
@@ -38,6 +38,10 @@ public class Solution {
                 
                 while (j <= end && (long)nums[i] > (long)nums[j] * 2) {
                     j++;
+                    // 此处不能用count++来计算，因为当merge [2, 3, 4] 和[1,5]时，当发现 (3,1)满足条件后，即认为前面数组中3和3以后的元素
+					// 都满足条件，因此count += j - (mid + 1) 包括了(3, 1)和(4, 1)，然后j会向后移1位，比较3和5, 然后i向后移，比较4和5
+//					printArray(nums);
+//					System.out.println("i = " + i + " j = " + j + " mid = " + mid);
                 }
                 count += j - (mid + 1);
             }
@@ -45,6 +49,13 @@ public class Solution {
             merge(nums, start, mid, end);
         }
     }
+
+//    private static void printArray(int[]nums) {
+//		for (int i: nums) {
+//			System.out.print(i + ", ");
+//		}
+//		System.out.println();
+//	}
     
     private static void merge(int[]nums, int start, int mid, int end) {
 		int[] tmp = new int[end - start + 1];
@@ -84,7 +95,7 @@ public class Solution {
     	
     	int[] test1 = {1,3,2,3,1};
     	int[] test2 = {2,4,3,5,1};
-		System.out.println(reversePairs(test1));
+		//System.out.println(reversePairs(test1));
 		System.out.println(reversePairs(test2));
 	}
 }
