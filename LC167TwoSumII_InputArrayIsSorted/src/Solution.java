@@ -1,6 +1,6 @@
 
 public class Solution {
-	/*
+	/**
 	 * Given an array of integers that is already sorted in ascending order, 
 	 * find two numbers such that they add up to a specific target number.
 	 * 

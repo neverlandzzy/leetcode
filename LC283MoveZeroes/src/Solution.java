@@ -1,6 +1,6 @@
 
 public class Solution {
-	/*
+	/**
 	 * Given an array nums, write a function to move all 0's to the end of 
 	 * it while maintaining the relative order of the non-zero elements.
 	 * 
@@ -24,7 +24,7 @@ public class Solution {
                 index++;
             }
             
-            // 减少swap次数的优化
+            // 减少swap次数的优化 ?
             while (index < i && nums[index] != 0) {
                 index++;
             }

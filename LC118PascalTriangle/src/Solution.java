@@ -3,7 +3,8 @@ import java.util.List;
 
 
 public class Solution {
-	/*Given numRows, generate the first numRows of Pascal's triangle.
+	/**
+	 * Given numRows, generate the first numRows of Pascal's triangle.
 	 * For example, given numRows = 5,
 	 * Return
 	 * 
@@ -18,10 +19,10 @@ public class Solution {
 	
     public static List<List<Integer>> generate(int numRows) {
       
-    	List<List<Integer>> result = new ArrayList<List<Integer>>();
+    	List<List<Integer>> result = new ArrayList<>();
     	
     	for(int i = 0; i < numRows; i++) {
-    		List<Integer> list = new ArrayList<Integer>();
+    		List<Integer> list = new ArrayList<>();
     		for(int j = 0; j <= i; j++) {
     			if(j == 0 || j == i) {
     				list.add(1);

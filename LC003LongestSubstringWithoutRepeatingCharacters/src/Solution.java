@@ -4,7 +4,7 @@ import java.util.Map;
 
 public class Solution {
 
-	/*
+	/**
 	 * Given a string, find the length of the longest substring without repeating characters. 
 	 * 
 	 * For example, the longest substring without repeating letters for "abcabcbb" is "abc", 
