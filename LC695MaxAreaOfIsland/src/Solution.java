@@ -3,7 +3,7 @@ import java.util.Queue;
 
 
 public class Solution {
-	/*
+	/**
 	 * Given a non-empty 2D array grid of 0's and 1's, an island is a group of 1's (representing land) connected 4-directionally 
 	 * (horizontal or vertical.) You may assume all four edges of the grid are surrounded by water.
 	 * 
@@ -62,6 +62,10 @@ public class Solution {
         		
         		if (nextI >= 0 && nextI < grid.length && nextJ >= 0 && nextJ < grid[0].length && grid[nextI][nextJ] == 1) {
         			area++;
+
+        			// 必须在这里将grid[nextI][nextJ]置为-1而不能在for loop之上，因为对于
+					// [[1,1,0,0,0],[1,1,0,0,0],[0,0,0,1,1],[0,0,0,1,1]]，在(1, 1)位置
+					// 的1会被计算两遍 - 处理(0, 1)和(1, 0)时分别计算了一遍
         			grid[nextI][nextJ] = -1;
         			queue.offer(new int[] {nextI, nextJ});
         		}

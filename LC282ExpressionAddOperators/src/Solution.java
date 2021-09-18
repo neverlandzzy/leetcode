@@ -3,7 +3,7 @@ import java.util.List;
 
 
 public class Solution {
-	/*
+	/**
 	 * Given a string that contains only digits 0-9 and a target value, 
 	 * return all possibilities to add binary operators (not unary) +, -, or * 
 	 * between the digits so they evaluate to the target value.
@@ -16,7 +16,7 @@ public class Solution {
 	 * "3456237490", 9191 -> []
 	 */
 	
-	// https://leetcode.com/discuss/58614/java-standard-backtrace-ac-solutoin-short-and-clear
+	// https://leetcode.com/problems/expression-add-operators/discuss/71895/Java-Standard-Backtrace-AC-Solutoin-short-and-clear
 	// 时间复杂度
 	// T(n) = 3 * T(n-1) + 3 * T(n-2) + 3 * T(n-3) + ... + 3 *T(1);
 	// T(n-1) = 3 * T(n-2) + 3 * T(n-3) + ... 3 * T(1);
@@ -30,8 +30,18 @@ public class Solution {
         
         return result;
     }
-    
-    private static void dfs(List<String> result, String num, int target, int pos, StringBuilder sb, long eval, long mul) {
+
+    /**
+     *
+     * @param result List of result to be returned
+     * @param num the input String
+     * @param target the input target
+     * @param pos the current pointer
+     * @param sb  the current expression
+     * @param eval the current calculated result
+     * @param prev the previous number used in last expression (e.g.  9-2*3, 当计算2*3时，传入的eval是9-2, prev是-2)
+     */
+    private static void dfs(List<String> result, String num, int target, int pos, StringBuilder sb, long eval, long prev) {
         if (num.length() == pos) {
             if (eval == target) {
                 result.add(sb.toString());
@@ -56,11 +66,11 @@ public class Solution {
                 sb.setLength(len);
                 dfs(result, num, target, i + 1, sb.append("-").append(cur), eval - cur, -cur);
                 sb.setLength(len);
-                // 对于 9-2*3, 当计算2*3时，传入的eval是9-2, mul 是-2, 因此要用cur(3) * mul(-2)， 这一步总的结果是(9 - 2 + 2) + (3 * -2)， 因为
+                // 对于 9-2*3, 当计算2*3时，传入的eval是9-2, prev 是-2, 因此要用cur(3) * prev(-2)， 这一步总的结果是(9 - 2 + 2) + (3 * -2)， 因为
                 // -2用作(-2 * 3)的乘数， 所以上一步传入的eval中要减去这个-2
-                dfs(result, num, target, i + 1, sb.append("*").append(cur), eval - mul + cur * mul, cur * mul);
+                dfs(result, num, target, i + 1, sb.append("*").append(cur), eval - prev + cur * prev, cur * prev);
                 sb.setLength(len);
-            } 
+            }
         }
     }
     
