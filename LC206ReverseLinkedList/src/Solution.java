@@ -24,18 +24,17 @@ public class Solution {
     // Solution 2: Recursion
     
     public static ListNode reverseList(ListNode head) {
-    	if (head == null || head.next == null) {
-    		return head;
-    	}
-    	
-    	ListNode resHead = head.next;
-    	head.next = null;
-    	
-    	ListNode newHead = reverseList(resHead);
-    	resHead.next = head;
+		if (head == null || head.next == null) {
+			return head;
+		}
 
-    	return newHead;
-    	
+		ListNode next = head.next;
+		head.next = null;
+
+		ListNode newHead = reverseList(next);
+		next.next = head;
+
+		return newHead;
     }
     
     public static void main(String[] args) {

@@ -2,7 +2,7 @@ import java.util.Stack;
 
 
 public class MyQueue {
-	/*
+	/**
 	 * Implement the following operations of a queue using stacks.
 	 * 
 	 * push(x) -- Push element x to the back of queue.

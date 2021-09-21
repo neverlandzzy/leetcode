@@ -3,7 +3,7 @@ import java.util.List;
 
 
 public class Solution {
-	/*
+	/**
 	 * Given a binary tree
 	 * 
 	 * struct TreeLinkNode {
@@ -39,7 +39,8 @@ public class Solution {
 	 *      / \  / \
 	 *     4->5->6->7 -> NULL
 	 */
-	
+
+	// 这个解法对于非perfect binary tree一样适用。对于perfect binary tree，可以不用检查 if (cur.left != null)(line 57) 和 if (cur.right != null)(line67)
     public static void connect(TreeLinkNode root) {
     	TreeLinkNode head  = root;   //The leftmost node in the lower level (head of the next level)
     	TreeLinkNode prev  = null;   //The previous node in the lower level (the leading node on the next level)
@@ -52,6 +53,7 @@ public class Solution {
     		
     		// iterate on current level
     		while (cur != null) {
+    			// 对于perfect binary tree，可以不用检查 if (cur.left != null)
     			if (cur.left != null) {
     				if (prev != null) {
     					prev.next = cur.left;
@@ -60,7 +62,8 @@ public class Solution {
     				}
 					prev = cur.left;
     			}
-    			
+
+				// 对于perfect binary tree，可以不用检查 if (cur.right != null)
     			if (cur.right != null) {
     				if (prev != null) {
     					prev.next = cur.right;
@@ -77,6 +80,26 @@ public class Solution {
     }
     
     // Solution 2: recursion
+
+	/* 新版带返回值
+	    public Node connect(Node root) {
+        if (root == null || root.left == null && root.right == null) {
+            return root;
+        }
+
+        root.left.next = root.right;
+
+        if (root.next != null) {
+            root.right.next = root.next.left;
+        }
+
+        root.left = connect(root.left);
+        root.right = connect(root.right);
+
+        return root;
+    }
+	 */
+
     /*
     public static void connect(TreeLinkNode root) {
         if (root == null || root.left == null && root.right == null) {
@@ -92,6 +115,10 @@ public class Solution {
         connect(root.right);
     }
     */
+
+
+
+
     public static void main(String[] args) {
     	TreeLinkNode node1 = new TreeLinkNode(1);
     	TreeLinkNode node2 = new TreeLinkNode(2);

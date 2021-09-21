@@ -1,6 +1,6 @@
 
 public class Solution {
-	/*
+	/**
 	 * Given a sorted linked list, delete all duplicates such that each element appear only once.
 	 * 
 	 * For example,
@@ -46,12 +46,11 @@ public class Solution {
             
         while (cur != null) {
             if (pre.val == cur.val) {
-                cur = cur.next;
-                pre.next = cur;
+                pre.next = cur.next;
             } else {
                 pre = cur;
-                cur = cur.next;
             }
+            cur = cur.next;
         }
         
         return head;
