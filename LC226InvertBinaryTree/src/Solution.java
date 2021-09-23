@@ -1,6 +1,6 @@
 
 public class Solution {
-	/*
+	/**
 	 * Invert a binary tree.
 	 *      4
    	 *    /   \

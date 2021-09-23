@@ -3,7 +3,7 @@ import java.util.List;
 
 
 public class Solution {
-	/*
+	/**
 	 * Given two integers n and k, return all possible combinations of k numbers out of 1 ... n.
 	 * 
 	 * For example,
