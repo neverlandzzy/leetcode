@@ -1,6 +1,6 @@
 
 public class Solution {
-	/*
+	/**
 	 * Given a sorted linked list, delete all nodes that have duplicate numbers, 
 	 * leaving only distinct numbers from the original list.	
 	 * 
@@ -19,28 +19,25 @@ public class Solution {
         }
         
         ListNode pre = dummy;
-        ListNode cur = dummy.next;  
-        
-        while (cur.next != null) {
-            if (cur.val == cur.next.val) {
-                while (cur.next != null && cur.val == cur.next.val) {
-                    cur = cur.next;
-                }
-                
-                if (cur.next != null) {
-                    cur = cur.next;
-                    pre.next = cur;
-                } else {
-                    pre.next = null;
-                }
-            } else {
-                pre = cur;
-                cur = cur.next;
-            }
-        }
+        ListNode cur = dummy.next;
+
+		while (cur != null) {
+			if (cur.next != null && cur.val == cur.next.val) {
+				while (cur.next != null && cur.val == cur.next.val) {
+					cur = cur.next;
+				}
+
+				pre.next = cur.next;
+
+			} else {
+				pre = cur;
+			}
+
+			cur = cur.next;
+
+		}
         
         return dummy.next;
-        
     }
     
     

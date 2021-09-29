@@ -37,6 +37,7 @@ public class Solution {
 	 */
 	
 	// Solution 1: Time: O(m + n), Space: O(m + n)
+/*
     public static boolean backspaceCompare(String S, String T) {
         Stack<Character> s = new Stack<>();
         Stack<Character> t = new Stack<>();
@@ -77,6 +78,61 @@ public class Solution {
         
         return false;
     }
+*/
+
+	// Solution 2: Time: O(m + n), Space: O(1)
+	public static boolean backspaceCompare(String s, String t) {
+		int i = s.length() - 1;
+		int j = t.length() - 1;
+
+		int counter1 = 0;
+		int counter2 = 0;
+
+		while (i >= 0 || j >= 0) {
+			while (i >= 0) {
+				if (s.charAt(i) == '#') {
+					counter1++;
+					i--;
+				} else if (counter1 > 0) {
+					counter1--;
+					i--;
+				} else {
+					break;
+				}
+			}
+
+			while (j >= 0) {
+				if (t.charAt(j) == '#') {
+					counter2++;
+					j--;
+				} else if (counter2 > 0) {
+					counter2--;
+					j--;
+				} else {
+					break;
+				}
+			}
+
+			if (i >= 0 && j >= 0) {
+				if (s.charAt(i) != t.charAt(j)) {
+					return false;
+				}
+			}
+
+			if (i < 0 && j < 0) {
+				return true;
+			}
+
+			if (i < 0 || j < 0) {
+				return false;
+			}
+
+			i--;
+			j--;
+		}
+
+		return true;
+	}
     
     public static void main(String[] args) {
 		String s1 = "ab#c";

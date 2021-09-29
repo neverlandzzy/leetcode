@@ -1,6 +1,6 @@
 
 public class Solution {
-	/*
+	/**
 	 * Given a sorted array of integers, find the starting and ending position of a given target value.
 	 * 
 	 * Your algorithm's runtime complexity must be in the order of O(log n).
@@ -87,17 +87,19 @@ public class Solution {
             left = start;
         } else if (nums[end] == target) {
             left = end;
-        }        
+        }  else {
+            return new int[] {-1, -1};
+        }
         
         start = 0;
         end = nums.length - 1;
         
         while (start + 1 < end) {
             int mid = start + (end - start) / 2;
-            if (nums[mid] > target) {
-                end = mid;
-            } else {
+            if (nums[mid] <= target) {
                 start = mid;
+            } else {
+                end = mid;
             }
         }
         
