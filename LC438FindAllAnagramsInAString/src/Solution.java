@@ -3,7 +3,7 @@ import java.util.List;
 
 
 public class Solution {
-	/*
+	/**
 	 * Given a string s and a non-empty string p, find all the start indices of p's anagrams in s.
 	 * 
 	 * Strings consists of lowercase English letters only and the length of both strings s and p will not be larger than 20,100.
@@ -56,13 +56,12 @@ public class Solution {
             }
             
             map[s.charAt(j) - 'a']--;
-
             
             if (counter == 0) {
                 result.add(i);
             }           
             
-            if (j - i == p.length() - 1) {
+            if (j - i + 1 == p.length()) {
                 map[s.charAt(i) - 'a']++;
                 if (map[s.charAt(i) - 'a'] > 0) {
                     counter++;

@@ -1,6 +1,6 @@
 
 public class Solution {
-	/*
+	/**
 	 * Given a (singly) linked list with head node root, write a function to split the linked list into k consecutive linked list "parts".
 	 * 
 	 * The length of each part should be as equal as possible: no two parts should have a size differing by more than 1. This may lead to some 
