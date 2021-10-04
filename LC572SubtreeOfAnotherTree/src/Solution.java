@@ -1,6 +1,6 @@
 
 public class Solution {
-	/*
+	/**
 	 * Given two non-empty binary trees s and t, check whether tree t has exactly the same structure and node values with a subtree of s. 
 	 * A subtree of s is a tree consists of a node in s and all of this node's descendants. The tree s could also be considered as a subtree 
 	 * of itself.
@@ -121,7 +121,7 @@ public class Solution {
 		TreeNode node9 = new TreeNode(0);
 		node5.left = node9;
 		System.out.println(isSubtree(node1, node6));
-		
+
 		TreeNode node10 = new TreeNode(2);
 		TreeNode node11 = new TreeNode(12);
 		System.out.println(isSubtree(node10, node11));

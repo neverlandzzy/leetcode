@@ -1,7 +1,7 @@
 
 public class Solution {
 	
-	/*
+	/**
 	 * Given an array of non-negative integers, you are initially positioned at the first 
 	 * index of the array.
 	 * 
@@ -17,23 +17,22 @@ public class Solution {
 	/*
     public static boolean canJump(int[] nums) {
     	
-        int maxReach = 0;
-    	
-    	for (int i = 0; i < nums.length; i++) {
-    		if (maxReach < i) {
-    			return false;
-    		}
-    		
-    		if ( i + nums[i] > maxReach) {
-    			maxReach = i + nums[i];
-    		}
-    		
-    		if (maxReach >= nums.length-1) {
-    			return true;
-    		}
-    	}
-    	
-    	return true;
+        int n = nums.length;
+        int max = 0;
+
+        for (int i = 0; i < n; i++) {
+            max = Math.max(max, nums[i] + i);
+
+            if (max >= n - 1) {
+                return true;
+            }
+
+            if (max <= i) {
+                return false;
+            }
+        }
+
+        return true;
     }
     */
 	
