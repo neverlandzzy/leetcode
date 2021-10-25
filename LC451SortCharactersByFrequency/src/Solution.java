@@ -5,7 +5,7 @@ import java.util.PriorityQueue;
 
 
 public class Solution {
-	/*
+	/**
 	 * Given a string, sort it in decreasing order based on the frequency of characters.
 	 * 
 	 * Example 1:
@@ -65,11 +65,13 @@ public class Solution {
         	map.put(c, map.getOrDefault(c, 0) + 1);
         }
         
-        PriorityQueue<Node> queue = new PriorityQueue<>(new Comparator<Node>() {
-        	public int compare(Node n1, Node n2) {
-        		return n2.count - n1.count;
-        	}
-        });       
+//        PriorityQueue<Node> queue = new PriorityQueue<>(new Comparator<Node>() {
+//        	public int compare(Node n1, Node n2) {
+//        		return n2.count - n1.count;
+//        	}
+//        });
+
+		PriorityQueue<Node> queue = new PriorityQueue<>((n1, n2) ->(n2.count - n1.count));
         
         for (char c: map.keySet()) {
         	Node node = new Node(c, map.get(c));

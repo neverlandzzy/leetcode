@@ -21,7 +21,10 @@ public class Solution {
 	 * Your runtime complexity should be less than O(n^2).
 	 * There is only one duplicate number in the array, but it could be repeated more than once.
 	 */
-	
+
+	// f(x) = nums[x] -> the sequence should be:
+	// x, nums[x], nums[nums[x]], nums[nums[nums[x]]]
+    // Then use fast and slow pointer similar to LC142
     public static int findDuplicate(int[] nums) {
         int slow = nums[0];
         int fast = nums[nums[0]];

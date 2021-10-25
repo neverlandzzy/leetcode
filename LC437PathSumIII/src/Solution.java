@@ -3,7 +3,7 @@ import java.util.Map;
 
 
 public class Solution {
-	/*
+	/**
 	 * You are given a binary tree in which each node contains an integer value.
 	 * 
 	 * Find the number of paths that sum to a given value.
