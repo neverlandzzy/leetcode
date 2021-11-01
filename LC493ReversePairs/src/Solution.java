@@ -66,11 +66,13 @@ public class Solution {
 		
 		while (i <= mid && j <= end) {
 			if (nums[i] <= nums[j]) {
-				tmp[k++] = nums[i];
+				tmp[k] = nums[i];
 				i++;
+				k++;
 			} else {
-				tmp[k++] = nums[j];
+				tmp[k] = nums[j];
 				j++;
+				k++;
 			}
 		}
 		

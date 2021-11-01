@@ -7,7 +7,7 @@ import java.util.Set;
 
 
 public class Solution {
-	/*
+	/**
 	 * Remove the minimum number of invalid parentheses in order to make the input string valid. 
 	 * Return all possible results.
 	 * 
@@ -20,10 +20,10 @@ public class Solution {
 	 * ")(" -> [""]
 	 */
 	
-	// https://leetcode.com/discuss/81478/easy-short-concise-and-fast-java-dfs-3-ms-solution
+	// https://leetcode.com/problems/remove-invalid-parentheses/discuss/75027/Easy-Short-Concise-and-Fast-Java-DFS-3-ms-solution
 	// FB常考题，两种方法都要掌握
 	
-	// Solution 1: DFS	O(n^2)
+	// Solution 1: DFS	O(n * 2^n)
 	/*
     public static List<String> removeInvalidParentheses(String s) {
         List<String> result = new ArrayList<String>();
@@ -66,7 +66,7 @@ public class Solution {
     }
     */
 	
-	// Solution 2: BFS
+	// Solution 2: BFS Time: O(n * 2^n)
 	public static List<String> removeInvalidParentheses(String s) {
 		List<String> result = new ArrayList<>();
 		

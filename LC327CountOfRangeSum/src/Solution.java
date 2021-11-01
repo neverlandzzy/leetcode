@@ -22,10 +22,9 @@ public class Solution {
     		return 0;
     	}
     	
-    	// count = 0; -- if we define it as static var, we'll need to reset it. 
+    	count = 0; //-- if we define it as static var, we'll need to reset it.
     	int n = nums.length;
     	long[] sum = new long[n + 1]; //sum[i]: nums的前i项和
-    	long[] tmp = new long[n + 1];
     	sum[0] = 0;
     	
     	for (int i = 1; i <= n; i++) {
@@ -38,7 +37,7 @@ public class Solution {
     	}
     	System.out.println();
     	*/
-    	mergeSort(sum, tmp, 0, n, upper, lower);
+    	mergeSort(sum, 0, n, lower, upper);
     	
     	/*
     	for (long i: sum) {
@@ -56,19 +55,21 @@ public class Solution {
     	return count;
     }
     
-    private static void mergeSort(long[] sum, long[] tmp, int start, int end, int upper, int lower) {
+    private static void mergeSort(long[] sum, int start, int end, int lower, int upper) {
     	if (start < end) {
     		int mid = start + (end - start) / 2;
-    		mergeSort(sum, tmp, start, mid, upper, lower);
-    		mergeSort(sum, tmp, mid + 1, end, upper, lower);
-    		merge(sum, tmp, start, mid, end, upper, lower);
+    		mergeSort(sum, start, mid, lower, upper);
+    		mergeSort(sum, mid + 1, end, lower, upper);
+    		merge(sum, start, mid, end, lower, upper);
     	}
     }
     
    
-    private static void merge(long[] sum, long[] tmp, int start, int mid, int end, int upper, int lower) {
+    private static void merge(long[] sum, int start, int mid, int end, int lower, int upper) {
+		long[] tmp = new long[end - start + 1];
+
     	int j = mid + 1;
-    	int k = start;
+    	int k = 0;
     	int low = mid + 1;
     	int high = mid + 1;
     	
@@ -104,10 +105,10 @@ public class Solution {
     		k++;
     		j++;
     	}
-    	
-    	for (int i = start; i <= end; i++) {
-    		sum[i] = tmp[i];
-    	}
+
+		for (int i = 0; i < tmp.length; i++) {
+			sum[i + start] = tmp[i];
+		}
     }
     public static void main(String[] args) {
     	long startTime = System.nanoTime();

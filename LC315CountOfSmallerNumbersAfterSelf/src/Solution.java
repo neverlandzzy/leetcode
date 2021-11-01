@@ -25,7 +25,7 @@ public class Solution {
 	//private static int[] count;
 	
     public static List<Integer> countSmaller(int[] nums) {
-    	List<Integer> result = new ArrayList<Integer>();
+    	List<Integer> result = new ArrayList<>();
     	
     	int n = nums.length;
     	
@@ -61,7 +61,7 @@ public class Solution {
     		int mid = (start + end) / 2;
     	
     		mergesort(nums, index, count, start, mid);
-    		mergesort(nums, index, count, mid+1, end);
+    		mergesort(nums, index, count, mid + 1, end);
     		
     		merge(nums, index, count, start, mid, end);
     	}
