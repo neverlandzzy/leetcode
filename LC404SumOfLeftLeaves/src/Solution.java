@@ -3,7 +3,7 @@ import java.util.Queue;
 
 
 public class Solution {
-	/*
+	/**
 	 * Find the sum of all left leaves in a given binary tree.
 	 * 
 	 * Example:

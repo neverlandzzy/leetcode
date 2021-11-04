@@ -1,6 +1,6 @@
 
 public class Solution {
-	/*
+	/**
 	 * Given a binary tree containing digits from 0-9 only, each root-to-leaf path 
 	 * could represent a number.
 	 * 
