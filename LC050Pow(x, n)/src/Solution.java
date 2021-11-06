@@ -1,6 +1,6 @@
 
 public class Solution {
-	/*
+	/**
 	 * Implement pow(x, n).
 	 */
 	

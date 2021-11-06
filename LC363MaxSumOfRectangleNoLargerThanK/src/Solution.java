@@ -3,7 +3,7 @@ import java.util.TreeSet;
 
 public class Solution {
 	
-	/*
+	/**
 	 * Given a non-empty 2D matrix matrix and an integer k, find the max sum of a rectangle in 
 	 * the matrix such that its sum is no larger than k.
 	 * 	
@@ -21,7 +21,9 @@ public class Solution {
 	 * Note:
 	 * The rectangle inside the matrix must have an area > 0.
 	 * What if the number of rows is much larger than the number of columns?
-	 */    
+	 */
+
+	// Time: O(min(m,n)^2 * max(m,n) * logmax(m,n))
     public static int maxSumSubmatrix(int[][] matrix, int k) {
     	
 		// 1. Compute the cumulative sum (val) of the array;
@@ -49,7 +51,7 @@ public class Solution {
             for (int j = i; j < min; j++) {
                 
                 int val = 0;
-                TreeSet<Integer> set = new TreeSet<Integer>();
+                TreeSet<Integer> set = new TreeSet<>();
                 // 记得加上0，相当于数组为空的时候的值，这样才可以计算当前全部的val的值
                 set.add(0);
                 
