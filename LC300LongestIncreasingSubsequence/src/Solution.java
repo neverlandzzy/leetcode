@@ -2,7 +2,7 @@ import java.util.Arrays;
 
 
 public class Solution {
-	/*
+	/**
 	 * Given an unsorted array of integers, find the length of longest increasing subsequence.
 	 * 
 	 * For example,
@@ -68,13 +68,13 @@ public class Solution {
     		if (i == len) {
     			len++;
     		}
-    		/*
+
     		for (int k: dp) {
     			System.out.print(k + ", ");
     		}
     		System.out.println();
     		System.out.println("len =  " + len);
-    		*/
+
     	}
     	
     	return len;
@@ -83,7 +83,7 @@ public class Solution {
     
     public static void main(String[] args) {
     	
-		int[] test = {9, 10, 2, 5, 3, 7, 101, 4};
+		int[] test = {10, 9, 2, 5, 3, 7, 101, 4};
 		System.out.println(lengthOfLIS(test));
 
     	    	

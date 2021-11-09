@@ -8,7 +8,7 @@ public class Solution {
 	 * the subarray [4,3] has the minimal length under the problem constraint.
 	 */
 	
-    public static int minSubArrayLen(int s, int[] nums) {
+    public static int minSubArrayLen(int target, int[] nums) {
         if (nums == null || nums.length == 0) {
             return 0;
         }
@@ -22,7 +22,7 @@ public class Solution {
         while (j < n) {
             sum += nums[j];
             
-            while (sum >= s) {
+            while (sum >= target) {
                 result = Math.min(result, j - i + 1);
                 sum -= nums[i];
                 i++;

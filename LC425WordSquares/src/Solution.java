@@ -5,7 +5,7 @@ import java.util.List;
 
 public class Solution {
 	
-	/*
+	/**
 	 * Given a set of words (without duplicates), find all word squares you can build from them.
 	 * 
 	 * A sequence of words forms a valid word square if the kth row and column read the exact same string, 

@@ -1,6 +1,6 @@
 
 public class Solution {
-	/*
+	/**
 	 * Given two integers dividend and divisor, divide two integers without using multiplication, division and mod operator.
 	 * 
 	 * Return the quotient after dividing dividend by divisor.
@@ -28,7 +28,9 @@ public class Solution {
 	// 在原来方法（用long计算）上进行的改进：
 	// 	1. 预处理一些corner case；
 	//  2. 在右移divisor逼近结果时，原方法是判断当dividend >= divisor时，便左移divisor，这样可能导致溢出
-	//     所以本方法是先判断(dividend >> 1) >= divisor 才左移divisor，从而避免溢出
+	//     所以本方法是先判断(dividend >> 1) >= divisor 才左移divisor，从而避免溢出。
+	//     例如divide(7, 3)，要确定 3*2^1 < 7 < 3 * 2^2 (N = 1)。原来的方法是直接找7 < 3 * 2^2，本方法是
+	//     通过 7/2 < 3*2^1 找到7 < 3 * 2^2
 	
 	public static int divide(int dividend, int divisor) {
 		// Bit Manipulation: Time ~ O(logNa), Space ~ O(1) 
@@ -74,7 +76,7 @@ public class Solution {
 			divisor = divisor << 1;
 			n++;
 		}
-		System.out.println("divisor = " + divisor + " n =  " + n);
+		// System.out.println("divisor = " + divisor + " n =  " + n);
 		while (n >= 0) {
 	        if (dividend >= divisor) {  
 	            result += 1 << n;  
