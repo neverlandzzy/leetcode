@@ -1,7 +1,7 @@
 
 public class Solution {
 	
-	/*
+	/**
 	 * Nearly every one have used the Multiplication Table. But could you find out the k-th smallest number quickly from the multiplication table?
 	 * 
 	 * Given the height m and the length n of a m * n Multiplication Table, and a positive integer k, you need to return the k-th smallest 
@@ -34,7 +34,7 @@ public class Solution {
 	 */
 
 	// O(m * log(m * n)) 
-	// 在表中用二分法查找是否有k或多余k的元素小于或等于mid，若是，则说明mid太大了，移动end，否则移动start
+	// 在表中用二分法查找是否有k或多于k的元素小于或等于mid，若是，则说明mid太大了，移动end，否则移动start
     public static int findKthNumber(int m, int n, int k) {
         int start = 1;
         int end = m * n; 

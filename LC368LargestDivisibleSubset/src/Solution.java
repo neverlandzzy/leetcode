@@ -23,7 +23,7 @@ public class Solution {
 	 * Result: [1,2,4,8]
 	 */
 	
-	// https://discuss.leetcode.com/topic/49741/easy-understood-java-dp-solution-in-28ms-with-o-n-2-time
+	// https://leetcode.com/problems/largest-divisible-subset/discuss/83999/Easy-understood-Java-DP-solution-in-28ms-with-O(n2)-time
 	// https://www.jiuzhang.com/solution/largest-divisible-subset/
 	
     public static List<Integer> largestDivisibleSubset(int[] nums) {
