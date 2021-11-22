@@ -2,7 +2,7 @@ import java.util.HashMap;
 
 
 public class Solution {
-	/*
+	/**
 	 * Given inorder and postorder traversal of a tree, construct the binary tree.
 	 * 
 	 */
@@ -27,17 +27,14 @@ public class Solution {
     	TreeNode root = new TreeNode(postorder[cur]);
     	
     	int mid = inorderMap.get(postorder[cur]);
-    	
-    	if (start < end) {
-    		if (mid < end) {
-    			root.right = buildTreeHelper(postorder, inorderMap, cur - 1, mid + 1, end);
-    		}
-    		if (mid > start) {
-    			root.left = buildTreeHelper(postorder, inorderMap, cur - (end - mid) - 1, start, mid - 1);
-    		}
-    	}
-    	
+
+		if (mid < end) {
+			root.right = buildTreeHelper(postorder, inorderMap, cur - 1, mid + 1, end);
+		}
+		if (mid > start) {
+			root.left = buildTreeHelper(postorder, inorderMap, cur - (end - mid) - 1, start, mid - 1);
+		}
+
     	return root;
-    	
     }
 }
