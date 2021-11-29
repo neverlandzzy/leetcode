@@ -86,34 +86,34 @@ public class Solution {
 	}
 	
 	static class UnionFind{
-		int[] father;
+		int[] parent;
 		
 		UnionFind(int[][] grid) {
 			int m = grid.length;
 			int n = grid[0].length;
-			father = new int[m * n];
+			parent = new int[m * n];
 			
 			for (int i = 0; i < m; i++) {
 				for (int j = 0; j < n; j++) {
-					father[i * n + j] = i * n + j;
+					parent[i * n + j] = i * n + j;
 				}
 			}
 		}
 		
 		int find(int x) {
-            if (father[x] == x) {
+            if (parent[x] == x) {
                 return x;
             }
             
-            father[x] = find(father[x]);
-            return father[x];
+            parent[x] = find(parent[x]);
+            return parent[x];
 		}
 		
         void union(int x, int y){
             int faX = find(x);
             int faY = find(y);
             if(faX != faY) {
-                father[faX] = faY;
+                parent[faX] = faY;
             }
         }
 	}

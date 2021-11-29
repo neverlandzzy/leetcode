@@ -3,7 +3,7 @@ import java.util.Deque;
 
 
 public class Solution {
-	/*
+	/**
 	 * Given an array nums, there is a sliding window of size k which is moving from the very 
 	 * left of the array to the very right. You can only see the k numbers in the window. 
 	 * Each time the sliding window moves right by one position.
@@ -28,14 +28,15 @@ public class Solution {
 	 * Follow up:
 	 * Could you solve it in linear time?
 	 */
-	
+
+	// Similar to LC862
     public static int[] maxSlidingWindow(int[] nums, int k) {
     	
     	if (nums == null || nums.length == 0) {
     		return new int[0];
     	}
     	
-        Deque<Integer> deque = new ArrayDeque<Integer>();
+        Deque<Integer> deque = new ArrayDeque<>();
         int n = nums.length;
         int[] result = new int[n - k + 1];
         int j = 0;

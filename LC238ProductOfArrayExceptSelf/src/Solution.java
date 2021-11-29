@@ -1,6 +1,6 @@
 
 public class Solution {
-	/*
+	/**
 	 * Given an array of n integers where n > 1, nums, return an array output such that 
 	 * output[i] is equal to the product of all the elements of nums except nums[i].
 	 * 
@@ -17,30 +17,25 @@ public class Solution {
 	 */
 	
     public static int[] productExceptSelf(int[] nums) {
-        int n = nums.length;
-        int[] result = new int[n];
-        
-        result[0] = 1;
-        
-        for(int i = 1; i < n; i++) {
-        	result[i] = nums[i-1] * result[i-1];
-        }
-        
-        /*
-		for (int i: result) {
-			System.out.print(i + ",");
+		int n = nums.length;
+		int[] result = new int[n];
+
+		int prod = 1;
+		result[0] = 1;
+
+		for (int i = 1; i < n; i++) {
+			prod *= nums[i - 1];
+			result[i] = prod;
 		}
-		System.out.println();
-		*/
-		int right = 1;
-		
-		for(int i = n - 2; i >= 0; i--) {
-			
-			right = right * nums[i + 1];
-			result[i] *= right;
+
+		prod = 1;
+
+		for (int i = n - 2; i >= 0; i--) {
+			prod *= nums[i + 1];
+			result[i] *= prod;
 		}
-		
-        return result;
+
+		return result;
     }
     
     public static void main(String[] args) {

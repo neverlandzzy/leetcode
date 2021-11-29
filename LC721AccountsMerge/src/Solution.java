@@ -10,7 +10,7 @@ import java.util.Set;
 
 public class Solution {
 	
-	/*
+	/**
 	 * Given a list accounts, each element accounts[i] is a list of strings, where the first element accounts[i][0] is a name, and the rest 
 	 * of the elements are emails representing emails of the account.
 	 * 
@@ -107,9 +107,7 @@ public class Solution {
         
         for (int key: userMap.keySet()) {
             List<String> list = new ArrayList<>();
-            for (String email: userMap.get(key)) {
-                list.add(email);
-            }
+			list.addAll(userMap.get(key));
             
             Collections.sort(list);
             

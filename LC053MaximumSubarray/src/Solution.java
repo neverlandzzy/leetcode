@@ -36,14 +36,19 @@ public class Solution {
 	/*
     public static int maxSubArray(int[] nums) {
 
-        int max = Integer.MIN_VALUE;
-        int cur = 0;
-        int n = nums.length;
-        
-        for (int i = 0; i < n; i++) {
-        	cur = Math.max(cur + nums[i], nums[i]);
-        	max = Math.max(cur, max);
+        if (nums == null || nums.length == 0) {
+            return 0;
         }
+
+        int n = nums.length;
+        int sum = nums[0];
+        int max = nums[0];
+
+        for (int i = 1; i < n; i++) {
+            sum = Math.max(0, sum) + nums[i];
+            max = Math.max(max, sum);
+        }
+
         return max;
     }
     */
