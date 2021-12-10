@@ -1,6 +1,6 @@
 
 public class Solution {
-	/*
+	/**
 	 * The thief has found himself a new place for his thievery again. 
 	 * There is only one entrance to this area, called the "root." Besides the root, 
 	 * each house has one and only one parent house. After a tour, the smart thief 

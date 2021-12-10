@@ -3,8 +3,8 @@ import java.util.PriorityQueue;
 
 
 public class Solution {
-	/*
-	 * Given a n x n matrix where each of the rows and columns are sorted in ascending order, find the kth smallest element in the matrix.
+	/**
+	 * Given an n x n matrix where each of the rows and columns are sorted in ascending order, find the kth smallest element in the matrix.
 	 * 
 	 * Note that it is the kth smallest element in the sorted order, not the kth distinct element.
 	 * 
@@ -64,7 +64,7 @@ public class Solution {
     	int end = matrix[n - 1][n - 1];
     	
     	while (start < end) {
-    		int mid = start + (end - start) / 2;
+    		int mid = start + (end - start) / 2;33
     		int count = 0;
     		int j = n - 1;
     		for (int i = 0; i < n; i++) {
@@ -81,7 +81,9 @@ public class Solution {
     			end = mid;
     		}
     	}
-    	
+
+    	// 当count < k时，我们将start = mid + 1直到满足count == k，也就是在最后一步当mid时不满足，但mid+1时满足，说明mid+1必然在array中
+		// 即最后一个start必然在array中，因此可以返回start
     	return start;
     }
     

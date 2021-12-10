@@ -1,7 +1,7 @@
 
 public class Solution {
 	
-	/*
+	/**
 	 * Given a node from a cyclic linked list which is sorted in ascending order, write a function to insert a value into the list 
 	 * such that it remains a cyclic sorted list. The given node can be a reference to any single node in the list, and may not be 
 	 * necessarily the smallest value in the cyclic list.
@@ -25,8 +25,9 @@ public class Solution {
 	
 	public static  Node insert(Node head, int insertVal) {
 		
-		Node node = new Node(insertVal, null);		
+		Node node = new Node(insertVal, null);
 		if (head == null) {
+			node.next = node;
 			return node;
 		}
 		
