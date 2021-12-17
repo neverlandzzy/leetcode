@@ -3,15 +3,16 @@ public class Solution {
 	
     public static ListNode insertionSortList(ListNode head) {
         ListNode dummy = new ListNode(0);
+		ListNode cur = head;
 
-        while (head != null) {
-        	ListNode node = dummy;
+        while (cur != null) {
+        	ListNode pre = dummy;
         	
-        	while(node.next != null && node.next.val < head.val) {
-        		node = node.next;
+        	while(pre.next != null && pre.next.val < cur.val) {
+				pre = pre.next;
         	}
         	
-        	ListNode temp = head.next;
+        	ListNode next = cur.next;
         	/*
         	System.out.println("!!!!!!!!!!!!!!!!!!!");
         	if (head != null) System.out.print(" head = " + head.val);
@@ -19,9 +20,9 @@ public class Solution {
         	System.out.println();
         	*/
 
-        	head.next = node.next;
-        	node.next = head;
-        	head = temp;
+			cur.next = pre.next;
+			pre.next = cur;
+			cur = next;
             /*
             System.out.println("+++++++++++++++++");
             if (temp != null) System.out.print(" temp = " + temp.val);

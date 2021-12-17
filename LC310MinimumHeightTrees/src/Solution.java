@@ -5,7 +5,7 @@ import java.util.Set;
 
 
 public class Solution {
-	/*
+	/**
 	 * For a undirected graph with tree characteristics, we can choose any node as the root. 
 	 * The result graph is then a rooted tree. Among all possible rooted trees, those with minimum 
 	 * height are called minimum height trees (MHTs). Given such a graph, write a function to find 
@@ -59,43 +59,44 @@ public class Solution {
 	
     public static List<Integer> findMinHeightTrees(int n, int[][] edges) {
     	
-    	List<Integer> leaves = new ArrayList<Integer>();
+    	List<Integer> leaves = new ArrayList<>();
     	if (n == 1) {
     		leaves.add(0);
     		return leaves;
     	}
     	
-    	List<Set<Integer>> adj = new ArrayList<Set<Integer>>();
+    	List<Set<Integer>> neighbors = new ArrayList<>();
     	
     	for (int i = 0; i < n; i++) {
-    		adj.add(new HashSet<Integer>());
+			neighbors.add(new HashSet<>());
     	}
     	
     	for (int[] edge: edges) {
-    		adj.get(edge[0]).add(edge[1]);
-    		adj.get(edge[1]).add(edge[0]);
+			neighbors.get(edge[0]).add(edge[1]);
+			neighbors.get(edge[1]).add(edge[0]);
     	}
 
     	for (int i = 0; i < n; i++) {
-    		if (adj.get(i).size() == 1) {
+    		if (neighbors.get(i).size() == 1) {
     			leaves.add(i);
     		}
     	}
-    	
+
+    	// MHT root最多只能有2个，如果有三个，1-2-3, 则可以消掉1,3
     	while (n > 2) {
     		n -= leaves.size();
-    		System.out.println("leaves ---- " + leaves);
-    		System.out.println("adj ---- " + adj);
-    		List<Integer> newLeaves = new ArrayList<Integer>();
+//    		System.out.println("leaves ---- " + leaves);
+//    		System.out.println("adj ---- " + neighbors);
+    		List<Integer> newLeaves = new ArrayList<>();
     		
     		// 将所有的leaves去掉，并从与leaves相邻的node的邻居里减去leaves -- 一层层去掉leaves，直到剩下最后的1、2个node
 	        for (int i : leaves) {
 	        	// 得到的是与i相邻的node (e.g. i = 0, 1, 2, 5  相邻的node分别是3, 3, 3, 4)
-	        	int j = adj.get(i).iterator().next();
+	        	int j = neighbors.get(i).iterator().next();
 	        	// 从相邻node的所有邻居里，减去i(e.g. node3的邻居为(0, 1, 2, 4), 从中减去0, 1, 2)
-	        	adj.get(j).remove(i);
+				neighbors.get(j).remove(i);
 	        	
-	        	if (adj.get(j).size() == 1) {
+	        	if (neighbors.get(j).size() == 1) {
 	        		newLeaves.add(j);
 	        	}
 	        }

@@ -37,6 +37,30 @@ public class Solution {
      * s contains only lowercase English letters.
      */
 
+    // Solution 1:
+    public static int maxPower(String s) {
+        if (s == null || s.length() == 0) {
+            return 0;
+        }
+
+        int power = 1;
+        int count = 1;
+
+        for (int i = 1; i < s.length(); i++) {
+            if (s.charAt(i) == s.charAt(i - 1)) {
+                count++;
+            } else {
+                count = 1;
+            }
+
+            power = Math.max(power, count);
+        }
+
+        return power;
+    }
+
+    // Solution 2:
+    /*
     public static int maxPower(String s) {
         if (s == null || s.length() == 0) {
             return 0;
@@ -63,7 +87,7 @@ public class Solution {
 
         return maxPower;
     }
-
+    */
     public static void main(String[] args) {
         System.out.println(maxPower("leetcode"));
         System.out.println(maxPower("abbcccddddeeeeedcba"));
