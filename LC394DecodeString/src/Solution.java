@@ -2,7 +2,7 @@ import java.util.Stack;
 
 
 public class Solution {
-	/*
+	/**
 	 * Given an encoded string, return it's decoded string.
 	 * 
 	 * The encoding rule is: k[encoded_string], where the encoded_string inside the square brackets is being 
