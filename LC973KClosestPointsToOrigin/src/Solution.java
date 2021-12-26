@@ -1,3 +1,4 @@
+import java.util.Arrays;
 import java.util.Comparator;
 import java.util.PriorityQueue;
 
@@ -34,31 +35,87 @@ public class Solution {
      */
 
     // Similar to LC215
-    public static int[][] kClosest(int[][] points, int K) {
-        PriorityQueue<int[]> heap = new PriorityQueue<>((p1, p2) -> p2[0] * p2[0] + p2[1] * p2[1] - p1[0] * p1[0] - p1[1] * p1[1]);
+    // Solution 1: Priority Queue, O(n*logn)
+//    public static int[][] kClosest(int[][] points, int K) {
+//        PriorityQueue<int[]> heap = new PriorityQueue<>((p1, p2) -> p2[0] * p2[0] + p2[1] * p2[1] - p1[0] * p1[0] - p1[1] * p1[1]);
+//
+//        for (int[] pos: points) {
+//            heap.offer(pos);
+//            if (heap.size() > K) {
+//                heap.poll();
+//            }
+//        }
+//
+//        int[][] result = new int[K][2];
+//
+//        for (int i = 0; i < K; i++) {
+//            result[i] = heap.poll();
+//        }
+//
+//        return result;
+//    }
 
-        for (int[] pos: points) {
-            heap.offer(pos);
-            if (heap.size() > K) {
-                heap.poll();
+    // Solution 2: Quick Select, Time(average):O(n)
+    public static int[][] kClosest(int[][] points, int K) {
+        int n = points.length;
+        quickSelect(points, 0, n - 1, K);
+
+        return Arrays.copyOf(points, K);
+    }
+
+    private static void quickSelect(int[][] points, int low, int high, int k){
+        int left = low;
+        int right = high;
+
+        int[] pivot = points[(left + high) / 2];
+        int pivotDistance = squaredDistance(pivot);
+
+        swap(points, (left + high) / 2, high);
+
+        while (left < right) {
+            if (squaredDistance(points[left]) > pivotDistance) {
+                right--;
+                swap(points, left, right);
+            } else {
+                left++;
             }
         }
+        swap(points, left, high);
 
-        int[][] result = new int[K][2];
+        int count = left - low + 1;
 
-        for (int i = 0; i < K; i++) {
-            result[i] = heap.poll();
+        if (count == k) {
+            return;
         }
 
-        return result;
+        if (count < k) {
+            // <= pivot的数不够，从右面继续找 k - count个
+            quickSelect(points, left + 1, high, k - count);
+        } else {
+            // <= pivot的数太多，从左边找k个
+            quickSelect(points, low, left - 1, k);
+        }
+    }
+
+    private static int squaredDistance(int[] point) {
+        return point[0] * point[0] + point[1] * point[1];
+    }
+
+    private static void swap(int[][] points, int i, int j) {
+        int[] tmp = points[i];
+
+        points[i] = points[j];
+        points[j] = tmp;
     }
 
     public static void main(String[] args) {
         int[][] points1 = {{1, 3}, {-2, 2}};
         int[][] points2 = {{3, 3}, {5, -1}, {-2, 4}};
+        int[][] points3 = {{2, 2}, {2, 2}, {2, 2}, {2, 2}, {2, 2}, {2, 2}, {1, 1}};
 
         print(kClosest(points1, 1));
         print(kClosest(points2, 2));
+        print(kClosest(points3, 1));
     }
 
     private static void print(int[][] points) {

@@ -140,7 +140,7 @@ public class Solution {
     }
     
     public static void main(String[] args) {
-    	
+        System.out.println("hello world");
     	int [][] test1 = {{1,0}};
     	int [][] test2 = {{1,0}, {0,1}};
 		System.out.println(canFinish(2, test1));

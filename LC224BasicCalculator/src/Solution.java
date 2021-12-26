@@ -3,7 +3,7 @@ import java.util.Stack;
 
 public class Solution {
 	
-	/*
+	/**
 	 * Implement a basic calculator to evaluate a simple expression string.
 	 * 
 	 * The expression string may contain open ( and closing parentheses ), the plus + or minus sign -, 
@@ -23,7 +23,7 @@ public class Solution {
     	int result = 0;
     	int number = 0;
     	
-    	Stack<Integer> stack = new Stack<Integer>();
+    	Stack<Integer> stack = new Stack<>();
         stack.push(sign);
         
     	for (int i = 0; i < s.length(); i++) {
@@ -36,7 +36,7 @@ public class Solution {
     		}
     		
     		if (c >= '0' && c <= '9') {
-    			number = 10 * number + (int)(c - '0');
+    			number = 10 * number + (c - '0');
     		}
     		
     		if (c == '(') { 		

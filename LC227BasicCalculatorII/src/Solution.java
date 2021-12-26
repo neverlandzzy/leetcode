@@ -2,7 +2,7 @@ import java.util.Stack;
 
 
 public class Solution {
-	/*
+	/**
 	 * Implement a basic calculator to evaluate a simple expression string.
 	 * 
 	 * The expression string contains only non-negative integers, +, -, *, / operators and empty spaces . 
@@ -30,7 +30,7 @@ public class Solution {
 			if (c >= '0' && c <= '9') {
 				number = number * 10 + c - '0';
 			}
-			
+
 			if (!Character.isDigit(c) && c != ' ' || i == s.length() - 1) {
 				if (operator == '+') {
 					result += pre;

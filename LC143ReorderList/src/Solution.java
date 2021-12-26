@@ -1,6 +1,6 @@
 
 public class Solution {
-	/*
+	/**
 	 * Given a singly linked list L: L0→L1→…→Ln-1→Ln,
 	 * 
 	 * reorder it to: L0→Ln→L1→Ln-1→L2→Ln-2→…
@@ -47,22 +47,19 @@ public class Solution {
 
     }
     
-    public static ListNode reverseList(ListNode nodeHead) {
-    	
-    	ListNode dummy = new ListNode(0);
-    	dummy.next = nodeHead;
-    	
-    	ListNode pre = dummy;
-    	ListNode cur = nodeHead;
-    	
-    	while (cur != null && cur.next != null) {
-    		ListNode tmp = cur.next.next;
-    		cur.next.next = pre.next;
-    		pre.next = cur.next;
-    		cur.next = tmp;
-    	}
-    	
-    	return dummy.next;
+    public static ListNode reverseList(ListNode head) {
+		ListNode cur = head;
+		ListNode pre = null;
+
+		while (cur != null) {
+			ListNode tmp = cur.next;
+			cur.next = pre;
+			pre = cur;
+
+			cur = tmp;
+		}
+
+		return pre;
     }
 
     
