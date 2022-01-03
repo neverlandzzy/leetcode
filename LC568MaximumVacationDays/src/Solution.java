@@ -1,6 +1,6 @@
 
 public class Solution {
-	/*
+	/**
 	 * LeetCode wants to give one of its best employees the option to travel among N cities to collect algorithm problems. 
 	 * But all work and no play makes Jack a dull boy, you could take vacations in some particular cities and weeks. 
 	 * Your job is to schedule the traveling to maximize the number of vacation days you could take, but there are certain rules 
@@ -92,7 +92,7 @@ public class Solution {
 	// Solution 2: DFS  + mem
 	// 上面solution中重复计算发生在，每次计算在city[i]度过week[j]时，都要计算一次city[i] week[j + 1]。 
 	// 因此用mem将这个结果记录下来，复杂度可以降至O(n^2 * k) --> 对于每个week，花O(n * n)的时间去找该week的最大值，找k次
-	/*
+
     public static int maxVacationDays(int[][] flights, int[][] days) {
     	Integer [][] cache = new Integer[flights.length][days[0].length];
         return helper(flights, days, 0, 0, cache);
@@ -121,8 +121,9 @@ public class Solution {
     	cache[curCity][weekNum] = result;
     	return result;
     }
-    */
+
     // Solution 3: DP
+	/*
 	public static int maxVacationDays(int[][] flights, int[][] days) {
 		int n = flights.length;
 		int k = days[0].length;
@@ -144,7 +145,7 @@ public class Solution {
 		}	
 		return dp[0][0];
 	}
-    
+    */
     public static void main(String[] args) {
     	int[][] flights1 = {{0, 1, 1}, {1, 0, 1}, {1, 1, 0}};
     	int[][] days1 = {{1, 3, 1}, {6, 0, 3}, {3, 3, 3}};
