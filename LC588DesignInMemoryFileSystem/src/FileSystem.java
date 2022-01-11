@@ -8,7 +8,7 @@ import java.util.Map;
 
 public class FileSystem {
 	
-	/*
+	/**
 	 * Design an in-memory file system to simulate the following functions:
 	 * 
 	 * ls: Given a path in string format. If it is a file path, return a list that only contains this file's name. 
@@ -48,7 +48,9 @@ public class FileSystem {
     public FileSystem() {
         root = new File();
     }
-    
+
+    // 对于"/a/b/c/d"
+	// String[] pathArray = path.split("/"); -> "", "a", "b", "c", "d"
     public List<String> ls(String path) {
         File f = root;
         List<String> files = new ArrayList<>();
@@ -80,7 +82,6 @@ public class FileSystem {
     		}
     		f = f.map.get(pathArray[i]);			
     	}
-        
     }
     
     public void addContentToFile(String filePath, String content) {

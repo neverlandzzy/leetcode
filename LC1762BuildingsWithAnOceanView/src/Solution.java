@@ -45,15 +45,12 @@ public class Solution {
 
     public static int[] findBuildings(int[] heights) {
         List<Integer> list = new ArrayList<>();
-        int n = heights.length;
-        int max = heights[n - 1];
+        int max = 0;
 
-        list.add(n - 1);
-
-        for (int i = n - 2; i >= 0; i--) {
+        for (int i = heights.length - 1; i >= 0; i--) {
             if (heights[i] > max) {
-                max = heights[i];
                 list.add(i);
+                max = heights[i];
             }
         }
 

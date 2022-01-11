@@ -7,7 +7,28 @@ public class Solution {
 	 * For example, given the array [2,3,1,2,4,3] and s = 7,
 	 * the subarray [4,3] has the minimal length under the problem constraint.
 	 */
-	
+
+	// Similar to LC713
+    public static int minSubArrayLen(int target, int[] nums) {
+        int left = 0;
+        int sum = 0;
+        int n = nums.length;
+
+        int result = n + 1;
+
+        for (int right = 0; right < n; right++) {
+            sum += nums[right];
+
+            while (sum >= target) {
+                result = Math.min(result, right - left + 1);
+                sum -= nums[left];
+                left++;
+            }
+        }
+
+        return result == n + 1 ? 0 : result;
+    }
+	/*
     public static int minSubArrayLen(int target, int[] nums) {
         if (nums == null || nums.length == 0) {
             return 0;
@@ -33,7 +54,7 @@ public class Solution {
         
         return result == n + 1 ? 0 : result;
     }
-	
+	*/
     /*
     public static int minSubArrayLen(int s, int[] nums) {
         

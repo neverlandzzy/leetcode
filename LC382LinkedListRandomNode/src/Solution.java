@@ -3,7 +3,7 @@ import java.util.Random;
 
 public class Solution {
 	
-	/*
+	/**
 	 * Given a singly linked list, return a random node's value from the linked list. Each node must have the same probability of being chosen.
 	 * 
 	 * Follow up:
@@ -22,6 +22,7 @@ public class Solution {
 	 */
 	
 	// Reservoir Sampling
+	// https://zhuanlan.zhihu.com/p/29178293
 	
 	ListNode head;
 	

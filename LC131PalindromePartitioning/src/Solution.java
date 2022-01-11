@@ -3,7 +3,7 @@ import java.util.List;
 
 
 public class Solution {
-	/*
+	/**
 	 * Given a string s, partition s such that every substring of the partition is a palindrome.
 	 * 
 	 * Return all possible palindrome partitioning of s.
@@ -17,7 +17,7 @@ public class Solution {
 	 * ]
 	 */
 	
-	
+	// Time: O(n * 2^n)
     public static List<List<String>> partition(String s) {
         List<List<String>> result = new ArrayList<>();
         List<String> list = new ArrayList<>();

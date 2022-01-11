@@ -2,8 +2,8 @@ import java.util.Arrays;
 
 
 public class Solution {
-	/*
-	 * In a N x N grid representing a field of cherries, each cell is one of three possible integers.
+	/**
+	 * In an N x N grid representing a field of cherries, each cell is one of three possible integers.
 	 * 
 	 * 0 means the cell is empty, so you can pass through;
 	 * 1 means the cell contains a cherry, that you can pick up and pass through;
@@ -54,7 +54,9 @@ public class Solution {
         for (int t = 1; t <= 2 * n - 2; t++) {
 
         	int[][] tmp = new int[n][n]; 
-        	for (int[] row: tmp) Arrays.fill(row, Integer.MIN_VALUE);
+        	for (int[] row: tmp) {
+        		Arrays.fill(row, Integer.MIN_VALUE);
+			}
         	
         	// 当步数为t时，第一条路径到达(i, t - i)
         	for (int i = Math.max(0, t - (n - 1)); i <= Math.min(n - 1, t); i++) {
@@ -80,7 +82,7 @@ public class Solution {
         			}
         			
         			if (val < 0) {
-        				// 没办法走到 (i, k - i) 和 (j, k-j).
+        				// 没办法走到 (i, t - i) 和 (j, t - j).
         				continue;
         			}
         			
