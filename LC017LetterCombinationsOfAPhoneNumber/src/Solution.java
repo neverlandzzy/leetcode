@@ -15,7 +15,7 @@ public class Solution {
 	
     public static List<String> letterCombinations(String digits) {
     	
-    	List<String> result = new ArrayList<String>();
+    	List<String> result = new ArrayList<>();
     	String[] keys = {"", "", "abc", "def", "ghi", "jkl", "mno",  "pqrs", "tuv", "wxyz"};
     	result.add("");
     	
@@ -32,7 +32,7 @@ public class Solution {
     			}	
     	}
     	
-    	List<String> removed = new ArrayList<String>();
+    	List<String> removed = new ArrayList<>();
     	
     	for (int i = 0; i < result.size(); i++) {
     		if (result.get(i).length() < digits.length()) {
@@ -76,6 +76,38 @@ public class Solution {
         }
     }
     */
+
+	/* Another backtracking solution
+	public static List<String> letterCombinations(String digits) {
+        String[] keys = {"", "", "abc", "def", "ghi", "jkl", "mno", "pqrs", "tuv", "wxyz"};
+        List<String> result = new ArrayList<>();
+        if (digits == null || digits.length() == 0) {
+            return result;
+        }
+
+        StringBuilder sb = new StringBuilder();
+
+        helper(result, keys, digits, sb, 0);
+        return result;
+    }
+
+    private static void helper(List<String> result, String[] keys, String digits, StringBuilder sb, int pos) {
+        if (sb.length() == digits.length()) {
+            result.add(sb.toString());
+            return;
+        }
+
+        for (int i = pos; i < digits.length(); i++) {
+            String key = keys[digits.charAt(i) - '0'];
+
+            for (char c: key.toCharArray()) {
+                sb.append(c);
+                helper(result, keys, digits, sb, i + 1);
+                sb.deleteCharAt(sb.length() - 1);
+            }
+        }
+    }
+	 */
     public static void main (String[] args) {
     	
     	String test1 = "";

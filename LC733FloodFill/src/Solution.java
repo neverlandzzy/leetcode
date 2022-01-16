@@ -68,9 +68,12 @@ public class Solution {
     
     public static void main(String[] args) {
 		int[][] test1 = {{1, 1, 1}, {1, 1, 0}, {1, 0, 1}};
+		int[][] test2 = {{1, 1, 2, 2, 3, 0, 1}, {3, 1, 2, 2, 2, 1, 4}, {1, 3, 4, 2, 0, 2, 1}, {4, 4, 1, 1, 2, 0, 3}};
 		int[][] result1 = floodFill(test1, 1, 1, 2);
-		
+		int[][] result2 = floodFill(test2, 1, 3, 5);
+
 		print(result1);
+		print(result2);
 	}
     
     private static void print(int[][] image) {

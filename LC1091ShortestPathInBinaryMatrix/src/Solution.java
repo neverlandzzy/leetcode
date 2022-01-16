@@ -47,10 +47,9 @@ public class Solution {
         }
 
         int result = 0;
-        int m = grid.length;
-        int n = grid[0].length;
+        int n = grid.length;
 
-        if (grid[0][0] == 1 || grid[m - 1][n - 1] == 1) {
+        if (grid[0][0] == 1 || grid[n - 1][n - 1] == 1) {
             return -1;
         }
 
@@ -67,7 +66,7 @@ public class Solution {
                 int i = cell[0];
                 int j = cell[1];
 
-                if (i == m - 1 && j == n - 1) {
+                if (i == n - 1 && j == n - 1) {
                     return result;
                 }
 
@@ -75,7 +74,7 @@ public class Solution {
                     int nextI = i + dir[0];
                     int nextJ = j + dir[1];
 
-                    if (nextI >= 0 && nextI < m && nextJ >= 0 && nextJ < n && grid[nextI][nextJ] == 0) {
+                    if (nextI >= 0 && nextI < n && nextJ >= 0 && nextJ < n && grid[nextI][nextJ] == 0) {
                         queue.offer(new int[]{nextI, nextJ});
                         grid[nextI][nextJ] = -1;
                     }

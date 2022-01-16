@@ -13,12 +13,12 @@ public class Solution {
 	 */
 	
 	public static void addPair(List<String> result, String str, int open, int close, int size) {
-		System.out.println(str);
+		// System.out.println(str);
 		
 		if (str.length() == 2*size) {
 			
 			result.add(str);
-			System.out.println(result);
+			// System.out.println(result);
 			return;
 		}
 		

@@ -74,11 +74,10 @@ public class Solution {
 		Stack<Node> stack = new Stack<>();
 		Node dummy = new Node(0, null, null);
 		Node cur = dummy;
-		
-		stack.push(root);
-		while (root.left != null) {
-			root = root.left;
+
+		while (root != null) {
 			stack.push(root);
+			root = root.left;
 		}
 		
 		while (!stack.isEmpty()) {

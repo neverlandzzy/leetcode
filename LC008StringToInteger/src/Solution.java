@@ -1,6 +1,6 @@
 
 public class Solution {
-	/*
+	/**
 	 * Implement atoi to convert a string to an integer.
 	 * 
 	 * Hint: Carefully consider all possible input cases. 

@@ -33,8 +33,8 @@ public class Solution {
 	// http://www.1point3acres.com/bbs/thread-117602-1-1.html
     public static List<List<Integer>> subsets(int[] nums) {
         //Arrays.sort(nums);
-        List<Integer> list = new ArrayList<Integer>();
-        List<List<Integer>> result = new ArrayList<List<Integer>>();
+        List<Integer> list = new ArrayList<>();
+        List<List<Integer>> result = new ArrayList<>();
         
         subsetsHelper(nums, result, list, 0);
         
@@ -42,7 +42,7 @@ public class Solution {
     }
     
     public static void subsetsHelper(int[] nums, List<List<Integer>> result, List<Integer> list, int pos) {
-    	result.add(new ArrayList<Integer>(list));
+    	result.add(new ArrayList<>(list));
     	//System.out.println("pos = " + pos + " " + list);
     	for (int i = pos; i < nums.length; i++) {
     		list.add(nums[i]);
@@ -55,7 +55,7 @@ public class Solution {
     public static List<List<Integer>> subsets2(int[] nums) {
         List<List<Integer>> result = new ArrayList<>();
         
-        result.add(new ArrayList<Integer>());
+        result.add(new ArrayList<>());
         
         for (int i = 0; i < nums.length; i++) {
             int size = result.size();
