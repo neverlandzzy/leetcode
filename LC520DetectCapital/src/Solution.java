@@ -1,6 +1,6 @@
 
 public class Solution {
-	/*
+	/**
 	 * Given a word, you need to judge whether the usage of capitals in it is right or not.
 	 * 
 	 * We define the usage of capitals in a word to be right when one of the following cases holds:
@@ -20,36 +20,32 @@ public class Solution {
 	 */
 	
     public static boolean detectCapitalUse(String word) {
-        if (word == null || word.length() <= 1) {
-        	return true;
-        }
-        
-        boolean firstCap = false;
-        boolean secondCap = false;
-        
-        if (Character.isUpperCase(word.charAt(0))) {
-        	firstCap = true;
-        } 
-        
-        if (Character.isUpperCase(word.charAt(1))) {
-        	if (!firstCap) {
-        		return false;
-        	}
-        	secondCap = true;
-        }
-        
-        for (int i = 2; i < word.length(); i++) {
-        	char c = word.charAt(i);
-        	if (secondCap && Character.isLowerCase(c)) {
-        		return false;
-        	}
-        	
-        	if (!secondCap && Character.isUpperCase(c)) {
-        		return false;
-        	}
-        }
-        
-        return true;
+		if (word == null || word.length() == 0) {
+			return true;
+		}
+
+		boolean isFirstCharCapital = word.charAt(0) >= 'A' && word.charAt(0) <= 'Z';
+		boolean isFollowingCharContainsLowerCase = false;
+		boolean isFollowingCharContainsCapital = false;
+
+		for (int i = 1; i < word.length(); i++) {
+			char c = word.charAt(i);
+
+			if (c >= 'a' && c <= 'z') {
+				if (isFollowingCharContainsCapital) {
+					return false;
+				}
+				isFollowingCharContainsLowerCase = true;
+			} else if (c >= 'A' && c <= 'Z') {
+				if (!isFirstCharCapital || isFollowingCharContainsLowerCase) {
+					return false;
+				}
+
+				isFollowingCharContainsCapital = true;
+			}
+		}
+
+		return true;
     }
     
     public static void main(String[] args) {

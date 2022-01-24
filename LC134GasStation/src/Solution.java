@@ -1,6 +1,6 @@
 
 public class Solution {
-	/*
+	/**
 	 * There are N gas stations along a circular route, where the amount of gas at station i is gas[i].
 	 * 
 	 * You have a car with an unlimited gas tank and it costs cost[i] of gas to travel from station i 
@@ -13,7 +13,7 @@ public class Solution {
 	 * The solution is guaranteed to be unique.
 	 */
 	
-    public int canCompleteCircuit(int[] gas, int[] cost) {
+    public static int canCompleteCircuit(int[] gas, int[] cost) {
         int total = 0;
         int sum = 0;
         
@@ -31,5 +31,15 @@ public class Solution {
         }
         
         return total >= 0 ? start : -1;
+    }
+
+    public static void main(String[] args) {
+       int[] gas1 = {1,2,3,4,5};
+       int[] cost1 = {3,4,5,1,2};
+       int[] gas2 = {2,3,4};
+       int[] cost2 = {3,4,3};
+
+        System.out.println(canCompleteCircuit(gas1, cost1));
+        System.out.println(canCompleteCircuit(gas2, cost2));
     }
 }

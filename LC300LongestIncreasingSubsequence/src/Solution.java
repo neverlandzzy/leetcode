@@ -69,11 +69,11 @@ public class Solution {
     			len++;
     		}
 
-    		for (int k: dp) {
-    			System.out.print(k + ", ");
-    		}
-    		System.out.println();
-    		System.out.println("len =  " + len);
+//    		for (int k: dp) {
+//    			System.out.print(k + ", ");
+//    		}
+//    		System.out.println();
+//    		System.out.println("len =  " + len);
 
     	}
     	

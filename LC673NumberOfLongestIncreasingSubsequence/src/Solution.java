@@ -2,7 +2,7 @@ import java.util.Arrays;
 
 
 public class Solution {
-	/*
+	/**
 	 * Given an unsorted array of integers, find the number of longest increasing subsequence.
 	 * 
 	 * Example 1:
@@ -48,10 +48,9 @@ public class Solution {
         				count[i] += count[j];
         			}
         		}
-        		
-        		max = Math.max(max, length[i]);        		
         	}
-        }
+			max = Math.max(max, length[i]);
+		}
         
         for (int i = 0; i < n; i++) {
         	if (length[i] == max) {

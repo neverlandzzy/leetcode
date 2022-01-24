@@ -3,7 +3,7 @@ import java.util.Set;
 
 
 public class Solution {
-	/*
+	/**
 	 * Given a pattern and a string str, find if str follows the same pattern.
 	 * 
 	 * Here follow means a full match, such that there is a bijection between a letter in 
@@ -22,42 +22,40 @@ public class Solution {
 	//https://discuss.leetcode.com/topic/36076/java-hashset-backtracking-2ms-beats-100
 	
 	// a little slower, but clean and easy to understand
-    public static boolean wordPatternMatch(String pattern, String str) {
+    public static boolean wordPatternMatch(String pattern, String s) {
         String[] map = new String[26];
-        Set<String> set = new HashSet<String>();
-        return helper(str, pattern, map, set, 0, 0);
+        Set<String> set = new HashSet<>();
+        return helper(s, pattern, map, set, 0, 0);
     }
     
-    private static boolean helper(String str, String pattern, String[] map, Set<String> set, 
+    private static boolean helper(String s, String pattern, String[] map, Set<String> set,
     		int strIndex, int patternIndex){
     	
     	// 当pattern和str同时到头，说明match
-    	if (strIndex == str.length() && patternIndex == pattern.length()) {
+    	if (strIndex == s.length() && patternIndex == pattern.length()) {
     		return true;
     	}
     	
     	// 当pattern和str只有一个到头，说明不match
-        if (strIndex == str.length() || patternIndex == pattern.length()) {
+        if (strIndex == s.length() || patternIndex == pattern.length()) {
             return false;
         }
     	
     	char c = pattern.charAt(patternIndex);
     	String matched = map[c -'a'];
-    	
-        
 
     	if (matched != null) {
             
-            if (!str.startsWith(matched, strIndex)) {
+            if (!s.startsWith(matched, strIndex)) {
                 return false;
             }
             
-            return helper(str, pattern, map, set, strIndex + matched.length(), patternIndex + 1);
+            return helper(s, pattern, map, set, strIndex + matched.length(), patternIndex + 1);
 
     	} else {
   		
-    		for (int i = strIndex; i < str.length(); i++) {
-    			matched = str.substring(strIndex, i + 1);
+    		for (int i = strIndex; i < s.length(); i++) {
+    			matched = s.substring(strIndex, i + 1);
     			
     			// 对于同一段字符串，不能有不同的pattern去match
     			if (set.contains(matched)) {
@@ -67,7 +65,7 @@ public class Solution {
     			map[c - 'a'] = matched;
     			set.add(matched);
     			
-                if (helper(str, pattern, map, set, i + 1, patternIndex + 1)) {
+                if (helper(s, pattern, map, set, i + 1, patternIndex + 1)) {
                     return true;
                 }
                 
