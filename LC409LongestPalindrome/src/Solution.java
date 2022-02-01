@@ -3,7 +3,7 @@ import java.util.Map;
 
 
 public class Solution {
-	/*
+	/**
 	 * Given a string which consists of lowercase or uppercase letters, find the length of the longest palindromes that can be built with those 
 	 * letters.
 	 * 
@@ -54,11 +54,10 @@ public class Solution {
     // Solution 2:
     public static int longestPalindrome(String s) {
     	int[] count = new int[128];
-    	
-    	for (int i = 0; i < s.length(); i++) {
-    		char c = s.charAt(i);
-    		count[c]++;
-    	}
+
+		for (char c: s.toCharArray()) {
+			count[c]++;
+		}
     	
     	int sum = 0;
     	int odd = 0;

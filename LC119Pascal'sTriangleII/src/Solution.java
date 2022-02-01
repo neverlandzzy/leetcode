@@ -3,7 +3,7 @@ import java.util.List;
 
 
 public class Solution {
-	/*
+	/**
 	 * Given an index k, return the kth row of the Pascal's triangle.
 	 * 
 	 * For example, given k = 3,

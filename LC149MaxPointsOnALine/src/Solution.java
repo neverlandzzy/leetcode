@@ -10,7 +10,7 @@ public class Solution {
 	// 此方法已经不能AC，因为double有精度误差，double是有限的，斜率是无限的， 使用double表示斜率，是不严谨的也是不正确的。
 	// 表示斜率最靠谱的方式是用最简分数，即分子分母都无法再约分了。分子分母同时除以他们的最大公约数gcd即可得到最简分数
 	
-	 public static int maxPoints(Point[] points) {
+	 public static int maxPoints(int[][] points) {
 		 if (points == null || points.length == 0) {
 			 return 0;
 		 }
@@ -24,7 +24,7 @@ public class Solution {
 			 int curMax = 0;
 			 
 			 for (int j = i + 1; j < n; j++) {
-				 if (points[j].y == points[i].y && points[j].x == points[i].x) {
+				 if (points[j][1] == points[i][1] && points[j][0] == points[i][0]) {
 					 samePoint++;
 				 } else {
 					 String slope = slopeInString(points[i], points[j]);
@@ -45,9 +45,9 @@ public class Solution {
 	 }
 	
 	
-	private static String slopeInString(Point p1, Point p2) {
-		int dy = p1.y - p2.y;
-		int dx = p1.x - p2.x;
+	private static String slopeInString(int[] p1, int[] p2) {
+		int dy = p1[1] - p2[1];
+		int dx = p1[0] - p2[0];
 		
 		// 这里不考虑正负也可以，但为了gcd概念清晰，计算gcd时只考虑正数，符号单独处理
 		String sign = ((dy >= 0 && dx >= 0) || (dy <= 0 && dx <= 0)) ? "+" : "-";
@@ -113,26 +113,10 @@ public class Solution {
 
 	
     public static void main(String[] args) {
-		Point p1 = new Point(0, 0);
-		Point p2 = new Point(1, 1);
-		Point p3 = new Point(2, 2);
-		Point p4 = new Point(2, 2);
-		Point p5 = new Point(3, 3);
-		Point p6 = new Point(3, 5);
-		Point p7 = new Point(6, 7);
-		Point p8 = new Point(6, 7);
-		Point p9 = new Point(6, 7);
-		Point p10 = new Point(0, 0);
-		
-		Point p11 = new Point(0, 0);
-		Point p12 = new Point(94911151, 94911150);
-		Point p13 = new Point(94911152, 94911151);
-		
-		Point[] test = {p1, p2, p3, p4, p5, p6, p7, p8, p9};
-		Point[] test2 = {p11, p12, p13};
-		
+    	int[][] test1 = {{0, 0}, {1, 1}, {2, 2}, {2, 2}, {3, 3}, {3, 5}, {6, 7}, {6, 7}, {6, 7}, {0, 0}};
+    	int[][] test2 = {{0, 0}, {94911151, 94911150}, {94911152, 94911151}};
+
+		System.out.println(maxPoints(test1));
 		System.out.println(maxPoints(test2));
-		
-		//System.out.println(gcd(4, 0));
 	}
 }

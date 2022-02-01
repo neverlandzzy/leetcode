@@ -1,6 +1,6 @@
 
 public class Solution {
-	/*
+	/**
 	 * Given an unsorted array return whether an increasing subsequence of length 3 exists or not in the array.
 	 * 
 	 * Formally the function should:
@@ -34,6 +34,8 @@ public class Solution {
     		} else {
     			return true;
     		}
+
+			System.out.println("small =  " + small + " large = " + large + " i = " + i);
     	}
     	
     	return false;
@@ -44,10 +46,12 @@ public class Solution {
 		int[] test2 = {3, 1, 4, 2, 5};
 		int[] test3 = {5, 4, 3, 2, 1};
 		int[] test4 = {1, 0, 0, 1};
+		int[] test5 = {2, 1, 5, 0, 4, 6};
 		
 		System.out.println(increasingTriplet(test1));
-		System.out.println(increasingTriplet(test2));
-		System.out.println(increasingTriplet(test3));
-		System.out.println(increasingTriplet(test4));
+		//System.out.println(increasingTriplet(test2));
+		//System.out.println(increasingTriplet(test3));
+		//System.out.println(increasingTriplet(test4));
+		//System.out.println(increasingTriplet(test5));
 	}
 }

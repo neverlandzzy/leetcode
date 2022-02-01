@@ -2,7 +2,7 @@ import java.util.HashSet;
 
 
 public class Solution {
-	/*
+	/**
 	 * Write an algorithm to determine if a number is "happy".
 	 * 
 	 * A happy number is a number defined by the following process: 

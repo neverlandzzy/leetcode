@@ -3,7 +3,7 @@ import java.util.List;
 
 
 public class Solution {
-	/*
+	/**
 	 * Given a matrix of m x n elements (m rows, n columns), return all elements of 
 	 * the matrix in spiral order.
 	 * 
@@ -20,7 +20,7 @@ public class Solution {
 	 */
     public static List<Integer> spiralOrder(int[][] matrix) {
         
-        List<Integer> result = new ArrayList<Integer>();
+        List<Integer> result = new ArrayList<>();
     	int row = matrix.length;
     	
     	if (row == 0) {
@@ -44,15 +44,16 @@ public class Solution {
     			result.add(matrix[++i][j]);
 
     		}
-			if (--col == 0) {
+
+    		if (--col == 0) {
 				break;
 			}
-    		for (int n = 0; n < col; n++) {
-    			result.add(matrix[i][--j]);
-    			
 
+			for (int n = 0; n < col; n++) {
+    			result.add(matrix[i][--j]);
     		}
-			if (--row == 0) {
+
+    		if (--row == 0) {
 				break;
 			}
     		

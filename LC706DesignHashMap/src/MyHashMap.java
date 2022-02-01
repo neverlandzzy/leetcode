@@ -38,26 +38,76 @@ public class MyHashMap {
      *
      * Constraints:
      *
-     * 0 <= key, value <= 106
-     * At most 104 calls will be made to put, get, and remove.
+     * 0 <= key, value <= 10^6
+     * At most 10^4 calls will be made to put, get, and remove.
      */
     /** Initialize your data structure here. */
-    public MyHashMap() {
+    class ListNode {
+        int key;
+        int value;
+        ListNode next;
 
+        public ListNode(int key, int value) {
+            this.key = key;
+            this.value = value;
+        }
+    }
+
+    ListNode[] linkedList;
+
+    public MyHashMap() {
+        linkedList = new ListNode[10001];
+    }
+
+    private int getIndex(int key) {
+        return key % linkedList.length;
+    }
+
+    private ListNode getNodeByIndexAndKey(int index, int key) {
+        if (linkedList[index] == null) {
+            return null;
+        }
+        ListNode node = linkedList[index];
+
+        while (node != null && node.key != key) {
+            node = node.next;
+        }
+
+        return node;
     }
 
     /** value will always be non-negative. */
     public void put(int key, int value) {
+        int index = getIndex(key);
+        ListNode node = getNodeByIndexAndKey(index, key);
+        ListNode head = linkedList[index];
 
+        if (head == null) {
+            linkedList[index] = new ListNode(key, value);
+        } else if (node == null) {
+            ListNode newNode = new ListNode(key, value);
+            newNode.next = head;
+            linkedList[index] = newNode;
+        } else {
+            node.value = value;
+        }
     }
 
     /** Returns the value to which the specified key is mapped, or -1 if this map contains no mapping for the key */
     public int get(int key) {
+        int index = getIndex(key);
+        ListNode node = getNodeByIndexAndKey(index, key);
 
+        return node == null ? -1 : node.value;
     }
 
     /** Removes the mapping of the specified value key if this map contains a mapping for the key */
     public void remove(int key) {
+        int index = getIndex(key);
+        ListNode node = getNodeByIndexAndKey(index, key);
 
+        if (node != null) {
+            node.value = -1;
+        }
     }
 }
