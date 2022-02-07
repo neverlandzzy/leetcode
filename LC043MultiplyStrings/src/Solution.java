@@ -22,9 +22,9 @@ public class Solution {
 		int[] d = new int[n1 + n2 - 1];
 		char[] str1 = num1.toCharArray();
 		char[] str2 = num2.toCharArray();
-		
-		for (int i = n1 - 1; i >= 0; i--) {
-			for (int j = n2 - 1; j >= 0; j--) {
+
+		for (int i = 0; i < n1; i++) {
+			for (int j = 0; j < n2; j++) {
 				d[i + j] += (str1[i] - '0') * (str2[j] - '0');
 			}
 		}

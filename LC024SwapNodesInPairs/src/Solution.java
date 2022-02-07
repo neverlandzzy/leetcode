@@ -1,6 +1,6 @@
 
 public class Solution {
-	/*
+	/**
 	 * Given a linked list, swap every two adjacent nodes and return its head.
 	 * 
 	 * For example,

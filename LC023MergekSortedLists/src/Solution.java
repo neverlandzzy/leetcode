@@ -65,11 +65,7 @@ public class Solution {
 	// Solution 2: Priority Queue
 	// Time: O(nlogk), Space: O(k) -- PQ 存每个list的第一个node
 	public static ListNode mergeKLists(ListNode[] lists) {
-        PriorityQueue<ListNode> heap = new PriorityQueue<>(new Comparator<ListNode>() {
-            public int compare(ListNode o1, ListNode o2) {
-                return o1.val - o2.val;
-            }
-        });
+        PriorityQueue<ListNode> heap = new PriorityQueue<>(Comparator.comparingInt(o -> o.val));
         
         ListNode dummy = new ListNode(0);
         ListNode cur = dummy;

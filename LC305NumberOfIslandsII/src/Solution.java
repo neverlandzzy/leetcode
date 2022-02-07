@@ -5,7 +5,7 @@ import java.util.Map;
 
 
 public class Solution {
-	/*
+	/**
 	 * A 2d grid map of m rows and n columns is initially filled with water. We may perform an addLand operation which turns 
 	 * the water at position (row, col) into a land. Given a list of positions to operate, count the number of islands after each 
 	 * addLand operation. An island is surrounded by water and is formed by connecting adjacent lands horizontally or vertically. 
@@ -110,10 +110,10 @@ public class Solution {
 		}
 		
         void union(int x, int y){
-            int faX = find(x);
-            int faY = find(y);
-            if(faX != faY) {
-                parent[faX] = faY;
+            int pX = find(x);
+            int pY = find(y);
+            if(pX != pY) {
+                parent[pX] = pY;
             }
         }
 	}

@@ -5,7 +5,7 @@ import java.util.Set;
 
 
 public class Solution {
-	/*
+	/**
 	 * All DNA is composed of a series of nucleotides abbreviated as A, C, G, and T, 
 	 * for example: "ACGAATTCCG". When studying DNA, it is sometimes useful to identify 
 	 * repeated sequences within the DNA.
@@ -21,7 +21,7 @@ public class Solution {
 	
     public static List<String> findRepeatedDnaSequences(String s) {
     	
-    	// Solution 1: O(n^2):  substring() takes O(n) time in Java 7 or later
+    	// Solution 1: O(n * L) (L = 10):  substring() takes O(n) time in Java 7 or later
     	/*
         int k = 10;
         HashMap<String, Integer> map = new HashMap<String, Integer>();
@@ -43,13 +43,14 @@ public class Solution {
         return result;
         */
     	
-    	// Solution 2:
-    	List<String> result = new ArrayList<String>();
-    	Set<Integer> firstVisited = new HashSet<Integer>();
-    	Set<Integer> secondVisited = new HashSet<Integer>();
+    	// Solution 2: Time: O(n)
+		// Map: A->00  C->01  G->10  T->11
+    	List<String> result = new ArrayList<>();
+    	Set<Integer> firstVisited = new HashSet<>();
+    	Set<Integer> secondVisited = new HashSet<>();
     	
-    	int k = 10;
-    	int v = 0;
+    	int l = 10;
+    	int bitmask = 0;
     
     	char[] map = new char[26];
     	map['A' - 'A'] = 0;
@@ -58,17 +59,17 @@ public class Solution {
     	map['T' - 'A'] = 3;
     	
     	for (int i = 0; i < s.length(); i++) {
-    		v = v << 2; 
-    		v = v | map[s.charAt(i) - 'A'];
-    		if (i == k - 1) {
-    			firstVisited.add(v);
-    		} else if (i > k - 1){
-    			v &= ~(3 << 2*k);
-    			if (!firstVisited.add(v) && secondVisited.add(v)) {
-    				result.add(s.substring(i - k + 1, i + 1));
+			bitmask = bitmask << 2;
+			bitmask = bitmask | map[s.charAt(i) - 'A'];
+    		if (i == l - 1) {
+    			firstVisited.add(bitmask);
+    		} else if (i > l - 1){
+    			// set first 2 bits to 0
+				bitmask &= ~(3 << 2 * l);
+    			if (!firstVisited.add(bitmask) && secondVisited.add(bitmask)) {
+    				result.add(s.substring(i - l + 1, i + 1));
     			}
     		}
-    		  		
     	}
     	
     	return result;

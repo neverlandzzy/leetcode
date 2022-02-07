@@ -2,7 +2,7 @@ import java.util.Stack;
 
 
 public class Solution {
-	/*
+	/**
 	 * You are given two non-empty linked lists representing two non-negative integers. 
 	 * The most significant digit comes first and each of their nodes contain a single digit. 
 	 * Add the two numbers and return it as a linked list.
@@ -24,48 +24,29 @@ public class Solution {
     public static ListNode addTwoNumbers(ListNode l1, ListNode l2) {
         l1 = reverse(l1);
         l2 = reverse(l2);
-        
-        ListNode head = new ListNode(0);
-        ListNode cur = head;
-        int sum = 0;
         int carry = 0;
-        
-        while (l1 != null && l2 != null) {
-        	sum = l1.val + l2.val + carry;
-        	carry = sum / 10;
-        	sum = sum % 10;
-        	
-        	cur.next = new ListNode(sum);
-        	l1 = l1.next;
-        	l2 = l2.next;
-        	cur = cur.next;
+
+        ListNode result = new ListNode(0);
+        ListNode cur = result;
+
+        while (l1 != null || l2 != null) {
+            int a = l1 == null ? 0 : l1.val;
+            int b = l2 == null ? 0 : l2.val;
+
+            int sum = a + b + carry;
+            carry = sum / 10;
+
+            cur.next = new ListNode(sum % 10);
+            cur = cur.next;
+            l1 = l1 == null ? null : l1.next;
+            l2 = l2 == null ? null : l2.next;
         }
-        
-        while (l1 != null) {
-        	sum = l1.val + carry;
-        	carry = sum / 10;
-        	sum = sum % 10;
-        	
-        	cur.next = new ListNode(sum);
-        	l1 = l1.next;
-        	cur = cur.next;
-        }
-        
-        while (l2 != null) {
-        	sum = l2.val + carry;
-        	carry = sum / 10;
-        	sum = sum % 10;
-        	
-        	cur.next = new ListNode(sum);
-        	l2 = l2.next;
-        	cur = cur.next;
-        }
-        
+
         if (carry != 0) {
-        	cur.next = new ListNode(1);
+            cur.next = new ListNode(carry);
         }
-        
-        return reverse(head.next);
+
+        return reverse(result.next);
     }
     
     private static ListNode reverse(ListNode head) {
