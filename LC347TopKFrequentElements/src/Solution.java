@@ -5,7 +5,7 @@ import java.util.Map;
 
 
 public class Solution {
-	/*
+	/**
 	 * Given a non-empty array of integers, return the k most frequent elements.
 	 *
 	 * For example,

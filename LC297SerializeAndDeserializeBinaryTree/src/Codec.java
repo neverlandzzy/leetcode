@@ -4,7 +4,7 @@ import java.util.Queue;
 
 
 public class Codec {
-	/*
+	/**
 	 * Serialization is the process of converting a data structure or object into a sequence of bits 
 	 * so that it can be stored in a file or memory buffer, or transmitted across a network 
 	 * connection link to be reconstructed later in the same or another computer environment.
@@ -41,7 +41,6 @@ public class Codec {
     		sb.append("null").append(",");
     		return;
     	}
-    	
     	sb.append(root.val).append(",");
     	helperS(root.left, sb);
     	helperS(root.right, sb);
@@ -50,7 +49,7 @@ public class Codec {
 
     // Decodes your encoded data to tree.
     public TreeNode deserialize(String data) {
-    	Queue<String> nodes = new LinkedList<String>();
+    	Queue<String> nodes = new LinkedList<>();
 		nodes.addAll(Arrays.asList(data.split(",")));
 		
 		return helperD(nodes);		

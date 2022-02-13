@@ -2,7 +2,7 @@ import java.util.Stack;
 
 
 public class Solution {
-	/*
+	/**
 	 * Given a binary search tree, write a function kthSmallest to find the kth smallest element in it.
 	 * 
 	 * Note: 

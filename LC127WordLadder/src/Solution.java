@@ -38,7 +38,7 @@ public class Solution {
         Set<String> set = new HashSet<>();
         Set<String> wordSet = new HashSet<>(wordList);
         Queue<String> queue = new LinkedList<>();
-        int counter = 1;
+        int counter = 0;
         
         set.add(beginWord);
         queue.offer(beginWord);
@@ -49,15 +49,15 @@ public class Solution {
             
             for (int i = 0; i < size; i++) {
                 String word = queue.poll();
-                
+                if (word.equals(endWord)) {
+                    return counter;
+                }
+
                 for (String s: getNextWord(word, wordSet)) {
                     if (set.contains(s)) {
                         continue;
                     }
-                    
-                    if (s.equals(endWord)) {
-                        return counter;
-                    }
+
                     set.add(s);
                     queue.offer(s);
                 }    

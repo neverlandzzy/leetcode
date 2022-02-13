@@ -27,8 +27,8 @@ public class Solution {
 	 */  
 	
     public static List<List<Integer>> pathSum(TreeNode root, int sum) {
-    	List<List<Integer>> result = new ArrayList<List<Integer>>();
-    	List<Integer> list = new ArrayList<Integer>();
+    	List<List<Integer>> result = new ArrayList<>();
+    	List<Integer> list = new ArrayList<>();
     	
     	pathSumHelper(root, sum, result, list);
     	
@@ -44,7 +44,7 @@ public class Solution {
     	
     	if (root.left == null && root.right == null) {
     		if (root.val == sum) {
-    			result.add(new ArrayList<Integer>(list));
+    			result.add(new ArrayList<>(list));
     		}
     	}
     	
