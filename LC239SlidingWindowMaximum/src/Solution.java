@@ -39,8 +39,7 @@ public class Solution {
         Deque<Integer> deque = new ArrayDeque<>();
         int n = nums.length;
         int[] result = new int[n - k + 1];
-        int j = 0;
-        
+
         for (int i = 0; i < n; i++) {
         	while (!deque.isEmpty() && deque.peek() < i - k + 1) {
         		deque.poll();
@@ -53,10 +52,8 @@ public class Solution {
         	deque.offer(i);
         	
         	if (i >= k - 1) {
-        		result[j] = nums[deque.peek()];
-        		j++;
+				result[i - k + 1] = nums[deque.peek()];
         	}
-
         }
         
         return result;

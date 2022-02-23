@@ -5,7 +5,7 @@ import java.util.TreeMap;
 
 public class Solution {
 	
-	/*
+	/**
 	 * Given a string, find the length of the longest substring T that contains at most k distinct characters.
 	 * For example, Given s = “eceba” and k = 2,
 	 * T is "ece" which its length is 3.
@@ -13,7 +13,7 @@ public class Solution {
 	
 	
 	// [*follow up*] 
-	// The interviewer may say that the String is given as a steam. In this situation, we can't maintain a "left pointer" as the 
+	// The interviewer may say that the String is given as a stream. In this situation, we can't maintain a "left pointer" as the
 	// classical O(n) solution.
 	// 
 	// 由于String是stream，我们无法记录left pointer，因此，我们不再记录每个char出现的次数，而是用Map<Character, Integer>记录每个char最近一次出现的位置

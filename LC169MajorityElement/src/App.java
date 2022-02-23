@@ -19,25 +19,27 @@ public class App {
 	}
 	
 	
-    public static int majorityElement(int[] num) {
+    public static int majorityElement(int[] nums) {
         /*
          * Moore’s Voting Algorithm
          * RunTime O(n)
          * Space O(1)
          */
-    	int major = num[0];
+    	int major = nums[0];
     	int count = 1;
     	
-    	for(int i = 1; i < num.length; i++) {
-    		
-    		if (count == 0) {
-    			major = num[i];
-    			count++;
-    		} else if (major == num[i]) {
-    			count++;
-    		} else {
-    			count--;
-    		}
+    	for(int i = 1; i < nums.length; i++) {
+
+			if (nums[i] == major) {
+				count++;
+			} else {
+				if (count == 0) {
+					major = nums[i];
+					count = 1;
+				} else {
+					count--;
+				}
+			}
     	}
     	
     	return major;

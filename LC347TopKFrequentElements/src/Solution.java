@@ -19,7 +19,7 @@ public class Solution {
 	
 	// Solution 1: naive solution with heap,  Time: O(nlogn), Space: O(n) 
 	/*
-    public static List<Integer> topKFrequent(int[] nums, int k) {
+    public static int[] topKFrequent(int[] nums, int k) {
         List<Integer> result = new ArrayList<>();
         
         if (nums == null || nums.length == 0) {
@@ -48,28 +48,34 @@ public class Solution {
         	}
         }
         
-        return result;
+        return result.stream().mapToInt(x -> x).toArray();
     }
     */
 	
     // Solution 2: Bucket sort, Time: O(n), Space: O(n)
 
-	public static List<Integer> topKFrequent(int[] nums, int k) {
+	public static int[] topKFrequent(int[] nums, int k) {
         List<Integer> result = new ArrayList<>();
         
         if (nums == null || nums.length == 0) {
-        	return result;
+        	return new int[0];
         }
         
         Map<Integer, Integer> map = new HashMap<>();
-        
-        for (int i: nums) {
-        	map.put(i, map.getOrDefault(i, 0) + 1);
-        }
-        
-    	// Solution里用List<>[], 但会有warning
+		int maxFrequence = 0;
+
+		for (int i: nums) {
+			int frequence = 1;
+			if (map.containsKey(i)) {
+				frequence += map.get(i);
+			}
+
+			map.put(i, frequence);
+			maxFrequence = Math.max(maxFrequence, frequence);
+		}
+
         List<List<Integer>> list = new ArrayList<>();
-        for (int i = 0; i <= nums.length; i++) {
+        for (int i = 0; i <= maxFrequence; i++) {
         	list.add(new ArrayList<>());
         }
         
@@ -91,11 +97,18 @@ public class Solution {
         	}
         }
         
-        return result;
+        return result.stream().mapToInt(x -> x).toArray();
 	}
     
     public static void main(String[] args) {
 		int[] test1 = {1, 1, 1, 2, 2, 3};
-		System.out.println(topKFrequent(test1, 2));
+		printArray(topKFrequent(test1, 2));
+	}
+
+	private static void printArray(int[] nums) {
+		for (int i: nums) {
+			System.out.print(i + ", ");
+		}
+		System.out.println();
 	}
 }

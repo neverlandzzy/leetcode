@@ -1,7 +1,4 @@
-import java.util.Comparator;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.PriorityQueue;
+import java.util.*;
 
 
 public class Solution {
@@ -44,7 +41,47 @@ public class Solution {
 	 * "bbaA" is also a valid answer, but "Aabb" is incorrect.
 	 * Note that 'A' and 'a' are treated as two different characters.
 	 */
-	
+
+
+	// Solution 1: Bucket sort - Time: O(n)
+	public static String frequencySort(String s) {
+		if (s == null || s.length() == 0) {
+			return s;
+		}
+
+		Map<Character, Integer> map = new HashMap<>();
+		for (int i = 0; i < s.length(); i++) {
+			char c = s.charAt(i);
+
+			map.put(c, map.getOrDefault(c, 0) + 1);
+		}
+
+		int maxFrequence = Collections.max(map.values());
+		List<List<Character>> buckets = new ArrayList<>();
+		StringBuilder sb = new StringBuilder();
+
+		for (int i = 0; i <= maxFrequence; i++) {
+			buckets.add(new ArrayList<>());
+		}
+
+		for (char c: map.keySet()) {
+			int count = map.get(c);
+			buckets.get(count).add(c);
+		}
+
+		for (int i = maxFrequence; i > 0; i--) {
+			for (char c: buckets.get(i)) {
+				for (int j = 0; j < i; j++) {
+					sb.append(c);
+				}
+			}
+		}
+
+		return sb.toString();
+	}
+
+	// Solution 2: Heap - Time: O(n * logn)
+	/*
 	static class Node {
 		char c;
 		int count;
@@ -56,6 +93,9 @@ public class Solution {
 	}
 	
     public static String frequencySort(String s) {
+    	if (s == null || s.length() == 0) {
+			return s;
+		}
         Map<Character, Integer> map = new HashMap<>();
         StringBuilder sb = new StringBuilder();
         
@@ -88,6 +128,8 @@ public class Solution {
         
         return sb.toString();
     }
+    */
+
     
     public static void main(String[] args) {
 		System.out.println(frequencySort("tree"));
