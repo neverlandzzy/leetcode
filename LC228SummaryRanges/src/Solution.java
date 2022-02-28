@@ -3,11 +3,42 @@ import java.util.List;
 
 
 public class Solution {
-	/*
+	/**
 	 * Given a sorted integer array without duplicates, return the summary of its ranges.
 	 * For example, given [0,1,2,4,5,7], return ["0->2","4->5","7"].
 	 */
-	
+
+
+    public static List<String> summaryRanges(int[] nums) {
+        List<String> result = new ArrayList<>();
+
+        int i = 0;
+        int n = nums.length;
+
+        while (i < n) {
+            int j = i + 1;
+
+            while (j < n && nums[j] == nums[j - 1] + 1) {
+                j++;
+            }
+
+            StringBuilder sb = new StringBuilder();
+            if (j - i > 1) {
+                sb.append(nums[i]).append("->").append(nums[j - 1]);
+            } else {
+                sb.append(nums[i]);
+
+            }
+            result.add(sb.toString());
+
+            i = j;
+        }
+
+        return result;
+    }
+
+    // Another solution
+    /*
     public static List<String> summaryRanges(int[] nums) {
         List<String> result = new ArrayList<>();
         if (nums == null || nums.length == 0) {
@@ -44,6 +75,8 @@ public class Solution {
         
         return result;
     }
+    */
+
     
     public static void main(String[] args) {
 		int[] test1 = {0,1,2,4,5,7};

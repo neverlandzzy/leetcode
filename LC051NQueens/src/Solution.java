@@ -3,7 +3,7 @@ import java.util.List;
 
 
 public class Solution {
-	/*
+	/**
 	 * The n-queens puzzle is the problem of placing n queens on an n×n chessboard such that 
 	 * no two queens attack each other.
 	 * 
@@ -27,8 +27,8 @@ public class Solution {
  	 * ]
 	 */
     public static List<List<String>> solveNQueens(int n) {
-        List<List<String>> result = new ArrayList<List<String>>();
-        List<String> list = new ArrayList<String>();
+        List<List<String>> result = new ArrayList<>();
+        List<String> list = new ArrayList<>();
         
         dfs(n, 0, 0, 0, result, list);
         
@@ -54,30 +54,29 @@ public class Solution {
     	
     }
     */
-    private static void dfs (int n, int row, int ld, int rd, List<List<String>> result, List<String> list) {
-        
+    private static void dfs (int n, int row, int diagonal, int antiDiagonal, List<List<String>> result, List<String> list) {
         int upperLimit =  (1 << n) - 1;
         
         if (row == upperLimit) {
-            result.add(new ArrayList<String>(list));
-        } else {
-            int candidate = upperLimit & (~(row|rd|ld));
-            
-            while (candidate > 0) {
-                int pos = candidate & (~candidate + 1); //取最后一位
-                candidate = candidate - pos;
-
-                StringBuilder sb = new StringBuilder(Integer.toBinaryString(pos).replace('0', '.').replace('1', 'Q'));
-                while (sb.length() < n) {
-                	sb.insert(0, '.');
-                }
-                list.add(sb.toString());
-          
-                dfs(n, row|pos, (ld | pos) << 1, (rd | pos) >> 1, result, list);
-                list.remove(list.size() - 1);
-            }
+            result.add(new ArrayList<>(list));
+            return;
         }
-    	
+
+		int candidate = upperLimit & (~(row|diagonal|antiDiagonal));
+
+		while (candidate > 0) {
+			int pos = candidate & (~candidate + 1); //取最后一位
+			candidate = candidate - pos;
+
+			StringBuilder sb = new StringBuilder(Integer.toBinaryString(pos).replace('0', '.').replace('1', 'Q'));
+			while (sb.length() < n) {
+				sb.insert(0, '.');
+			}
+			list.add(sb.toString());
+
+			dfs(n, row|pos, (diagonal | pos) >> 1, (antiDiagonal | pos) << 1, result, list);
+			list.remove(list.size() - 1);
+		}
     }
     
     public static void main(String[] args) {

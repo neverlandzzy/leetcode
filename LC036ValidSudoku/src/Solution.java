@@ -1,6 +1,6 @@
 
 public class Solution {
-	/*
+	/**
 	 * Determine if a Sudoku is valid, according to: Sudoku Puzzles - The Rules.
 	 * 
 	 * 1.Each row must have the numbers 1-9 occuring just once.
@@ -112,25 +112,15 @@ public class Solution {
         for (int i = 0; i < 9; i++) {
         	for (int j = 0; j < 9; j++) {
         		if (board[i][j] != '.') {
-        			int mask = 1 << (board[i][j] - '0');
-        			//System.out.println("mask = " + mask);
-        			if ((row[i] & mask) != 0) {
-        				return false;
-        			}
-        			
-        			if ((col[j] & mask) != 0) {
-        				return false;
-        			}
-        			
-        			if ((box[i/3*3 + j/3] & mask) != 0) {
-        				return false;
-        			}
-        			
-                    row[i] |= mask;
-                    col[j] |= mask;
-                    box[i/3*3+j/3] |= mask;
-                    //System.out.println("i = " + i);
-                    //System.out.println("row[i] = " + row[i]);
+					int mask = 1 << (board[i][j] - '0');
+
+					if ((row[i] & mask) != 0 || (col[j] & mask) != 0 || (box[i / 3 * 3 + j / 3] & mask) != 0) {
+						return false;
+					}
+
+					row[i] |= mask;
+					col[j] |= mask;
+					box[i / 3 * 3 + j / 3] |= mask;
         		}
 
         	}

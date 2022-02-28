@@ -3,7 +3,7 @@ import java.util.Map;
 
 
 public class Solution {
-	/*
+	/**
 	 * In this problem, a rooted tree is a directed graph such that, there is exactly one node (the root) for which all other nodes are 
 	 * descendants of this node, plus every node has exactly one parent, except for the root node which has no parents.
 	 * 
@@ -40,7 +40,7 @@ public class Solution {
 	
 	// https://discuss.leetcode.com/topic/105100/most-posted-answers-are-wrong
 	// 容易想到的一个错误解法是利用LC684的解法（检查cycle） + 检查duplicate parent，反例 [[4,2],[1,5],[5,2],[5,3],[2,4]]，按照这个方法会得到[5, 2]， 
-	// 但是[4, 2]才是正确答案。原因是：cycle和duplicat parent情况不能分别独立检查。 本题需要检查下面三种情况：
+	// 但是[4, 2]才是正确答案。原因是：cycle和duplicate parent情况不能分别独立检查。 本题需要检查下面三种情况：
 	// 	1. no cycle, but duplicate parent;
 	// 	2. no duplicate parent, but cycle;  --> LC684
 	// 	3. has both cycle and duplicate parent --> 即反例的情景，此时，可能需要remove的是前一条边

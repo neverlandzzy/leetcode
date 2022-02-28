@@ -3,7 +3,7 @@ import java.util.List;
 
 
 public class Solution {
-	/*
+	/**
 	 * Numbers can be regarded as product of its factors. For example,
 	 * 
 	 * 8 = 2 x 2 x 2;
@@ -71,8 +71,8 @@ public class Solution {
 	
 	//Solution 2:
     public static List<List<Integer>> getFactors(int n) {
-        List<List<Integer>> result = new ArrayList<List<Integer>>();
-        List<Integer> list = new ArrayList<Integer>();
+        List<List<Integer>> result = new ArrayList<>();
+        List<Integer> list = new ArrayList<>();
         
         helper(result, list, 2, n);
         return result;
@@ -84,7 +84,7 @@ public class Solution {
     		if (n % i == 0) {
     			list.add(i);
     			list.add(n / i);
-    			result.add(new ArrayList<Integer>(list));
+    			result.add(new ArrayList<>(list));
     			list.remove(list.size() - 1);
     			helper(result, list, i, n / i);
     			list.remove(list.size() - 1);

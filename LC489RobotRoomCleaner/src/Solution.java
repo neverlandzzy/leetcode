@@ -3,7 +3,7 @@ import java.util.Set;
 
 
 public class Solution {
-	/*
+	/**
 	 * Given a robot cleaner in a room modeled as a grid.
 	 * 
 	 * Each cell in the grid can be empty or blocked.
@@ -64,24 +64,24 @@ public class Solution {
 	int[][] directions = {{-1, 0}, {0, 1}, {1, 0}, {0, -1}};
 	
     public void cleanRoom(Robot robot) {
-        Set<String> set = new HashSet<>();
+        Set<String> visited = new HashSet<>();
         
-        dfs(robot, set, 0, 0, 0);
+        dfs(robot, visited, 0, 0, 0);
     }
     
     // x, y: 坐标
     // d: 方向 - [0, 3]
-    private void dfs(Robot robot, Set<String> set, int x, int y, int d) {
+    private void dfs(Robot robot, Set<String> visited, int x, int y, int d) {
     	robot.clean();
-    	set.add(x + "," + y);
+		visited.add(x + "," + y);
     	
     	for (int i = 0; i < directions.length; i++) {
     		int[] dir = directions[(i + d) % 4];
     		int nextX = x + dir[0];
     		int nextY = y + dir[1];
     		
-    		if (!set.contains(nextX + "," + nextY) && robot.move()) {
-    			dfs(robot, set, nextX, nextY, (i + d) % 4);
+    		if (!visited.contains(nextX + "," + nextY) && robot.move()) {
+    			dfs(robot, visited, nextX, nextY, (i + d) % 4);
     		}
     		
     		// 顺时针 -- 与directions的顺序要一致。因为directions里的方向表示机器人将要前进的方向。确定方向后，要将机器人转到该方向上（by default，机器人是向上的）
@@ -90,7 +90,8 @@ public class Solution {
     	
     	moveBack(robot);
     }
-    
+
+	// backtracking, 不仅要回到原来的位置，也要重置方向
     private void moveBack(Robot robot) {
 		robot.turnRight();
         robot.turnRight();

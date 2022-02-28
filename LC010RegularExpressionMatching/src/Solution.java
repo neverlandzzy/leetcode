@@ -1,6 +1,6 @@
 
 public class Solution {
-	/*
+	/**
 	 * Implement regular expression matching with support for '.' and '*'.
 	 * 
 	 * '.' Matches any single character.

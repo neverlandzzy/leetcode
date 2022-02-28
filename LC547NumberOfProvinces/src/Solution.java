@@ -79,8 +79,8 @@ public class Solution {
         
         for (int i = 0; i < isConnected.length; i++) {
         	if (!visited[i]) {
-        		//bfs(M, i, visited);
-        		dfs(isConnected, i, visited);
+        		bfs(isConnected, i, visited);
+        		//dfs(isConnected, i, visited);
         		counter++;
         	}
         }
@@ -90,8 +90,8 @@ public class Solution {
     
     private static void bfs(int[][] isConnected, int i, boolean[] visited) {
     	Queue<Integer> queue = new LinkedList<>();
-    	
     	queue.offer(i);
+		visited[i] = true;
     	
     	while (!queue.isEmpty()) {
 			int x = queue.poll();
