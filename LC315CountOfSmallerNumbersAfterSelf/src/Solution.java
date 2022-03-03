@@ -86,7 +86,7 @@ public class Solution {
 				count[index[i]] += rightCount;
 				i++;
 			}
-				k++;
+			k++;
 		}
 
 		while (i <= mid) {

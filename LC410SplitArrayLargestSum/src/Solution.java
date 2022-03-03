@@ -46,6 +46,7 @@ public class Solution {
         
         while (max < sum) {
         	long mid = max + (sum - max) / 2;
+			// System.out.println(" mid = " + mid + " valid(nums, m, mid) = " + valid(nums, m, mid));
         	if (valid(nums, m, mid)) {
         		sum = mid;
         	} else {

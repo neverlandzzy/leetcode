@@ -32,8 +32,8 @@ public class Solution {
 		// Since buy[i] <= rest[i] --> rest[i] = max(sell[i - 1], rest[i - 1]) --> 'buy, rest, buy' never happens
 		// Since rest[i] = sell[i - 1]
 		// we have:
-		// buy[i] = max(sell[i - 2] - price, buy[i - 1])
-		// sell[i] = max (buy[i - 1] + price, sell[i - 1])
+		// buy[i] = max(sell[i - 2] - price, buy[i - 1]) -- 第i天buy， 则要么第i-2天sell或者前一天(i-1)天什么也不做
+		// sell[i] = max (buy[i - 1] + price, sell[i - 1]) -- 第i天sell，则要么前一天(i-1)买，要么前一天什么也不做
 		 
 		if (prices == null || prices.length <= 1) {
 			return 0;
@@ -55,7 +55,7 @@ public class Solution {
         
 		
 		for (int i = 1; i < n; i++) {
-			buy[i] = Math.max( (i > 1 ? sell[i - 2] : 0)- prices[i], buy[i - 1]);
+			buy[i] = Math.max((i > 1 ? sell[i - 2] : 0) - prices[i], buy[i - 1]);
 			sell[i] = Math.max(buy[i - 1] + prices[i], sell[i - 1]);
 		}
 		

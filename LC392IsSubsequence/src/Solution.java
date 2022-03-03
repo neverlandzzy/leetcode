@@ -4,7 +4,7 @@ import java.util.List;
 
 
 public class Solution {
-	/*
+	/**
 	 * Given a string s and a string t, check if s is subsequence of t.
 	 * 
 	 * You may assume that there is only lower case English letters in both s and t. t is potentially a very long (length ~= 500,000) 
