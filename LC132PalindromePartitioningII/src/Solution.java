@@ -1,6 +1,6 @@
 
 public class Solution {
-	/*
+	/**
 	 * Given a string s, partition s such that every substring of the partition is a palindrome.
 	 * 
 	 * Return the minimum cuts needed for a palindrome partitioning of s.
@@ -34,9 +34,10 @@ public class Solution {
     }
     
     public static void main(String[] args) {
-		String test = "aac";
+		String test1 = "aac";
 		String test2 = "ccaacabacb";
 		
+		System.out.println(minCut(test1));
 		System.out.println(minCut(test2));
 	}
 }

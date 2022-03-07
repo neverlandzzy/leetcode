@@ -58,8 +58,7 @@ public class Solution {
     		dp[0][i] = false;
     	}
     	
-    	for (int i = 1; i < nums.length; i++) {
-    		for (int j = 1; j <= sum; j++) {
+d
     			dp[i][j] = dp[i - 1][j]; // 不要nums[i]
     			if (j - nums[i] >= 0) {
     				dp[i][j] = dp[i - 1][j - nums[i]] || dp[i][j]; // 要nums[i]

@@ -63,7 +63,7 @@ public class Solution {
 //
 //        return result;
 //    }
-
+    /*
     // Solution 2: Time O(m * n), Space O(1)
     public static int[][] matrixReshape(int[][] mat, int r, int c) {
         int m = mat.length;
@@ -92,7 +92,29 @@ public class Solution {
 
         return result;
     }
+    */
+    // Solution 3: Time O(m * n), Space O(1)
+    public static int[][] matrixReshape(int[][] mat, int r, int c) {
+        int m = mat.length;
+        int n = mat[0].length;
 
+        if (m * n != r * c) {
+            return mat;
+        }
+
+        int[][] result = new int[r][c];
+
+        int index = 0;
+
+        for (int i = 0; i < r; i++) {
+            for (int j =0; j < c; j++) {
+                result[i][j] = mat[index / n][index % n];
+                index++;
+            }
+        }
+
+        return result;
+    }
 
     public static void main(String[] args) {
         int[][] test1 = {{1, 2}, {3, 4}};

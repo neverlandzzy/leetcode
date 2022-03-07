@@ -18,19 +18,19 @@ public class Solution {
      * Output: "lovely"
      */
 
-    public static String toLowerCase(String str) {
-        if (str == null || str.length() == 0) {
-            return str;
+    public static String toLowerCase(String s) {
+        if (s == null || s.length() == 0) {
+            return s;
         }
 
         StringBuilder sb = new StringBuilder();
 
-        for (char c: str.toCharArray()) {
+        for (char c: s.toCharArray()) {
             if (c >= 'A' && c <= 'Z') {
-                c += 32;
+                sb.append((char)(c + 'a' - 'A'));
+            } else {
+                sb.append(c);
             }
-
-            sb.append(c);
         }
 
         return sb.toString();
