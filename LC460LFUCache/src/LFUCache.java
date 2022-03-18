@@ -1,9 +1,10 @@
 import java.util.HashMap;
 import java.util.LinkedHashSet;
+import java.util.Map;
 
 
 public class LFUCache {
-	/*
+	/**
 	 * Design and implement a data structure for Least Frequently Used (LFU) cache. It should support the following operations: get and put.
 	 * 
 	 * get(key) - Get the value (will always be positive) of the key if the key exists in the cache, otherwise return -1.
@@ -68,8 +69,8 @@ public class LFUCache {
 	
 	private Node head;
 	private int capacity;
-	private HashMap<Integer, Integer> keyMap; //存输入的(key, value)
-	private HashMap<Integer, Node> freqMap;  //从key 到 FreqNode的映射
+	private Map<Integer, Integer> keyMap; //存输入的(key, value)
+	private Map<Integer, Node> freqMap;  //从key 到 FreqNode的映射
 	
 	public LFUCache(int cap) {
 		this.head = null;

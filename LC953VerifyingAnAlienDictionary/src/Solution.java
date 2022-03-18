@@ -1,3 +1,6 @@
+import java.util.HashMap;
+import java.util.Map;
+
 public class Solution {
 
     /**
@@ -79,6 +82,43 @@ public class Solution {
         return true;
     }
 
+    // Another solution
+    /*
+    public static boolean isAlienSorted(String[] words, String order) {
+        if (words == null || words.length <= 1) {
+            return true;
+        }
+
+        Map<Character, Integer> map = new HashMap<>();
+
+        for (int i = 0; i < order.length(); i++) {
+            map.put(order.charAt(i), i);
+        }
+
+        for (int i = 1; i < words.length; i++) {
+            String w1 = words[i - 1];
+            String w2 = words[i];
+
+            int index = 0;
+
+            while (index < w1.length() && index < w2.length()) {
+                if (map.get(w1.charAt(index)) > map.get(w2.charAt(index))) {
+                    return false;
+                } else if (map.get(w1.charAt(index)) < map.get(w2.charAt(index))) {
+                    break;
+                } else {
+                    index++;
+                }
+            }
+
+            if (index < w1.length() && index == w2.length()) {
+                return false;
+            }
+        }
+
+        return true;
+    }
+    */
     public static void main(String[] args) {
         String[] words1 = {"hello","leetcode"};
         String[] words2 = {"word","world","row"};

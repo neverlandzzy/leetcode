@@ -5,7 +5,7 @@ import java.util.TreeMap;
 
 
 public class RangeModule {
-	/*
+	/**
 	 * A Range Module is a module that tracks ranges of numbers. Your task is to design and implement the following interfaces in an 
 	 * efficient manner.
 	 * 
@@ -45,7 +45,7 @@ public class RangeModule {
         	return;
         }
         
-        Integer start = map.floorKey(left);
+        Integer start = map.floorKey(left); // the greatest key less than or equal to left,
         Integer end = map.floorKey(right);
         
         if (start == null && end == null) {
@@ -92,7 +92,7 @@ public class RangeModule {
         }
         
         // 删掉[left, right)中重复的区间，e.g. [17, 25), [30, 35) 删掉[23, 32)后，剩下[17, 23), [30, 35), [32, 35)，要删掉[30, 35)   
-        // 注意subMap的开闭区间与插入时候相反！
+        // 注意subMap的开闭区间与插入时候相反！e.g. [10, 20) -> remove[14, 16] -> query [16, 17]
         Map<Integer, Integer> subMap = map.subMap(left, true, right, false);
         Set<Integer> set = new HashSet<>(subMap.keySet());
         map.keySet().removeAll(set);

@@ -4,7 +4,7 @@ import java.util.List;
 
 
 public class Solution {
-	/*
+	/**
 	 * A strobogrammatic number is a number that looks the same when rotated 180 degrees (looked at upside down).
 	 * Find all strobogrammatic numbers that are of length = n.
 	 * 
@@ -16,22 +16,22 @@ public class Solution {
         return helper(n, n);
     }
 
-    private static List<String> helper(int m, int n) {
+    private static List<String> helper(int length, int n) {
     	if (n == 0) {
-    		return new ArrayList<String>(Arrays.asList(""));
+    		return new ArrayList<>(Arrays.asList(""));
     	}
     	
     	if (n == 1) {
-    		return new ArrayList<String>(Arrays.asList("0", "1", "8"));
+    		return new ArrayList<>(Arrays.asList("0", "1", "8"));
     	}
     	
-    	List<String> list = helper(m, n - 2);
+    	List<String> list = helper(length, n - 2);
     	List<String> result = new ArrayList<>();
     	
     	for (int i = 0; i < list.size(); i++) {
     		String s = list.get(i);
     		
-    		if (n != m) {
+    		if (n != length) {
     			result.add("0" + s + "0");
     		}
     		result.add("1" + s + "1");

@@ -11,7 +11,7 @@ public class Solution {
 	 * You must do this in-place without making a copy of the array.
 	 * Minimize the total number of operations.
 	 */
-	
+	/*
 	public static void moveZeroes(int[] nums) {
         int n = nums.length;
         
@@ -39,8 +39,8 @@ public class Solution {
         nums[j] = tmp;
     
 	}
-	
-	/*
+	*/
+
 	// 和LC27一样
     public static void moveZeroes(int[] nums) {
         int size = nums.length;
@@ -63,7 +63,7 @@ public class Solution {
         	j++;
         }
     }
-    */
+
     public static void main(String[] args) {
 		int[] test = {1,2,3,0,6,0,8,0};
 		

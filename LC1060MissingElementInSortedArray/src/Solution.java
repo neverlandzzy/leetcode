@@ -63,20 +63,20 @@ public class Solution {
             return nums[n - 1] + k - missingAtLastElement;
         }
 
-        int left = 0;
-        int right = n - 1;
+        int start = 0;
+        int end = n - 1;
 
-        while (left < right) {
-            int mid = left + (right - left) / 2;
+        while (start < end) {
+            int mid = start + (end - start) / 2;
 
             if (missingElementAtIndex(nums, mid) < k) {
-                left = mid + 1;
+                start = mid + 1;
             } else {
-                right = mid;
+                end = mid;
             }
         }
 
-        return nums[left - 1] + k - missingElementAtIndex(nums, left - 1);
+        return nums[start - 1] + k - missingElementAtIndex(nums, start - 1);
     }
 
     // Return how many numbers are missing until nums[index]

@@ -55,7 +55,7 @@ public class LRUCache {
         }
     }
     
-    public void set(int key, int value) {
+    public void put(int key, int value) {
         if (get(key) != -1) {
         	map.get(key).val = value;
         	return;

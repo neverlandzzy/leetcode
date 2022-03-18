@@ -71,33 +71,32 @@ class Digraph {
 class Digraph {
 	private int V; 
 	private int E;
-	private List<List<Integer>> adj;
+	private List<List<Integer>> neighbors;
 	private int[] indegree;
-	private Queue<Integer> queue;
 	
-	public Digraph(int n, int[][] edges) {
-		this.V = n;
+	public Digraph(int V, int[][] edges) {
+		this.V = V;
 		this.E = edges.length;
 		indegree = new int[V];
-		adj = new ArrayList<>();
-		queue = new LinkedList<>();
+		neighbors = new ArrayList<>();
 		
 		for (int i = 0; i < V; i++) {
 			ArrayList<Integer> list = new ArrayList<>();
-			adj.add(list);
+			neighbors.add(list);
 		}
 		
 		for (int i = 0; i < E; i++) {
-			int v = edges[i][1];
-			int w = edges[i][0];
-			
-			adj.get(v).add(w);
-			indegree[w]++;
+			int m = edges[i][1];
+			int n = edges[i][0];
+
+			neighbors.get(m).add(n);
+			indegree[n]++;
 		}
 	}
 	
 	public int[] topologicalOrders() {
 		int[] topologicalOrder = new int[V];
+		Queue<Integer> queue = new LinkedList<>();
 		
 		for (int i = 0; i < V; i++) {
 			if (indegree[i] == 0) {
@@ -112,7 +111,7 @@ class Digraph {
 			topologicalOrder[counter] = v;
 			counter++;
 			
-			for (int w: adj.get(v)) {
+			for (int w: neighbors.get(v)) {
 				if (--indegree[w] == 0) {
 					queue.add(w);
 				}

@@ -4,7 +4,7 @@ import java.util.Stack;
 
 
 public class Solution {
-	/*
+	/**
 	 * Given an absolute path for a file (Unix-style), simplify it.
 	 * 
 	 * 	For example,
@@ -29,8 +29,9 @@ public class Solution {
         
         for (String s: strs) {
             if (s == null || s.length() == 0 || s.equals(".")) {
-                
-            } else if (s.equals("..")) {
+                continue;
+            }
+            if (s.equals("..")) {
                 if (!deque.isEmpty()) {
                    deque.pollLast(); 
                 }

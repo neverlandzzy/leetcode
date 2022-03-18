@@ -2,7 +2,7 @@ import java.util.Arrays;
 
 
 public class Solution {
-	/*
+	/**
 	 * Given an integer matrix, find the length of the longest increasing path.
 	 * 
 	 * From each cell, you can either move to four directions: left, right, up or down. You may NOT move diagonally or 
@@ -29,6 +29,7 @@ public class Solution {
 	 * The longest increasing path is [3, 4, 5, 6]. Moving diagonally is not allowed.
 	 */
 
+	// Time: O(mn)
 	private final static int[][] DIR = {{0, 1}, {1, 0}, {0, -1}, {-1, 0}};
 	
     public static int longestIncreasingPath(int[][] matrix) {
