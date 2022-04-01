@@ -30,6 +30,7 @@ public class Solution {
      * All characters inside a pair of consecutive opening and ending curly brackets are different.
      */
 
+    // Time: O(n * 3^(n / 7))
     public static String[] expand(String S) {
         List<String> list = new ArrayList<>();
 
@@ -52,10 +53,11 @@ public class Solution {
                 }
             }
         }
+
         List<String> result = new ArrayList<>();
         helper(list, result, 0, new StringBuilder());
         Collections.sort(result);
-        return result.toArray(String[]::new);
+        return result.stream().toArray(String[]::new);
     }
 
     private static void helper(List<String> list, List<String> result, int pos, StringBuilder sb) {
