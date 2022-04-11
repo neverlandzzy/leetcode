@@ -16,6 +16,8 @@ public class Solution {
 	 * 
 	 */
 
+	// 先将从末尾开始降序的部分翻转，再在翻转的部分中找到第一个比翻转前一位大的数
+	// e.g. 1,3,2,4,6,5 --> 1,3,2,4,5,6 -> 1,3,2,5,4,6
     public static void nextPermutation(int[] nums) {
         int pos = nums.length - 1;
         

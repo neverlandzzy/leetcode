@@ -2,7 +2,7 @@ import java.util.Stack;
 
 
 public class Solution {
-	/*
+	/**
 	 * You're now a baseball game point recorder.
 	 * 
 	 * Given a list of strings, each string can be one of the 4 following types:
@@ -42,7 +42,37 @@ public class Solution {
 	 * 	1. The size of the input list will be between 1 and 1000.
 	 * 	2. Every integer represented in the list will be between -30000 and 30000.
 	 */
-	
+
+	public static int calPoints(String[] ops) {
+		Stack<Integer> stack = new Stack<>();
+		int result = 0;
+
+		for (String op: ops) {
+			if (op.equals("+")) {
+				int val1 = stack.pop();
+				int val2 = stack.pop();
+				int record = val1 + val2;
+
+				stack.push(val2);
+				stack.push(val1);
+				stack.push(record);
+			} else if (op.equals("C")) {
+				stack.pop();
+			} else if (op.equals("D")) {
+				int val = stack.peek();
+				stack.push(val * 2);
+			} else {
+				stack.push(Integer.parseInt(op));
+			}
+		}
+
+		while (!stack.isEmpty()) {
+			result += stack.pop();
+		}
+
+		return result;
+	}
+	/*
     public static int calPoints(String[] ops) {
         Stack<Integer> stack = new Stack<>();
         int sum = 0;
@@ -74,7 +104,7 @@ public class Solution {
         
         return sum;
     }
-    
+    */
     public static void main(String[] args) {
 		String[] test1 = {"5","2","C","D","+"};
 		String[] test2 = {"5","-2","4","C","D","9","+","+"};
