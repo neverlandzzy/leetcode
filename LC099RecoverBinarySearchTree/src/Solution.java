@@ -1,6 +1,6 @@
 
 public class Solution {
-	/*
+	/**
 	 * Two elements of a binary search tree (BST) are swapped by mistake.
 	 * Recover the tree without changing its structure.
 	 * 
@@ -60,7 +60,7 @@ public class Solution {
     	 * When they are not consecutive, the first time we meet pre.val > root.val ensure us the first node is the pre node, 
     	 * since root should be traversal ahead of pre, pre should be at least at small as root. 
     	 * The second time we meet pre.val > root.val ensure us the second node is the root node, since we are now looking 
-    	 * for a node to replace with out first node, which is found before.
+    	 * for a node to replace without first node, which is found before.
     	 * 
     	 * When they are consecutive, which means the case pre.val > cur.val will appear only once. We need to take care this 
     	 * case without destroy the previous analysis. So the first node will still be pre, and the second will be just set to root. 

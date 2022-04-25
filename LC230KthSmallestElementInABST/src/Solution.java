@@ -67,7 +67,7 @@ public class Solution {
         return -1;
     }
     
-    // Follow up
+    // Follow up 1:
     /*
      * 如果BST节点TreeNode的属性可以扩展，则再添加一个属性leftCnt，记录左子树的节点个数
      * 
@@ -81,6 +81,14 @@ public class Solution {
      * https://leetcode.com/problems/kth-smallest-element-in-a-bst/discuss/63659/What-if-you-could-modify-the-BST-node's-structure
      * 
      * 上述算法时间复杂度为O(BST的高度)
+     *
+     *
+     * Follow up 2:
+     * What if the BST is modified (insert/delete operations) often and you need to find the
+	 * kth smallest frequently? How would you optimize the kthSmallest routine?
+	 *
+	 * 用LRU的方法，用doubly linked list按inorder顺序存每个TreeNode，这样每次只要O(k)时间，就可以在linked list上
+	 * 找到kth smallest element
      */
 
     public static void main(String[] args) {

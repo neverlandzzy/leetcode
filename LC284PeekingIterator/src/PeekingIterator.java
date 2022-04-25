@@ -1,7 +1,7 @@
 import java.util.Iterator;
 
 
-/*
+/**
  * Given an Iterator class interface with methods: next() and hasNext(), 
  * design and implement a PeekingIterator that support the peek() operation
  * -- it essentially peek() at the element that will be returned by the 
