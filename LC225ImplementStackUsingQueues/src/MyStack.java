@@ -4,7 +4,7 @@ import java.util.Queue;
 
 public class MyStack {
 	
-	/*
+	/**
 	 * Implement the following operations of a stack using queues.
 	 * 
 	 * push(x) -- Push element x onto stack.
@@ -30,7 +30,7 @@ public class MyStack {
 	private Queue<Integer> queue;
 	
 	public MyStack() {
-		queue = new LinkedList<Integer>();
+		queue = new LinkedList<>();
 	}
 	
     public void push(int x) {

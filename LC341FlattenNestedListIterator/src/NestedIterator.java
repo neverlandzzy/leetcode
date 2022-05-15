@@ -4,7 +4,7 @@ import java.util.Stack;
 
 
 public class NestedIterator implements Iterator<Integer> {
-	/*
+	/**
 	 * Given a nested list of integers, implement an iterator to flatten it.
 	 * 
 	 * Each element is either an integer, or a list -- whose elements may also be integers or other lists.
@@ -26,7 +26,7 @@ public class NestedIterator implements Iterator<Integer> {
 	
     public NestedIterator(List<NestedInteger> nestedList) {
     	stack = new Stack<>();
-    	falttenList(nestedList);
+		flattenList(nestedList);
     }
 
     @Override

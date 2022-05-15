@@ -4,7 +4,7 @@ import java.util.Queue;
 
 
 public class Solution {
-	/*
+	/**
 	 * Given an undirected graph, return true if and only if it is bipartite.
 	 * 
 	 * Recall that a graph is bipartite if we can split it's set of nodes into two independent subsets A and B such that every edge 

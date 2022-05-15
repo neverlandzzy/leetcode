@@ -46,20 +46,29 @@ public class Solution {
 
     // Time: O(m * n * log 10^6) = O(m * n)
     public static int minimumEffortPath(int[][] heights) {
-        int low = 0;
-        int high = 1_000_000;
+        int min = 0; // min 要从0开始，不能从最小的height开始（e.g. 第三个example，最小的height是1，但effort只需要0）
+        int max = 0;
 
-        while (low < high) {
-            int mid = (low + high) / 2;
+        int m = heights.length;
+        int n = heights[0].length;
 
-            if (canReachDestination(heights, mid)) {
-                high = mid;
-            } else {
-                low = mid + 1;
+        for (int i = 0; i < m; i++) {
+            for (int j = 0; j < n; j++) {
+                max = Math.max(max, heights[i][j]);
             }
         }
 
-        return low;
+        while (min < max) {
+            int mid = min + (max - min) / 2;
+
+            if (canReachDestination(heights, mid)) {
+                max = mid;
+            } else {
+                min = mid + 1;
+            }
+        }
+
+        return min;
     }
 
     private static boolean canReachDestination(int[][] heights, int effort) {
