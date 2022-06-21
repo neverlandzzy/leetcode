@@ -8,5 +8,4 @@ public class TrieNode2 {
         children = new TrieNode2[26];
         isLeaf = false;
     }
-    
 }

@@ -6,7 +6,7 @@ import java.util.Set;
 
 
 public class Solution {
-	/*
+	/**
 	 * Given an array of n distinct non-empty strings, you need to generate minimal possible abbreviations for every word 
 	 * following rules below.
 	 * 
@@ -27,54 +27,55 @@ public class Solution {
 	 * 3. The words consist of lowercase English letters only.
 	 * 4. The return answers should be in the same order as the original array.
 	 */
-	
-    public static List<String> wordsAbbreviation(List<String> dict) {
-        int size = dict.size();
-        String[] result = new String[size];
-        int[] prefix = new int[size];
-        for (int i = 0; i < size; i++) {
-        	prefix[i] = 1;
-        	result[i] = (abbreviation(dict.get(i), 1));
-        }
-        
-        for (int i = 0; i < size; i++) {
-        	
-        	while (true) {
-	        	Set<Integer> set = new HashSet<>();
-	        	for (int j = i + 1; j < size; j++) {
-	        		if (result[i].equals(result[j])) {
-	        			set.add(j);
-	        		}
-	        	}
-	        	
-	        	if (set.isEmpty()) {
-	        		break;
-	        	}
-	        	
-	        	set.add(i);
-	        	for (int k: set) {
-	        		result[k] = abbreviation(dict.get(k), ++prefix[k]);
-	        	}
-        	}
-        }
-        
-        return Arrays.asList(result);
-        
+
+	// Solution 1: Trie - Time: O(n), Space: O(n)
+	// Solution 2: Time: O(n^2), Space: O(n)
+    public static List<String> wordsAbbreviation(List<String> words) {
+		int size = words.size();
+		String[] results = new String[size];
+		int[] prefixLength = new int[size];
+
+		for (int i = 0; i < size; i++) {
+			prefixLength[i] = 1;
+			results[i] = abbreviation(words.get(i), 1);
+		}
+
+		for (int i = 0; i < size; i++) {
+			while (true) {
+				Set<Integer> set = new HashSet<>();
+				for (int j = i + 1; j < size; j++) {
+					if (results[i].equals(results[j])) {
+						set.add(j);
+					}
+				}
+
+				if (set.isEmpty()) {
+					break;
+				}
+
+				set.add(i);
+
+				for (int k: set) {
+					results[k] = abbreviation(words.get(k), ++prefixLength[k]);
+				}
+			}
+		}
+
+		return Arrays.asList(results);
     }
-    
-    private static String abbreviation(String s, int k) {
-    	if (k >= s.length() - 2) {
-    		return s;
-    	}
-    	
-    	StringBuilder sb = new StringBuilder();
-    	sb.append(s.substring(0, k));
-    	sb.append(s.length() - k - 1);
-    	sb.append(s.charAt(s.length() - 1));
-    	
-    	return sb.toString();
-    	
-    }
+
+	private static String abbreviation(String s, int prefixLength) {
+		if (prefixLength >= s.length() - 2) {
+			return s;
+		}
+
+		StringBuilder sb = new StringBuilder();
+		sb.append(s.substring(0, prefixLength));
+		sb.append(s.length() - prefixLength - 1);
+		sb.append(s.charAt(s.length() - 1));
+
+		return sb.toString();
+	}
     
     public static void main(String[] args) {
 		List<String> test = new ArrayList<>(Arrays.asList("like", "god", "internal", "me", "internet", "interval", "intension", "face", "intrusion"));

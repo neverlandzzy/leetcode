@@ -4,7 +4,7 @@ import java.util.List;
 
 public class Solution {
 	
-	/*
+	/**
 	 * Given a binary tree, collect a tree's nodes as if you were doing this: Collect and remove all leaves, 
 	 * repeat until the tree is empty.
 	 * 
@@ -52,7 +52,7 @@ public class Solution {
         int depth = Math.max(left, right);
         
         if (result.size() == depth) {
-            result.add(new ArrayList<Integer>());    
+            result.add(new ArrayList<>());
         }
         
         result.get(depth).add(root.val);
