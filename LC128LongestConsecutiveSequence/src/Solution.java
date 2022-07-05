@@ -3,7 +3,7 @@ import java.util.Set;
 
 
 public class Solution {
-	/*
+	/**
 	 * Given an unsorted array of integers, find the length of the longest 
 	 * consecutive elements sequence.
 	 * 
@@ -21,30 +21,29 @@ public class Solution {
         if (nums == null || nums.length == 0) {
             return 0;
         }
-        
+
         Set<Integer> set = new HashSet<>();
-        
-        for (int n: nums) {
-            set.add(n);
+
+        for (int i: nums) {
+            set.add(i);
         }
-        
+
         int result = 0;
-        
-        for (int n: nums) {
-            if (!set.contains(n + 1)) {
-                int tmp = n;
-                int curL = 1;
-                
-                while (set.contains(tmp - 1)) {
-                    tmp--;
-                    curL++;
+
+        for (int i: nums) {
+            if (!set.contains(i + 1)) {
+                int length = 1;
+                i -= 1;
+
+                while (set.contains(i)) {
+                    length++;
+                    i--;
                 }
-                
-                result = Math.max(result, curL);
-                    
+
+                result = Math.max(result, length);
             }
         }
-        
+
         return result;
     }
     

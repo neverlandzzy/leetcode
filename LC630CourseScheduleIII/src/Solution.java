@@ -5,7 +5,7 @@ import java.util.PriorityQueue;
 
 
 public class Solution {
-	/*
+	/**
 	 * There are n different online courses numbered from 1 to n. Each course has some duration(course length) t and closed on dth day. 
 	 * A course should be taken continuously for t days and must be finished before or on the dth day. You will start at the 1st day.
 	 * 
@@ -31,14 +31,10 @@ public class Solution {
 	// 将course按deadline排序，deadline早的课程在前面
 	// 创建一个Priority Queue, 从大到小的顺序记录course的duration
 	// 每次从array中取出一门课，加入到pq中，并计算完成这门课所需要的累积的时间，若发现不能完成这门课，则从pq中poll出一门课，因为pq中的按课程的duration排列，poll出的课的duration
-	// 大于或等于当前这么课，因此poll出后就能保证当前这门课可以上。每次poll出duration相对较大的课，从而保证能够上尽可能多的课程
+	// 大于或等于当前这门课，因此poll出后就能保证当前这门课可以上。每次poll出duration相对较大的课，从而保证能够上尽可能多的课程
 	
     public static int scheduleCourse(int[][] courses) {
-        Arrays.sort(courses, new Comparator<int[]>(){
-			public int compare(int[] o1, int[] o2) {				
-				return o1[1] - o2[1];
-			}      	
-        });
+        Arrays.sort(courses, Comparator.comparingInt(o -> o[1]));
         
         PriorityQueue<Integer> pq = new PriorityQueue<>(Collections.reverseOrder());
         int time = 0;
