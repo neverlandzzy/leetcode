@@ -1,6 +1,6 @@
 
 public class Solution {
-	/*
+	/**
 	 * You are given a list of non-negative integers, a1, a2, ..., an, and a target, S. Now you have 2 symbols + and -. 
 	 * For each integer, you should choose one from + and - as its new symbol.
 	 * 
@@ -78,12 +78,12 @@ public class Solution {
 	// Solution 3: 2D DP
 	/*
 	public static int findTargetSumWays(int[] nums, int S) {
-		// dp[i][j] - 在index = i时，组成和为j的可能性个数。 
+		// dp[i][j] - 在index = i时，组成和为j的可能性个数。
 		int[][] dp = new int[nums.length][2001];
-		
+
 		dp[0][nums[0] + 1000] = 1;
 		dp[0][-nums[0] + 1000] += 1;  // 当nums中的起始元素为0时，dp[0][1000] == 2, 因此要用+= e.g. [0,0,0,0,0,0,0,0,1]
-		
+
 		for (int i = 1; i < nums.length; i++) {
 			for (int j = -1000; j <= 1000; j++) {
 				if (dp[i - 1][j + 1000] > 0) {

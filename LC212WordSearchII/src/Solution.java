@@ -12,7 +12,7 @@ class TrieNode {
 }
 
 public class Solution {
-	/*
+	/**
 	 * Given a 2D board and a list of words from the dictionary, find all words in the board.
 	 * 
 	 * Each word must be constructed from letters of sequentially adjacent cell, 
@@ -32,7 +32,10 @@ public class Solution {
 	 * 
 	 * Return ["eat","oath"].
 	 */
-		
+
+	// Time: O(M(4 * 3^(L-1))) where MM is the number of cells in the board and LL is the maximum length of words.
+	//       单词长度是L，第一步找有4个方向，之后每次都是3个方向（不包括来的方向）
+	// Space: O(N), where NN is the total number of letters in the dictionary.
     public static List<String> findWords(char[][] board, String[] words) {
     	
         TrieNode root = new TrieNode();

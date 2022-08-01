@@ -1,9 +1,11 @@
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Iterator;
 import java.util.List;
 
 
 public class Vector2D implements Iterator<Integer> {	
-	/*
+	/**
 	 * Implement an iterator to flatten a 2d vector.
 	 * 
 	 * Example:
@@ -24,8 +26,19 @@ public class Vector2D implements Iterator<Integer> {
 	
 	private Iterator<List<Integer>> i;
 	private Iterator<Integer> j;
+	List<List<Integer>> vec2d;
 	
-    public Vector2D(List<List<Integer>> vec2d) {
+    public Vector2D(int[][] vec) {
+		vec2d = new ArrayList<>();
+		for (int[] innerVec: vec) {
+			List<Integer> list = new ArrayList<>();
+
+			for (int num: innerVec) {
+				list.add(num);
+			}
+
+			vec2d.add(list);
+		}
         i = vec2d.iterator();
     }
 

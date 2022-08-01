@@ -5,7 +5,7 @@ import java.util.Set;
 
 
 public class Solution {
-	/*
+	/**
 	 * Given two sentences words1, words2 (each represented as an array of strings), and a list of similar word pairs pairs, 
 	 * determine if two sentences are similar.
 	 * 

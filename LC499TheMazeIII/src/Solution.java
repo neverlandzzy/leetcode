@@ -98,7 +98,7 @@ public class Solution {
         while (!queue.isEmpty()) {
         	Point p = queue.poll();
         	
-        	if (points[p.x][p.y].compareTo(p) <= 0 ){
+        	if (points[p.x][p.y].compareTo(p) <= 0) {
         		continue;
         	}
         	

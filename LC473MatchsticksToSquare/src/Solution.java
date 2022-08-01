@@ -2,7 +2,7 @@ import java.util.Arrays;
 
 
 public class Solution {
-	/*
+	/**
 	 * Remember the story of Little Match Girl? By now, you know exactly what matchsticks the little match girl has, 
 	 * please find out a way you can make one square by using up all those matchsticks. You should not break any stick, 
 	 * but you can link them up, and each matchstick must be used exactly one time.
@@ -27,14 +27,14 @@ public class Solution {
 	 * 2. The length of the given matchstick array will not exceed 15.
 	 */
 	
-    public static boolean makesquare(int[] nums) {
-    	if (nums == null || nums.length < 4) {
+    public static boolean makesquare(int[] matchsticks) {
+    	if (matchsticks == null || matchsticks.length < 4) {
     		return false;
     	}
     
     	int target = 0;
     	
-    	for (int n: nums) {
+    	for (int n: matchsticks) {
     		target += n;
     	}
     	
@@ -44,11 +44,11 @@ public class Solution {
     		target = target / 4;
     	}
     	
-    	Arrays.sort(nums); //sort 后从大的边开始选，并不会提高worst case的时间复杂度，但在failure时会更早退出。
-    	return helper(nums, new int[4], target, nums.length - 1);
+    	Arrays.sort(matchsticks); //sort 后从大的边开始选，并不会提高worst case的时间复杂度，但在failure时会更早退出。
+    	return helper(matchsticks, new int[4], target, matchsticks.length - 1);
     }
     
-    private static boolean helper(int[] nums, int[] sides, int target, int index) {
+    private static boolean helper(int[] matchsticks, int[] sides, int target, int index) {
     	if (index == 0) {
     		if (sides[0] == target && sides[1] == target && sides[2] == target) {
     			return true;
@@ -57,14 +57,14 @@ public class Solution {
     	}
     	
     	for (int i = 0; i < 4; i++) {
-    		if (sides[i] + nums[index] > target) {
+    		if (sides[i] + matchsticks[index] > target) {
     			continue;
     		}
-    		sides[i] += nums[index];
-    		if (helper(nums, sides, target, index - 1)) {
+    		sides[i] += matchsticks[index];
+    		if (helper(matchsticks, sides, target, index - 1)) {
     			return true;
     		}
-    		sides[i] -= nums[index];
+    		sides[i] -= matchsticks[index];
     	}
     	return false;
     }
