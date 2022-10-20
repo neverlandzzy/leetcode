@@ -42,7 +42,7 @@ public class Solution {
     //    diff = S - 2 * S2
     // 2. So we want to find the max S2 so that diff is minimal
     // 3. S2 range is from 0 to S/2
-    // 4. dp[i][j] - 在index = i时，是否可以组成和为j(True or False)
+    // 4. dp[i][j] - 前i个数，是否可以组成和为j(True or False)
     public static int lastStoneWeightII(int[] stones) {
         int S = 0;
         int S2 = 0;

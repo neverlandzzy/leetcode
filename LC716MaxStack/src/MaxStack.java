@@ -5,7 +5,7 @@ import java.util.TreeMap;
 
 public class MaxStack {
 	
-	/*
+	/**
 	 * Design a max stack that supports push, pop, top, peekMax and popMax.
 	 * 
 	 * push(x) -- Push element x onto stack.

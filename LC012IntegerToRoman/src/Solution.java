@@ -1,6 +1,6 @@
 
 public class Solution {
-/*
+/**
  * Given an integer, convert it to a roman numeral.
  * Input is guaranteed to be within the range from 1 to 3999.
  */
@@ -10,9 +10,8 @@ public class Solution {
         String[] X = {"", "X", "XX", "XXX", "XL", "L", "LX", "LXX", "LXXX", "XC"};
         String[] C = {"", "C", "CC", "CCC", "CD", "D", "DC", "DCC", "DCCC", "CM"};
         String[] M = {"", "M", "MM", "MMM"};
-        	
-        return M[num/1000] + C[num%1000/100] + X[num%100/10] + I[num%10];
-        	
+
+		return M[num / 1000] + C[(num % 1000) / 100] + X[(num % 100) / 10] + I[num % 10];
     }
     
     public static void main(String[] args) {

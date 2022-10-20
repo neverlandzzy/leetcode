@@ -1,6 +1,6 @@
 
 public class HitCounter {
-	/*
+	/**
 	 * Design a hit counter which counts the number of hits received in the past 5 minutes.
 	 * 
 	 * Each function accepts a timestamp parameter (in seconds granularity) and you may assume that calls are being made to the system in 
@@ -73,3 +73,26 @@ public class HitCounter {
     	return result;
     }
 }
+
+/* Solution 2
+class HitCounter {
+
+    Queue<Integer> queue;
+
+    public HitCounter() {
+        queue = new LinkedList<>();
+    }
+
+    public void hit(int timestamp) {
+        queue.offer(timestamp);
+    }
+
+    public int getHits(int timestamp) {
+        while (!queue.isEmpty() && timestamp - queue.peek() >= 300) {
+            queue.poll();
+        }
+
+        return queue.size();
+    }
+}
+ */

@@ -30,7 +30,7 @@ public class Solution {
      */
 
     // we can summarize that, to generate the required arrangement, we can start off with the min number that
-    // can be formed for the given nn. Then, to satisfy the given pattern ss, we need to reverse only those subsections of the min
+    // can be formed for the given n. Then, to satisfy the given pattern s, we need to reverse only those subsections of the min
     // array which have a D in the pattern at their corresponding positions.
     public static int[] findPermutation(String s) {
         int n = s.length();
@@ -55,6 +55,8 @@ public class Solution {
                 len++;
             }
         }
+
+        return result;
     }
 
     private static void reverse(int[] nums, int i, int j) {

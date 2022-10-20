@@ -1,6 +1,6 @@
 
 public class Solution {
-	/*
+	/**
 	 * The count-and-say sequence is the sequence of integers beginning as follows:
 	 * 
 	 * 1, 11, 21, 1211, 111221, ...

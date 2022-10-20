@@ -3,7 +3,7 @@ import java.util.TreeMap;
 
 public class MyCalendar {
 	
-	/*
+	/**
 	 * Implement a MyCalendar class to store your events. A new event can be added if adding the event will not cause a double booking.
 	 * 
 	 * Your class will have the method, book(int start, int end). Formally, this represents a booking on the half open interval [start, end), 
