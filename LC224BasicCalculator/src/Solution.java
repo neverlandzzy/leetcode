@@ -18,7 +18,6 @@ public class Solution {
 	 */
 	
     public static int calculate(String s) {
-    	
     	int sign = 1;
     	int result = 0;
     	int number = 0;
@@ -58,8 +57,8 @@ public class Solution {
 		String test2 = " 2-1 + 2 ";
 		String test3 = "(1+(4+5+2)-3)+(6+8)";
 		
-		//System.out.println(calculate(test1));
-		//System.out.println(calculate(test2));
+		System.out.println(calculate(test1));
+		System.out.println(calculate(test2));
 		System.out.println(calculate(test3));
 		
 	}

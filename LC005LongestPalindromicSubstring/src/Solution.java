@@ -98,7 +98,7 @@ public class Solution {
 	 */
 	public static boolean isPalindrome(String s, int startIndex, int endIndex) {
 	
-			for(int i = startIndex, j = endIndex; i < j; i++, j--) {
+			for (int i = startIndex, j = endIndex; i < j; i++, j--) {
 				if(s.charAt(i) != s.charAt(j)) {
 					return false;
 				}

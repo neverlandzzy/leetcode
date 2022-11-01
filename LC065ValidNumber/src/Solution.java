@@ -1,6 +1,6 @@
 
 public class Solution {
-	/*
+	/**
 	 * Validate if a given string is numeric.
 	 * 
 	 * Some examples:
@@ -19,7 +19,7 @@ public class Solution {
     	int length = s.length();
     	int i = 0;
     	
-    	while(i < length && Character.isWhitespace(s.charAt(i))) {
+    	while (i < length && Character.isWhitespace(s.charAt(i))) {
     		i++;
     	}
     	
@@ -27,7 +27,7 @@ public class Solution {
     		i++;
     	}
         
-    	while(i < length && Character.isDigit(s.charAt(i))) {
+    	while (i < length && Character.isDigit(s.charAt(i))) {
     		i++;
     		isValid = true;
     	}
@@ -36,14 +36,12 @@ public class Solution {
     		i++;
     	}
     	
-    	while(i < length && Character.isDigit(s.charAt(i))) {
+    	while (i < length && Character.isDigit(s.charAt(i))) {
     		i++;
     		isValid = true;
-    
     	}
 
-
-    	if (i < length && s.charAt(i) == 'e' && isValid) {
+    	if (i < length && (s.charAt(i) == 'e' || s.charAt(i) == 'E') && isValid) {
     		i++;
     		isValid = false;
         	if (i < length && (s.charAt(i) == '-' || s.charAt(i) == '+') ) {
@@ -51,16 +49,14 @@ public class Solution {
         	}
     	}
 	
-    	while(i < length && Character.isDigit(s.charAt(i))) {
+    	while (i < length && Character.isDigit(s.charAt(i))) {
     		i++;
     		isValid = true;
     	}
-
     	
-    	while(i < length && Character.isWhitespace(s.charAt(i))) {
+    	while (i < length && Character.isWhitespace(s.charAt(i))) {
     		i++;
     	}
-    	
     	
     	if (i != length) {
     		isValid = false;
