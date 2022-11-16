@@ -4,7 +4,7 @@ import java.util.PriorityQueue;
 
 
 public class MedianFinder {
-	/*
+	/**
 	 * Median is the middle value in an ordered integer list. If the size of the list is even, 
 	 * there is no middle value. So the median is the mean of the two middle value.
 	 * 
@@ -23,8 +23,8 @@ public class MedianFinder {
     PriorityQueue<Integer> maxHeap;
 
     public MedianFinder() {
-        minHeap = new PriorityQueue<Integer>();
-        maxHeap = new PriorityQueue<Integer>(Collections.reverseOrder()); 
+        minHeap = new PriorityQueue<>();
+        maxHeap = new PriorityQueue<>(Collections.reverseOrder());
         
         /* another way to re-define Comparator 
         maxHeap = new PriorityQueue<>(1, new Comparator<Integer>() {
