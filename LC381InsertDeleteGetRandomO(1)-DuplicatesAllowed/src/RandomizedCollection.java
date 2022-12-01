@@ -9,7 +9,7 @@ import java.util.Set;
 
 public class RandomizedCollection {
 	
-	/*
+	/**
 	 * Design a data structure that supports all following operations in average O(1) time.
 	 * 
 	 * Note: Duplicate elements are allowed.
@@ -76,7 +76,7 @@ public class RandomizedCollection {
         boolean result = map.containsKey(val);
         
         if (!result) {
-        	map.put(val, new LinkedHashSet<Integer>());
+        	map.put(val, new LinkedHashSet<>());
         }
         
         map.get(val).add(list.size());

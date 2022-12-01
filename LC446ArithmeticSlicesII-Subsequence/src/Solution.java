@@ -5,7 +5,7 @@ import java.util.Map;
 
 
 public class Solution {
-	/*
+	/**
 	 * A sequence of numbers is called arithmetic if it consists of at least three elements and if the difference between any two 
 	 * consecutive elements is the same.
 	 * 
@@ -49,18 +49,18 @@ public class Solution {
 	// https://discuss.leetcode.com/topic/67413/detailed-explanation-for-java-o-n-2-solution/12
 	// http://www.cnblogs.com/grandyang/p/6057934.html
 	
-    public static int numberOfArithmeticSlices(int[] A) {
+    public static int numberOfArithmeticSlices(int[] nums) {
         List<Map<Integer, Integer>> mapList = new ArrayList<>();
         //每个map中存的是等差数列的差值和其长度之间的映射
         
         int result = 0;
         
-        for (int i = 0; i < A.length; i++) {
+        for (int i = 0; i < nums.length; i++) {
         	Map<Integer, Integer> map = new HashMap<>();
         	mapList.add(map);
         	
         	for (int j = 0; j < i; j++) {
-        		long diff = (long)(A[i]) - A[j]; 
+        		long diff = (long)(nums[i]) - nums[j];
         		if (diff >= Integer.MAX_VALUE || diff <= Integer.MIN_VALUE) {
         			continue;
         		}
