@@ -80,7 +80,7 @@ public class Solution {
 		return sb.toString();
 	}
 
-	// Solution 2: Heap - Time: O(n * logn)
+	// Solution 2: Heap - Time: O(n + klogk) // k is the number of unique characters in the string (52 in this case)
 	/*
 	static class Node {
 		char c;

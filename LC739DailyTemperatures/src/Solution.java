@@ -10,6 +10,7 @@ public class Solution {
 	 * Note: The length of temperatures will be in the range [1, 30000]. Each temperature will be an integer in the range [30, 100].
 	 */
 
+	// Similar to LC901
 	// Solution 1: Array - Time: O(n), Space: O(1)
 	public static int[] dailyTemperatures(int[] temperatures) {
 		if (temperatures == null || temperatures.length == 0) {
