@@ -1,7 +1,7 @@
 
 public class Solution {
 
-	/*
+	/**
 	 * In a given array nums of positive integers, find three non-overlapping subarrays with maximum sum.
 	 * 
 	 * Each subarray will be of size k, and we want to maximize the sum of all 3*k entries.
@@ -55,20 +55,21 @@ public class Solution {
         		left[i] = left[i - 1];
         	}
         }
-        
+
         max = Integer.MIN_VALUE;
         
         // 更新right[i]，即the starting index of the max sum subarray(size = k) after i, 从sum[n-k ~ n-1]开始，到sum[0 ~ k-1]截止
         for (int i = n - k; i >= 0; i--) {
         	int rightSum = sum[i + k - 1] - sum[i] + nums[i]; // sum from i to (i + k - 1)
-        	if (rightSum > max) {
+        	if (rightSum >= max) {
         		max = rightSum;
         		right[i] = i;
         	} else {
         		right[i] = right[i + 1];
         	}
         }
-        
+        // printArray(left);
+        // printArray(right);
         max = Integer.MIN_VALUE;
         // 扫描中间部分， 即i为中间一段子数组的起始index；于是left[i - 1]和right[i + k]则为对应当前i的左右子数组最大值的起始值
         for (int i = k; i <= n - 2 * k; i++) {
@@ -91,12 +92,20 @@ public class Solution {
     }
     
     public static void main(String[] args) {
-		int[] test = {1,2,1,2,6,7,5,1};
-		
-		int[] result = maxSumOfThreeSubarrays(test, 2);
-		
-		for (int i: result) {
+		int[] test1 = {1,2,1,2,6,7,5,1};
+		int[] test2 = {1,2,1,2,1,2,1,2,1};
+
+		int[] result1 = maxSumOfThreeSubarrays(test1, 2);
+		int[] result2 = maxSumOfThreeSubarrays(test2, 2);
+
+		printArray(result1);
+		printArray(result2);
+	}
+
+	private static void printArray(int[] nums) {
+    	for (int i: nums) {
 			System.out.print(i + ", ");
 		}
+		System.out.println();
 	}
 }

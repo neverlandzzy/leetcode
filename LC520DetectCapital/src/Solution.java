@@ -18,30 +18,30 @@ public class Solution {
 	 * Output: False
 	 * Note: The input will be a non-empty word consisting of uppercase and lowercase latin letters.
 	 */
-	
+
     public static boolean detectCapitalUse(String word) {
 		if (word == null || word.length() == 0) {
 			return true;
 		}
 
 		boolean isFirstCharCapital = word.charAt(0) >= 'A' && word.charAt(0) <= 'Z';
-		boolean isFollowingCharContainsLowerCase = false;
-		boolean isFollowingCharContainsCapital = false;
+		boolean isFollowingCharContainingLowerCase = false;
+		boolean isFollowingCharContainingCapital = false;
 
 		for (int i = 1; i < word.length(); i++) {
 			char c = word.charAt(i);
 
 			if (c >= 'a' && c <= 'z') {
-				if (isFollowingCharContainsCapital) {
+				if (isFollowingCharContainingCapital) {
 					return false;
 				}
-				isFollowingCharContainsLowerCase = true;
+				isFollowingCharContainingLowerCase = true;
 			} else if (c >= 'A' && c <= 'Z') {
-				if (!isFirstCharCapital || isFollowingCharContainsLowerCase) {
+				if (!isFirstCharCapital || isFollowingCharContainingLowerCase) {
 					return false;
 				}
 
-				isFollowingCharContainsCapital = true;
+				isFollowingCharContainingCapital = true;
 			}
 		}
 

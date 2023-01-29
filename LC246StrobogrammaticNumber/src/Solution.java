@@ -6,6 +6,7 @@ public class Solution {
 	 * For example, the numbers "69", "88", and "818" are all strobogrammatic.
 	 */
 
+	// Similar to LC1056
 	public static boolean isStrobogrammatic(String num) {
 		if (num == null || num.length() == 0) {
 			return true;
