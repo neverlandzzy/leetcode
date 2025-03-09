@@ -2,7 +2,7 @@ import java.util.Arrays;
 
 
 public class Solution {
-	/*
+	/**
 	 * Given an array of citations (each citation is a non-negative integer) of a researcher, 
 	 * write a function to compute the researcher's h-index.
 	 * 
@@ -19,7 +19,7 @@ public class Solution {
 	 */
 	
 	
-	// Soltion 1: Sort, Time: O(nlogn), Space: O(1)
+	// Solution 1: Sort, Time: O(nlogn), Space: O(1)
 	/*
     public static int hIndex(int[] citations) {
         Arrays.sort(citations);
@@ -36,7 +36,7 @@ public class Solution {
     }
     */
 	
-	// Soltion 2: Bucket Sort, Time: O(n), Space: O(n)
+	// Solution 2: Bucket Sort, Time: O(n), Space: O(n)
 	// e.g. 3, 0, 6, 1, 5
 	// bucket: index: 0, 1, 2, 3, 4, 5
 	//         val:   1, 1, 0, 1, 0, 2

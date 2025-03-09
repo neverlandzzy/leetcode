@@ -3,7 +3,7 @@ import java.util.List;
 
 
 public class Solution {
-	/*
+	/**
 	 * Given an array of words and a length L, format the text such that each line has exactly L 
 	 * characters and is fully (left and right) justified.
 	 * 
@@ -50,17 +50,20 @@ public class Solution {
                 list.add(words[i]);
                 length += words[i].length() + 1;
                 i++;
+                System.out.println(list);
             } else {
                 // 本行里所有的剩余空间(extraSpace)：L - 已经加入的每个word和word后面space的长度(length), 最后要加回最后一个word后面的space（+1）
                 int space = maxWidth - length + 1;
+                System.out.println(space);
                 // 本行里有多少个单词间padding的空格（也就是单词数 - 1）
                 int intervals = list.size() - 1;
                 // 本行里将空格均摊到每个interval后，剩下的不能均摊的空格
+                System.out.println(intervals);
                 int extra = 0;
                 if (intervals != 0) {
                     extra = space % intervals;
                 }
-                
+                System.out.println(extra);
                 StringBuilder sb = new StringBuilder();
                 
                 for (String s: list) {
@@ -114,7 +117,7 @@ public class Solution {
     
     public static void main(String[] args) {
 		String[] words = {"This", "is", "an", "example", "of", "text", "justification."};
-		//System.out.println(fullJustify(words, 16));
+		System.out.println(fullJustify(words, 16));
 		
 		String[] words2 = {""};
 		//System.out.println(fullJustify(words2, 2));
@@ -129,10 +132,10 @@ public class Solution {
 		//System.out.println(fullJustify(words5, 13));
 		
 		String[] word6 = {"Give","me","my","Romeo;","and,","when","he","shall","die,"};
-		System.out.println(fullJustify(word6, 25));
+		//System.out.println(fullJustify(word6, 25));
 		
 		String[] word7 = {"Listen","to","many,","speak","to","a","few."};
-		System.out.println(fullJustify(word7, 6));		
+		//System.out.println(fullJustify(word7, 6));
 	}
     
 }
